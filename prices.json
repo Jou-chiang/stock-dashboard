@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-03-19T03:31:51Z",
-  "updated_at_tw": "11:31",
+  "updated_at": "2026-03-19T03:41:25Z",
+  "updated_at_tw": "11:41",
   "prices": [
     {
       "id": "2605",
@@ -10,7 +10,7 @@
       "change_pct": null,
       "high": 45.25,
       "low": 42.0,
-      "vol": 42637,
+      "vol": 43157,
       "is_realtime": false
     },
     {
@@ -21,19 +21,19 @@
       "change_pct": null,
       "high": 104.0,
       "low": 99.5,
-      "vol": 9748,
+      "vol": 9831,
       "is_realtime": false
     },
     {
       "id": "6213",
       "name": "聯茂",
-      "price": 155.5,
+      "price": null,
       "prev_close": 150.5,
-      "change_pct": 3.32,
+      "change_pct": null,
       "high": 157.5,
       "low": 147.0,
-      "vol": 14566,
-      "is_realtime": true
+      "vol": 14971,
+      "is_realtime": false
     },
     {
       "id": "8932",
@@ -43,7 +43,7 @@
       "change_pct": null,
       "high": 86.5,
       "low": 82.8,
-      "vol": 1967,
+      "vol": 2003,
       "is_realtime": false
     },
     {
@@ -54,7 +54,7 @@
       "change_pct": null,
       "high": 207.5,
       "low": 206.0,
-      "vol": 38095,
+      "vol": 39644,
       "is_realtime": false
     },
     {
@@ -65,7 +65,7 @@
       "change_pct": null,
       "high": 234.0,
       "low": 221.5,
-      "vol": 47478,
+      "vol": 48293,
       "is_realtime": false
     },
     {
@@ -76,19 +76,19 @@
       "change_pct": null,
       "high": 60.4,
       "low": 59.4,
-      "vol": 37397,
+      "vol": 38876,
       "is_realtime": false
     },
     {
       "id": "2618",
       "name": "長榮航",
-      "price": null,
+      "price": 34.75,
       "prev_close": 35.5,
-      "change_pct": null,
+      "change_pct": -2.11,
       "high": 35.2,
-      "low": 34.7,
-      "vol": 19947,
-      "is_realtime": false
+      "low": 34.65,
+      "vol": 21114,
+      "is_realtime": true
     }
   ]
 }
