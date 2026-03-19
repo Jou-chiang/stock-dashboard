@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-03-19T03:16:12Z",
-  "updated_at_tw": "11:16",
+  "updated_at": "2026-03-19T03:31:51Z",
+  "updated_at_tw": "11:31",
   "prices": [
     {
       "id": "2605",
@@ -10,7 +10,7 @@
       "change_pct": null,
       "high": 45.25,
       "low": 42.0,
-      "vol": 41830,
+      "vol": 42637,
       "is_realtime": false
     },
     {
@@ -21,19 +21,19 @@
       "change_pct": null,
       "high": 104.0,
       "low": 99.5,
-      "vol": 9584,
+      "vol": 9748,
       "is_realtime": false
     },
     {
       "id": "6213",
       "name": "聯茂",
-      "price": null,
+      "price": 155.5,
       "prev_close": 150.5,
-      "change_pct": null,
+      "change_pct": 3.32,
       "high": 157.5,
       "low": 147.0,
-      "vol": 13046,
-      "is_realtime": false
+      "vol": 14566,
+      "is_realtime": true
     },
     {
       "id": "8932",
@@ -42,8 +42,8 @@
       "prev_close": 84.7,
       "change_pct": null,
       "high": 86.5,
-      "low": 83.6,
-      "vol": 1545,
+      "low": 82.8,
+      "vol": 1967,
       "is_realtime": false
     },
     {
@@ -54,19 +54,19 @@
       "change_pct": null,
       "high": 207.5,
       "low": 206.0,
-      "vol": 35798,
+      "vol": 38095,
       "is_realtime": false
     },
     {
       "id": "2313",
       "name": "華通",
-      "price": 227.5,
+      "price": null,
       "prev_close": 230.0,
-      "change_pct": -1.09,
+      "change_pct": null,
       "high": 234.0,
       "low": 221.5,
-      "vol": 46719,
-      "is_realtime": true
+      "vol": 47478,
+      "is_realtime": false
     },
     {
       "id": "2303",
@@ -76,7 +76,7 @@
       "change_pct": null,
       "high": 60.4,
       "low": 59.4,
-      "vol": 35681,
+      "vol": 37397,
       "is_realtime": false
     },
     {
@@ -87,7 +87,7 @@
       "change_pct": null,
       "high": 35.2,
       "low": 34.7,
-      "vol": 18003,
+      "vol": 19947,
       "is_realtime": false
     }
   ]
