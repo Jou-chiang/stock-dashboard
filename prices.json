@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-03-19T05:01:31Z",
-  "updated_at_tw": "13:01",
+  "updated_at": "2026-03-19T05:06:52Z",
+  "updated_at_tw": "13:06",
   "prices": [
     {
       "id": "2605",
@@ -10,7 +10,7 @@
       "change_pct": null,
       "high": 45.25,
       "low": 42.0,
-      "vol": 49434,
+      "vol": 49840,
       "is_realtime": false
     },
     {
@@ -21,7 +21,7 @@
       "change_pct": null,
       "high": 104.0,
       "low": 99.5,
-      "vol": 12204,
+      "vol": 12557,
       "is_realtime": false
     },
     {
@@ -32,7 +32,7 @@
       "change_pct": null,
       "high": 158.5,
       "low": 147.0,
-      "vol": 22652,
+      "vol": 23097,
       "is_realtime": false
     },
     {
@@ -42,19 +42,19 @@
       "prev_close": 84.7,
       "change_pct": null,
       "high": 86.5,
-      "low": 81.5,
-      "vol": 2795,
+      "low": 81.4,
+      "vol": 2848,
       "is_realtime": false
     },
     {
       "id": "2317",
       "name": "鴻海",
-      "price": 205.0,
+      "price": 205.5,
       "prev_close": 210.0,
-      "change_pct": -2.38,
+      "change_pct": -2.14,
       "high": 207.5,
       "low": 205.0,
-      "vol": 66551,
+      "vol": 68175,
       "is_realtime": true
     },
     {
@@ -65,7 +65,7 @@
       "change_pct": null,
       "high": 234.0,
       "low": 221.5,
-      "vol": 58776,
+      "vol": 59392,
       "is_realtime": false
     },
     {
@@ -76,7 +76,7 @@
       "change_pct": null,
       "high": 60.4,
       "low": 58.6,
-      "vol": 68441,
+      "vol": 69800,
       "is_realtime": false
     },
     {
@@ -87,7 +87,7 @@
       "change_pct": null,
       "high": 35.2,
       "low": 34.5,
-      "vol": 32473,
+      "vol": 33174,
       "is_realtime": false
     }
   ]
