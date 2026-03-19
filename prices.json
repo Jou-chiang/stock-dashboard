@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-03-19T05:06:52Z",
-  "updated_at_tw": "13:06",
+  "updated_at": "2026-03-19T05:22:15.706066+00:00",
+  "updated_at_tw": "13:22",
   "prices": [
     {
       "id": "2605",
@@ -10,19 +10,19 @@
       "change_pct": null,
       "high": 45.25,
       "low": 42.0,
-      "vol": 49840,
+      "vol": 51455,
       "is_realtime": false
     },
     {
       "id": "2481",
       "name": "強茂",
-      "price": null,
+      "price": 100.5,
       "prev_close": 102.5,
-      "change_pct": null,
+      "change_pct": -1.95,
       "high": 104.0,
       "low": 99.5,
-      "vol": 12557,
-      "is_realtime": false
+      "vol": 13184,
+      "is_realtime": true
     },
     {
       "id": "6213",
@@ -32,30 +32,30 @@
       "change_pct": null,
       "high": 158.5,
       "low": 147.0,
-      "vol": 23097,
+      "vol": 23996,
       "is_realtime": false
     },
     {
-      "id": "8932",
-      "name": "智通*",
+      "id": "",
+      "name": null,
       "price": null,
-      "prev_close": 84.7,
+      "prev_close": null,
       "change_pct": null,
-      "high": 86.5,
-      "low": 81.4,
-      "vol": 2848,
+      "high": null,
+      "low": null,
+      "vol": 0,
       "is_realtime": false
     },
     {
       "id": "2317",
       "name": "鴻海",
-      "price": 205.5,
+      "price": null,
       "prev_close": 210.0,
-      "change_pct": -2.14,
+      "change_pct": null,
       "high": 207.5,
       "low": 205.0,
-      "vol": 68175,
-      "is_realtime": true
+      "vol": 76923,
+      "is_realtime": false
     },
     {
       "id": "2313",
@@ -65,7 +65,7 @@
       "change_pct": null,
       "high": 234.0,
       "low": 221.5,
-      "vol": 59392,
+      "vol": 63272,
       "is_realtime": false
     },
     {
@@ -76,7 +76,7 @@
       "change_pct": null,
       "high": 60.4,
       "low": 58.6,
-      "vol": 69800,
+      "vol": 75271,
       "is_realtime": false
     },
     {
@@ -87,7 +87,18 @@
       "change_pct": null,
       "high": 35.2,
       "low": 34.5,
-      "vol": 33174,
+      "vol": 36955,
+      "is_realtime": false
+    },
+    {
+      "id": "2409",
+      "name": "友達",
+      "price": null,
+      "prev_close": 16.2,
+      "change_pct": null,
+      "high": 16.05,
+      "low": 15.7,
+      "vol": 85685,
       "is_realtime": false
     }
   ]
