@@ -1,117 +1,88 @@
-"""
-台股即時股價抓取腳本
-讀取 stocks.json 取得股票清單，抓取即時價格後存成 prices.json
-由 GitHub Actions 每 5 分鐘執行一次（台北時間盤中）
-
-要新增/刪除股票：只需修改 stocks.json，不需要改這個腳本
-"""
-
 import requests
 import json
-import time
 from datetime import datetime
+import pytz
 
-def load_stocks():
-    try:
-        with open('stocks.json', 'r', encoding='utf-8') as f:
-            stocks = json.load(f)
-        print(f'載入 {len(stocks)} 支股票: {[s["id"] for s in stocks]}')
-        return stocks
-    except Exception as e:
-        print(f'讀取 stocks.json 失敗: {e}')
-        return []
+# 設定台灣時區
+tw_tz = pytz.timezone('Asia/Taipei')
+now_tw = datetime.now(tw_tz)
 
-def fetch_prices(stock_ids, market='tse'):
-    ex_ch = '|'.join([f'{market}_{sid}.tw' for sid in stock_ids])
-    url = f'https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch={ex_ch}&_={int(time.time()*1000)}'
-    headers = {'User-Agent': 'Mozilla/5.0', 'Referer': 'https://mis.twse.com.tw/stock/fibest.jsp'}
+# 要追蹤的股票清單 (建議與妳儀表板上的同步)
+STOCK_LIST = ['2605', '2481', '6213', '8932', '2317', '2313', '2303', '2618', '2409']
+
+def fetch_twse_prices(stocks):
+    # 建立證交所 API URL
+    stock_query = '|'.join([f'tse_{s}.tw' for s in stocks])
+    url = f"https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch={stock_query}&json=1&delay=0"
+    
     try:
-        r = requests.get(url, headers=headers, timeout=15)
-        return r.json().get('msgArray', [])
+        response = requests.get(url, timeout=10)
+        data = response.json()
+        
+        if 'msgArray' not in data:
+            return []
+        return data['msgArray']
     except Exception as e:
-        print(f'  API 錯誤 ({market}): {e}')
+        print(f"Error fetching data: {e}")
         return []
 
 def parse_stock(m):
     try:
-        price_str = m.get('z', '-')
-        prev_str  = m.get('y', '-')
-        price = float(price_str) if price_str not in ['-', '', None] else None
-        prev  = float(prev_str)  if prev_str  not in ['-', '', None] else None
-        change_pct = round((price - prev) / prev * 100, 2) if price and prev and prev > 0 else None
-        vol_str = m.get('v', '')
-        vol = round(float(vol_str)) if vol_str and vol_str != '-' else None
+        # ── 核心修正：三重回補邏輯 ──
+        # 1. z: 最近成交價
+        # 2. b: 最佳五檔買進價 (取第一筆)
+        # 3. a: 最佳五檔賣出價 (取第一筆)
+        # 4. y: 昨收價 (保底)
+        
+        z_price = m.get('z') # 成交價
+        b_price = m.get('b', '').split('_')[0] if m.get('b') else None # 買進價
+        a_price = m.get('a', '').split('_')[0] if m.get('a') else None # 賣出價
+        y_price = m.get('y', '-') # 昨收價
+
+        # 決定最終顯示價格
+        current_price = z_price or b_price or a_price or y_price
+        
+        # 只要 z, b, a 其中一個有值，就判定為即時資料
+        is_realtime = any([z_price, b_price, a_price]) and z_price != '-'
+
         return {
-            'id':          m.get('c', ''),
-            'name':        m.get('n', ''),
-            'price':       round(price, 2) if price else None,
-            'prev_close':  round(prev, 2)  if prev  else None,
-            'change_pct':  change_pct,
-            'high':        float(m.get('h') or 0) or None,
-            'low':         float(m.get('l') or 0) or None,
-            'vol':         vol,
-            'is_realtime': price is not None,
+            "id": m.get('c'),
+            "name": m.get('n'),
+            "price": float(current_price) if current_price != '-' else None,
+            "prev_close": float(y_price) if y_price != '-' else None,
+            "change_pct": round(((float(current_price) - float(y_price)) / float(y_price)) * 100, 2) if current_price != '-' and y_price != '-' else None,
+            "high": float(m.get('h', 0)) if m.get('h') else None,
+            "low": float(m.get('l', 0)) if m.get('l') else None,
+            "vol": int(m.get('v', 0)),
+            "is_realtime": is_realtime
         }
     except Exception as e:
-        print(f'  解析錯誤 {m.get("c","?")}: {e}')
+        print(f"Error parsing stock {m.get('c')}: {e}")
         return None
 
 def main():
-    now_utc = datetime.utcnow()
-    now_tw_h = (now_utc.hour + 8) % 24
-    print(f'=== 股價更新 {now_tw_h:02d}:{now_utc.minute:02d} 台北時間 ===')
-
-    stocks = load_stocks()
-    if not stocks:
-        print('沒有股票清單，結束')
-        return
-
-    stock_ids = [s['id'] for s in stocks]
-    name_map  = {s['id']: s['name'] for s in stocks}
-
-    # 先試上市（TSE），沒抓到再試上櫃（OTC）
-    result_map = {}
-    for m in fetch_prices(stock_ids, 'tse'):
+    print(f"Starting update at {now_tw.strftime('%Y-%m-%d %H:%M:%S')}")
+    
+    raw_data = fetch_twse_prices(STOCK_LIST)
+    processed_prices = []
+    
+    for m in raw_data:
         parsed = parse_stock(m)
-        if parsed and parsed['id']:
-            result_map[parsed['id']] = parsed
-
-    missing = [sid for sid in stock_ids if sid not in result_map]
-    if missing:
-        for m in fetch_prices(missing, 'otc'):
-            parsed = parse_stock(m)
-            if parsed and parsed['id']:
-                result_map[parsed['id']] = parsed
-
-    results = []
-    for s in stocks:
-        sid = s['id']
-        if sid in result_map:
-            entry = result_map[sid]
-            if not entry['name']:
-                entry['name'] = s['name']
-            results.append(entry)
-            if entry['price']:
-                tag = '●即時' if entry['is_realtime'] else '○昨收'
-                chg = f"{entry['change_pct']:+.2f}%" if entry['change_pct'] is not None else '—'
-                print(f"  {tag} {sid} {entry['name']}: {entry['price']} ({chg})")
-            else:
-                print(f"  ✗ {sid} {s['name']}: 無資料")
-        else:
-            results.append({'id': sid, 'name': s['name'], 'price': None, 'prev_close': None,
-                            'change_pct': None, 'high': None, 'low': None, 'vol': None, 'is_realtime': False})
-            print(f"  ✗ {sid} {s['name']}: 無資料")
-
+        if parsed:
+            processed_prices.append(parsed)
+            
+    # 建立最終 JSON 格式
     output = {
-        'updated_at':    now_utc.strftime('%Y-%m-%dT%H:%M:%SZ'),
-        'updated_at_tw': f'{now_tw_h:02d}:{now_utc.minute:02d}',
-        'prices':        results
+        "updated_at": datetime.now(pytz.utc).isoformat(),
+        "updated_at_tw": now_tw.strftime("%H:%M"),
+        "prices": processed_prices
     }
+    
+    # 存檔
     with open('prices.json', 'w', encoding='utf-8') as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
+        
+    print(f"Successfully updated prices.json with {len(processed_prices)} stocks.")
 
-    rt = sum(1 for r in results if r['is_realtime'])
-    print(f'\n✅ 完成！{rt}/{len(results)} 支即時報價，已存入 prices.json')
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
