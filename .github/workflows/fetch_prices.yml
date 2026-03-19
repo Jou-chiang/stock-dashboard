@@ -22,7 +22,8 @@ jobs:
           python-version: '3.11'
 
       - name: 安裝套件
-        run: pip install requests
+        # 修正：同時安裝 requests 和 pytz
+        run: pip install requests pytz
 
       - name: 抓取股價
         run: python fetch_prices.py
@@ -32,5 +33,4 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add prices.json
-          # 核心修復：先 pull --rebase 確保版本最新，再 commit 與 push
           git diff --staged --quiet || (git commit -m "📈 更新股價 $(date -u +'%H:%M UTC')" && git pull --rebase && git push)
