@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-03-19T04:50:07Z",
-  "updated_at_tw": "12:50",
+  "updated_at": "2026-03-19T05:01:31Z",
+  "updated_at_tw": "13:01",
   "prices": [
     {
       "id": "2605",
@@ -10,7 +10,7 @@
       "change_pct": null,
       "high": 45.25,
       "low": 42.0,
-      "vol": 48336,
+      "vol": 49434,
       "is_realtime": false
     },
     {
@@ -21,7 +21,7 @@
       "change_pct": null,
       "high": 104.0,
       "low": 99.5,
-      "vol": 11902,
+      "vol": 12204,
       "is_realtime": false
     },
     {
@@ -32,29 +32,29 @@
       "change_pct": null,
       "high": 158.5,
       "low": 147.0,
-      "vol": 22488,
+      "vol": 22652,
       "is_realtime": false
     },
     {
       "id": "8932",
       "name": "智通*",
-      "price": 82.2,
+      "price": null,
       "prev_close": 84.7,
-      "change_pct": -2.95,
+      "change_pct": null,
       "high": 86.5,
-      "low": 82.2,
-      "vol": 2503,
-      "is_realtime": true
+      "low": 81.5,
+      "vol": 2795,
+      "is_realtime": false
     },
     {
       "id": "2317",
       "name": "鴻海",
-      "price": 205.5,
+      "price": 205.0,
       "prev_close": 210.0,
-      "change_pct": -2.14,
+      "change_pct": -2.38,
       "high": 207.5,
       "low": 205.0,
-      "vol": 64390,
+      "vol": 66551,
       "is_realtime": true
     },
     {
@@ -65,19 +65,19 @@
       "change_pct": null,
       "high": 234.0,
       "low": 221.5,
-      "vol": 57631,
+      "vol": 58776,
       "is_realtime": false
     },
     {
       "id": "2303",
       "name": "聯電",
-      "price": 58.8,
+      "price": null,
       "prev_close": 61.1,
-      "change_pct": -3.76,
+      "change_pct": null,
       "high": 60.4,
       "low": 58.6,
-      "vol": 65125,
-      "is_realtime": true
+      "vol": 68441,
+      "is_realtime": false
     },
     {
       "id": "2618",
@@ -87,7 +87,7 @@
       "change_pct": null,
       "high": 35.2,
       "low": 34.5,
-      "vol": 31392,
+      "vol": 32473,
       "is_realtime": false
     }
   ]
