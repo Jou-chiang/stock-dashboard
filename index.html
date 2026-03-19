@@ -315,15 +315,6 @@ let stockList = [], listLoaded = false, listLoading = false;
 let acItems = [], acSel = -1;
 
 // ── signal ────────────────────────────────────────────
-/*
-  訊號判斷流程（由上而下，後面可蓋前面）：
-  1. 基礎分數 → strong-buy / buy / strong-hold / sell / strong-sell / neutral
-  2. J值狀態  → initial-spurt / high-dullness / dullness-end（蓋掉基礎分數）
-  3. DIF轉負  → trend-weakening（蓋 strong-hold）/ weak-rebound（蓋 buy/neutral）
-               → 不動 sell/strong-sell/dullness-end（已是負面訊號）
-               → 不動 high-dullness/initial-spurt（J值強勢，DIF轉負僅觀察）
-  4. 帶量突破 → vol-breakout（只蓋中性以上，不蓋負面訊號與趨勢轉弱）
-*/
 function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr){
   if([K,D,RSI].some(v=>v===null||v===undefined||isNaN(v))) return null;
 
@@ -340,51 +331,42 @@ function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr){
   if(score>=6) sig = 'strong-buy';
   else if(score>=2) sig = 'buy';
   else if(score<=-2){
-    // 強股豁免：DIF>0 + 站上MA5 → 判斷量能分級
     if(DIF!==null&&!isNaN(DIF)&&DIF>0&&ma5!==null&&price>ma5){
       const volRatio = (vol!==null&&vol5!==null&&vol5>0) ? vol/vol5 : 0;
       if(volRatio >= 2.5){
-        sig = 'vol-warning'; // 爆量警示：強制收傘
+        sig = 'vol-warning'; 
       } else if(volRatio >= 2.0){
-        sig = 'strong-hold-warn'; // 強勢震盪但注意放量
+        sig = 'strong-hold-warn'; 
       } else {
-        sig = 'strong-hold'; // 正常強勢震盪
+        sig = 'strong-hold'; 
       }
     } else {
       sig = score<=-6 ? 'strong-sell' : 'sell';
     }
   }
 
-  // Step 2：J值狀態（蓋掉基礎分數，但不蓋 sell/strong-sell）
   if(jArr&&jArr.length>0){
     let jToday=0, jPrev=0;
     for(let i=jArr.length-1;i>=0;i--){ if(jArr[i]>100) jToday++; else break; }
     for(let i=jArr.length-2;i>=0;i--){ if(jArr[i]>100) jPrev++; else break; }
 
     if(jArr[jArr.length-1]<100&&jPrev>=3){
-      // 鈍化結束：高位反轉，不管之前什麼訊號都要警示
       sig='dullness-end';
     } else if(jToday>=3){
-      // 高檔鈍化：只在非賣出狀態下顯示
       if(!['sell','strong-sell'].includes(sig)) sig='high-dullness';
     } else if(jToday===1||jToday===2){
-      // 強勢噴發：只在非賣出狀態下顯示
       if(!['sell','strong-sell'].includes(sig)) sig='initial-spurt';
     }
   }
 
-  // Step 3：DIF轉負的處理
   if(DIF!==null&&DIF<0){
     if(['strong-hold','strong-hold-warn','vol-warning'].includes(sig)){
-      sig='trend-weakening';  // 強股但動能壞了 → 提早撤退
+      sig='trend-weakening';  
     } else if(['strong-buy','buy','neutral'].includes(sig)){
-      sig='weak-rebound';     // 本來就不強 → 弱勢反彈
+      sig='weak-rebound';     
     }
-    // sell/strong-sell/dullness-end/trend-weakening → 維持原本負面訊號
-    // high-dullness/initial-spurt → 維持J值強勢，DIF轉負只是觀察
   }
 
-  // Step 4：帶量突破（只蓋中性偏多訊號，不蓋負面與J值特殊與量能警示）
   if(vol!==null&&vol5!==null&&vol>vol5*1.5&&chg>0){
     const cantOverride=['sell','strong-sell','dullness-end','trend-weakening','initial-spurt','high-dullness','vol-warning'];
     if(!cantOverride.includes(sig)) sig='vol-breakout';
@@ -521,8 +503,22 @@ function fmtChg(v){if(isN(v))return na();const c=v>0?'up':v<0?'dn':'';return `<s
 function fmtRSI(v){if(isN(v))return na();const c=v>70?'up':v<30?'dn':'';return `<span class="${c}">${(+v).toFixed(1)}</span>`;}
 function fmtK(v){if(isN(v))return na();const c=v>80?'up':v<20?'dn':'';return `<span class="${c}">${(+v).toFixed(1)}</span>`;}
 function fmtJ(v){if(isN(v))return na();const c=v>100?'up':v<0?'dn':'';return `<span class="${c}">${(+v).toFixed(1)}</span>`;}
-function fmtDIF(v){if(isN(v))return na();const c=v>=0?'ib':'is';return `<span class="${c}">${(+v).toFixed(3)}</span>`;}
-function fmtVol(v){if(isN(v))return na();return Math.round(v).toLocaleString('zh-TW');}
+
+// 修改後的 DIF 格式化，加上趨勢箭頭
+function fmtDIF(v, trend){
+  if(isN(v))return na();
+  const c=v>=0?'ib':'is';
+  const arrow = trend > 0 ? '↑' : (trend < 0 ? '↓' : '');
+  return `<span class="${c}">${(+v).toFixed(3)} <small style="font-size:9px;opacity:0.8">${arrow}</small></span>`;
+}
+
+// 修改後的成交量格式化函式，增加顏色趨勢
+function fmtVol(v, trend){
+  if(isN(v))return na();
+  const cls = trend && trend > 0 ? 'up' : '';
+  return `<span class="${cls}">${Math.round(v).toLocaleString('zh-TW')}</span>`;
+}
+
 function fmtInst(v){if(isN(v))return na();const c=v>0?'ib':v<0?'is':'';return `<span class="${c}">${v>0?'+':''}${Math.round(v).toLocaleString('zh-TW')}</span>`;}
 function fmtBig(v){if(isN(v))return na();return `<span class="pb" style="color:var(--text);">${parseFloat(v).toFixed(1)}%</span>`;}
 
@@ -537,7 +533,6 @@ function calcRSI(c,p=14){
   return al===0?100:100-100/(1+ag/al);
 }
 
-// 核心改寫：儲存每天的 J 值，並一併回傳陣列 jArr
 function calcKDJ(h,l,c,p=9){
   if(c.length<p)return{K:null,D:null,J:null,jArr:[]};
   let K=50,D=50, jArr=[];
@@ -549,7 +544,15 @@ function calcKDJ(h,l,c,p=9){
   }
   return{K,D,J:jArr[jArr.length-1], jArr};
 }
-function calcDIF(c){if(c.length<27)return null;const e12=ema(c,12),e26=ema(c,26);return e12[e12.length-1]-e26[e26.length-1];}
+
+// 修改後的 DIF 計算，包含趨勢判斷
+function calcDIF(c){
+  if(c.length<27)return {val: null, trend: 0};
+  const e12=ema(c,12),e26=ema(c,26);
+  const today = e12[e12.length-1]-e26[e26.length-1];
+  const yesterday = e12[e12.length-2]-e26[e26.length-2];
+  return { val: today, trend: today > yesterday ? 1 : -1 };
+}
 
 // ── API ────────────────────────
 async function fmGet(dataset,id,days=100){
@@ -563,12 +566,10 @@ async function fmGet(dataset,id,days=100){
   return j.data||[];
 }
 
-// ── prices.json 快取（GitHub Actions 每5分鐘更新）──────
 let pricesCache = null;
 let pricesCacheTime = 0;
 
 async function loadPricesJson(){
-  // 超過 6 分鐘才重新抓（比 Actions 間隔稍長）
   if(pricesCache && Date.now()-pricesCacheTime < 360000) return pricesCache;
   try{
     const r = await fetch('prices.json?_='+Date.now());
@@ -600,78 +601,6 @@ async function getBestPrice(sym, fallback){
   return {price: fallback, rtType: 'close', vol: null};
 }
 
-// 三大法人解析
-function parseInst(rows){
-  let fi=null, ft=null, fd=null;
-  for(const r of rows){
-    const n=String(r.name||'').trim();
-    // buy/sell 單位是股，除以1000轉換為張
-    const net=(parseFloat(r.buy||0)-parseFloat(r.sell||0))/1000;
-    if(/投信/.test(n)) ft=(ft||0)+net;
-    else if(/自營/.test(n)) fd=(fd||0)+net;
-    else if(/外/.test(n)) fi=(fi||0)+net;
-  }
-  const total=(fi!==null||ft!==null||fd!==null)?(fi||0)+(ft||0)+(fd||0):null;
-  return{foreign:fi,trust:ft,dealer:fd,total};
-}
-
-// ── TWSE 三大法人（T86）────────────────────────────────
-// 共用的法人快取
-let instCache={}, instCacheDate='';
-async function twseInstitution(sym){
-  const proxy='https://corsproxy.io/?';
-  // 找最近交易日
-  const d=new Date();
-  if(d.getDay()===0) d.setDate(d.getDate()-2);
-  if(d.getDay()===6) d.setDate(d.getDate()-1);
-  // 若早上9點前，用前一天
-  if(d.getHours()<9) d.setDate(d.getDate()-1);
-  const ymd=d.toISOString().slice(0,10).replace(/-/g,'');
-
-  // 全市場快取，一次抓完
-  if(!instCache[ymd]){
-    const url=`https://www.twse.com.tw/rwd/zh/fund/T86?date=${ymd}&response=json&_=${Date.now()}`;
-    const r=await fetch(proxy+encodeURIComponent(url));
-    const j=await r.json();
-    if(j.stat==='OK'&&j.data){
-      const map={};
-      const p=s=>{const n=(s||'0').replace(/,/g,'');return n.startsWith('(')?-parseFloat(n.slice(1,-1)):parseFloat(n);};
-      for(const row of j.data){
-        const code=String(row[0]).trim();
-        map[code]={
-          foreign:p(row[4])/1000,
-          trust:p(row[7])/1000,
-          dealer:p(row[8])/1000,
-          total:p(row[9])/1000
-        };
-      }
-      instCache[ymd]=map;
-    }
-  }
-  const m=instCache[ymd];
-  return m&&m[sym]?m[sym]:null;
-}
-
-// ── TWSE 大戶持股（股權分散表）─────────────────────────
-async function twseBigHolder(sym){
-  const proxy='https://corsproxy.io/?';
-  const url=`https://www.twse.com.tw/rwd/zh/fund/TDWTFPB?STK_NO=${sym}&response=json&_=${Date.now()}`;
-  const r=await fetch(proxy+encodeURIComponent(url));
-  const j=await r.json();
-  if(j.stat!=='OK'||!j.data) return null;
-  // 加總 400張以上的持股（股數，需除以1000轉換成張）
-  let total=0;
-  for(const row of j.data){
-    const level=String(row[0]||'');
-    // 400張以上的級距
-    if(/400/.test(level)||/600/.test(level)||/800/.test(level)||/,000/.test(level)||/千/.test(level)){
-      const shares=parseFloat((row[2]||'0').replace(/,/g,''));
-      if(!isNaN(shares)) total+=shares;
-    }
-  }
-  return total>0?Math.round(total/1000):null;
-}
-
 async function fetchOne(sym){
   loading.add(sym);render();
   try{
@@ -687,23 +616,30 @@ async function fetchOne(sym){
     const bestPrice=await getBestPrice(sym,+last.close);
     const price=bestPrice.price;
     const rtType=bestPrice.rtType;
-    // 成交量優先用 prices.json 的即時量，fallback 用歷史最後一筆
     const realtimeVol = bestPrice.vol ? bestPrice.vol : null;
     const changePercent=((price-prevClose)/prevClose)*100;
     const kdj=calcKDJ(highs,lows,closes);
     const RSI=calcRSI(closes);
-    const DIF=calcDIF(closes);
+    
+    // DIF 趨勢處理
+    const difInfo=calcDIF(closes);
+    const DIF = difInfo.val;
+    const DIF_trend = difInfo.trend;
+
     const name=(stockList.find(s=>s.id===sym)||{}).name||last.stock_id||sym;
     
+    // 成交量趨勢處理
     const VOL = realtimeVol !== null ? realtimeVol : vols[vols.length-1];
+    const prevVOL = vols[vols.length-2] || 0;
+    const volTrend = VOL > prevVOL ? 1 : -1;
+
     const VOL5 = vols.length>=5 ? vols.slice(-5).reduce((a,b)=>a+b)/5 : null;
-    const MA20 = closes.length>=20 ? closes.slice(-20).reduce((a,b)=>a+b)/20 : null;
     const MA5  = closes.length>=5  ? closes.slice(-5).reduce((a,b)=>a+b)/5   : null;
 
     data[sym]={
       symbol:sym,name,price,changePercent,rtType,
-      K:kdj.K,D:kdj.D,J:kdj.J,RSI,DIF,
-      VOL, VOL5, MA5,
+      K:kdj.K,D:kdj.D,J:kdj.J,RSI,DIF,DIF_trend,
+      VOL, VOL_trend: volTrend, VOL5, MA5,
       signal:calcSignal(kdj.K,kdj.D,kdj.J,RSI,DIF, changePercent, VOL, VOL5, price, MA5, kdj.jArr)
     };
   }catch(e){
@@ -758,17 +694,14 @@ function applyCostVisibility(){
 function fmtEntryPrice(price, ma5, signal, sym){
   if(!price || isNaN(price)) return '<span class="na">—</span>';
 
-  // 帶量突破、強勢噴發、高檔鈍化：動能強，直接跟進或持有
   if(['vol-breakout','initial-spurt'].includes(signal)){
     return `<span class="entry-price entry-follow">≈${price.toFixed(1)} 直接跟進</span>`;
   }
   if(signal==='high-dullness'){
     const cost = getCost(sym);
     if(!isNaN(cost)&&cost>0){
-      // 已持有：續抱等噴發
       return `<span class="entry-price entry-follow">持有，等下一波噴發</span>`;
     } else {
-      // 未持有：過熱，給回測買點
       if(ma5){
         const entry = (ma5 * 1.005).toFixed(1);
         return `<span class="entry-price entry-wait">過熱，等回測 ≈${entry}</span>`;
@@ -777,8 +710,6 @@ function fmtEntryPrice(price, ma5, signal, sym){
     }
   }
 
-  // 股價遠離MA5超過3%（非鈍化情況）：過熱，等回測
-  // 買點加 0.5% 緩衝確保能排到
   const distFromMa5 = ma5 ? (price - ma5) / ma5 * 100 : 0;
   if(distFromMa5 > 3){
     if(ma5){
@@ -788,7 +719,6 @@ function fmtEntryPrice(price, ma5, signal, sym){
     return `<span class="entry-price entry-wait">等回測MA5</span>`;
   }
 
-  // 強買、買入：低位佈局，現價與MA5之間，同樣加0.5%緩衝
   if(['strong-buy','buy'].includes(signal)){
     if(ma5){
       const mid = (((price + ma5) / 2) * 1.005).toFixed(1);
@@ -797,7 +727,6 @@ function fmtEntryPrice(price, ma5, signal, sym){
     return `<span class="entry-price entry-layout">≈${price.toFixed(1)} 低位佈局</span>`;
   }
 
-  // 強勢震盪系列：持有為主，但未持有者給候補買點
   if(signal==='strong-hold'){
     const cost = getCost(sym);
     if(!isNaN(cost)&&cost>0) return `<span class="entry-price entry-hold">持有觀察</span>`;
@@ -815,7 +744,6 @@ function fmtEntryPrice(price, ma5, signal, sym){
     return `<span class="entry-price" style="color:#ef5350">勿追，爆量風險</span>`;
   }
 
-  // 趨勢轉弱、賣出、鈍化結束：不建議買入
   if(['trend-weakening','sell','strong-sell','weak-rebound','dullness-end'].includes(signal)){
     return `<span class="entry-price" style="color:var(--red)">勿追，等訊號</span>`;
   }
@@ -844,18 +772,16 @@ function fmtROI(price, sym){
 function fmtStopLine(price, ma5, sym){
   const cost = getCost(sym);
   if(isNaN(cost)||cost<=0||!ma5||isNaN(ma5)) return '<span class="na">—</span>';
-  // 如果跌到 MA5，還剩多少獲利
   const roiAtStop = (ma5 - cost) / cost * 100;
   const arrow = price > ma5 ? '↘' : '⚠';
   const sign = roiAtStop >= 0 ? '+' : '';
-  // 獲利空間 < 3% → 橘色警示「傘快收好了」
   let style;
   if(roiAtStop < 0){
-    style = 'color:var(--red);font-weight:500'; // 已虧損
+    style = 'color:var(--red);font-weight:500'; 
   } else if(roiAtStop < 3){
-    style = 'color:#f0a03a;font-weight:500'; // 橘色警示
+    style = 'color:#f0a03a;font-weight:500'; 
   } else {
-    style = 'color:var(--green)'; // 安全
+    style = 'color:var(--green)'; 
   }
   return `<span class="stop-line" style="${style}">${arrow}${sign}${roiAtStop.toFixed(1)}%</span>`;
 }
@@ -883,8 +809,8 @@ function render(){
       <td>${sym}</td><td class="tl nc">${d.name?String(d.name).substring(0,8):'—'}</td>
       <td>${fmtP(d.price,chg,d.rtType)}</td><td>${fmtChg(chg)}</td>
       <td class="cg">${fmtK(d.K)}</td><td>${fmtK(d.D)}</td><td>${fmtJ(d.J)}</td>
-      <td>${fmtRSI(d.RSI)}</td><td>${fmtDIF(d.DIF)}</td>
-      <td class="cg">${fmtVol(d.VOL)}</td><td>${fmtVol(d.VOL5)}</td>
+      <td>${fmtRSI(d.RSI)}</td><td>${fmtDIF(d.DIF, d.DIF_trend)}</td>
+      <td class="cg">${fmtVol(d.VOL, d.VOL_trend)}</td><td>${fmtVol(d.VOL5)}</td>
       <td class="cg cost-col">${fmtCostInput(sym)}</td>
       <td class="cost-col">${fmtROI(d.price, sym)}</td>
       <td class="cost-col">${fmtStopLine(d.price, d.MA5, sym)}</td>
