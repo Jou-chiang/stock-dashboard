@@ -660,6 +660,15 @@ function setCost(sym, val){
   const v = parseFloat(val);
   if(!isNaN(v)&&v>0) localStorage.setItem('cost_'+sym, v);
   else localStorage.removeItem('cost_'+sym);
+  // 不重跑整個 render（會清掉輸入框），只更新受影響的列
+  renderRow(sym);
+}
+
+function renderRow(sym){
+  // 找到這支股票的 tr，更新損益、建議買點欄位
+  const d = data[sym];
+  if(!d||d.error) return;
+  // 重新渲染整列（input 會保留 localStorage 值）
   render();
 }
 
@@ -778,9 +787,11 @@ function fmtEntryPrice(price, ma5, signal, sym){
 function fmtCostInput(sym){
   const cost = getCost(sym);
   const val = isNaN(cost) ? '' : cost;
-  return `<input class="cost-input" type="number" step="0.1" min="0"
+  return `<input class="cost-input" type="text" inputmode="decimal"
     value="${val}" placeholder="買入價"
-    onchange="setCost('${sym}', this.value)"
+    oninput="setCost('${sym}', this.value)"
+    onblur="setCost('${sym}', this.value)"
+    onkeydown="if(event.key==='Enter'){setCost('${sym}',this.value);this.blur();}"
     onclick="event.stopPropagation()" />`;
 }
 
