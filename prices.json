@@ -1,38 +1,38 @@
 {
-  "updated_at": "2026-03-20T03:10:23.709627+00:00",
-  "updated_at_tw": "11:10",
+  "updated_at": "2026-03-20T03:29:16.180990+00:00",
+  "updated_at_tw": "11:29",
   "prices": [
     {
       "id": "2605",
       "name": "新興",
-      "price": 40.5,
+      "price": 40.65,
       "prev_close": 43.35,
-      "change_pct": -6.57,
+      "change_pct": -6.23,
       "high": 46.25,
       "low": 40.25,
-      "vol": 40561,
+      "vol": 41758,
       "is_realtime": true
     },
     {
       "id": "2481",
       "name": "強茂",
-      "price": 96.2,
+      "price": 96.3,
       "prev_close": 101.0,
-      "change_pct": -4.75,
+      "change_pct": -4.65,
       "high": 103.5,
       "low": 96.2,
-      "vol": 15002,
+      "vol": 15716,
       "is_realtime": true
     },
     {
       "id": "6213",
       "name": "聯茂",
-      "price": 145.0,
+      "price": 143.5,
       "prev_close": 151.5,
-      "change_pct": -4.29,
+      "change_pct": -5.28,
       "high": 153.5,
       "low": 141.0,
-      "vol": 12862,
+      "vol": 13650,
       "is_realtime": true
     },
     {
@@ -54,40 +54,40 @@
       "change_pct": -1.22,
       "high": 205.0,
       "low": 200.5,
-      "vol": 47129,
+      "vol": 50632,
       "is_realtime": true
     },
     {
       "id": "2313",
       "name": "華通",
-      "price": 223.0,
+      "price": 221.5,
       "prev_close": 223.5,
-      "change_pct": -0.22,
+      "change_pct": -0.89,
       "high": 233.0,
       "low": 216.0,
-      "vol": 40924,
+      "vol": 42432,
       "is_realtime": true
     },
     {
       "id": "2303",
       "name": "聯電",
-      "price": 58.3,
+      "price": 58.2,
       "prev_close": 58.7,
-      "change_pct": -0.68,
+      "change_pct": -0.85,
       "high": 59.0,
       "low": 57.7,
-      "vol": 31142,
+      "vol": 32477,
       "is_realtime": true
     },
     {
       "id": "2618",
       "name": "長榮航",
-      "price": 34.55,
+      "price": 34.5,
       "prev_close": 34.65,
-      "change_pct": -0.29,
+      "change_pct": -0.43,
       "high": 34.95,
       "low": 34.35,
-      "vol": 12002,
+      "vol": 13377,
       "is_realtime": true
     },
     {
@@ -98,7 +98,7 @@
       "change_pct": -1.59,
       "high": 15.95,
       "low": 15.4,
-      "vol": 46999,
+      "vol": 48881,
       "is_realtime": true
     }
   ]
