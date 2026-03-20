@@ -500,7 +500,7 @@ function clearAll(){if(!confirm('確定清除？'))return;stocks=[];data={};load
 function addStock(sym){
   sym=sym.toUpperCase().replace(/\.TW$/i,'');
   if(!sym||stocks.includes(sym))return;
-  if(stocks.length>=10){alert('最多10支');return;}
+  if(stocks.length>=20){alert('最多20支');return;}
   stocks.push(sym);
   save();
   render();
@@ -599,63 +599,6 @@ function parseInst(rows){
   return{foreign:fi,trust:ft,dealer:fd,total};
 }
 
-// ── TWSE 三大法人（T86）────────────────────────────────
-// 共用的法人快取
-let instCache={}, instCacheDate='';
-async function twseInstitution(sym){
-  const proxy='https://corsproxy.io/?';
-  // 找最近交易日
-  const d=new Date();
-  if(d.getDay()===0) d.setDate(d.getDate()-2);
-  if(d.getDay()===6) d.setDate(d.getDate()-1);
-  // 若早上9點前，用前一天
-  if(d.getHours()<9) d.setDate(d.getDate()-1);
-  const ymd=d.toISOString().slice(0,10).replace(/-/g,'');
-
-  // 全市場快取，一次抓完
-  if(!instCache[ymd]){
-    const url=`https://www.twse.com.tw/rwd/zh/fund/T86?date=${ymd}&response=json&_=${Date.now()}`;
-    const r=await fetch(proxy+encodeURIComponent(url));
-    const j=await r.json();
-    if(j.stat==='OK'&&j.data){
-      const map={};
-      const p=s=>{const n=(s||'0').replace(/,/g,'');return n.startsWith('(')?-parseFloat(n.slice(1,-1)):parseFloat(n);};
-      for(const row of j.data){
-        const code=String(row[0]).trim();
-        map[code]={
-          foreign:p(row[4])/1000,
-          trust:p(row[7])/1000,
-          dealer:p(row[8])/1000,
-          total:p(row[9])/1000
-        };
-      }
-      instCache[ymd]=map;
-    }
-  }
-  const m=instCache[ymd];
-  return m&&m[sym]?m[sym]:null;
-}
-
-// ── TWSE 大戶持股（股權分散表）─────────────────────────
-async function twseBigHolder(sym){
-  const proxy='https://corsproxy.io/?';
-  const url=`https://www.twse.com.tw/rwd/zh/fund/TDWTFPB?STK_NO=${sym}&response=json&_=${Date.now()}`;
-  const r=await fetch(proxy+encodeURIComponent(url));
-  const j=await r.json();
-  if(j.stat!=='OK'||!j.data) return null;
-  // 加總 400張以上的持股（股數，需除以1000轉換成張）
-  let total=0;
-  for(const row of j.data){
-    const level=String(row[0]||'');
-    // 400張以上的級距
-    if(/400/.test(level)||/600/.test(level)||/800/.test(level)||/,000/.test(level)||/千/.test(level)){
-      const shares=parseFloat((row[2]||'0').replace(/,/g,''));
-      if(!isNaN(shares)) total+=shares;
-    }
-  }
-  return total>0?Math.round(total/1000):null;
-}
-
 async function fetchOne(sym){
   loading.add(sym);render();
   try{
@@ -697,7 +640,14 @@ async function fetchOne(sym){
   render();
 }
 
-async function fetchAll(){total=stocks.length;done=0;for(const s of stocks) await fetchOne(s);}
+async function fetchAll(){
+  total=stocks.length; done=0;
+  const BATCH=5;
+  for(let i=0;i<stocks.length;i+=BATCH){
+    const batch=stocks.slice(i,i+BATCH);
+    await Promise.all(batch.map(s=>fetchOne(s)));
+  }
+}
 function setAuto(){
   if(autoTimer){clearInterval(autoTimer);autoTimer=null;}
   const v=parseInt(document.getElementById('ai').value);
@@ -877,12 +827,12 @@ function render(){
   if(!stocks.length){tbody.innerHTML='<tr class="er"><td colspan="17">請輸入股票名稱或代號開始</td></tr>';return;}
   tbody.innerHTML=stocks.map(sym=>{
     const d=data[sym],isL=loading.has(sym);
-    if(isL) return `<tr><td>${sym}</td><td class="tl nc">查詢中...</td>${'<td>'+na()+'</td>'.repeat(14)}<td><span class="badge bl">LOADING</span></td></tr>`;
-    if(!d) return `<tr><td>${sym}</td><td class="tl nc">—</td>${'<td>'+na()+'</td>'.repeat(14)}<td><button class="qbtn" onclick="fetchOne('${sym}')">查詢</button></td></tr>`;
+    if(isL) return `<tr><td><a href="https://goodinfo.tw/tw/ShowBuySaleChart.asp?STOCK_ID=${sym}&REINIT=1" target="_blank" style="color:var(--amber);text-decoration:none;font-family:var(--mono)">${sym}</a></td><td class="tl nc">查詢中...</td>${'<td>'+na()+'</td>'.repeat(14)}<td><span class="badge bl">LOADING</span></td></tr>`;
+    if(!d) return `<tr><td><a href="https://goodinfo.tw/tw/ShowBuySaleChart.asp?STOCK_ID=${sym}&REINIT=1" target="_blank" style="color:var(--amber);text-decoration:none;font-family:var(--mono)">${sym}</a></td><td class="tl nc">—</td>${'<td>'+na()+'</td>'.repeat(14)}<td><button class="qbtn" onclick="fetchOne('${sym}')">查詢</button></td></tr>`;
     if(d.error) return `<tr><td>${sym}</td><td class="tl nc" colspan="15" style="color:var(--red)">${d.msg}</td><td><button class="qbtn" onclick="fetchOne('${sym}')">重試</button></td></tr>`;
     const chg=d.changePercent;
     return `<tr class="fi">
-      <td>${sym}</td><td class="tl nc">${d.name?String(d.name).substring(0,8):'—'}</td>
+      <td><a href="https://goodinfo.tw/tw/ShowBuySaleChart.asp?STOCK_ID=${sym}&REINIT=1" target="_blank" style="color:var(--amber);text-decoration:none;font-family:var(--mono)" title="Goodinfo ${sym}">${sym}</a></td><td class="tl nc">${d.name?String(d.name).substring(0,8):'—'}</td>
       <td>${fmtP(d.price,chg,d.rtType)}</td><td>${fmtChg(chg)}</td>
       <td class="cg">${fmtK(d.K)}</td><td>${fmtK(d.D)}</td><td>${fmtJ(d.J)}</td>
       <td>${fmtRSI(d.RSI)}</td><td>${fmtDIF(d.DIF, d.DIFprev)}</td>
