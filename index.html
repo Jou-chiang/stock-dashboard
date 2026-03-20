@@ -521,7 +521,17 @@ function fmtChg(v){if(isN(v))return na();const c=v>0?'up':v<0?'dn':'';return `<s
 function fmtRSI(v){if(isN(v))return na();const c=v>70?'up':v<30?'dn':'';return `<span class="${c}">${(+v).toFixed(1)}</span>`;}
 function fmtK(v){if(isN(v))return na();const c=v>80?'up':v<20?'dn':'';return `<span class="${c}">${(+v).toFixed(1)}</span>`;}
 function fmtJ(v){if(isN(v))return na();const c=v>100?'up':v<0?'dn':'';return `<span class="${c}">${(+v).toFixed(1)}</span>`;}
-function fmtDIF(v){if(isN(v))return na();const c=v>=0?'ib':'is';return `<span class="${c}">${(+v).toFixed(3)}</span>`;}
+function fmtDIF(val, prev){
+  if(isN(val)) return na();
+  const c = val>=0 ? 'ib' : 'is';
+  let arrow = '';
+  if(!isN(prev)){
+    if(val > prev)      arrow = '<span style="font-size:10px;opacity:.8"> ↑</span>';
+    else if(val < prev) arrow = '<span style="font-size:10px;opacity:.8"> ↓</span>';
+    else                arrow = '<span style="font-size:10px;opacity:.5"> →</span>';
+  }
+  return `<span class="${c}">${(+val).toFixed(3)}${arrow}</span>`;
+}
 function fmtVol(v){if(isN(v))return na();return Math.round(v).toLocaleString('zh-TW');}
 function fmtInst(v){if(isN(v))return na();const c=v>0?'ib':v<0?'is':'';return `<span class="${c}">${v>0?'+':''}${Math.round(v).toLocaleString('zh-TW')}</span>`;}
 function fmtBig(v){if(isN(v))return na();return `<span class="pb" style="color:var(--text);">${parseFloat(v).toFixed(1)}%</span>`;}
@@ -549,7 +559,14 @@ function calcKDJ(h,l,c,p=9){
   }
   return{K,D,J:jArr[jArr.length-1], jArr};
 }
-function calcDIF(c){if(c.length<27)return null;const e12=ema(c,12),e26=ema(c,26);return e12[e12.length-1]-e26[e26.length-1];}
+function calcDIF(c){
+  if(c.length<27) return {val:null,prev:null};
+  const e12=ema(c,12),e26=ema(c,26);
+  return {
+    val:  e12[e12.length-1]-e26[e26.length-1],
+    prev: e12[e12.length-2]-e26[e26.length-2]
+  };
+}
 
 // ── API ────────────────────────
 async function fmGet(dataset,id,days=100){
@@ -655,7 +672,7 @@ async function fetchOne(sym){
     const changePercent=((price-prevClose)/prevClose)*100;
     const kdj=calcKDJ(highs,lows,closes);
     const RSI=calcRSI(closes);
-    const DIF=calcDIF(closes);
+    const difResult=calcDIF(closes); const DIF=difResult.val; const DIFprev=difResult.prev;
     const name=(stockList.find(s=>s.id===sym)||{}).name||last.stock_id||sym;
     
     const VOL = vols[vols.length-1];
@@ -665,7 +682,7 @@ async function fetchOne(sym){
 
     data[sym]={
       symbol:sym,name,price,changePercent,rtType,
-      K:kdj.K,D:kdj.D,J:kdj.J,RSI,DIF,
+      K:kdj.K,D:kdj.D,J:kdj.J,RSI,DIF,DIFprev,
       VOL, VOL5, MA5,
       signal:calcSignal(kdj.K,kdj.D,kdj.J,RSI,DIF, changePercent, VOL, VOL5, price, MA5, kdj.jArr)
     };
@@ -868,7 +885,7 @@ function render(){
       <td>${sym}</td><td class="tl nc">${d.name?String(d.name).substring(0,8):'—'}</td>
       <td>${fmtP(d.price,chg,d.rtType)}</td><td>${fmtChg(chg)}</td>
       <td class="cg">${fmtK(d.K)}</td><td>${fmtK(d.D)}</td><td>${fmtJ(d.J)}</td>
-      <td>${fmtRSI(d.RSI)}</td><td>${fmtDIF(d.DIF)}</td>
+      <td>${fmtRSI(d.RSI)}</td><td>${fmtDIF(d.DIF, d.DIFprev)}</td>
       <td class="cg">${fmtVol(d.VOL)}</td><td>${fmtVol(d.VOL5)}</td>
       <td class="cg cost-col">${fmtCostInput(sym)}</td>
       <td class="cost-col">${fmtROI(d.price, sym)}</td>
