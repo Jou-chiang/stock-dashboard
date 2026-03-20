@@ -52,4 +52,338 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .autocomplete.show{display:block;}
 .ac-item{padding:9px 14px;cursor:pointer;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);}
 .ac-item:last-child{border-bottom:none;}
-.ac-item:hover,.ac-item.sel{
+.ac-item:hover,.ac-item.sel{background:var(--bg4);}
+.ac-code{font-family:var(--mono);font-size:12px;color:var(--amber);min-width:44px;flex-shrink:0;}
+.ac-name{font-size:13px;color:var(--text);}
+.ac-msg{font-size:11px;color:var(--text3);padding:10px 14px;font-family:var(--mono);}
+.hint-bar{font-size:11px;color:var(--text3);font-family:var(--mono);height:18px;margin-bottom:10px;}
+.btn{font-family:var(--sans);font-size:12px;padding:8px 14px;border-radius:var(--r);border:1px solid;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.btn-p{background:transparent;border-color:var(--amber);color:var(--amber);}
+.btn-p:hover{background:rgba(240,160,58,.1);}
+.btn-g{background:transparent;border-color:var(--border2);color:var(--text2);}
+.btn-g:hover{color:var(--text);background:var(--bg3);}
+.btn-d{border-color:#f25f5f44;color:var(--red);}
+.btn-d:hover{background:rgba(242,95,95,.1);}
+.sep{width:1px;height:26px;background:var(--border);}
+.auto-r{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);}
+.auto-r select{background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--text2);font-family:var(--mono);font-size:11px;padding:3px 6px;outline:none;cursor:pointer;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:var(--bg3);border:1px solid var(--border2);border-radius:999px;font-family:var(--sans);font-size:11px;color:var(--text2);}
+.cs{width:6px;height:6px;border-radius:50%;background:var(--text3);flex-shrink:0;}
+.cs.done{background:var(--green);}
+.cs.loading{background:var(--amber);animation:pulse 1s infinite;}
+.cs.error{background:var(--red);}
+.crm{background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;line-height:1;padding:0 0 0 2px;}
+.crm:hover{color:var(--red);}
+.progress{height:2px;background:var(--bg3);border-radius:1px;margin-bottom:16px;overflow:hidden;}
+.pf{height:100%;background:var(--amber);border-radius:1px;transition:width .4s;width:0%;}
+.table-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;}
+.table-scroll{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px;min-width:1150px;}
+th{background:var(--bg3);color:var(--text3);font-weight:400;font-size:10px;letter-spacing:.08em;padding:10px 11px;text-align:right;border-bottom:1px solid var(--border2);white-space:nowrap;}
+th.tl{text-align:left;}
+.cg{border-left:1px solid var(--border2);}
+td{padding:10px 11px;text-align:right;border-bottom:1px solid var(--border);color:var(--text);white-space:nowrap;vertical-align:middle;}
+td.tl{text-align:left;}
+td:first-child{font-weight:500;color:var(--amber);}
+td.nc{color:var(--text2);font-family:var(--sans);font-size:12px;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--bg3);}
+.up{color:var(--red);}.dn{color:var(--green);}.na{color:var(--text3);}
+.ib{color:var(--green);}.is{color:var(--red);}
+.pb{font-size:13px;font-weight:500;}
+.rt-tag{font-size:9px;font-family:var(--mono);margin-left:3px;}
+.rt-live{color:var(--green);}.rt-min{color:var(--blue);}.rt-close{color:var(--text3);}
+.badge{display:inline-block;font-size:9px;letter-spacing:.05em;padding:2px 7px;border-radius:999px;border:1px solid;font-family:var(--mono);}
+.bl{color:var(--amber);border-color:var(--amber2);background:rgba(240,160,58,.08);}
+.be{color:var(--red);border-color:#f25f5f44;background:rgba(242,95,95,.06);}
+.bo{color:var(--green);border-color:#3fc97c44;background:rgba(63,201,124,.06);}
+.signal{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:500;border:1px solid;white-space:nowrap;}
+.sig-initial-spurt{background:rgba(176,114,242,.12);border-color:rgba(176,114,242,.4);color:var(--purple);}
+.sig-initial-spurt .sig-dot{background:var(--purple);box-shadow:0 0 5px var(--purple);}
+.sig-high-dullness{background:rgba(0,229,255,.12);border-color:rgba(0,229,255,.4);color:var(--neon);}
+.sig-high-dullness .sig-dot{background:var(--neon);box-shadow:0 0 5px var(--neon);}
+.sig-dullness-end{background:rgba(253,216,53,.1);border-color:rgba(253,216,53,.4);color:#fdd835;}
+.sig-dullness-end .sig-dot{background:#fdd835;box-shadow:0 0 5px #fdd835;}
+.sig-vol{background:rgba(240,160,58,.12);border-color:rgba(240,160,58,.4);color:#f0a03a;}
+.sig-vol .sig-dot{background:#f0a03a;box-shadow:0 0 5px #f0a03a;}
+.sig-strong-buy{background:rgba(63,201,124,.12);border-color:rgba(63,201,124,.4);color:#3fc97c;}
+.sig-buy{background:rgba(63,201,124,.06);border-color:rgba(63,201,124,.2);color:#7de0ac;}
+.sig-weak{background:rgba(139,144,153,.1);border-color:rgba(139,144,153,.25);color:#8b9099;}
+.sig-weak .sig-dot{background:#565c66;}
+.sig-neutral{background:rgba(139,144,153,.08);border-color:rgba(139,144,153,.2);color:var(--text2);}
+.sig-sell{background:rgba(242,95,95,.06);border-color:rgba(242,95,95,.2);color:#f28080;}
+.sig-strong-sell{background:rgba(242,95,95,.12);border-color:rgba(242,95,95,.4);color:#f25f5f;}
+.sig-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.sig-strong-buy .sig-dot{background:#3fc97c;box-shadow:0 0 5px #3fc97c;}
+.sig-buy .sig-dot{background:#7de0ac;}
+.sig-neutral .sig-dot{background:var(--text3);}
+.sig-sell .sig-dot{background:#f28080;}
+.sig-strong-sell .sig-dot{background:#f25f5f;box-shadow:0 0 5px #f25f5f;}
+.sig-strong-hold{background:rgba(0,229,255,.08);border-color:rgba(0,229,255,.3);color:#00e5ff;}
+.sig-strong-hold .sig-dot{background:#00e5ff;box-shadow:0 0 5px #00e5ff;}
+.sig-trend-weak{background:rgba(183,28,28,.15);border-color:rgba(229,57,53,.5);color:#ef5350;}
+.sig-trend-weak .sig-dot{background:#ef5350;box-shadow:0 0 6px #ef5350;}
+.sig-strong-hold-warn{background:rgba(0,229,255,.08);border-color:rgba(240,160,58,.5);color:#00e5ff;}
+.sig-strong-hold-warn .sig-dot{background:#f0a03a;box-shadow:0 0 5px #f0a03a;}
+.sig-vol-warning{background:rgba(183,28,28,.12);border-color:rgba(229,57,53,.4);color:#ef9a9a;}
+.sig-vol-warning .sig-dot{background:#ef5350;box-shadow:0 0 5px #ef5350;}
+.cost-input{background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--text);font-family:var(--mono);font-size:11px;padding:3px 6px;width:68px;outline:none;text-align:right;}
+.cost-input:focus{border-color:var(--amber);}
+.roi-pos{color:var(--green);font-weight:500;}
+.roi-neg{color:var(--red);font-weight:500;}
+.stop-line{color:var(--text3);font-size:11px;}
+.entry-price{font-size:11px;font-family:var(--mono);}
+.entry-follow{color:var(--amber);}
+.entry-wait{color:var(--blue);}
+.entry-layout{color:var(--green);}
+.entry-hold{color:var(--text3);}
+.entry-exit{color:var(--red);font-weight:500;}
+.cost-hidden .cost-col{display:none;}
+.btn-toggle-cost{font-family:var(--mono);font-size:10px;padding:3px 10px;border:1px solid var(--border2);border-radius:var(--r);background:transparent;color:var(--text3);cursor:pointer;transition:all .15s;}
+.btn-toggle-cost:hover{border-color:var(--amber);color:var(--amber);}
+.btn-toggle-cost.active{border-color:var(--green);color:var(--green);}
+.qbtn{font-family:var(--mono);font-size:10px;padding:3px 10px;border:1px solid var(--border2);border-radius:var(--r);background:transparent;color:var(--text2);cursor:pointer;}
+.qbtn:hover{border-color:var(--amber);color:var(--amber);}
+.er td{color:var(--text3);text-align:center;font-family:var(--sans);padding:48px;}
+@keyframes fi{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+.fi{animation:fi .3s ease;}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);align-items:center;}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2);}
+.footer{margin-top:14px;font-size:11px;color:var(--text3);line-height:1.9;}
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px;}
+</style>
+</head>
+<body>
+<div class="layout">
+<div class="topbar">
+  <div>
+    <div class="brand-title">台股技術分析儀表板</div>
+    <div class="brand-sub">TWSE / OTC · FinMind 即時資料版</div>
+  </div>
+  <div class="topbar-right">
+    <span class="dot" id="dot"></span>
+    <span class="ts" id="ts">—</span>
+    <button class="btn btn-p" onclick="fetchAll()">全部查詢</button>
+  </div>
+</div>
+
+<div class="token-box" id="token-box">
+  <div class="token-label">FinMind API Token</div>
+  <div class="token-row">
+    <input class="token-input" id="token-input" type="password" placeholder="貼上你的 FinMind token" autocomplete="off" />
+    <button class="btn btn-p" onclick="saveToken()">儲存</button>
+    <button class="btn btn-g" onclick="toggleTokenBox()">收起</button>
+  </div>
+</div>
+<div id="token-collapsed" style="display:none;margin-bottom:14px;">
+  <span class="token-status" id="token-status">⚪ 未設定 Token</span>
+  <button class="btn btn-g" onclick="toggleTokenBox()" style="font-size:11px;padding:4px 10px;margin-left:8px">更新 Token</button>
+</div>
+
+<div class="notice" id="notice-bar">
+  <span id="notice-text">⚠️ 請先輸入 FinMind Token 才能查詢資料</span>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <input class="sym-input" id="si" type="text" placeholder="輸入名稱或代號，例：台積電" autocomplete="off"
+      oninput="onInput()" onkeydown="onKeydown(event)" onfocus="onFocus()" />
+    <div class="autocomplete" id="ac"></div>
+  </div>
+  <button class="btn btn-p" onclick="addFromInput()">＋ 新增</button>
+  <div class="sep"></div>
+  <button class="btn btn-g" onclick="resetDefault()">還原預設</button>
+  <button class="btn btn-g btn-d" onclick="clearAll()">清除全部</button>
+  <div class="sep"></div>
+  <button class="btn-toggle-cost" id="cost-toggle-btn" onclick="toggleCostCols()">戰情欄 👁</button>
+  <div class="sep"></div>
+  <div class="auto-r">自動刷新：
+    <select id="ai" onchange="setAuto()">
+      <option value="0">關閉</option>
+      <option value="60">1分</option>
+      <option value="300">5分</option>
+    </select>
+  </div>
+</div>
+
+<div class="chips" id="chips"></div>
+<div class="progress"><div class="pf" id="prog"></div></div>
+
+<div class="table-wrap"><div class="table-scroll">
+<table id="stock-table">
+  <thead><tr>
+    <th class="tl" style="min-width:52px">代號</th>
+    <th class="tl" style="min-width:80px">名稱</th>
+    <th style="min-width:90px">股價</th>
+    <th style="min-width:64px">漲跌%</th>
+    <th class="cg" style="min-width:46px">K</th>
+    <th style="min-width:46px">D</th>
+    <th style="min-width:46px">J</th>
+    <th style="min-width:52px">RSI14</th>
+    <th style="min-width:62px">DIF</th>
+    <th class="cg" style="min-width:82px">成交量(張)</th>
+    <th style="min-width:76px">5日均量</th>
+    <th class="cg cost-col" style="min-width:72px">成本價</th>
+    <th class="cost-col" style="min-width:72px">損益%</th>
+    <th class="cost-col" style="min-width:80px">破MA5剩餘%</th>
+    <th style="min-width:100px">建議買點</th>
+    <th class="cg" style="min-width:90px">訊號</th>
+  </tr></thead>
+  <tbody id="tbody"></tbody>
+</table>
+</div></div>
+
+<div class="footer">
+  股價：<span style="color:var(--green)">●即時逐筆</span> ／ <span style="color:var(--blue)">●API最新</span> ／ <span style="color:var(--text3)">●昨收</span>
+</div>
+</div>
+
+<script>
+const FM = 'https://api.finmindtrade.com/api/v4/data';
+function getToken(){ return localStorage.getItem('fm_token')||''; }
+function saveToken(){
+  const val=document.getElementById('token-input').value.trim();
+  if(!val){alert('請貼上 Token');return;}
+  localStorage.setItem('fm_token',val);
+  updateTokenUI();
+  toggleTokenBox();
+  location.reload();
+}
+function toggleTokenBox(){
+  const box=document.getElementById('token-box'), col=document.getElementById('token-collapsed');
+  if(box.style.display==='none'){box.style.display='';col.style.display='none';}
+  else{box.style.display='none';col.style.display='block';}
+}
+function updateTokenUI(){
+  const tok=getToken(), nb=document.getElementById('notice-bar'), nt=document.getElementById('notice-text'), st=document.getElementById('token-status');
+  if(tok){
+    nb.className='notice ok'; nt.innerHTML='✓ Token 已設定';
+    st.textContent='✓ Token 已設定';st.className='token-status ok';
+    document.getElementById('token-box').style.display='none'; document.getElementById('token-collapsed').style.display='block';
+  } else {
+    nb.className='notice warn'; nt.textContent='⚠️ 請先輸入 Token';
+    st.textContent='⚪ 未設定 Token';st.className='token-status warn';
+  }
+}
+
+const DEFAULT = ['2605','2481','6213','8932','2317'];
+let stocks = JSON.parse(localStorage.getItem('twstk10')||'null') || [...DEFAULT];
+let data = {}, loading = new Set(), total = 0, done = 0, autoTimer = null;
+let stockList = [], listLoaded = false;
+let acItems = [], acSel = -1;
+
+function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr){
+  if([K,D,RSI].some(v=>v===null||isNaN(v))) return null;
+  let score = 0;
+  if(RSI<25) score+=3; else if(RSI<35) score+=2; else if(RSI>80) score-=3; else if(RSI>70) score-=2;
+  if(K<15) score+=3; else if(K<25) score+=2; else if(K>85) score-=3; else if(K>75) score-=2;
+  let sig = 'neutral';
+  if(score>=6) sig = 'strong-buy'; else if(score>=2) sig = 'buy';
+  else if(score<=-2) sig = score<=-6 ? 'strong-sell' : 'sell';
+  
+  if(jArr&&jArr.length>0){
+    let jToday=0, jPrev=0;
+    for(let i=jArr.length-1;i>=0;i--){ if(jArr[i]>100) jToday++; else break; }
+    for(let i=jArr.length-2;i>=0;i--){ if(jArr[i]>100) jPrev++; else break; }
+    if(jArr[jArr.length-1]<100&&jPrev>=3) sig='dullness-end';
+    else if(jToday>=3) sig='high-dullness';
+    else if(jToday===1||jToday===2) sig='initial-spurt';
+  }
+  return sig;
+}
+
+function renderSignal(sig){
+  const m={'strong-buy':['sig-strong-buy','強力買入'],'buy':['sig-buy','買入'],'neutral':['sig-neutral','觀望'],'sell':['sig-sell','賣出'],'strong-sell':['sig-strong-sell','強力賣出'],'initial-spurt':['sig-initial-spurt','強勢噴發'],'high-dullness':['sig-high-dullness','高檔鈍化'],'dullness-end':['sig-dullness-end','鈍化結束'],'weak-rebound':['sig-weak','弱勢反彈']};
+  const[cls,label]=m[sig]||m['neutral'];
+  return `<span class="signal ${cls}"><span class="sig-dot"></span>${label}</span>`;
+}
+
+async function loadStockList(){
+  try{
+    const r=await fetch(`${FM}?dataset=TaiwanStockInfo&token=${getToken()}`);
+    const j=await r.json();
+    if(j.status===200){ stockList=j.data.map(s=>({id:s.stock_id,name:s.stock_name})); listLoaded=true; }
+  }catch(e){}
+}
+
+function onInput(){
+  const ac=document.getElementById('ac'), q=document.getElementById('si').value.trim();
+  if(!q){ac.classList.remove('show');return;}
+  acItems=stockList.filter(s=>s.id.startsWith(q)||s.name.includes(q)).slice(0,10);
+  ac.innerHTML=acItems.map((s,i)=>`<div class="ac-item" onmousedown="pickItem(${i})"><span class="ac-code">${s.id}</span><span class="ac-name">${s.name}</span></div>`).join('');
+  ac.classList.add('show');
+}
+function pickItem(i){ addStock(acItems[i].id); document.getElementById('si').value=''; document.getElementById('ac').classList.remove('show'); }
+function addFromInput(){ const v=document.getElementById('si').value.trim(); if(v) addStock(v); }
+function addStock(sym){ if(!stocks.includes(sym)){ stocks.push(sym); save(); render(); fetchOne(sym); } }
+function removeStock(sym){ stocks=stocks.filter(s=>s!==sym); save(); render(); }
+function save(){ localStorage.setItem('twstk10',JSON.stringify(stocks)); }
+function resetDefault(){ stocks=[...DEFAULT]; save(); location.reload(); }
+function clearAll(){ stocks=[]; save(); render(); }
+
+const ema=(arr,p)=>{const k=2/(p+1);let e=arr[0];return arr.map((v,i)=>i===0?e:(e=v*k+e*(1-k)));};
+const calcRSI=(c,p=14)=>{ if(c.length<p+1)return null;let g=0,l=0;for(let i=1;i<=p;i++){const d=c[i]-c[i-1];d>0?g+=d:l-=d;}let ag=g/p,al=l/p;for(let i=p+1;i<c.length;i++){const d=c[i]-c[i-1];ag=(ag*(p-1)+(d>0?d:0))/p;al=(al*(p-1)+(d<0?-d:0))/p;}return al===0?100:100-100/(1+ag/al);};
+const calcKDJ=(h,l,c,p=9)=>{ if(c.length<p)return{K:null,D:null,J:null,jArr:[]};let K=50,D=50,jArr=[];for(let i=p-1;i<c.length;i++){const hi=Math.max(...h.slice(i-p+1,i+1)),lo=Math.min(...l.slice(i-p+1,i+1));const rsv=hi===lo?50:(c[i]-lo)/(hi-lo)*100;K=K*2/3+rsv/3;D=D*2/3+K/3;jArr.push(3*K-2*D);}return{K,D,J:jArr[jArr.length-1],jArr};};
+
+async function fetchOne(sym){
+  loading.add(sym); render();
+  try {
+    const r=await fetch(`${FM}?dataset=TaiwanStockPrice&data_id=${sym}&start_date=2024-01-01&token=${getToken()}`);
+    const j=await r.json();
+    const sorted=j.data.sort((a,b)=>a.date.localeCompare(b.date));
+    const closes=sorted.map(s=>+s.close), highs=sorted.map(s=>+s.max), lows=sorted.map(s=>+s.min), vols=sorted.map(s=>+s.Trading_Volume/1000);
+    const kdj=calcKDJ(highs,lows,closes), rsi=calcRSI(closes), ma5=closes.slice(-5).reduce((a,b)=>a+b)/5;
+    const price=closes[closes.length-1], prev=closes[closes.length-2];
+    
+    // 雙軌補位邏輯
+    let finalPrice = price, rtType = 'min';
+    try {
+      const pr=await fetch('prices.json?_='+Date.now());
+      const pj=await pr.json();
+      const entry=pj.prices.find(p=>p.id===sym);
+      if(entry && entry.price){ finalPrice=entry.price; rtType=entry.is_realtime?'live':'close'; }
+    } catch(e){}
+
+    data[sym]={ name:(stockList.find(s=>s.id===sym)||{}).name||sym, price:finalPrice, chg:((finalPrice-prev)/prev)*100, K:kdj.K, D:kdj.D, J:kdj.J, RSI:rsi, VOL:vols[vols.length-1], VOL5:vols.slice(-5).reduce((a,b)=>a+b)/5, MA5:ma5, rtType:rtType, signal:calcSignal(kdj.K,kdj.D,kdj.J,rsi,0,((finalPrice-prev)/prev)*100,vols[vols.length-1],vols.slice(-5).reduce((a,b)=>a+b)/5,finalPrice,ma5,kdj.jArr) };
+  } catch(e){}
+  loading.delete(sym); render();
+}
+
+function getCost(sym){ return parseFloat(localStorage.getItem('cost_'+sym)||''); }
+function setCost(sym,v){ localStorage.setItem('cost_'+sym,v); render(); }
+function toggleCostCols(){ const b=localStorage.getItem('cc')==='1'; localStorage.setItem('cc',b?'0':'1'); render(); }
+
+function fmtEntryPrice(price, ma5, signal, sym){
+  if(!price || isNaN(price)) return '—';
+  const cost = getCost(sym), hasCost = !isNaN(cost) && cost > 0, roi = hasCost ? (price-cost)/cost*100 : 0;
+  // 核心邏輯修正
+  if(['initial-spurt'].includes(signal)) return `<span class="entry-price entry-follow">≈${price.toFixed(1)} 短線觀察</span>`;
+  if(signal==='dullness-end'){
+    if(hasCost && roi >= 20) return `<span class="entry-price entry-exit">獲利>20% 減碼警示</span>`;
+    return `<span class="entry-price" style="color:var(--text3)">趨勢轉弱 勿追</span>`;
+  }
+  if(ma5 && price < ma5 && hasCost) return `<span class="entry-price entry-exit">破MA5 先跑一半</span>`;
+  return '—';
+}
+
+function render(){
+  document.getElementById('chips').innerHTML=stocks.map(s=>`<span class="chip">${s}<button class="crm" onclick="removeStock('${s}')">×</button></span>`).join('');
+  const tb=document.getElementById('tbody'), showCC=localStorage.getItem('cc')==='1';
+  document.querySelectorAll('.cost-col').forEach(el=>el.style.display=showCC?'':'none');
+  tb.innerHTML=stocks.map(s=>{
+    const d=data[s]; if(!d) return `<tr><td>${s}</td><td colspan="15">載入中...</td></tr>`;
+    return `<tr><td>${s}</td><td>${d.name}</td><td>${d.price.toFixed(2)}${d.rtType==='live'?'<span class="rt-tag rt-live">●</span>':'<span class="rt-tag rt-min">●</span>'}</td><td>${d.chg.toFixed(2)}%</td><td>${d.K.toFixed(1)}</td><td>${d.D.toFixed(1)}</td><td>${d.J.toFixed(1)}</td><td>${d.RSI.toFixed(1)}</td><td>—</td><td>${d.VOL.toLocaleString()}</td><td>${d.VOL5.toLocaleString()}</td><td class="cost-col"><input class="cost-input" value="${getCost(s)||''}" onchange="setCost('${s}',this.value)"></td><td class="cost-col">${hasCost(s)?((d.price-getCost(s))/getCost(s)*100).toFixed(1)+'%':'—'}</td><td class="cost-col">${hasCost(s)?((d.price-d.MA5)/d.MA5*100).toFixed(1)+'%':'—'}</td><td>${fmtEntryPrice(d.price,d.MA5,d.signal,s)}</td><td>${renderSignal(d.signal)}</td></tr>`;
+  }).join('');
+  document.querySelectorAll('.cost-col').forEach(el=>el.style.display=showCC?'':'none');
+}
+function hasCost(s){ const c=getCost(s); return !isNaN(c) && c>0; }
+function fetchAll(){ stocks.forEach(s=>fetchOne(s)); }
+function setAuto(){ if(autoTimer) clearInterval(autoTimer); const v=document.getElementById('ai').value; if(v>0) autoTimer=setInterval(fetchAll,v*1000); }
+
+updateTokenUI(); loadStockList().then(fetchAll);
+</script>
+</body>
+</html>
