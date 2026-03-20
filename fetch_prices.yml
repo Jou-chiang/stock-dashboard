@@ -1,0 +1,38 @@
+name: 台股即時股價更新
+
+on:
+  schedule:
+    # 台北時間週一到週五 09:00~13:30，每 5 分鐘跑一次
+    # UTC = 台北時間 - 8 小時
+    # 09:00~13:30 台北 = 01:00~05:30 UTC
+    - cron: '*/5 1-5 * * 1-5'   # UTC 01:00~05:55（涵蓋台北 09:00~13:55）
+  workflow_dispatch:
+
+jobs:
+  fetch-prices:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 取出程式碼
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 設定 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安裝套件
+        run: pip install requests pytz
+
+      - name: 抓取股價
+        run: python fetch_prices.py
+
+      - name: 提交更新的 prices.json
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add prices.json
+          git diff --staged --quiet || git commit -m "📈 更新股價 $(date -u +'%H:%M UTC')"
+          git push
