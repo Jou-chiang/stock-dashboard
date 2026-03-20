@@ -99,6 +99,8 @@ tr:hover td{background:var(--bg3);}
 .be{color:var(--red);border-color:#f25f5f44;background:rgba(242,95,95,.06);}
 .bo{color:var(--green);border-color:#3fc97c44;background:rgba(63,201,124,.06);}
 .signal{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:500;border:1px solid;white-space:nowrap;}
+
+/* 訊號樣式 */
 .sig-initial-spurt{background:rgba(176,114,242,.12);border-color:rgba(176,114,242,.4);color:var(--purple);}
 .sig-initial-spurt .sig-dot{background:var(--purple);box-shadow:0 0 5px var(--purple);}
 .sig-high-dullness{background:rgba(0,229,255,.12);border-color:rgba(0,229,255,.4);color:var(--neon);}
@@ -198,15 +200,35 @@ tr:hover td{background:var(--bg3);}
   <button class="btn btn-g" onclick="resetDefault()">還原預設</button>
   <button class="btn btn-g btn-d" onclick="clearAll()">清除全部</button>
   <div class="sep"></div>
-  <button class="btn-toggle-cost" id="cost-toggle-btn" onclick="toggleCostCols()">戰情欄 👁</button>
+  <button class="btn-toggle-cost" id="cost-toggle-btn" onclick="toggleCostCols()" title="顯示/隱藏戰情欄">戰情欄 👁</button>
   <div class="sep"></div>
   <div class="auto-r">自動刷新：
     <select id="ai" onchange="setAuto()">
       <option value="0">關閉</option>
       <option value="60">1分</option>
       <option value="300">5分</option>
+      <option value="600">10分</option>
     </select>
   </div>
+</div>
+<div class="hint-bar" id="hint"></div>
+
+<div class="legend">
+  <span style="font-size:11px;color:var(--text3);font-family:var(--mono)">訊號：</span>
+  <span class="legend-item"><span class="signal sig-initial-spurt" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>強勢噴發</span>J&gt;100(1~2天)，短線觀察</span>
+  <span class="legend-item"><span class="signal sig-high-dullness" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>高檔鈍化</span>J&gt;100連3天，持有</span>
+  <span class="legend-item"><span class="signal sig-dullness-end" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>鈍化結束</span>高位反轉，減碼警示</span>
+  <span class="legend-item"><span class="signal sig-vol" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>帶量突破</span>放量上攻，跟進</span>
+  <span class="legend-item"><span class="signal sig-strong-buy" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>強力買入</span>深度超賣，佈局</span>
+  <span class="legend-item"><span class="signal sig-buy" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>買入</span>偏多，低位佈局</span>
+  <span class="legend-item"><span class="signal sig-neutral" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>觀望</span>無明顯方向</span>
+  <span class="legend-item"><span class="signal sig-strong-hold" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>強勢震盪</span>強股高位盤整，持有</span>
+  <span class="legend-item"><span class="signal sig-strong-hold-warn" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>強勢震盪⚠放量</span>量2–2.5倍，注意</span>
+  <span class="legend-item"><span class="signal sig-vol-warning" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>爆量警示</span>量&gt;2.5倍，考慮收傘</span>
+  <span class="legend-item"><span class="signal sig-trend-weak" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>趨勢轉弱</span>破MA5，先跑一半</span>
+  <span class="legend-item"><span class="signal sig-weak" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>弱勢反彈</span>弱底掙扎，觀望</span>
+  <span class="legend-item"><span class="signal sig-sell" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>賣出</span>偏空，考慮減碼</span>
+  <span class="legend-item"><span class="signal sig-strong-sell" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>強力賣出</span>深度超買，出場</span>
 </div>
 
 <div class="chips" id="chips"></div>
@@ -227,163 +249,3 @@ tr:hover td{background:var(--bg3);}
     <th class="cg" style="min-width:82px">成交量(張)</th>
     <th style="min-width:76px">5日均量</th>
     <th class="cg cost-col" style="min-width:72px">成本價</th>
-    <th class="cost-col" style="min-width:72px">損益%</th>
-    <th class="cost-col" style="min-width:80px">破MA5剩餘%</th>
-    <th style="min-width:100px">建議買點</th>
-    <th class="cg" style="min-width:90px">訊號</th>
-  </tr></thead>
-  <tbody id="tbody"></tbody>
-</table>
-</div></div>
-
-<div class="footer">
-  股價：<span style="color:var(--green)">●即時逐筆</span> ／ <span style="color:var(--blue)">●API最新</span> ／ <span style="color:var(--text3)">●昨收</span>
-</div>
-</div>
-
-<script>
-const FM = 'https://api.finmindtrade.com/api/v4/data';
-function getToken(){ return localStorage.getItem('fm_token')||''; }
-function saveToken(){
-  const val=document.getElementById('token-input').value.trim();
-  if(!val){alert('請貼上 Token');return;}
-  localStorage.setItem('fm_token',val);
-  updateTokenUI();
-  toggleTokenBox();
-  location.reload();
-}
-function toggleTokenBox(){
-  const box=document.getElementById('token-box'), col=document.getElementById('token-collapsed');
-  if(box.style.display==='none'){box.style.display='';col.style.display='none';}
-  else{box.style.display='none';col.style.display='block';}
-}
-function updateTokenUI(){
-  const tok=getToken(), nb=document.getElementById('notice-bar'), nt=document.getElementById('notice-text'), st=document.getElementById('token-status');
-  if(tok){
-    nb.className='notice ok'; nt.innerHTML='✓ Token 已設定';
-    st.textContent='✓ Token 已設定';st.className='token-status ok';
-    document.getElementById('token-box').style.display='none'; document.getElementById('token-collapsed').style.display='block';
-  } else {
-    nb.className='notice warn'; nt.textContent='⚠️ 請先輸入 Token';
-    st.textContent='⚪ 未設定 Token';st.className='token-status warn';
-  }
-}
-
-const DEFAULT = ['2605','2481','6213','8932','2317'];
-let stocks = JSON.parse(localStorage.getItem('twstk10')||'null') || [...DEFAULT];
-let data = {}, loading = new Set(), total = 0, done = 0, autoTimer = null;
-let stockList = [], listLoaded = false;
-let acItems = [], acSel = -1;
-
-function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr){
-  if([K,D,RSI].some(v=>v===null||isNaN(v))) return null;
-  let score = 0;
-  if(RSI<25) score+=3; else if(RSI<35) score+=2; else if(RSI>80) score-=3; else if(RSI>70) score-=2;
-  if(K<15) score+=3; else if(K<25) score+=2; else if(K>85) score-=3; else if(K>75) score-=2;
-  let sig = 'neutral';
-  if(score>=6) sig = 'strong-buy'; else if(score>=2) sig = 'buy';
-  else if(score<=-2) sig = score<=-6 ? 'strong-sell' : 'sell';
-  
-  if(jArr&&jArr.length>0){
-    let jToday=0, jPrev=0;
-    for(let i=jArr.length-1;i>=0;i--){ if(jArr[i]>100) jToday++; else break; }
-    for(let i=jArr.length-2;i>=0;i--){ if(jArr[i]>100) jPrev++; else break; }
-    if(jArr[jArr.length-1]<100&&jPrev>=3) sig='dullness-end';
-    else if(jToday>=3) sig='high-dullness';
-    else if(jToday===1||jToday===2) sig='initial-spurt';
-  }
-  return sig;
-}
-
-function renderSignal(sig){
-  const m={'strong-buy':['sig-strong-buy','強力買入'],'buy':['sig-buy','買入'],'neutral':['sig-neutral','觀望'],'sell':['sig-sell','賣出'],'strong-sell':['sig-strong-sell','強力賣出'],'initial-spurt':['sig-initial-spurt','強勢噴發'],'high-dullness':['sig-high-dullness','高檔鈍化'],'dullness-end':['sig-dullness-end','鈍化結束'],'weak-rebound':['sig-weak','弱勢反彈']};
-  const[cls,label]=m[sig]||m['neutral'];
-  return `<span class="signal ${cls}"><span class="sig-dot"></span>${label}</span>`;
-}
-
-async function loadStockList(){
-  try{
-    const r=await fetch(`${FM}?dataset=TaiwanStockInfo&token=${getToken()}`);
-    const j=await r.json();
-    if(j.status===200){ stockList=j.data.map(s=>({id:s.stock_id,name:s.stock_name})); listLoaded=true; }
-  }catch(e){}
-}
-
-function onInput(){
-  const ac=document.getElementById('ac'), q=document.getElementById('si').value.trim();
-  if(!q){ac.classList.remove('show');return;}
-  acItems=stockList.filter(s=>s.id.startsWith(q)||s.name.includes(q)).slice(0,10);
-  ac.innerHTML=acItems.map((s,i)=>`<div class="ac-item" onmousedown="pickItem(${i})"><span class="ac-code">${s.id}</span><span class="ac-name">${s.name}</span></div>`).join('');
-  ac.classList.add('show');
-}
-function pickItem(i){ addStock(acItems[i].id); document.getElementById('si').value=''; document.getElementById('ac').classList.remove('show'); }
-function addFromInput(){ const v=document.getElementById('si').value.trim(); if(v) addStock(v); }
-function addStock(sym){ if(!stocks.includes(sym)){ stocks.push(sym); save(); render(); fetchOne(sym); } }
-function removeStock(sym){ stocks=stocks.filter(s=>s!==sym); save(); render(); }
-function save(){ localStorage.setItem('twstk10',JSON.stringify(stocks)); }
-function resetDefault(){ stocks=[...DEFAULT]; save(); location.reload(); }
-function clearAll(){ stocks=[]; save(); render(); }
-
-const ema=(arr,p)=>{const k=2/(p+1);let e=arr[0];return arr.map((v,i)=>i===0?e:(e=v*k+e*(1-k)));};
-const calcRSI=(c,p=14)=>{ if(c.length<p+1)return null;let g=0,l=0;for(let i=1;i<=p;i++){const d=c[i]-c[i-1];d>0?g+=d:l-=d;}let ag=g/p,al=l/p;for(let i=p+1;i<c.length;i++){const d=c[i]-c[i-1];ag=(ag*(p-1)+(d>0?d:0))/p;al=(al*(p-1)+(d<0?-d:0))/p;}return al===0?100:100-100/(1+ag/al);};
-const calcKDJ=(h,l,c,p=9)=>{ if(c.length<p)return{K:null,D:null,J:null,jArr:[]};let K=50,D=50,jArr=[];for(let i=p-1;i<c.length;i++){const hi=Math.max(...h.slice(i-p+1,i+1)),lo=Math.min(...l.slice(i-p+1,i+1));const rsv=hi===lo?50:(c[i]-lo)/(hi-lo)*100;K=K*2/3+rsv/3;D=D*2/3+K/3;jArr.push(3*K-2*D);}return{K,D,J:jArr[jArr.length-1],jArr};};
-
-async function fetchOne(sym){
-  loading.add(sym); render();
-  try {
-    const r=await fetch(`${FM}?dataset=TaiwanStockPrice&data_id=${sym}&start_date=2024-01-01&token=${getToken()}`);
-    const j=await r.json();
-    const sorted=j.data.sort((a,b)=>a.date.localeCompare(b.date));
-    const closes=sorted.map(s=>+s.close), highs=sorted.map(s=>+s.max), lows=sorted.map(s=>+s.min), vols=sorted.map(s=>+s.Trading_Volume/1000);
-    const kdj=calcKDJ(highs,lows,closes), rsi=calcRSI(closes), ma5=closes.slice(-5).reduce((a,b)=>a+b)/5;
-    const price=closes[closes.length-1], prev=closes[closes.length-2];
-    
-    // 雙軌補位邏輯
-    let finalPrice = price, rtType = 'min';
-    try {
-      const pr=await fetch('prices.json?_='+Date.now());
-      const pj=await pr.json();
-      const entry=pj.prices.find(p=>p.id===sym);
-      if(entry && entry.price){ finalPrice=entry.price; rtType=entry.is_realtime?'live':'close'; }
-    } catch(e){}
-
-    data[sym]={ name:(stockList.find(s=>s.id===sym)||{}).name||sym, price:finalPrice, chg:((finalPrice-prev)/prev)*100, K:kdj.K, D:kdj.D, J:kdj.J, RSI:rsi, VOL:vols[vols.length-1], VOL5:vols.slice(-5).reduce((a,b)=>a+b)/5, MA5:ma5, rtType:rtType, signal:calcSignal(kdj.K,kdj.D,kdj.J,rsi,0,((finalPrice-prev)/prev)*100,vols[vols.length-1],vols.slice(-5).reduce((a,b)=>a+b)/5,finalPrice,ma5,kdj.jArr) };
-  } catch(e){}
-  loading.delete(sym); render();
-}
-
-function getCost(sym){ return parseFloat(localStorage.getItem('cost_'+sym)||''); }
-function setCost(sym,v){ localStorage.setItem('cost_'+sym,v); render(); }
-function toggleCostCols(){ const b=localStorage.getItem('cc')==='1'; localStorage.setItem('cc',b?'0':'1'); render(); }
-
-function fmtEntryPrice(price, ma5, signal, sym){
-  if(!price || isNaN(price)) return '—';
-  const cost = getCost(sym), hasCost = !isNaN(cost) && cost > 0, roi = hasCost ? (price-cost)/cost*100 : 0;
-  // 核心邏輯修正
-  if(['initial-spurt'].includes(signal)) return `<span class="entry-price entry-follow">≈${price.toFixed(1)} 短線觀察</span>`;
-  if(signal==='dullness-end'){
-    if(hasCost && roi >= 20) return `<span class="entry-price entry-exit">獲利>20% 減碼警示</span>`;
-    return `<span class="entry-price" style="color:var(--text3)">趨勢轉弱 勿追</span>`;
-  }
-  if(ma5 && price < ma5 && hasCost) return `<span class="entry-price entry-exit">破MA5 先跑一半</span>`;
-  return '—';
-}
-
-function render(){
-  document.getElementById('chips').innerHTML=stocks.map(s=>`<span class="chip">${s}<button class="crm" onclick="removeStock('${s}')">×</button></span>`).join('');
-  const tb=document.getElementById('tbody'), showCC=localStorage.getItem('cc')==='1';
-  document.querySelectorAll('.cost-col').forEach(el=>el.style.display=showCC?'':'none');
-  tb.innerHTML=stocks.map(s=>{
-    const d=data[s]; if(!d) return `<tr><td>${s}</td><td colspan="15">載入中...</td></tr>`;
-    return `<tr><td>${s}</td><td>${d.name}</td><td>${d.price.toFixed(2)}${d.rtType==='live'?'<span class="rt-tag rt-live">●</span>':'<span class="rt-tag rt-min">●</span>'}</td><td>${d.chg.toFixed(2)}%</td><td>${d.K.toFixed(1)}</td><td>${d.D.toFixed(1)}</td><td>${d.J.toFixed(1)}</td><td>${d.RSI.toFixed(1)}</td><td>—</td><td>${d.VOL.toLocaleString()}</td><td>${d.VOL5.toLocaleString()}</td><td class="cost-col"><input class="cost-input" value="${getCost(s)||''}" onchange="setCost('${s}',this.value)"></td><td class="cost-col">${hasCost(s)?((d.price-getCost(s))/getCost(s)*100).toFixed(1)+'%':'—'}</td><td class="cost-col">${hasCost(s)?((d.price-d.MA5)/d.MA5*100).toFixed(1)+'%':'—'}</td><td>${fmtEntryPrice(d.price,d.MA5,d.signal,s)}</td><td>${renderSignal(d.signal)}</td></tr>`;
-  }).join('');
-  document.querySelectorAll('.cost-col').forEach(el=>el.style.display=showCC?'':'none');
-}
-function hasCost(s){ const c=getCost(s); return !isNaN(c) && c>0; }
-function fetchAll(){ stocks.forEach(s=>fetchOne(s)); }
-function setAuto(){ if(autoTimer) clearInterval(autoTimer); const v=document.getElementById('ai').value; if(v>0) autoTimer=setInterval(fetchAll,v*1000); }
-
-updateTokenUI(); loadStockList().then(fetchAll);
-</script>
-</body>
-</html>
