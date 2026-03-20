@@ -789,7 +789,6 @@ function fmtCostInput(sym){
   const val = isNaN(cost) ? '' : cost;
   return `<input class="cost-input" type="text" inputmode="decimal"
     value="${val}" placeholder="買入價"
-    oninput="setCost('${sym}', this.value)"
     onblur="setCost('${sym}', this.value)"
     onkeydown="if(event.key==='Enter'){setCost('${sym}',this.value);this.blur();}"
     onclick="event.stopPropagation()" />`;
