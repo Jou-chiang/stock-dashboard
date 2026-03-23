@@ -580,8 +580,40 @@ async function fmGet(dataset,id,days=100){
   return j.data||[];
 }
 
-async function getBestPrice(sym,fallback){
-  return{price:fallback,rtType:'close'};
+// ── prices.json 快取（GitHub Actions 每5分鐘更新）──────
+let pricesCache = null;
+let pricesCacheTime = 0;
+
+async function loadPricesJson(){
+  if(pricesCache && Date.now()-pricesCacheTime < 360000) return pricesCache;
+  try{
+    const r = await fetch('prices.json?_='+Date.now());
+    if(!r.ok) throw new Error('prices.json 不存在');
+    const j = await r.json();
+    pricesCache = j;
+    pricesCacheTime = Date.now();
+    return j;
+  }catch(e){
+    console.warn('prices.json 讀取失敗:', e.message);
+    return null;
+  }
+}
+
+async function getBestPrice(sym, fallback){
+  try{
+    const pj = await loadPricesJson();
+    if(pj && pj.prices){
+      const entry = pj.prices.find(p => p.id === sym);
+      if(entry && entry.price){
+        return {
+          price: entry.price,
+          rtType: entry.is_realtime ? 'live' : 'close',
+          vol: entry.vol || null,
+        };
+      }
+    }
+  }catch(e){}
+  return {price: fallback, rtType: 'close', vol: null};
 }
 
 // 三大法人解析
@@ -611,14 +643,17 @@ async function fetchOne(sym){
     const lows=sorted.map(r=>+r.min).filter(v=>v>0);
     const vols=sorted.map(r=>+r.Trading_Volume/1000).filter(v=>v>=0);
     const prevClose=sorted.length>1?+sorted[sorted.length-2].close:+last.close;
-    const{price,rtType}=await getBestPrice(sym,+last.close);
+    const bestPrice=await getBestPrice(sym,+last.close);
+    const price=bestPrice.price;
+    const rtType=bestPrice.rtType;
+    const realtimeVol=bestPrice.vol||null;
     const changePercent=((price-prevClose)/prevClose)*100;
     const kdj=calcKDJ(highs,lows,closes);
     const RSI=calcRSI(closes);
     const difResult=calcDIF(closes); const DIF=difResult.val; const DIFprev=difResult.prev;
     const name=(stockList.find(s=>s.id===sym)||{}).name||last.stock_id||sym;
     
-    const VOL = vols[vols.length-1];
+    const VOL = realtimeVol !== null ? realtimeVol : vols[vols.length-1];
     const VOL5 = vols.length>=5 ? vols.slice(-5).reduce((a,b)=>a+b)/5 : null;
     const MA20 = closes.length>=20 ? closes.slice(-20).reduce((a,b)=>a+b)/20 : null;
     const MA5  = closes.length>=5  ? closes.slice(-5).reduce((a,b)=>a+b)/5   : null;
