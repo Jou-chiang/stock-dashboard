@@ -1,28 +1,28 @@
 {
-  "updated_at": "2026-03-23T05:24:39.462973+00:00",
-  "updated_at_tw": "13:24",
+  "updated_at": "2026-03-23T06:47:00.750221+00:00",
+  "updated_at_tw": "14:46",
   "prices": [
     {
       "id": "2605",
       "name": "新興",
-      "price": 39.75,
+      "price": 39.85,
       "prev_close": 39.8,
-      "change_pct": -0.13,
+      "change_pct": 0.13,
       "high": 41.45,
       "low": 39.2,
-      "vol": 28144,
-      "is_realtime": false
+      "vol": 29603,
+      "is_realtime": true
     },
     {
       "id": "2481",
       "name": "強茂",
-      "price": 91.6,
+      "price": 92.0,
       "prev_close": 94.8,
-      "change_pct": -3.38,
+      "change_pct": -2.95,
       "high": 93.4,
       "low": 90.1,
-      "vol": 9668,
-      "is_realtime": false
+      "vol": 10153,
+      "is_realtime": true
     },
     {
       "id": "6213",
@@ -32,7 +32,7 @@
       "change_pct": -5.23,
       "high": 141.0,
       "low": 135.0,
-      "vol": 7065,
+      "vol": 7399,
       "is_realtime": true
     },
     {
@@ -43,30 +43,30 @@
       "change_pct": 0.0,
       "high": 82.9,
       "low": 80.0,
-      "vol": 1734,
-      "is_realtime": false
+      "vol": 1824,
+      "is_realtime": true
     },
     {
       "id": "2317",
       "name": "鴻海",
-      "price": 195.5,
+      "price": 196.0,
       "prev_close": 203.0,
-      "change_pct": -3.69,
+      "change_pct": -3.45,
       "high": 197.5,
       "low": 195.0,
-      "vol": 69213,
-      "is_realtime": false
+      "vol": 72725,
+      "is_realtime": true
     },
     {
       "id": "2313",
       "name": "華通",
-      "price": 217.0,
+      "price": 216.0,
       "prev_close": 222.0,
-      "change_pct": -2.25,
+      "change_pct": -2.7,
       "high": 230.5,
       "low": 212.5,
-      "vol": 62732,
-      "is_realtime": false
+      "vol": 65820,
+      "is_realtime": true
     },
     {
       "id": "2303",
@@ -76,19 +76,19 @@
       "change_pct": -1.9,
       "high": 57.0,
       "low": 55.7,
-      "vol": 54827,
+      "vol": 62798,
       "is_realtime": true
     },
     {
       "id": "2618",
       "name": "長榮航",
-      "price": 34.9,
+      "price": 34.85,
       "prev_close": 34.8,
-      "change_pct": 0.29,
+      "change_pct": 0.14,
       "high": 35.1,
       "low": 33.8,
-      "vol": 43252,
-      "is_realtime": false
+      "vol": 46296,
+      "is_realtime": true
     }
   ]
 }
