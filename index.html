@@ -189,7 +189,7 @@ tr:hover td{background:var(--bg3);}
 </div>
 
 <div class="notice" id="notice-bar">
-  <span id="notice-text">⚠️ 請先輸入 FinMind Token 才能查詢資料</span>
+  <span id="notice-text">✓ 使用 TWSE 公開資料，不需要 Token 即可查詢</span>
 </div>
 
 <div class="controls">
@@ -264,14 +264,16 @@ tr:hover td{background:var(--bg3);}
 <div class="footer">
   股價：<span style="color:var(--green)">●即時逐筆</span> ／ <span style="color:var(--blue)">●分鐘線</span> ／ <span style="color:var(--text3)">●昨收</span>　｜　
   訊號為技術指標綜合判斷，<b>僅供參考，不構成投資建議</b>　｜　
-  資料來源：<a href="https://finmindtrade.com" target="_blank" style="color:var(--amber)">FinMind</a>｜法人資料為前一交易日，大戶為最新一週
+  資料來源：<a href="https://www.twse.com.tw" target="_blank" style="color:var(--amber)">TWSE 台灣證交所</a>｜技術指標由歷史收盤價計算
 </div>
 </div>
 
 <script>
-const FM = 'https://api.finmindtrade.com/api/v4/data';
+// ── TWSE 歷史股價（不需要 token，無 CORS 問題）──────────
+const TWSE_HIST = 'https://api.twse.com.tw/exchangeReport/STOCK_DAY';
+const TWSE_OTC  = 'https://www.tpex.org.tw/web/stock/aftertrading/daily_trading_info/st43_result.php';
 
-// ── token management
+// 保留 token 管理（供未來使用，目前不需要）
 function getToken(){ return localStorage.getItem('fm_token')||''; }
 function saveToken(){
   const val=document.getElementById('token-input').value.trim();
@@ -289,22 +291,14 @@ function toggleTokenBox(){
   else{box.style.display='none';col.style.display='block';}
 }
 function updateTokenUI(){
-  const tok=getToken();
+  // 改用 TWSE，不再需要 Token，直接顯示 OK 狀態
   const nb=document.getElementById('notice-bar');
   const nt=document.getElementById('notice-text');
-  const st=document.getElementById('token-status');
-  if(tok){
-    nb.className='notice ok';
-    nt.innerHTML='✓ FinMind Token 已設定｜可輸入中文名稱或股票代號｜<span>股價：盤中即時（綠）/ 分鐘線（藍）/ 昨收（灰）</span>';
-    st.textContent='✓ Token 已設定';st.className='token-status ok';
-    document.getElementById('token-input').value=tok;
-    document.getElementById('token-box').style.display='none';
-    document.getElementById('token-collapsed').style.display='block';
-  } else {
-    nb.className='notice warn';
-    nt.textContent='⚠️ 請先輸入 FinMind Token 才能查詢資料';
-    st.textContent='⚪ 未設定 Token';st.className='token-status warn';
-  }
+  // 隱藏 token 相關 UI
+  document.getElementById('token-box').style.display='none';
+  document.getElementById('token-collapsed').style.display='none';
+  nb.className='notice ok';
+  nt.innerHTML='✓ 使用 TWSE 公開資料｜可輸入中文名稱或股票代號｜<span>股價：GitHub Actions 每分鐘更新（綠=即時）</span>';
 }
 
 const DEFAULT = ['2330','2454','2317','2412','2603'];
@@ -425,8 +419,8 @@ function setHint(t){ document.getElementById('hint').textContent=t; }
 async function loadStockList(){
   if(listLoaded||listLoading) return; listLoading=true;
   try{
-    const cached=localStorage.getItem('fm_sl4');
-    const at=parseInt(localStorage.getItem('fm_sl4_at')||'0');
+    const cached=localStorage.getItem('twse_sl');
+    const at=parseInt(localStorage.getItem('twse_sl_at')||'0');
     if(cached&&Date.now()-at<86400000){
       stockList=JSON.parse(cached);
       if(stockList.length>0){listLoaded=true;listLoading=false;setHint('');return;}
@@ -434,16 +428,16 @@ async function loadStockList(){
   }catch(e){}
   setHint('載入股票清單中...');
   try{
-    const r=await fetch(`${FM}?dataset=TaiwanStockInfo&token=${getToken()}`);
+    const r=await fetch('https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL');
     const j=await r.json();
-    if(j.status===200&&Array.isArray(j.data)&&j.data.length){
-      stockList=j.data
-        .filter(s=>s.stock_id&&/^\d{4,6}[A-Z]?$/.test(String(s.stock_id).trim()))
-        .map(s=>({id:String(s.stock_id).trim(),name:String(s.stock_name||s.stock_id).trim()}));
-      localStorage.setItem('fm_sl4',JSON.stringify(stockList));
-      localStorage.setItem('fm_sl4_at',Date.now().toString());
+    if(Array.isArray(j)&&j.length){
+      stockList=j
+        .filter(s=>s.Code&&s.Code.length===4&&/^\d{4}$/.test(s.Code))
+        .map(s=>({id:s.Code,name:s.Name||s.Code}));
+      localStorage.setItem('twse_sl',JSON.stringify(stockList));
+      localStorage.setItem('twse_sl_at',Date.now().toString());
       listLoaded=true;
-      setHint(`✓ 已載入 ${stockList.length} 支股票`);
+      setHint('✓ 已載入 '+stockList.length+' 支股票');
       setTimeout(()=>setHint(''),2500);
     }
   }catch(e){ setHint('清單載入失敗，可直接輸入代號（如：2330）'); }
@@ -569,15 +563,64 @@ function calcDIF(c){
 }
 
 // ── API ────────────────────────
-async function fmGet(dataset,id,days=100){
-  const tok=getToken();
-  if(!tok) throw new Error('請先設定 FinMind Token');
-  const params=new URLSearchParams({dataset,data_id:id,start_date:startDate(days),end_date:today(),token:tok});
-  const r=await fetch(`${FM}?${params}`);
-  if(!r.ok) throw new Error(`HTTP ${r.status}`);
-  const j=await r.json();
-  if(j.status!==200) throw new Error(j.msg||`status ${j.status}`);
-  return j.data||[];
+// 取得股票歷史資料（TWSE/OTC，不需要 token）
+async function fetchHistory(sym, months=3){
+  // 先嘗試上市（TWSE）
+  const results = [];
+  const now = new Date();
+  for(let i=0; i<months; i++){
+    const d = new Date(now.getFullYear(), now.getMonth()-i, 1);
+    const yyyymm = `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}01`;
+    try{
+      const url = `${TWSE_HIST}?response=json&date=${yyyymm}&stockNo=${sym}`;
+      const r = await fetch(url);
+      const j = await r.json();
+      if(j.stat==='OK' && j.data){
+        for(const row of j.data){
+          // row: [日期, 成交股數, 成交金額, 開盤, 最高, 最低, 收盤, 漲跌, 成交筆數]
+          const dateStr = row[0].replace(/\//g,'-');
+          const parts = dateStr.split('-');
+          // 民國年轉西元
+          const year = parseInt(parts[0]) + 1911;
+          const isoDate = `${year}-${parts[1]}-${parts[2]}`;
+          const close = parseFloat(row[6].replace(/,/g,''));
+          const high  = parseFloat(row[4].replace(/,/g,''));
+          const low   = parseFloat(row[5].replace(/,/g,''));
+          const vol   = parseFloat(row[1].replace(/,/g,'')) / 1000; // 股轉張
+          if(!isNaN(close) && close > 0){
+            results.push({date:isoDate, close, max:high, min:low, Trading_Volume:vol*1000});
+          }
+        }
+      }
+    }catch(e){ console.warn(`TWSE ${sym} ${yyyymm}:`, e.message); }
+  }
+  if(results.length > 0) return results.sort((a,b)=>a.date.localeCompare(b.date));
+
+  // 沒抓到試 OTC（上櫃）
+  try{
+    const now2 = new Date();
+    const yy = now2.getFullYear()-1911;
+    const mm = String(now2.getMonth()+1).padStart(2,'0');
+    const url = `${TWSE_OTC}?l=zh-tw&d=${yy}/${mm}&s=${sym}&o=json`;
+    const r = await fetch(url);
+    const j = await r.json();
+    if(j.iTotalRecords > 0 && j.aaData){
+      return j.aaData.map(row=>{
+        const parts = row[0].split('/');
+        const isoDate = `${parseInt(parts[0])+1911}-${parts[1]}-${parts[2]}`;
+        return {
+          date:isoDate,
+          close:parseFloat(row[6].replace(/,/g,'')),
+          max:  parseFloat(row[4].replace(/,/g,'')),
+          min:  parseFloat(row[5].replace(/,/g,'')),
+          Trading_Volume: parseFloat(row[1].replace(/,/g,''))
+        };
+      }).filter(r=>!isNaN(r.close)&&r.close>0)
+        .sort((a,b)=>a.date.localeCompare(b.date));
+    }
+  }catch(e){ console.warn(`OTC ${sym}:`, e.message); }
+
+  return [];
 }
 
 // ── prices.json 快取（GitHub Actions 每5分鐘更新）──────
@@ -634,7 +677,7 @@ function parseInst(rows){
 async function fetchOne(sym){
   loading.add(sym);render();
   try{
-    const rows=await fmGet('TaiwanStockPrice',sym,100);
+    const rows=await fetchHistory(sym, 4);
     if(!rows.length) throw new Error('查無此股票');
     const sorted=rows.sort((a,b)=>a.date.localeCompare(b.date));
     const last=sorted[sorted.length-1];
