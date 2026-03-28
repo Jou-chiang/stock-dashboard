@@ -269,10 +269,6 @@ tr:hover td{background:var(--bg3);}
 </div>
 
 <script>
-// ── TWSE 歷史股價（不需要 token，無 CORS 問題）──────────
-const TWSE_HIST = 'https://api.twse.com.tw/exchangeReport/STOCK_DAY';
-const TWSE_OTC  = 'https://www.tpex.org.tw/web/stock/aftertrading/daily_trading_info/st43_result.php';
-
 // 保留 token 管理（供未來使用，目前不需要）
 function getToken(){ return localStorage.getItem('fm_token')||''; }
 function saveToken(){
@@ -563,63 +559,17 @@ function calcDIF(c){
 }
 
 // ── API ────────────────────────
-// 取得股票歷史資料（TWSE/OTC，不需要 token）
-async function fetchHistory(sym, months=3){
-  // 先嘗試上市（TWSE）
-  const results = [];
-  const now = new Date();
-  for(let i=0; i<months; i++){
-    const d = new Date(now.getFullYear(), now.getMonth()-i, 1);
-    const yyyymm = `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}01`;
-    try{
-      const url = `${TWSE_HIST}?response=json&date=${yyyymm}&stockNo=${sym}`;
-      const r = await fetch(url);
-      const j = await r.json();
-      if(j.stat==='OK' && j.data){
-        for(const row of j.data){
-          // row: [日期, 成交股數, 成交金額, 開盤, 最高, 最低, 收盤, 漲跌, 成交筆數]
-          const dateStr = row[0].replace(/\//g,'-');
-          const parts = dateStr.split('-');
-          // 民國年轉西元
-          const year = parseInt(parts[0]) + 1911;
-          const isoDate = `${year}-${parts[1]}-${parts[2]}`;
-          const close = parseFloat(row[6].replace(/,/g,''));
-          const high  = parseFloat(row[4].replace(/,/g,''));
-          const low   = parseFloat(row[5].replace(/,/g,''));
-          const vol   = parseFloat(row[1].replace(/,/g,'')) / 1000; // 股轉張
-          if(!isNaN(close) && close > 0){
-            results.push({date:isoDate, close, max:high, min:low, Trading_Volume:vol*1000});
-          }
-        }
-      }
-    }catch(e){ console.warn(`TWSE ${sym} ${yyyymm}:`, e.message); }
-  }
-  if(results.length > 0) return results.sort((a,b)=>a.date.localeCompare(b.date));
-
-  // 沒抓到試 OTC（上櫃）
+// 歷史K線從 prices.json 讀取（由 GitHub Actions 每小時更新）
+async function getHistory(sym){
   try{
-    const now2 = new Date();
-    const yy = now2.getFullYear()-1911;
-    const mm = String(now2.getMonth()+1).padStart(2,'0');
-    const url = `${TWSE_OTC}?l=zh-tw&d=${yy}/${mm}&s=${sym}&o=json`;
-    const r = await fetch(url);
-    const j = await r.json();
-    if(j.iTotalRecords > 0 && j.aaData){
-      return j.aaData.map(row=>{
-        const parts = row[0].split('/');
-        const isoDate = `${parseInt(parts[0])+1911}-${parts[1]}-${parts[2]}`;
-        return {
-          date:isoDate,
-          close:parseFloat(row[6].replace(/,/g,'')),
-          max:  parseFloat(row[4].replace(/,/g,'')),
-          min:  parseFloat(row[5].replace(/,/g,'')),
-          Trading_Volume: parseFloat(row[1].replace(/,/g,''))
-        };
-      }).filter(r=>!isNaN(r.close)&&r.close>0)
-        .sort((a,b)=>a.date.localeCompare(b.date));
+    const pj = await loadPricesJson();
+    if(pj && pj.prices){
+      const entry = pj.prices.find(p => p.id === sym);
+      if(entry && entry.history && entry.history.length >= 20){
+        return entry.history;
+      }
     }
-  }catch(e){ console.warn(`OTC ${sym}:`, e.message); }
-
+  }catch(e){}
   return [];
 }
 
@@ -677,8 +627,8 @@ function parseInst(rows){
 async function fetchOne(sym){
   loading.add(sym);render();
   try{
-    const rows=await fetchHistory(sym, 4);
-    if(!rows.length) throw new Error('查無此股票');
+    const rows=await getHistory(sym);
+    if(!rows.length) throw new Error('歷史資料載入中，請稍後再試');
     const sorted=rows.sort((a,b)=>a.date.localeCompare(b.date));
     const last=sorted[sorted.length-1];
     const closes=sorted.map(r=>+r.close).filter(v=>v>0);
