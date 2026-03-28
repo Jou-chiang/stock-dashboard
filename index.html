@@ -414,29 +414,25 @@ function setHint(t){ document.getElementById('hint').textContent=t; }
 // ── stock list ─────────────────────────────────────────
 async function loadStockList(){
   if(listLoaded||listLoading) return; listLoading=true;
+  // 從 prices.json 讀取（GitHub Actions 已包含股票名稱）
   try{
-    const cached=localStorage.getItem('twse_sl');
-    const at=parseInt(localStorage.getItem('twse_sl_at')||'0');
-    if(cached&&Date.now()-at<86400000){
-      stockList=JSON.parse(cached);
-      if(stockList.length>0){listLoaded=true;listLoading=false;setHint('');return;}
+    const pj = await loadPricesJson();
+    if(pj && pj.stock_list && pj.stock_list.length > 0){
+      stockList = pj.stock_list;
+      listLoaded = true; listLoading = false;
+      setHint('✓ 已載入 '+stockList.length+' 支股票');
+      setTimeout(()=>setHint(''),2000);
+      return;
+    }
+    // 若 prices.json 沒有 stock_list，用 prices 裡的名稱建立最小清單
+    if(pj && pj.prices && pj.prices.length > 0){
+      stockList = pj.prices.map(p=>({id:p.id, name:p.name||p.id}));
+      listLoaded = true; listLoading = false;
+      setHint('');
+      return;
     }
   }catch(e){}
-  setHint('載入股票清單中...');
-  try{
-    const r=await fetch('https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL');
-    const j=await r.json();
-    if(Array.isArray(j)&&j.length){
-      stockList=j
-        .filter(s=>s.Code&&s.Code.length===4&&/^\d{4}$/.test(s.Code))
-        .map(s=>({id:s.Code,name:s.Name||s.Code}));
-      localStorage.setItem('twse_sl',JSON.stringify(stockList));
-      localStorage.setItem('twse_sl_at',Date.now().toString());
-      listLoaded=true;
-      setHint('✓ 已載入 '+stockList.length+' 支股票');
-      setTimeout(()=>setHint(''),2500);
-    }
-  }catch(e){ setHint('清單載入失敗，可直接輸入代號（如：2330）'); }
+  setHint('可直接輸入代號（如：2330）');
   listLoading=false;
 }
 
