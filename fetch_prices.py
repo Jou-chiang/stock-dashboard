@@ -227,10 +227,27 @@ def main():
             'history':     hist,  # 歷史K線資料
         })
 
+    # Step 4：抓全市場股票清單（每小時更新）
+    stock_list = old_data.get('stock_list', [])
+    if need_history or not stock_list:
+        print('\n── 股票清單 ──')
+        try:
+            headers = {'User-Agent': 'Mozilla/5.0'}
+            # TWSE 上市
+            r = requests.get('https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL', headers=headers, timeout=15)
+            j = r.json()
+            if isinstance(j, list) and j:
+                stock_list = [{'id': s['Code'], 'name': s['Name']} for s in j
+                              if s.get('Code') and len(s['Code']) == 4 and s['Code'].isdigit()]
+                print(f'  股票清單：{len(stock_list)} 支')
+        except Exception as e:
+            print(f'  股票清單失敗: {e}')
+
     output = {
         'updated_at':        datetime.now(pytz.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
         'updated_at_tw':     t.strftime('%H:%M'),
         'history_updated_at': datetime.now(pytz.utc).strftime('%Y-%m-%dT%H:%M:%SZ') if need_history else old_hist_at,
+        'stock_list':        stock_list,
         'prices':            results
     }
     with open('prices.json', 'w', encoding='utf-8') as f:
