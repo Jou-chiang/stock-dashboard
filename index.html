@@ -684,16 +684,8 @@ function setCost(sym, val){
   const v = parseFloat(val);
   if(!isNaN(v)&&v>0) localStorage.setItem('cost_'+sym, v);
   else localStorage.removeItem('cost_'+sym);
-  // 不重跑整個 render（會清掉輸入框），只更新受影響的列
-  renderRow(sym);
-}
-
-function renderRow(sym){
-  // 找到這支股票的 tr，更新損益、建議買點欄位
-  const d = data[sym];
-  if(!d||d.error) return;
-  // 重新渲染整列（input 會保留 localStorage 值）
-  render();
+  // 用 setTimeout 避免 blur 事件衝突
+  setTimeout(()=>render(), 0);
 }
 
 // ── 戰情欄顯示/隱藏 ──────────────────────────────────
