@@ -12,7 +12,7 @@ import time
 from datetime import datetime, timedelta
 import pytz
 
-tw_tz = pytz.timezone('Asia/Taipei')
+tw_tz = pytz.timezone('Asia/Taipei') 
 
 def now_tw():
     return datetime.now(tw_tz)
@@ -183,14 +183,15 @@ def main():
                 parsed = parse_realtime(m, name_map.get(sid, ''))
                 if parsed: rt_map[sid] = parsed
 
-    # Step 2：抓歷史K線（只在每小時整點或第一次跑時更新，節省時間）
-    # 讀取舊的 prices.json 看歷史資料多久沒更新
+    # Step 2：抓歷史K線（只在每小時更新，但若缺少資料則強制更新）
     try:
         with open('prices.json', 'r', encoding='utf-8') as f:
             old_data = json.load(f)
         old_hist_at = old_data.get('history_updated_at', '')
-        need_history = not old_hist_at or (t - datetime.fromisoformat(old_hist_at.replace('Z','')). \
-            replace(tzinfo=pytz.utc)).total_seconds() > 3600
+        has_history = any(p.get('history') for p in old_data.get('prices', []))
+        need_history = (not old_hist_at or not has_history or
+            (t - datetime.fromisoformat(old_hist_at.replace('Z',''))
+             .replace(tzinfo=pytz.utc)).total_seconds() > 3600)
     except:
         need_history = True
         old_data = {}
