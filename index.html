@@ -189,7 +189,7 @@ tr:hover td{background:var(--bg3);}
 </div>
 
 <div class="notice" id="notice-bar">
-  <span id="notice-text">✓ 使用 TWSE 公開資料，不需要 Token 即可查詢</span>
+  <span id="notice-text">⚠️ 請先輸入 FinMind Token 才能查詢資料</span>
 </div>
 
 <div class="controls">
@@ -264,12 +264,14 @@ tr:hover td{background:var(--bg3);}
 <div class="footer">
   股價：<span style="color:var(--green)">●即時逐筆</span> ／ <span style="color:var(--blue)">●分鐘線</span> ／ <span style="color:var(--text3)">●昨收</span>　｜　
   訊號為技術指標綜合判斷，<b>僅供參考，不構成投資建議</b>　｜　
-  資料來源：<a href="https://www.twse.com.tw" target="_blank" style="color:var(--amber)">TWSE 台灣證交所</a>｜技術指標由歷史收盤價計算
+  資料來源：<a href="https://finmindtrade.com" target="_blank" style="color:var(--amber)">FinMind</a>｜法人資料為前一交易日，大戶為最新一週
 </div>
 </div>
 
 <script>
-// 保留 token 管理（供未來使用，目前不需要）
+const FM = 'https://api.finmindtrade.com/api/v4/data';
+
+// ── token management
 function getToken(){ return localStorage.getItem('fm_token')||''; }
 function saveToken(){
   const val=document.getElementById('token-input').value.trim();
@@ -287,14 +289,22 @@ function toggleTokenBox(){
   else{box.style.display='none';col.style.display='block';}
 }
 function updateTokenUI(){
-  // 改用 TWSE，不再需要 Token，直接顯示 OK 狀態
+  const tok=getToken();
   const nb=document.getElementById('notice-bar');
   const nt=document.getElementById('notice-text');
-  // 隱藏 token 相關 UI
-  document.getElementById('token-box').style.display='none';
-  document.getElementById('token-collapsed').style.display='none';
-  nb.className='notice ok';
-  nt.innerHTML='✓ 使用 TWSE 公開資料｜可輸入中文名稱或股票代號｜<span>股價：GitHub Actions 每分鐘更新（綠=即時）</span>';
+  const st=document.getElementById('token-status');
+  if(tok){
+    nb.className='notice ok';
+    nt.innerHTML='✓ FinMind Token 已設定｜可輸入中文名稱或股票代號｜<span>股價：盤中即時（綠）/ 分鐘線（藍）/ 昨收（灰）</span>';
+    st.textContent='✓ Token 已設定';st.className='token-status ok';
+    document.getElementById('token-input').value=tok;
+    document.getElementById('token-box').style.display='none';
+    document.getElementById('token-collapsed').style.display='block';
+  } else {
+    nb.className='notice warn';
+    nt.textContent='⚠️ 請先輸入 FinMind Token 才能查詢資料';
+    st.textContent='⚪ 未設定 Token';st.className='token-status warn';
+  }
 }
 
 const DEFAULT = ['2330','2454','2317','2412','2603'];
@@ -414,25 +424,29 @@ function setHint(t){ document.getElementById('hint').textContent=t; }
 // ── stock list ─────────────────────────────────────────
 async function loadStockList(){
   if(listLoaded||listLoading) return; listLoading=true;
-  // 從 prices.json 讀取（GitHub Actions 已包含股票名稱）
   try{
-    const pj = await loadPricesJson();
-    if(pj && pj.stock_list && pj.stock_list.length > 0){
-      stockList = pj.stock_list;
-      listLoaded = true; listLoading = false;
-      setHint('✓ 已載入 '+stockList.length+' 支股票');
-      setTimeout(()=>setHint(''),2000);
-      return;
-    }
-    // 若 prices.json 沒有 stock_list，用 prices 裡的名稱建立最小清單
-    if(pj && pj.prices && pj.prices.length > 0){
-      stockList = pj.prices.map(p=>({id:p.id, name:p.name||p.id}));
-      listLoaded = true; listLoading = false;
-      setHint('');
-      return;
+    const cached=localStorage.getItem('fm_sl4');
+    const at=parseInt(localStorage.getItem('fm_sl4_at')||'0');
+    if(cached&&Date.now()-at<86400000){
+      stockList=JSON.parse(cached);
+      if(stockList.length>0){listLoaded=true;listLoading=false;setHint('');return;}
     }
   }catch(e){}
-  setHint('可直接輸入代號（如：2330）');
+  setHint('載入股票清單中...');
+  try{
+    const r=await fetch(`${FM}?dataset=TaiwanStockInfo&token=${getToken()}`);
+    const j=await r.json();
+    if(j.status===200&&Array.isArray(j.data)&&j.data.length){
+      stockList=j.data
+        .filter(s=>s.stock_id&&/^\d{4,6}[A-Z]?$/.test(String(s.stock_id).trim()))
+        .map(s=>({id:String(s.stock_id).trim(),name:String(s.stock_name||s.stock_id).trim()}));
+      localStorage.setItem('fm_sl4',JSON.stringify(stockList));
+      localStorage.setItem('fm_sl4_at',Date.now().toString());
+      listLoaded=true;
+      setHint(`✓ 已載入 ${stockList.length} 支股票`);
+      setTimeout(()=>setHint(''),2500);
+    }
+  }catch(e){ setHint('清單載入失敗，可直接輸入代號（如：2330）'); }
   listLoading=false;
 }
 
@@ -555,18 +569,15 @@ function calcDIF(c){
 }
 
 // ── API ────────────────────────
-// 歷史K線從 prices.json 讀取（由 GitHub Actions 每小時更新）
-async function getHistory(sym){
-  try{
-    const pj = await loadPricesJson();
-    if(pj && pj.prices){
-      const entry = pj.prices.find(p => p.id === sym);
-      if(entry && entry.history && entry.history.length >= 20){
-        return entry.history;
-      }
-    }
-  }catch(e){}
-  return [];
+async function fmGet(dataset,id,days=100){
+  const tok=getToken();
+  if(!tok) throw new Error('請先設定 FinMind Token');
+  const params=new URLSearchParams({dataset,data_id:id,start_date:startDate(days),end_date:today(),token:tok});
+  const r=await fetch(`${FM}?${params}`);
+  if(!r.ok) throw new Error(`HTTP ${r.status}`);
+  const j=await r.json();
+  if(j.status!==200) throw new Error(j.msg||`status ${j.status}`);
+  return j.data||[];
 }
 
 // ── prices.json 快取（GitHub Actions 每5分鐘更新）──────
@@ -623,8 +634,8 @@ function parseInst(rows){
 async function fetchOne(sym){
   loading.add(sym);render();
   try{
-    const rows=await getHistory(sym);
-    if(!rows.length) throw new Error('歷史資料載入中，請稍後再試');
+    const rows=await fmGet('TaiwanStockPrice',sym,100);
+    if(!rows.length) throw new Error('查無此股票');
     const sorted=rows.sort((a,b)=>a.date.localeCompare(b.date));
     const last=sorted[sorted.length-1];
     const closes=sorted.map(r=>+r.close).filter(v=>v>0);
@@ -684,8 +695,16 @@ function setCost(sym, val){
   const v = parseFloat(val);
   if(!isNaN(v)&&v>0) localStorage.setItem('cost_'+sym, v);
   else localStorage.removeItem('cost_'+sym);
-  // 用 setTimeout 避免 blur 事件衝突
-  setTimeout(()=>render(), 0);
+  // 不重跑整個 render（會清掉輸入框），只更新受影響的列
+  renderRow(sym);
+}
+
+function renderRow(sym){
+  // 找到這支股票的 tr，更新損益、建議買點欄位
+  const d = data[sym];
+  if(!d||d.error) return;
+  // 重新渲染整列（input 會保留 localStorage 值）
+  render();
 }
 
 // ── 戰情欄顯示/隱藏 ──────────────────────────────────
@@ -855,7 +874,7 @@ function render(){
     const d=data[sym],isL=loading.has(sym);
     if(isL) return `<tr><td><a href="https://goodinfo.tw/tw/ShowBuySaleChart.asp?STOCK_ID=${sym}&REINIT=1" target="_blank" style="color:var(--amber);text-decoration:none;font-family:var(--mono)">${sym}</a></td><td class="tl nc">查詢中...</td>${'<td>'+na()+'</td>'.repeat(14)}<td><span class="badge bl">LOADING</span></td></tr>`;
     if(!d) return `<tr><td><a href="https://goodinfo.tw/tw/ShowBuySaleChart.asp?STOCK_ID=${sym}&REINIT=1" target="_blank" style="color:var(--amber);text-decoration:none;font-family:var(--mono)">${sym}</a></td><td class="tl nc">—</td>${'<td>'+na()+'</td>'.repeat(14)}<td><button class="qbtn" onclick="fetchOne('${sym}')">查詢</button></td></tr>`;
-    if(d.error) return `<tr><td><a href="https://goodinfo.tw/tw/ShowBuySaleChart.asp?STOCK_ID=${sym}&REINIT=1" target="_blank" style="color:var(--amber);text-decoration:none;font-family:var(--mono)">${sym}</a></td><td class="tl nc" colspan="14" style="color:var(--red)">${d.msg}</td><td><button class="qbtn" onclick="fetchOne('${sym}')">重試</button></td></tr>`;
+    if(d.error) return `<tr><td>${sym}</td><td class="tl nc" colspan="15" style="color:var(--red)">${d.msg}</td><td><button class="qbtn" onclick="fetchOne('${sym}')">重試</button></td></tr>`;
     const chg=d.changePercent;
     return `<tr class="fi">
       <td><a href="https://goodinfo.tw/tw/ShowBuySaleChart.asp?STOCK_ID=${sym}&REINIT=1" target="_blank" style="color:var(--amber);text-decoration:none;font-family:var(--mono)" title="Goodinfo ${sym}">${sym}</a></td><td class="tl nc">${d.name?String(d.name).substring(0,8):'—'}</td>
