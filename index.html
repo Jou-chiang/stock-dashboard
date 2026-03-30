@@ -855,7 +855,7 @@ function render(){
     const d=data[sym],isL=loading.has(sym);
     if(isL) return `<tr><td><a href="https://goodinfo.tw/tw/ShowBuySaleChart.asp?STOCK_ID=${sym}&REINIT=1" target="_blank" style="color:var(--amber);text-decoration:none;font-family:var(--mono)">${sym}</a></td><td class="tl nc">查詢中...</td>${'<td>'+na()+'</td>'.repeat(14)}<td><span class="badge bl">LOADING</span></td></tr>`;
     if(!d) return `<tr><td><a href="https://goodinfo.tw/tw/ShowBuySaleChart.asp?STOCK_ID=${sym}&REINIT=1" target="_blank" style="color:var(--amber);text-decoration:none;font-family:var(--mono)">${sym}</a></td><td class="tl nc">—</td>${'<td>'+na()+'</td>'.repeat(14)}<td><button class="qbtn" onclick="fetchOne('${sym}')">查詢</button></td></tr>`;
-    if(d.error) return `<tr><td>${sym}</td><td class="tl nc" colspan="15" style="color:var(--red)">${d.msg}</td><td><button class="qbtn" onclick="fetchOne('${sym}')">重試</button></td></tr>`;
+    if(d.error) return `<tr><td><a href="https://goodinfo.tw/tw/ShowBuySaleChart.asp?STOCK_ID=${sym}&REINIT=1" target="_blank" style="color:var(--amber);text-decoration:none;font-family:var(--mono)">${sym}</a></td><td class="tl nc" colspan="14" style="color:var(--red)">${d.msg}</td><td><button class="qbtn" onclick="fetchOne('${sym}')">重試</button></td></tr>`;
     const chg=d.changePercent;
     return `<tr class="fi">
       <td><a href="https://goodinfo.tw/tw/ShowBuySaleChart.asp?STOCK_ID=${sym}&REINIT=1" target="_blank" style="color:var(--amber);text-decoration:none;font-family:var(--mono)" title="Goodinfo ${sym}">${sym}</a></td><td class="tl nc">${d.name?String(d.name).substring(0,8):'—'}</td>
