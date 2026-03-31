@@ -812,7 +812,16 @@ function fmtEntryPrice(price, ma5, signal, sym){
   }
 
   // 趨勢轉弱、賣出：不建議買入
+  // 有持有的情況：給出持有建議而非勿追
   if(['trend-weakening','sell','strong-sell','weak-rebound'].includes(signal)){
+    const cost = getCost(sym);
+    if(!isNaN(cost)&&cost>0){
+      const roi=(price-cost)/cost*100;
+      const roiStr=`${roi>=0?'+':''}${roi.toFixed(1)}%`;
+      if(signal==='trend-weakening') return `<span class="entry-price" style="color:#ef5350;font-weight:500">破MA5 先跑一半</span>`;
+      if(signal==='sell'||signal==='strong-sell') return `<span class="entry-price" style="color:#ef5350">持有中(${roiStr})，考慮減碼</span>`;
+      if(signal==='weak-rebound') return `<span class="entry-price" style="color:#f0a03a">持有觀察，等訊號轉強</span>`;
+    }
     return `<span class="entry-price" style="color:var(--red)">勿追，等訊號</span>`;
   }
 
