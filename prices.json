@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-04-01T04:26:45Z",
-  "updated_at_tw": "12:26",
-  "history_updated_at": "2026-04-01T04:13:12Z",
+  "updated_at": "2026-04-01T05:36:04Z",
+  "updated_at_tw": "13:35",
+  "history_updated_at": "2026-04-01T05:36:04Z",
   "stock_list": [
     {
       "id": "0050",
@@ -4336,13 +4336,13 @@
     {
       "id": "2605",
       "name": "新興",
-      "price": 41.15,
+      "price": 41.0,
       "prev_close": 42.0,
-      "change_pct": -2.02,
+      "change_pct": -2.38,
       "high": 42.95,
       "low": 40.35,
-      "vol": 15984,
-      "is_realtime": false,
+      "vol": 20166,
+      "is_realtime": true,
       "history": [
         {
           "date": "2026-01-02",
@@ -4797,13 +4797,13 @@
     {
       "id": "2481",
       "name": "強茂",
-      "price": 87.5,
+      "price": 88.6,
       "prev_close": 86.4,
-      "change_pct": 1.27,
+      "change_pct": 2.55,
       "high": 91.4,
       "low": 87.3,
-      "vol": 9940,
-      "is_realtime": false,
+      "vol": 13901,
+      "is_realtime": true,
       "history": [
         {
           "date": "2026-01-02",
@@ -5258,13 +5258,13 @@
     {
       "id": "6213",
       "name": "聯茂",
-      "price": 0.0,
+      "price": 163.0,
       "prev_close": 148.5,
-      "change_pct": -100.0,
+      "change_pct": 9.76,
       "high": 163.0,
       "low": 155.0,
-      "vol": 25986,
-      "is_realtime": false,
+      "vol": 26467,
+      "is_realtime": true,
       "history": [
         {
           "date": "2026-01-02",
@@ -5719,25 +5719,25 @@
     {
       "id": "8932",
       "name": "智通*",
-      "price": 81.7,
+      "price": 82.0,
       "prev_close": 80.5,
-      "change_pct": 1.49,
+      "change_pct": 1.86,
       "high": 83.0,
       "low": 80.6,
-      "vol": 892,
-      "is_realtime": false,
+      "vol": 1154,
+      "is_realtime": true,
       "history": []
     },
     {
       "id": "2317",
       "name": "鴻海",
-      "price": 196.0,
+      "price": 197.0,
       "prev_close": 187.5,
-      "change_pct": 4.53,
+      "change_pct": 5.07,
       "high": 197.5,
       "low": 194.5,
-      "vol": 34483,
-      "is_realtime": false,
+      "vol": 44154,
+      "is_realtime": true,
       "history": [
         {
           "date": "2026-01-02",
@@ -6195,9 +6195,9 @@
       "price": 266.0,
       "prev_close": 248.0,
       "change_pct": 7.26,
-      "high": 269.0,
+      "high": 272.5,
       "low": 260.5,
-      "vol": 73986,
+      "vol": 102257,
       "is_realtime": true,
       "history": [
         {
@@ -6653,12 +6653,12 @@
     {
       "id": "2303",
       "name": "聯電",
-      "price": 57.0,
+      "price": 57.4,
       "prev_close": 56.5,
-      "change_pct": 0.88,
+      "change_pct": 1.59,
       "high": 58.5,
       "low": 56.8,
-      "vol": 40238,
+      "vol": 61624,
       "is_realtime": true,
       "history": [
         {
@@ -7114,13 +7114,13 @@
     {
       "id": "2618",
       "name": "長榮航",
-      "price": 34.85,
+      "price": 35.0,
       "prev_close": 33.95,
-      "change_pct": 2.65,
-      "high": 34.95,
+      "change_pct": 3.09,
+      "high": 35.0,
       "low": 34.6,
-      "vol": 9831,
-      "is_realtime": false,
+      "vol": 14614,
+      "is_realtime": true,
       "history": [
         {
           "date": "2026-01-02",
