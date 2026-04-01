@@ -809,9 +809,6 @@ function fmtEntryPrice(price, ma5, signal, sym){
   return '<span class="na">—</span>';
 }
 
-  return '<span class="na">—</span>';
-}
-
 function fmtCostInput(sym){
   const cost = getCost(sym);
   const val = isNaN(cost) ? '' : cost;
