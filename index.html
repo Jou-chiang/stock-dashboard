@@ -762,8 +762,14 @@ function fmtEntryPrice(price, ma5, signal, sym){
       return `<span class="entry-price entry-follow">持有，等下一波噴發</span>`;
     if(signal==='strong-hold'||signal==='strong-hold-warn')
       return `<span class="entry-price entry-hold">持有觀察 (${roiStr})</span>`;
-    if(signal==='strong-buy'||signal==='buy')
-      return `<span class="entry-price" style="color:var(--green)">持有中 (${roiStr})</span>`;
+    if(signal==='strong-buy'){
+      const addEntry = ma5 ? `≈${(((price+ma5)/2)*1.005).toFixed(1)}` : '';
+      return `<span class="entry-price" style="color:var(--green)">持有，低位可加碼 ${addEntry}</span>`;
+    }
+    if(signal==='buy'){
+      const addEntry = ma5 ? `≈${(((price+ma5)/2)*1.005).toFixed(1)}` : '';
+      return `<span class="entry-price" style="color:var(--green)">持有，可考慮加碼 ${addEntry}</span>`;
+    }
     // neutral 或其他：持有中
     return `<span class="entry-price entry-hold">持有中 (${roiStr})</span>`;
   }
