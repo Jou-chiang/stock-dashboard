@@ -732,98 +732,82 @@ function applyCostVisibility(){
 function fmtEntryPrice(price, ma5, signal, sym){
   if(!price || isNaN(price)) return '<span class="na">—</span>';
 
-  // 帶量突破、強勢噴發、高檔鈍化：動能強，直接跟進或持有
-  if(signal==='vol-breakout'){
-    return `<span class="entry-price entry-follow">≈${price.toFixed(1)} 直接跟進</span>`;
-  }
-  if(signal==='initial-spurt'){
-    // 強勢噴發：已高位，短線觀察等量確認，不輕易追高
-    return `<span class="entry-price" style="color:var(--purple)">短線觀察，等量確認</span>`;
-  }
-  if(signal==='high-dullness'){
-    const cost = getCost(sym);
-    if(!isNaN(cost)&&cost>0){
-      // 已持有：續抱等噴發
+  const cost = getCost(sym);
+  const hasCost = !isNaN(cost) && cost > 0;
+  const roi = hasCost ? (price - cost) / cost * 100 : 0;
+  const roiStr = `${roi>=0?'+':''}${roi.toFixed(1)}%`;
+
+  // ── 有持有者：優先顯示持有建議 ──────────────────────
+  if(hasCost){
+    // 負面訊號：告知是否該出場
+    if(signal==='trend-weakening')
+      return `<span class="entry-price" style="color:#ef5350;font-weight:500">破MA5 先跑一半</span>`;
+    if(signal==='dullness-end'){
+      if(roi>=20) return `<span class="entry-price" style="color:#ef5350;font-weight:500">⚠ 獲利${roi.toFixed(0)}% 建議減碼</span>`;
+      return `<span class="entry-price" style="color:#fdd835">鈍化結束，注意出場</span>`;
+    }
+    if(signal==='sell'||signal==='strong-sell')
+      return `<span class="entry-price" style="color:#ef5350">持有中(${roiStr})，考慮減碼</span>`;
+    if(signal==='weak-rebound')
+      return `<span class="entry-price" style="color:#f0a03a">持有觀察，等訊號轉強</span>`;
+    if(signal==='vol-warning')
+      return `<span class="entry-price" style="color:#ef5350">爆量，考慮收傘</span>`;
+
+    // 正面/中性訊號：顯示持有狀態
+    if(signal==='vol-breakout')
+      return `<span class="entry-price entry-follow">持有，帶量上攻</span>`;
+    if(signal==='initial-spurt')
+      return `<span class="entry-price entry-follow">持有，等下一波</span>`;
+    if(signal==='high-dullness')
       return `<span class="entry-price entry-follow">持有，等下一波噴發</span>`;
-    } else {
-      // 未持有：過熱，給回測買點
-      if(ma5){
-        const entry = (ma5 * 1.005).toFixed(1);
-        return `<span class="entry-price entry-wait">過熱，等回測 ≈${entry}</span>`;
-      }
-      return `<span class="entry-price entry-wait">過熱，等回測MA5</span>`;
-    }
+    if(signal==='strong-hold'||signal==='strong-hold-warn')
+      return `<span class="entry-price entry-hold">持有觀察 (${roiStr})</span>`;
+    if(signal==='strong-buy'||signal==='buy')
+      return `<span class="entry-price" style="color:var(--green)">持有中 (${roiStr})</span>`;
+    // neutral 或其他：持有中
+    return `<span class="entry-price entry-hold">持有中 (${roiStr})</span>`;
   }
 
-  // 股價遠離MA5超過3%（非鈍化情況）：過熱，等回測
-  // 買點加 0.5% 緩衝確保能排到
-  const distFromMa5 = ma5 ? (price - ma5) / ma5 * 100 : 0;
-  if(distFromMa5 > 3){
-    if(ma5){
-      const entry = (ma5 * 1.005).toFixed(1);
-      return `<span class="entry-price entry-wait">≈${entry} 等回測MA5</span>`;
-    }
-    return `<span class="entry-price entry-wait">等回測MA5</span>`;
+  // ── 空手者：給買點建議 ────────────────────────────────
+  if(signal==='vol-breakout')
+    return `<span class="entry-price entry-follow">≈${price.toFixed(1)} 直接跟進</span>`;
+  if(signal==='initial-spurt')
+    return `<span class="entry-price" style="color:var(--purple)">短線觀察，等量確認</span>`;
+  if(signal==='high-dullness'){
+    const entry = ma5 ? (ma5*1.005).toFixed(1) : '—';
+    return `<span class="entry-price entry-wait">過熱，等回測 ≈${entry}</span>`;
   }
+  if(signal==='dullness-end')
+    return `<span class="entry-price" style="color:var(--red)">高位反轉，勿追</span>`;
+  if(['trend-weakening','sell','strong-sell','weak-rebound'].includes(signal))
+    return `<span class="entry-price" style="color:var(--red)">勿追，等訊號</span>`;
+  if(signal==='vol-warning')
+    return `<span class="entry-price" style="color:#ef5350">勿追，爆量風險</span>`;
 
-  // 強買、買入：低位佈局，現價與MA5之間，同樣加0.5%緩衝
+  // 強買、買入
   if(['strong-buy','buy'].includes(signal)){
     if(ma5){
-      const mid = (((price + ma5) / 2) * 1.005).toFixed(1);
+      const mid = (((price+ma5)/2)*1.005).toFixed(1);
       return `<span class="entry-price entry-layout">≈${mid} 低位佈局</span>`;
     }
     return `<span class="entry-price entry-layout">≈${price.toFixed(1)} 低位佈局</span>`;
   }
 
-  // 趨勢轉弱：有持有 → 破MA5先跑一半（比等DIF更及時）
-  if(signal==='trend-weakening'){
-    const cost = getCost(sym);
-    if(!isNaN(cost)&&cost>0) return `<span class="entry-price" style="color:#ef5350;font-weight:500">破MA5 先跑一半</span>`;
-    return `<span class="entry-price" style="color:var(--red)">勿追，等訊號</span>`;
-  }
-
-  // 強勢震盪系列：持有為主，但未持有者給候補買點
+  // 強勢震盪
   if(signal==='strong-hold'){
-    const cost = getCost(sym);
-    if(!isNaN(cost)&&cost>0) return `<span class="entry-price entry-hold">持有觀察</span>`;
     if(ma5) return `<span class="entry-price entry-wait">候補 ≈${(ma5*1.005).toFixed(1)}</span>`;
     return `<span class="entry-price entry-wait">候補回測MA5</span>`;
   }
-  if(signal==='strong-hold-warn'){
-    const cost = getCost(sym);
-    if(!isNaN(cost)&&cost>0) return `<span class="entry-price" style="color:#f0a03a">持有，注意放量</span>`;
+  if(signal==='strong-hold-warn')
     return `<span class="entry-price entry-wait">觀望，量偏大</span>`;
-  }
-  if(signal==='vol-warning'){
-    const cost = getCost(sym);
-    if(!isNaN(cost)&&cost>0) return `<span class="entry-price" style="color:#ef5350">爆量，考慮收傘</span>`;
-    return `<span class="entry-price" style="color:#ef5350">勿追，爆量風險</span>`;
-  }
 
-  // 鈍化結束：有成本且獲利>20% → 減碼警示
-  if(signal==='dullness-end'){
-    const cost = getCost(sym);
-    if(!isNaN(cost)&&cost>0){
-      const roi=(price-cost)/cost*100;
-      if(roi>=20) return `<span class="entry-price" style="color:#ef5350;font-weight:500">⚠ 獲利${roi.toFixed(0)}% 建議減碼</span>`;
-      return `<span class="entry-price" style="color:#fdd835">鈍化結束，注意出場</span>`;
-    }
-    return `<span class="entry-price" style="color:var(--red)">高位反轉，勿追</span>`;
-  }
+  // 觀望或股價過熱
+  const distFromMa5 = ma5 ? (price-ma5)/ma5*100 : 0;
+  if(distFromMa5 > 3 && ma5)
+    return `<span class="entry-price entry-wait">≈${(ma5*1.005).toFixed(1)} 等回測MA5</span>`;
 
-  // 趨勢轉弱、賣出：不建議買入
-  // 有持有的情況：給出持有建議而非勿追
-  if(['trend-weakening','sell','strong-sell','weak-rebound'].includes(signal)){
-    const cost = getCost(sym);
-    if(!isNaN(cost)&&cost>0){
-      const roi=(price-cost)/cost*100;
-      const roiStr=`${roi>=0?'+':''}${roi.toFixed(1)}%`;
-      if(signal==='trend-weakening') return `<span class="entry-price" style="color:#ef5350;font-weight:500">破MA5 先跑一半</span>`;
-      if(signal==='sell'||signal==='strong-sell') return `<span class="entry-price" style="color:#ef5350">持有中(${roiStr})，考慮減碼</span>`;
-      if(signal==='weak-rebound') return `<span class="entry-price" style="color:#f0a03a">持有觀察，等訊號轉強</span>`;
-    }
-    return `<span class="entry-price" style="color:var(--red)">勿追，等訊號</span>`;
-  }
+  return '<span class="na">—</span>';
+}
 
   return '<span class="na">—</span>';
 }
