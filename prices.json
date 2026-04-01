@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-04-01T04:13:12Z",
-  "updated_at_tw": "12:12",
+  "updated_at": "2026-04-01T04:26:45Z",
+  "updated_at_tw": "12:26",
   "history_updated_at": "2026-04-01T04:13:12Z",
   "stock_list": [
     {
@@ -4336,12 +4336,12 @@
     {
       "id": "2605",
       "name": "新興",
-      "price": 41.5,
+      "price": 41.15,
       "prev_close": 42.0,
-      "change_pct": -1.19,
+      "change_pct": -2.02,
       "high": 42.95,
       "low": 40.35,
-      "vol": 15226,
+      "vol": 15984,
       "is_realtime": false,
       "history": [
         {
@@ -4801,8 +4801,8 @@
       "prev_close": 86.4,
       "change_pct": 1.27,
       "high": 91.4,
-      "low": 87.5,
-      "vol": 9697,
+      "low": 87.3,
+      "vol": 9940,
       "is_realtime": false,
       "history": [
         {
@@ -5263,7 +5263,7 @@
       "change_pct": -100.0,
       "high": 163.0,
       "low": 155.0,
-      "vol": 25896,
+      "vol": 25986,
       "is_realtime": false,
       "history": [
         {
@@ -5724,8 +5724,8 @@
       "change_pct": 1.49,
       "high": 83.0,
       "low": 80.6,
-      "vol": 871,
-      "is_realtime": true,
+      "vol": 892,
+      "is_realtime": false,
       "history": []
     },
     {
@@ -5736,7 +5736,7 @@
       "change_pct": 4.53,
       "high": 197.5,
       "low": 194.5,
-      "vol": 34038,
+      "vol": 34483,
       "is_realtime": false,
       "history": [
         {
@@ -6192,13 +6192,13 @@
     {
       "id": "2313",
       "name": "華通",
-      "price": 265.5,
+      "price": 266.0,
       "prev_close": 248.0,
-      "change_pct": 7.06,
+      "change_pct": 7.26,
       "high": 269.0,
       "low": 260.5,
-      "vol": 72969,
-      "is_realtime": false,
+      "vol": 73986,
+      "is_realtime": true,
       "history": [
         {
           "date": "2026-01-02",
@@ -6653,13 +6653,13 @@
     {
       "id": "2303",
       "name": "聯電",
-      "price": 57.4,
+      "price": 57.0,
       "prev_close": 56.5,
-      "change_pct": 1.59,
+      "change_pct": 0.88,
       "high": 58.5,
       "low": 56.8,
-      "vol": 38071,
-      "is_realtime": false,
+      "vol": 40238,
+      "is_realtime": true,
       "history": [
         {
           "date": "2026-01-02",
@@ -7119,8 +7119,8 @@
       "change_pct": 2.65,
       "high": 34.95,
       "low": 34.6,
-      "vol": 9560,
-      "is_realtime": true,
+      "vol": 9831,
+      "is_realtime": false,
       "history": [
         {
           "date": "2026-01-02",
