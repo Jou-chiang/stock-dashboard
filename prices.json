@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-04-02T01:33:36Z",
-  "updated_at_tw": "09:32",
+  "updated_at": "2026-04-02T02:20:21Z",
+  "updated_at_tw": "10:20",
   "history_updated_at": "2026-04-02T01:33:36Z",
   "stock_list": [
     {
@@ -4336,13 +4336,13 @@
     {
       "id": "2605",
       "name": "新興",
-      "price": 42.0,
+      "price": 41.75,
       "prev_close": 41.0,
-      "change_pct": 2.44,
-      "high": 42.05,
+      "change_pct": 1.83,
+      "high": 42.1,
       "low": 41.1,
-      "vol": 4074,
-      "is_realtime": false,
+      "vol": 6298,
+      "is_realtime": true,
       "history": [
         {
           "date": "2026-01-02",
@@ -4741,12 +4741,12 @@
     {
       "id": "2481",
       "name": "強茂",
-      "price": 93.6,
+      "price": 95.8,
       "prev_close": 88.6,
-      "change_pct": 5.64,
-      "high": 96.2,
+      "change_pct": 8.13,
+      "high": 96.5,
       "low": 90.6,
-      "vol": 16249,
+      "vol": 23898,
       "is_realtime": false,
       "history": [
         {
@@ -5146,12 +5146,12 @@
     {
       "id": "6213",
       "name": "聯茂",
-      "price": 169.5,
+      "price": 171.5,
       "prev_close": 163.0,
-      "change_pct": 3.99,
+      "change_pct": 5.21,
       "high": 176.0,
       "low": 167.0,
-      "vol": 29030,
+      "vol": 40938,
       "is_realtime": false,
       "history": [
         {
@@ -5551,24 +5551,24 @@
     {
       "id": "8932",
       "name": "智通*",
-      "price": 81.0,
+      "price": 80.4,
       "prev_close": 82.0,
-      "change_pct": -1.22,
+      "change_pct": -1.95,
       "high": 83.4,
-      "low": 80.9,
-      "vol": 286,
+      "low": 79.9,
+      "vol": 738,
       "is_realtime": false,
       "history": []
     },
     {
       "id": "2317",
       "name": "鴻海",
-      "price": 195.0,
+      "price": 193.5,
       "prev_close": 197.0,
-      "change_pct": -1.02,
+      "change_pct": -1.78,
       "high": 199.0,
-      "low": 195.0,
-      "vol": 10907,
+      "low": 193.0,
+      "vol": 16562,
       "is_realtime": false,
       "history": [
         {
@@ -5973,7 +5973,7 @@
       "change_pct": 2.82,
       "high": 285.0,
       "low": 269.0,
-      "vol": 52123,
+      "vol": 73298,
       "is_realtime": false,
       "history": [
         {
@@ -6373,12 +6373,12 @@
     {
       "id": "2303",
       "name": "聯電",
-      "price": 56.0,
+      "price": 54.4,
       "prev_close": 57.4,
-      "change_pct": -2.44,
+      "change_pct": -5.23,
       "high": 57.8,
-      "low": 55.8,
-      "vol": 10679,
+      "low": 54.3,
+      "vol": 28888,
       "is_realtime": false,
       "history": [
         {
@@ -6778,12 +6778,12 @@
     {
       "id": "2618",
       "name": "長榮航",
-      "price": 35.05,
+      "price": 35.1,
       "prev_close": 35.0,
-      "change_pct": 0.14,
+      "change_pct": 0.29,
       "high": 35.4,
-      "low": 35.0,
-      "vol": 2452,
+      "low": 34.95,
+      "vol": 4680,
       "is_realtime": false,
       "history": [
         {
