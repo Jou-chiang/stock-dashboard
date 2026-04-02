@@ -51,7 +51,7 @@ output = {
             "id": code,
             "price": data["price"],
             "is_realtime": True,
-            "vol": data["volume"],
+            "vol": data["volume"] // 1000,
             "updated": data["updated"]
         }
         for code, data in prices.items()
