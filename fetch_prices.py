@@ -27,14 +27,14 @@ for stock in stocks:
         if snapshot:
             s = snapshot[0]
             prices[code] = {
-                "price": s.close,
-                "open": s.open,
-                "high": s.high,
-                "low": s.low,
-                "volume": s.volume,
-                "change": round(s.close - s.reference, 2),
-                "change_pct": round((s.close - s.reference) / s.reference * 100, 2) if s.reference else 0,
-                "updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+               "price": s.close,
+               "open": s.open,
+               "high": s.high,
+               "low": s.low,
+               "volume": s.volume,
+               "change": s.change_price,
+               "change_pct": s.change_rate,
+               "updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
             print(f"✅ {code}: {s.close}")
         else:
