@@ -2,59 +2,59 @@
   "prices": [
     {
       "id": "2605",
-      "price": 41.35,
+      "price": 41.3,
       "is_realtime": true,
       "vol": 0,
-      "updated": "2026-04-02 05:22:47"
+      "updated": "2026-04-02 06:46:01"
     },
     {
       "id": "2481",
-      "price": 95.3,
+      "price": 95.1,
       "is_realtime": true,
       "vol": 0,
-      "updated": "2026-04-02 05:22:47"
+      "updated": "2026-04-02 06:46:01"
     },
     {
       "id": "6213",
       "price": 170.0,
       "is_realtime": true,
       "vol": 0,
-      "updated": "2026-04-02 05:22:48"
+      "updated": "2026-04-02 06:46:01"
     },
     {
       "id": "8932",
-      "price": 80.5,
+      "price": 80.1,
       "is_realtime": true,
       "vol": 0,
-      "updated": "2026-04-02 05:22:48"
+      "updated": "2026-04-02 06:46:02"
     },
     {
       "id": "2317",
-      "price": 192.0,
+      "price": 193.0,
       "is_realtime": true,
       "vol": 0,
-      "updated": "2026-04-02 05:22:48"
+      "updated": "2026-04-02 06:46:02"
     },
     {
       "id": "2313",
-      "price": 260.5,
+      "price": 260.0,
       "is_realtime": true,
       "vol": 0,
-      "updated": "2026-04-02 05:22:48"
+      "updated": "2026-04-02 06:46:02"
     },
     {
       "id": "2303",
-      "price": 53.5,
+      "price": 53.6,
       "is_realtime": true,
       "vol": 0,
-      "updated": "2026-04-02 05:22:49"
+      "updated": "2026-04-02 06:46:02"
     },
     {
       "id": "2618",
-      "price": 34.9,
+      "price": 34.95,
       "is_realtime": true,
       "vol": 0,
-      "updated": "2026-04-02 05:22:49"
+      "updated": "2026-04-02 06:46:03"
     }
   ]
 }
