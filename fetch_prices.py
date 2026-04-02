@@ -20,7 +20,7 @@ time.sleep(3)  # 等待連線穩定
 prices = {}
 
 for stock in stocks:
-    code = stock["code"]
+    code = stock["id"]
     try:
         contract = api.Contracts.Stocks[code]
         snapshot = api.snapshots([contract])
