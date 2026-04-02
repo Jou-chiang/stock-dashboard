@@ -1,36 +1,34 @@
-name: 台股即時股價更新
+name: Fetch Stock Prices
 
 on:
   schedule:
-    # 台北時間週一到週五 09:00~13:30，每 5 分鐘跑一次
-    - cron: '*/5 1-5 * * 1-5'
-  workflow_dispatch: 
+    - cron: '* * * * *'
+  workflow_dispatch:
 
 jobs:
-  fetch-prices:
+  fetch:
     runs-on: ubuntu-latest
-
     steps:
-      - name: 取出程式碼
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          python-version: '3.10'
 
-      - name: 設定 Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install shioaji
 
-      - name: 安裝套件
-        # 修正：同時安裝 requests 和 pytz
-        run: pip install requests pytz
-
-      - name: 抓取股價
+      - name: Run fetch script
+        env:
+          SHIOAJI_API_KEY: ${{ secrets.SHIOAJI_API_KEY }}
+          SHIOAJI_SECRET_KEY: ${{ secrets.SHIOAJI_SECRET_KEY }}
         run: python fetch_prices.py
 
-      - name: 提交更新的 prices.json
+      - name: Commit and push prices.json
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
           git add prices.json
-          git diff --staged --quiet || (git commit -m "📈 更新股價 $(date -u +'%H:%M UTC')" && git pull --rebase && git push)
+          git diff --staged --quiet || git commit -m "Update prices"
+          git push
