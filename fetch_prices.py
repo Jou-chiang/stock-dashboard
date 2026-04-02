@@ -9,8 +9,21 @@ api_key = os.environ["SHIOAJI_API_KEY"]
 secret_key = os.environ["SHIOAJI_SECRET_KEY"]
 
 # 讀取股票清單
-with open("stocks.json", "r", encoding="utf-8") as f:
-    stocks = json.load(f)
+output = {
+    "prices": [
+        {
+            "id": code,
+            "price": data["price"],
+            "is_realtime": True,
+            "vol": data["volume"],
+            "updated": data["updated"]
+        }
+        for code, data in prices.items()
+    ]
+}
+
+with open("prices.json", "w", encoding="utf-8") as f:
+    json.dump(output, f, ensure_ascii=False, indent=2)
 
 # 登入 Shioaji
 api = sj.Shioaji()
