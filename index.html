@@ -129,6 +129,10 @@ tr:hover td{background:var(--bg3);}
 .sig-trend-weak .sig-dot{background:#ef5350;box-shadow:0 0 6px #ef5350;}
 .sig-strong-hold-warn{background:rgba(0,229,255,.08);border-color:rgba(240,160,58,.5);color:#00e5ff;}
 .sig-strong-hold-warn .sig-dot{background:#f0a03a;box-shadow:0 0 5px #f0a03a;}
+.sig-trend-collapse{background:rgba(80,0,0,.25);border-color:rgba(200,0,0,.6);color:#ff1744;}
+.sig-trend-collapse .sig-dot{background:#ff1744;box-shadow:0 0 8px #ff1744;}
+.sig-high-dullness-weak{background:rgba(0,229,255,.05);border-color:rgba(0,229,255,.2);color:#5ba3f5;}
+.sig-high-dullness-weak .sig-dot{background:#5ba3f5;}
 .sig-vol-warning{background:rgba(183,28,28,.12);border-color:rgba(229,57,53,.4);color:#ef9a9a;}
 .sig-vol-warning .sig-dot{background:#ef5350;box-shadow:0 0 5px #ef5350;}
 .cost-input{background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--text);font-family:var(--mono);font-size:11px;padding:3px 6px;width:68px;outline:none;text-align:right;}
@@ -218,6 +222,7 @@ tr:hover td{background:var(--bg3);}
 
 <div class="legend">
   <span style="font-size:11px;color:var(--text3);font-family:var(--mono)">訊號：</span>
+  <span class="legend-item"><span class="signal sig-trend-collapse" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>💀趨勢崩壞</span>J&lt;0連3天，禁止摸底</span>
   <span class="legend-item"><span class="signal sig-initial-spurt" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>強勢噴發</span>J&gt;100(1~2天)，短線觀察等量確認</span>
   <span class="legend-item"><span class="signal sig-high-dullness" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>高檔鈍化</span>J&gt;100連3天，持有</span>
   <span class="legend-item"><span class="signal sig-dullness-end" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>鈍化結束</span>高位反轉，獲利&gt;20%減碼</span>
@@ -324,17 +329,24 @@ let acItems = [], acSel = -1;
                → 不動 high-dullness/initial-spurt（J值強勢，DIF轉負僅觀察）
   4. 帶量突破 → vol-breakout（只蓋中性以上，不蓋負面訊號與趨勢轉弱）
 */
-function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr){
+function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr, high20){
   if([K,D,RSI].some(v=>v===null||v===undefined||isNaN(v))) return null;
 
-  // Step 1：基礎分數
+  // Step 0：趨勢崩壞檢查（J < 0 連續 3 天 → 最優先，無視所有買入訊號）
+  let jLow = 0;
+  if(jArr && jArr.length > 0){
+    for(let i=jArr.length-1; i>=0; i--){ if(jArr[i]<0) jLow++; else break; }
+  }
+  if(jLow >= 3) return 'trend-collapse'; // 趨勢崩壞，直接返回
+
+  // Step 1：基礎分數（DIF 已移出，只看 RSI/KDJ 超買超賣）
   let score = 0;
   if(RSI<25) score+=3; else if(RSI<35) score+=2; else if(RSI<50) score+=1;
   else if(RSI>80) score-=3; else if(RSI>70) score-=2; else if(RSI>65) score-=1;
   if(K<15) score+=3; else if(K<25) score+=2; else if(K<45) score+=1;
   else if(K>85) score-=3; else if(K>75) score-=2; else if(K>65) score-=1;
   if(J<0) score+=2; else if(J>100) score-=2;
-  if(DIF!==null&&!isNaN(DIF)){ if(DIF>0) score+=1; else score-=1; }
+  // DIF 不再在此計分，移至 Step 3
 
   let sig = 'neutral';
   if(score>=6) sig = 'strong-buy';
@@ -344,11 +356,11 @@ function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr){
     if(DIF!==null&&!isNaN(DIF)&&DIF>0&&ma5!==null&&price>ma5){
       const volRatio = (vol!==null&&vol5!==null&&vol5>0) ? vol/vol5 : 0;
       if(volRatio >= 2.5){
-        sig = 'vol-warning'; // 爆量警示：強制收傘
+        sig = 'vol-warning';
       } else if(volRatio >= 2.0){
-        sig = 'strong-hold-warn'; // 強勢震盪但注意放量
+        sig = 'strong-hold-warn';
       } else {
-        sig = 'strong-hold'; // 正常強勢震盪
+        sig = 'strong-hold';
       }
     } else {
       sig = score<=-6 ? 'strong-sell' : 'sell';
@@ -362,31 +374,31 @@ function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr){
     for(let i=jArr.length-2;i>=0;i--){ if(jArr[i]>100) jPrev++; else break; }
 
     if(jArr[jArr.length-1]<100&&jPrev>=3){
-      // 鈍化結束：高位反轉，不管之前什麼訊號都要警示
       sig='dullness-end';
     } else if(jToday>=3){
-      // 高檔鈍化：只在非賣出狀態下顯示
-      if(!['sell','strong-sell'].includes(sig)) sig='high-dullness';
+      if(!['sell','strong-sell'].includes(sig)){
+        // 高檔鈍化：相對量 ≥ 1.2倍均量才算有效
+        const hasVol = vol!==null && vol5!==null && vol5>0 && vol >= vol5*1.2;
+        sig = hasVol ? 'high-dullness' : 'high-dullness-weak';
+      }
     } else if(jToday===1||jToday===2){
-      // 強勢噴發：只在非賣出狀態下顯示
       if(!['sell','strong-sell'].includes(sig)) sig='initial-spurt';
     }
   }
 
-  // Step 3：DIF轉負的處理
+  // Step 3：DIF 多空過濾器
   if(DIF!==null&&DIF<0){
-    if(['strong-hold','strong-hold-warn','vol-warning'].includes(sig)){
-      sig='trend-weakening';  // 強股但動能壞了 → 提早撤退
+    if(['strong-hold','strong-hold-warn','vol-warning','high-dullness-weak'].includes(sig)){
+      sig='trend-weakening';
     } else if(['strong-buy','buy','neutral'].includes(sig)){
-      sig='weak-rebound';     // 本來就不強 → 弱勢反彈
+      sig='weak-rebound';
     }
-    // sell/strong-sell/dullness-end/trend-weakening → 維持原本負面訊號
-    // high-dullness/initial-spurt → 維持J值強勢，DIF轉負只是觀察
   }
 
-  // Step 4：帶量突破（只蓋中性偏多訊號，不蓋負面與J值特殊與量能警示）
+  // Step 4：帶量突破（量>1.5倍均量 + 上漲，不蓋負面訊號）
   if(vol!==null&&vol5!==null&&vol>vol5*1.5&&chg>0){
-    const cantOverride=['sell','strong-sell','dullness-end','trend-weakening','initial-spurt','high-dullness','vol-warning'];
+    const cantOverride=['sell','strong-sell','dullness-end','trend-weakening',
+      'initial-spurt','high-dullness','high-dullness-weak','vol-warning','trend-collapse'];
     if(!cantOverride.includes(sig)) sig='vol-breakout';
   }
 
@@ -399,6 +411,8 @@ function renderSignal(sig){
     'strong-buy':['sig-strong-buy','強力買入'],
     'buy':['sig-buy','買入'],
     'neutral':['sig-neutral','觀望'],
+    'trend-collapse':['sig-trend-collapse','💀趨勢崩壞'],
+    'high-dullness-weak':['sig-high-dullness-weak','量不足鈍化'],
     'strong-hold':['sig-strong-hold','強勢震盪'],
     'strong-hold-warn':['sig-strong-hold-warn','強勢震盪⚠放量'],
     'vol-warning':['sig-vol-warning','爆量警示'],
@@ -657,12 +671,14 @@ async function fetchOne(sym){
     const VOL5 = vols.length>=5 ? vols.slice(-5).reduce((a,b)=>a+b)/5 : null;
     const MA20 = closes.length>=20 ? closes.slice(-20).reduce((a,b)=>a+b)/20 : null;
     const MA5  = closes.length>=5  ? closes.slice(-5).reduce((a,b)=>a+b)/5   : null;
+    // 20日最高價（真突破預警門檻）
+    const HIGH20 = closes.length>=20 ? Math.max(...closes.slice(-20)) : null;
 
     data[sym]={
       symbol:sym,name,price,changePercent,rtType,
       K:kdj.K,D:kdj.D,J:kdj.J,RSI,DIF,DIFprev,
-      VOL, VOL5, MA5,
-      signal:calcSignal(kdj.K,kdj.D,kdj.J,RSI,DIF, changePercent, VOL, VOL5, price, MA5, kdj.jArr)
+      VOL, VOL5, MA5, HIGH20,
+      signal:calcSignal(kdj.K,kdj.D,kdj.J,RSI,DIF, changePercent, VOL, VOL5, price, MA5, kdj.jArr, HIGH20)
     };
   }catch(e){
     console.error(`[${sym}]`,e);
@@ -729,7 +745,7 @@ function applyCostVisibility(){
 }
 
 // ── 建議買點邏輯 ──────────────────────────────────────
-function fmtEntryPrice(price, ma5, signal, sym){
+function fmtEntryPrice(price, ma5, signal, sym, high20){
   if(!price || isNaN(price)) return '<span class="na">—</span>';
 
   const cost = getCost(sym);
@@ -739,6 +755,9 @@ function fmtEntryPrice(price, ma5, signal, sym){
 
   // ── 有持有者：優先顯示持有建議 ──────────────────────
   if(hasCost){
+    // 趨勢崩壞：最優先，不計代價出場
+    if(signal==='trend-collapse')
+      return `<span class="entry-price" style="color:#ff1744;font-weight:700">🚨 極端空頭，清倉</span>`;
     // 負面訊號：告知是否該出場
     if(signal==='trend-weakening')
       return `<span class="entry-price" style="color:#ef5350;font-weight:500">破MA5 先跑一半</span>`;
@@ -754,8 +773,10 @@ function fmtEntryPrice(price, ma5, signal, sym){
       return `<span class="entry-price" style="color:#ef5350">爆量，考慮收傘</span>`;
 
     // 正面/中性訊號：顯示持有狀態
-    if(signal==='vol-breakout')
-      return `<span class="entry-price entry-follow">持有，帶量上攻</span>`;
+    if(signal==='vol-breakout'){
+      const addEntry = `≈${(price*1.003).toFixed(1)}`;
+      return `<span class="entry-price entry-follow">持有，帶量上攻 ${addEntry}</span>`;
+    }
     if(signal==='initial-spurt')
       return `<span class="entry-price entry-follow">持有，等下一波</span>`;
     if(signal==='high-dullness')
@@ -785,6 +806,8 @@ function fmtEntryPrice(price, ma5, signal, sym){
   }
   if(signal==='dullness-end')
     return `<span class="entry-price" style="color:var(--red)">高位反轉，勿追</span>`;
+  if(signal==='trend-collapse')
+    return `<span class="entry-price" style="color:#ff1744;font-weight:700">💀 趨勢崩壞，嚴禁摸底</span>`;
   if(['trend-weakening','sell','strong-sell','weak-rebound'].includes(signal))
     return `<span class="entry-price" style="color:var(--red)">勿追，等訊號</span>`;
   if(signal==='vol-warning')
@@ -811,6 +834,10 @@ function fmtEntryPrice(price, ma5, signal, sym){
   const distFromMa5 = ma5 ? (price-ma5)/ma5*100 : 0;
   if(distFromMa5 > 3 && ma5)
     return `<span class="entry-price entry-wait">≈${(ma5*1.005).toFixed(1)} 等回測MA5</span>`;
+
+  // 真突破預警：顯示20日最高價門檻
+  if(high20 && price >= high20*0.97)
+    return `<span class="entry-price" style="color:#fdd835">💎 挑戰突破 門檻:${high20.toFixed(1)}</span>`;
 
   return '<span class="na">—</span>';
 }
@@ -881,7 +908,7 @@ function render(){
       <td class="cg cost-col">${fmtCostInput(sym)}</td>
       <td class="cost-col">${fmtROI(d.price, sym)}</td>
       <td class="cost-col">${fmtStopLine(d.price, d.MA5, sym)}</td>
-      <td>${fmtEntryPrice(d.price, d.MA5, d.signal, sym)}</td>
+      <td>${fmtEntryPrice(d.price, d.MA5, d.signal, sym, d.HIGH20)}</td>
       <td class="cg">${renderSignal(d.signal)}</td>
     </tr>`;
   }).join('');
