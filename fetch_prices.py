@@ -14,7 +14,7 @@ with open("stocks.json", "r", encoding="utf-8") as f:
 
 # 登入 Shioaji
 api = sj.Shioaji()
-api.login(api_key=api_key, secret_key=secret_key, fetch_contract=True)
+api.login(api_key=api_key, secret_key=secret_key, fetch_contract=True, contracts_timeout=30)
 time.sleep(15)
 
 prices = {}
