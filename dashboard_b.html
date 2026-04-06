@@ -85,6 +85,16 @@ input[type=range]{width:100%;accent-color:var(--amber);cursor:pointer;}
 .card-meta{font-family:var(--mono);font-size:10px;color:var(--text3);}
 .btn-add{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:4px;border:1px solid rgba(240,160,58,.3);background:rgba(240,160,58,.07);color:var(--amber);cursor:pointer;transition:all .2s;}
 .btn-add:hover{background:rgba(240,160,58,.15);}
+.holder-row{display:flex;align-items:center;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.holder-label{font-family:var(--mono);font-size:10px;color:var(--text3);white-space:nowrap;}
+.holder-input{font-family:var(--mono);font-size:11px;width:56px;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--text);padding:3px 6px;outline:none;text-align:center;}
+.holder-input:focus{border-color:var(--amber);}
+.holder-btn{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:4px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;}
+.holder-btn:hover{border-color:var(--amber);color:var(--amber);}
+.holder-result{font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:3px;}
+.holder-result.up{background:rgba(63,201,124,.08);color:var(--green);}
+.holder-result.dn{background:rgba(242,95,95,.08);color:var(--red);}
+.holder-result.flat{background:rgba(255,255,255,.04);color:var(--text3);}
 .empty{text-align:center;padding:48px;color:var(--text3);font-family:var(--mono);font-size:12px;}
 .empty-icon{font-size:28px;margin-bottom:10px;}
 .loading{text-align:center;padding:60px;color:var(--text3);font-family:var(--mono);font-size:12px;}
@@ -230,7 +240,7 @@ function renderResults(data){
 }
 
 function renderCard(s){
-  const sc=s.score;
+  const sc=s.score + getHolderBonus(s.code);
   const bc=sc>=5?'s5':sc>=4?'s4':'s3';
   const cc=sc>=5?'score-5':sc>=4?'score-4':'score-3';
   const chgUp=s.chg_pct>0,chgFlat=s.chg_pct===0;
@@ -246,6 +256,7 @@ function renderCard(s){
   ];
   const chips=criteria.map(c=>`<span class="chip ${c.pass?'pass':'fail'}">${c.label}</span>`).join('');
   const starColor=sc>=5?'#ffd700':sc>=4?'var(--green)':'var(--text3)';
+  const holderHtml=buildHolderHtml(s.code);
   return `<div class="stock-card ${cc}">
     <div class="card-top">
       <div><div class="card-code">${s.code}</div><div class="card-name">${s.name}${fire}</div><div class="card-sector">${s.sector}</div></div>
@@ -253,6 +264,7 @@ function renderCard(s){
     </div>
     <div class="card-price-row"><span class="card-price">${s.price}</span><span class="card-chg ${chgClass}">${chgUp?'+':''}${s.chg_pct?.toFixed(2)}%</span></div>
     <div class="criteria-row">${chips}</div>
+    ${holderHtml}
     <div class="card-footer"><div class="card-meta">MA5 ${s.ma5||'—'} · MA20 ${s.ma20||'—'} · 量${s.volume}張</div><button class="btn-add" onclick="addToA('${s.code}','${s.name}')">+ 加入A板</button></div>
   </div>`;
 }
@@ -261,6 +273,62 @@ function addToA(code,name){
   const list=JSON.parse(localStorage.getItem('watchlist_a_pending')||'[]');
   if(!list.includes(code)){list.push(code);localStorage.setItem('watchlist_a_pending',JSON.stringify(list));}
   alert(`${code} ${name} 已記錄！\n開啟儀表板 A 後在輸入框輸入 ${code} 新增。`);
+}
+
+// ── 大戶持股資料 ─────────────────────────────────────────
+function getHolderData(code){
+  return JSON.parse(localStorage.getItem('holder_'+code)||'null');
+}
+function saveHolderData(code, prev, curr){
+  localStorage.setItem('holder_'+code, JSON.stringify({prev, curr}));
+}
+function applyHolder(code){
+  const prev = parseFloat(document.getElementById('hp_'+code).value);
+  const curr = parseFloat(document.getElementById('hc_'+code).value);
+  if(isNaN(prev)||isNaN(curr)) return;
+  saveHolderData(code, prev, curr);
+  updateHolderResult(code, prev, curr);
+  // 重新渲染觸發積分更新
+  applyFilter();
+}
+function updateHolderResult(code, prev, curr){
+  const el = document.getElementById('hr_'+code);
+  if(!el) return;
+  if(curr > prev){
+    el.className='holder-result up';
+    el.textContent='大戶↑ +1分';
+  } else if(curr < prev){
+    el.className='holder-result dn';
+    el.textContent='大戶↓';
+  } else {
+    el.className='holder-result flat';
+    el.textContent='大戶持平';
+  }
+}
+function getHolderBonus(code){
+  const d = getHolderData(code);
+  if(!d) return 0;
+  return d.curr > d.prev ? 1 : 0;
+}
+function buildHolderHtml(code){
+  const d = getHolderData(code);
+  const prevVal = d ? d.prev : '';
+  const currVal = d ? d.curr : '';
+  let resultHtml = '<span class="holder-result flat" id="hr_'+code+'">未輸入</span>';
+  if(d){
+    const cls = d.curr>d.prev?'up':d.curr<d.prev?'dn':'flat';
+    const txt = d.curr>d.prev?'大戶↑ +1分':d.curr<d.prev?'大戶↓':'大戶持平';
+    resultHtml = `<span class="holder-result ${cls}" id="hr_${code}">${txt}</span>`;
+  }
+  return `<div class="holder-row">
+    <span class="holder-label">大戶持股%</span>
+    <span class="holder-label" style="color:var(--text2)">上週</span>
+    <input class="holder-input" id="hp_${code}" type="number" step="0.1" placeholder="42.0" value="${prevVal}">
+    <span class="holder-label" style="color:var(--text2)">本週</span>
+    <input class="holder-input" id="hc_${code}" type="number" step="0.1" placeholder="43.0" value="${currVal}">
+    <button class="holder-btn" onclick="applyHolder('${code}')">確認</button>
+    ${resultHtml}
+  </div>`;
 }
 
 loadScores();
