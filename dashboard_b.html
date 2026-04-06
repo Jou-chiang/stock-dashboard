@@ -110,7 +110,7 @@ input[type=range]{width:100%;accent-color:var(--amber);cursor:pointer;}
   </div>
   <div class="note-bar" id="note-bar" style="display:none"></div>
   <div class="filter-panel">
-    <div class="filter-title">篩選條件</div>
+    <div class="filter-title">篩選條件（滿分 6 分）</div>
     <div class="filter-grid">
       <div class="filter-item">
         <label>最低積分 <span class="val" id="score-val">3</span> 分</label>
@@ -238,6 +238,7 @@ function renderCard(s){
   const fire=s.buy_days>=5?'🔥':'';
   const criteria=[
     {label:`投信連買${s.buy_days}天`,pass:s.criteria?.s1},
+    {label:`外資連買${s.foreign_days||0}天`,pass:s.criteria?.s6},
     {label:`投信持股尚低`,pass:s.criteria?.s2},
     {label:`K=${s.k}`,pass:s.criteria?.s3},
     {label:`量比${s.vol_ratio}倍`,pass:s.criteria?.s4},
@@ -248,7 +249,7 @@ function renderCard(s){
   return `<div class="stock-card ${cc}">
     <div class="card-top">
       <div><div class="card-code">${s.code}</div><div class="card-name">${s.name}${fire}</div><div class="card-sector">${s.sector}</div></div>
-      <div style="text-align:right"><div class="score-badge ${bc}">${sc}/5</div><div class="stars" style="color:${starColor}">${'★'.repeat(sc)+'☆'.repeat(5-sc)}</div></div>
+      <div style="text-align:right"><div class="score-badge ${bc}">${sc}/6</div><div class="stars" style="color:${starColor}">${'★'.repeat(sc)+'☆'.repeat(6-sc)}</div></div>
     </div>
     <div class="card-price-row"><span class="card-price">${s.price}</span><span class="card-chg ${chgClass}">${chgUp?'+':''}${s.chg_pct?.toFixed(2)}%</span></div>
     <div class="criteria-row">${chips}</div>
