@@ -18,16 +18,17 @@
       "avg_vol5": 7396.8,
       "vol_ratio": 6.65,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 3,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": true,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2887",
@@ -45,16 +46,17 @@
       "avg_vol5": 73189.2,
       "vol_ratio": 3.01,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 3,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": true,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1717",
@@ -72,16 +74,17 @@
       "avg_vol5": 12228.6,
       "vol_ratio": 2.83,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 3,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": true,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "5388",
@@ -99,16 +102,17 @@
       "avg_vol5": 2613.6,
       "vol_ratio": 3.21,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 3,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": true,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2330",
@@ -126,16 +130,17 @@
       "avg_vol5": 45416.1,
       "vol_ratio": 0.65,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2308",
@@ -153,16 +158,17 @@
       "avg_vol5": 14037.2,
       "vol_ratio": 0.71,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2303",
@@ -180,16 +186,17 @@
       "avg_vol5": 55363.3,
       "vol_ratio": 2.04,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": true,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2881",
@@ -207,16 +214,17 @@
       "avg_vol5": 16565.4,
       "vol_ratio": 0.65,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2412",
@@ -234,16 +242,17 @@
       "avg_vol5": 8953.7,
       "vol_ratio": 0.84,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2002",
@@ -261,16 +270,17 @@
       "avg_vol5": 55540.6,
       "vol_ratio": 0.51,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2357",
@@ -288,16 +298,17 @@
       "avg_vol5": 3269.0,
       "vol_ratio": 1.04,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1301",
@@ -315,16 +326,17 @@
       "avg_vol5": 37614.1,
       "vol_ratio": 0.46,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1303",
@@ -342,16 +354,17 @@
       "avg_vol5": 95122.4,
       "vol_ratio": 0.73,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2892",
@@ -369,16 +382,17 @@
       "avg_vol5": 20151.8,
       "vol_ratio": 0.88,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2337",
@@ -396,16 +410,17 @@
       "avg_vol5": 29234.7,
       "vol_ratio": 0.92,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2376",
@@ -423,16 +438,17 @@
       "avg_vol5": 4106.9,
       "vol_ratio": 0.75,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2353",
@@ -450,16 +466,17 @@
       "avg_vol5": 16538.0,
       "vol_ratio": 0.64,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2352",
@@ -477,16 +494,17 @@
       "avg_vol5": 4062.5,
       "vol_ratio": 0.79,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2481",
@@ -504,16 +522,17 @@
       "avg_vol5": 21511.0,
       "vol_ratio": 1.71,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": true,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3034",
@@ -531,16 +550,17 @@
       "avg_vol5": 6420.5,
       "vol_ratio": 0.44,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3189",
@@ -558,16 +578,17 @@
       "avg_vol5": 6527.4,
       "vol_ratio": 1.27,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2618",
@@ -585,16 +606,17 @@
       "avg_vol5": 20488.5,
       "vol_ratio": 0.66,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2610",
@@ -612,16 +634,17 @@
       "avg_vol5": 24023.3,
       "vol_ratio": 1.15,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2883",
@@ -639,16 +662,17 @@
       "avg_vol5": 40638.9,
       "vol_ratio": 0.65,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "9904",
@@ -666,16 +690,17 @@
       "avg_vol5": 5796.6,
       "vol_ratio": 1.03,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "9910",
@@ -693,16 +718,17 @@
       "avg_vol5": 1136.2,
       "vol_ratio": 1.83,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": true,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "9921",
@@ -720,16 +746,17 @@
       "avg_vol5": 1285.6,
       "vol_ratio": 0.96,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "5904",
@@ -747,16 +774,17 @@
       "avg_vol5": 336.1,
       "vol_ratio": 0.9,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "4904",
@@ -774,16 +802,17 @@
       "avg_vol5": 6999.6,
       "vol_ratio": 0.48,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2409",
@@ -801,16 +830,17 @@
       "avg_vol5": 95523.5,
       "vol_ratio": 7.34,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": true,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "6176",
@@ -828,16 +858,17 @@
       "avg_vol5": 2369.8,
       "vol_ratio": 0.81,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3231",
@@ -855,16 +886,17 @@
       "avg_vol5": 24206.9,
       "vol_ratio": 0.65,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1326",
@@ -882,16 +914,17 @@
       "avg_vol5": 73241.9,
       "vol_ratio": 0.33,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1722",
@@ -909,16 +942,17 @@
       "avg_vol5": 3733.3,
       "vol_ratio": 0.46,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "6508",
@@ -936,16 +970,17 @@
       "avg_vol5": 159.6,
       "vol_ratio": 0.51,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2371",
@@ -963,16 +998,17 @@
       "avg_vol5": 13033.7,
       "vol_ratio": 1.04,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2014",
@@ -990,16 +1026,17 @@
       "avg_vol5": 8057.2,
       "vol_ratio": 0.64,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2027",
@@ -1017,16 +1054,17 @@
       "avg_vol5": 44570.9,
       "vol_ratio": 1.37,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2201",
@@ -1044,16 +1082,17 @@
       "avg_vol5": 2407.7,
       "vol_ratio": 1.18,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2207",
@@ -1071,16 +1110,17 @@
       "avg_vol5": 523.6,
       "vol_ratio": 0.48,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2368",
@@ -1098,16 +1138,17 @@
       "avg_vol5": 6830.8,
       "vol_ratio": 1.49,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3044",
@@ -1125,16 +1166,17 @@
       "avg_vol5": 2738.4,
       "vol_ratio": 0.93,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "6271",
@@ -1152,16 +1194,17 @@
       "avg_vol5": 3537.6,
       "vol_ratio": 1.42,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3443",
@@ -1179,16 +1222,17 @@
       "avg_vol5": 2255.0,
       "vol_ratio": 0.76,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "6415",
@@ -1206,16 +1250,17 @@
       "avg_vol5": 5706.2,
       "vol_ratio": 0.68,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3532",
@@ -1233,16 +1278,17 @@
       "avg_vol5": 2923.3,
       "vol_ratio": 0.36,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "6239",
@@ -1260,16 +1306,17 @@
       "avg_vol5": 7225.3,
       "vol_ratio": 1.81,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": true,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "8028",
@@ -1287,16 +1334,17 @@
       "avg_vol5": 14245.1,
       "vol_ratio": 0.6,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "6206",
@@ -1314,16 +1362,17 @@
       "avg_vol5": 392.2,
       "vol_ratio": 1.22,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "6414",
@@ -1341,16 +1390,17 @@
       "avg_vol5": 1577.5,
       "vol_ratio": 0.66,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "8016",
@@ -1368,16 +1418,17 @@
       "avg_vol5": 536.5,
       "vol_ratio": 0.75,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2356",
@@ -1395,16 +1446,17 @@
       "avg_vol5": 16883.8,
       "vol_ratio": 0.49,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "4938",
@@ -1422,16 +1474,17 @@
       "avg_vol5": 13846.4,
       "vol_ratio": 0.43,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "5434",
@@ -1449,16 +1502,17 @@
       "avg_vol5": 515.8,
       "vol_ratio": 2.58,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": true,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2606",
@@ -1476,16 +1530,17 @@
       "avg_vol5": 4148.3,
       "vol_ratio": 0.56,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2637",
@@ -1503,16 +1558,17 @@
       "avg_vol5": 1521.9,
       "vol_ratio": 0.84,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2707",
@@ -1530,16 +1586,17 @@
       "avg_vol5": 111.0,
       "vol_ratio": 2.43,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": true,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "9939",
@@ -1557,16 +1614,17 @@
       "avg_vol5": 704.7,
       "vol_ratio": 0.68,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2449",
@@ -1584,16 +1642,17 @@
       "avg_vol5": 18433.2,
       "vol_ratio": 1.57,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": true,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2317",
@@ -1611,16 +1670,17 @@
       "avg_vol5": 51792.2,
       "vol_ratio": 0.81,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2454",
@@ -1638,16 +1698,17 @@
       "avg_vol5": 9383.3,
       "vol_ratio": 0.99,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2882",
@@ -1665,16 +1726,17 @@
       "avg_vol5": 24201.7,
       "vol_ratio": 0.75,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2891",
@@ -1692,16 +1754,17 @@
       "avg_vol5": 41948.1,
       "vol_ratio": 1.21,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2382",
@@ -1719,16 +1782,17 @@
       "avg_vol5": 15908.9,
       "vol_ratio": 0.71,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2886",
@@ -1746,16 +1810,17 @@
       "avg_vol5": 29923.2,
       "vol_ratio": 0.72,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3711",
@@ -1773,16 +1838,17 @@
       "avg_vol5": 19854.6,
       "vol_ratio": 1.23,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2884",
@@ -1800,16 +1866,17 @@
       "avg_vol5": 25510.6,
       "vol_ratio": 0.8,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "5880",
@@ -1827,16 +1894,17 @@
       "avg_vol5": 18222.8,
       "vol_ratio": 0.51,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1216",
@@ -1854,16 +1922,17 @@
       "avg_vol5": 10770.2,
       "vol_ratio": 0.68,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2880",
@@ -1881,16 +1950,17 @@
       "avg_vol5": 18030.5,
       "vol_ratio": 0.83,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2324",
@@ -1908,16 +1978,17 @@
       "avg_vol5": 52451.3,
       "vol_ratio": 0.39,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3008",
@@ -1935,16 +2006,17 @@
       "avg_vol5": 550.5,
       "vol_ratio": 0.85,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2603",
@@ -1962,16 +2034,17 @@
       "avg_vol5": 8748.7,
       "vol_ratio": 0.69,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2609",
@@ -1989,16 +2062,17 @@
       "avg_vol5": 14620.5,
       "vol_ratio": 0.78,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2615",
@@ -2016,16 +2090,17 @@
       "avg_vol5": 10696.2,
       "vol_ratio": 0.62,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2605",
@@ -2043,16 +2118,17 @@
       "avg_vol5": 29879.0,
       "vol_ratio": 0.38,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2408",
@@ -2070,16 +2146,17 @@
       "avg_vol5": 142746.1,
       "vol_ratio": 0.84,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2379",
@@ -2097,16 +2174,17 @@
       "avg_vol5": 2894.7,
       "vol_ratio": 0.83,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2344",
@@ -2124,16 +2202,17 @@
       "avg_vol5": 191142.7,
       "vol_ratio": 0.96,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2301",
@@ -2151,16 +2230,17 @@
       "avg_vol5": 14504.7,
       "vol_ratio": 0.77,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2395",
@@ -2178,16 +2258,17 @@
       "avg_vol5": 2675.8,
       "vol_ratio": 0.76,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "8046",
@@ -2205,16 +2286,17 @@
       "avg_vol5": 23355.4,
       "vol_ratio": 2.01,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": true,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2885",
@@ -2232,16 +2314,17 @@
       "avg_vol5": 27654.1,
       "vol_ratio": 1.0,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2890",
@@ -2259,16 +2342,17 @@
       "avg_vol5": 23660.9,
       "vol_ratio": 0.75,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "5876",
@@ -2286,16 +2370,17 @@
       "avg_vol5": 6678.3,
       "vol_ratio": 0.73,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1101",
@@ -2313,16 +2398,17 @@
       "avg_vol5": 26296.8,
       "vol_ratio": 1.0,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1102",
@@ -2340,16 +2426,17 @@
       "avg_vol5": 11293.0,
       "vol_ratio": 0.63,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1402",
@@ -2367,16 +2454,17 @@
       "avg_vol5": 17315.4,
       "vol_ratio": 0.82,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "9945",
@@ -2394,16 +2482,17 @@
       "avg_vol5": 4299.4,
       "vol_ratio": 0.68,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2912",
@@ -2421,16 +2510,17 @@
       "avg_vol5": 2960.6,
       "vol_ratio": 0.95,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2345",
@@ -2448,16 +2538,17 @@
       "avg_vol5": 5162.1,
       "vol_ratio": 0.64,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3045",
@@ -2475,16 +2566,17 @@
       "avg_vol5": 5922.7,
       "vol_ratio": 0.96,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3481",
@@ -2502,16 +2594,17 @@
       "avg_vol5": 250642.8,
       "vol_ratio": 1.12,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "6669",
@@ -2529,16 +2622,17 @@
       "avg_vol5": 2263.6,
       "vol_ratio": 0.58,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "6505",
@@ -2556,16 +2650,17 @@
       "avg_vol5": 19998.5,
       "vol_ratio": 0.48,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1503",
@@ -2583,16 +2678,17 @@
       "avg_vol5": 1512.0,
       "vol_ratio": 0.7,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1504",
@@ -2610,16 +2706,17 @@
       "avg_vol5": 7162.1,
       "vol_ratio": 0.63,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1513",
@@ -2637,16 +2734,17 @@
       "avg_vol5": 5109.2,
       "vol_ratio": 0.56,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1519",
@@ -2664,16 +2762,17 @@
       "avg_vol5": 3579.3,
       "vol_ratio": 0.62,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2006",
@@ -2691,16 +2790,17 @@
       "avg_vol5": 2921.9,
       "vol_ratio": 0.93,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2204",
@@ -2718,16 +2818,17 @@
       "avg_vol5": 1433.4,
       "vol_ratio": 0.85,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2367",
@@ -2745,16 +2846,17 @@
       "avg_vol5": 194442.2,
       "vol_ratio": 0.64,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "6213",
@@ -2772,16 +2874,17 @@
       "avg_vol5": 25547.7,
       "vol_ratio": 2.31,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": true,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2327",
@@ -2799,16 +2902,17 @@
       "avg_vol5": 14230.2,
       "vol_ratio": 0.96,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2492",
@@ -2826,16 +2930,17 @@
       "avg_vol5": 4854.5,
       "vol_ratio": 1.33,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3023",
@@ -2853,16 +2958,17 @@
       "avg_vol5": 3660.4,
       "vol_ratio": 0.71,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3661",
@@ -2880,16 +2986,17 @@
       "avg_vol5": 3021.7,
       "vol_ratio": 0.76,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "5269",
@@ -2907,16 +3014,17 @@
       "avg_vol5": 649.7,
       "vol_ratio": 1.23,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3035",
@@ -2934,16 +3042,17 @@
       "avg_vol5": 2126.4,
       "vol_ratio": 0.91,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2458",
@@ -2961,16 +3070,17 @@
       "avg_vol5": 5129.4,
       "vol_ratio": 0.47,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2377",
@@ -2988,16 +3098,17 @@
       "avg_vol5": 4989.2,
       "vol_ratio": 0.7,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3702",
@@ -3015,16 +3126,17 @@
       "avg_vol5": 17085.5,
       "vol_ratio": 0.72,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2404",
@@ -3042,16 +3154,17 @@
       "avg_vol5": 3569.0,
       "vol_ratio": 0.74,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2474",
@@ -3069,16 +3182,17 @@
       "avg_vol5": 2463.4,
       "vol_ratio": 0.74,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3005",
@@ -3096,16 +3210,17 @@
       "avg_vol5": 8889.5,
       "vol_ratio": 0.54,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3036",
@@ -3123,16 +3238,17 @@
       "avg_vol5": 9035.1,
       "vol_ratio": 0.86,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2633",
@@ -3150,16 +3266,17 @@
       "avg_vol5": 6718.2,
       "vol_ratio": 0.65,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2634",
@@ -3177,16 +3294,17 @@
       "avg_vol5": 5025.5,
       "vol_ratio": 0.56,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "9933",
@@ -3204,16 +3322,17 @@
       "avg_vol5": 9479.0,
       "vol_ratio": 0.5,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "8464",
@@ -3231,16 +3350,17 @@
       "avg_vol5": 1271.9,
       "vol_ratio": 1.09,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "8932",
@@ -3258,16 +3378,17 @@
       "avg_vol5": 1608.1,
       "vol_ratio": 0.93,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3596",
@@ -3285,16 +3406,17 @@
       "avg_vol5": 3882.8,
       "vol_ratio": 1.03,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "8150",
@@ -3312,16 +3434,17 @@
       "avg_vol5": 7361.9,
       "vol_ratio": 1.19,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "6443",
@@ -3339,16 +3462,17 @@
       "avg_vol5": 39150.9,
       "vol_ratio": 0.96,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3576",
@@ -3366,16 +3490,17 @@
       "avg_vol5": 38775.3,
       "vol_ratio": 0.74,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2406",
@@ -3393,16 +3518,17 @@
       "avg_vol5": 22287.9,
       "vol_ratio": 0.51,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2360",
@@ -3420,16 +3546,17 @@
       "avg_vol5": 4458.3,
       "vol_ratio": 1.34,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "6412",
@@ -3447,16 +3574,17 @@
       "avg_vol5": 880.9,
       "vol_ratio": 0.7,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2312",
@@ -3474,16 +3602,17 @@
       "avg_vol5": 12963.4,
       "vol_ratio": 0.6,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "8112",
@@ -3501,16 +3630,17 @@
       "avg_vol5": 10482.3,
       "vol_ratio": 0.76,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1476",
@@ -3528,16 +3658,17 @@
       "avg_vol5": 1807.4,
       "vol_ratio": 1.09,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1477",
@@ -3555,16 +3686,17 @@
       "avg_vol5": 2996.1,
       "vol_ratio": 0.97,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "9907",
@@ -3582,16 +3714,17 @@
       "avg_vol5": 2957.3,
       "vol_ratio": 0.49,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true
+        "s5": true,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "4749",
@@ -3609,16 +3742,17 @@
       "avg_vol5": 1748.7,
       "vol_ratio": 0.73,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": true,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "5871",
@@ -3636,16 +3770,17 @@
       "avg_vol5": 10151.0,
       "vol_ratio": 0.47,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 0,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2105",
@@ -3663,16 +3798,17 @@
       "avg_vol5": 13941.0,
       "vol_ratio": 0.64,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 0,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3017",
@@ -3690,16 +3826,17 @@
       "avg_vol5": 5413.4,
       "vol_ratio": 0.57,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 0,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1304",
@@ -3717,16 +3854,17 @@
       "avg_vol5": 62750.9,
       "vol_ratio": 1.3,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 0,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "1308",
@@ -3744,16 +3882,17 @@
       "avg_vol5": 36078.4,
       "vol_ratio": 1.1,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 0,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "2313",
@@ -3771,16 +3910,17 @@
       "avg_vol5": 138892.3,
       "vol_ratio": 0.86,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 0,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "4961",
@@ -3798,16 +3938,17 @@
       "avg_vol5": 1548.2,
       "vol_ratio": 0.62,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 0,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "3533",
@@ -3825,16 +3966,17 @@
       "avg_vol5": 2647.7,
       "vol_ratio": 0.48,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 0,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     },
     {
       "code": "6285",
@@ -3852,16 +3994,17 @@
       "avg_vol5": 32687.2,
       "vol_ratio": 0.82,
       "buy_days": 0,
+      "foreign_days": 0,
       "score": 0,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": false
+        "s5": false,
+        "s6": false
       },
-      "updated": "2026-04-06",
-      "note": "投信資料待明日開盤後更新"
+      "updated": "2026-04-06"
     }
   ]
 }
