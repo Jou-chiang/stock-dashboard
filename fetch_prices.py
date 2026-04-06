@@ -12,15 +12,10 @@ secret_key = os.environ["SHIOAJI_SECRET_KEY"]
 with open("stocks.json", "r", encoding="utf-8") as f:
     stocks = json.load(f)
 
-# 登入 Shioaji（不下載合約，避免 timeout）
+# 登入 Shioaji
 api = sj.Shioaji()
-api.login(api_key=api_key, secret_key=secret_key, fetch_contract=False)
-time.sleep(3)
-
-# 只下載需要的股票合約
-codes = [s["id"] for s in stocks]
-api.fetch_contracts(api.Contracts.Stocks, timeout=60)
-time.sleep(5)
+api.login(api_key=api_key, secret_key=secret_key, fetch_contract=True, contracts_timeout=60)
+time.sleep(20)
 
 prices = {}
 for stock in stocks:
