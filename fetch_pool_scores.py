@@ -89,7 +89,7 @@ for i, code in enumerate(codes):
     try:
         start_inst = (datetime.today() - timedelta(days=20)).strftime("%Y-%m-%d")
         r2 = requests.get(FINMIND_URL, params={
-            "dataset":    "TaiwanStockInstitutionalInvestors",
+            "dataset":    "TaiwanStockInstitutionalInvestorsBuySell",
             "data_id":    code,
             "start_date": start_inst,
             "token":      TOKEN,
