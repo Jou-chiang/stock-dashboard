@@ -37,7 +37,10 @@ codes = [s["code"] for s in pool]
 print(f"股票池 {len(codes)} 支，開始更新...")
 
 # ── 讀取歷史資料 ─────────────────────────────────────────
-df_hist = pd.read_csv(HISTORY_FILE, dtype={"code": str})
+df_hist = pd.read_csv(HISTORY_FILE, dtype=str, encoding="utf-8-sig")
+# 數值欄位轉回 float
+for col in ["open","high","low","close","volume"]:
+    df_hist[col] = pd.to_numeric(df_hist[col], errors="coerce")
 print(f"歷史資料：{len(df_hist)} 筆，{df_hist['code'].nunique()} 支")
 
 # ── 抓今日資料 ───────────────────────────────────────────
