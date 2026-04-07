@@ -12,16 +12,39 @@ secret_key = os.environ["SHIOAJI_SECRET_KEY"]
 with open("stocks.json", "r", encoding="utf-8") as f:
     stocks = json.load(f)
 
-# 登入 Shioaji
+# 登入 Shioaji（不下載全部合約）
 api = sj.Shioaji()
-api.login(api_key=api_key, secret_key=secret_key, fetch_contract=True, contracts_timeout=60)
-time.sleep(20)
+api.login(api_key=api_key, secret_key=secret_key, fetch_contract=False)
+time.sleep(5)
 
-prices = {}
-for stock in stocks:
-    code = stock["id"]
+# 只下載需要的個股合約
+codes = [s["id"] for s in stocks]
+contracts = []
+for code in codes:
     try:
         contract = api.Contracts.Stocks[code]
+        contracts.append((code, contract))
+        print(f"✅ 合約載入 {code}")
+    except Exception as e:
+        # 合約還沒載入，用搜尋方式取得
+        try:
+            results = api.Contracts.Stocks.TSE[code]
+            contracts.append((code, results))
+            print(f"✅ 合約載入 {code} (TSE)")
+        except:
+            try:
+                results = api.Contracts.Stocks.OTC[code]
+                contracts.append((code, results))
+                print(f"✅ 合約載入 {code} (OTC)")
+            except Exception as e2:
+                print(f"❌ 合約失敗 {code}: {e2}")
+
+time.sleep(3)
+
+# 抓快照
+prices = {}
+for code, contract in contracts:
+    try:
         snapshot = api.snapshots([contract])
         if snapshot:
             s = snapshot[0]
