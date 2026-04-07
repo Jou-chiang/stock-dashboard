@@ -26,7 +26,9 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git pull --rebase origin main
           git add prices.json
+          git stash
+          git pull --rebase origin main
+          git stash pop
           git diff --staged --quiet || git commit -m "Update prices"
           git push
