@@ -12,39 +12,39 @@ secret_key = os.environ["SHIOAJI_SECRET_KEY"]
 with open("stocks.json", "r", encoding="utf-8") as f:
     stocks = json.load(f)
 
-# 登入 Shioaji（不下載全部合約）
-api = sj.Shioaji()
-api.login(api_key=api_key, secret_key=secret_key, fetch_contract=False)
-time.sleep(5)
+# 登入 Shioaji，失敗自動重試最多 3 次
+api = None
+for attempt in range(3):
+    try:
+        print(f"登入嘗試 {attempt+1}/3...")
+        api = sj.Shioaji()
+        api.login(api_key=api_key, secret_key=secret_key, fetch_contract=True, contracts_timeout=120)
+        time.sleep(10)
+        # 確認合約有載入
+        _ = api.Contracts.Stocks
+        print("✅ 登入成功，合約載入完成")
+        break
+    except Exception as e:
+        print(f"❌ 嘗試 {attempt+1} 失敗: {e}")
+        try:
+            api.logout()
+        except:
+            pass
+        api = None
+        if attempt < 2:
+            print("等待 10 秒後重試...")
+            time.sleep(10)
 
-# 只下載需要的個股合約
-codes = [s["id"] for s in stocks]
-contracts = []
-for code in codes:
+if api is None:
+    print("❌ 登入失敗，無法抓取報價")
+    # 寫入空的 prices.json 避免覆蓋舊資料
+    exit(1)
+
+prices = {}
+for stock in stocks:
+    code = stock["id"]
     try:
         contract = api.Contracts.Stocks[code]
-        contracts.append((code, contract))
-        print(f"✅ 合約載入 {code}")
-    except Exception as e:
-        # 合約還沒載入，用搜尋方式取得
-        try:
-            results = api.Contracts.Stocks.TSE[code]
-            contracts.append((code, results))
-            print(f"✅ 合約載入 {code} (TSE)")
-        except:
-            try:
-                results = api.Contracts.Stocks.OTC[code]
-                contracts.append((code, results))
-                print(f"✅ 合約載入 {code} (OTC)")
-            except Exception as e2:
-                print(f"❌ 合約失敗 {code}: {e2}")
-
-time.sleep(3)
-
-# 抓快照
-prices = {}
-for code, contract in contracts:
-    try:
         snapshot = api.snapshots([contract])
         if snapshot:
             s = snapshot[0]
@@ -67,21 +67,22 @@ for code, contract in contracts:
 # 登出
 api.logout()
 
-# 寫入 prices.json
-output = {
-    "prices": [
-        {
-            "id": code,
-            "price": data["price"],
-            "is_realtime": True,
-            "vol": data["volume"] // 1000,
-            "updated": data["updated"]
-        }
-        for code, data in prices.items()
-    ]
-}
-
-with open("prices.json", "w", encoding="utf-8") as f:
-    json.dump(output, f, ensure_ascii=False, indent=2)
-
-print("✅ prices.json 更新完成")
+# 只有有資料才寫入，避免覆蓋舊資料
+if prices:
+    output = {
+        "prices": [
+            {
+                "id": code,
+                "price": data["price"],
+                "is_realtime": True,
+                "vol": data["volume"] // 1000,
+                "updated": data["updated"]
+            }
+            for code, data in prices.items()
+        ]
+    }
+    with open("prices.json", "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+    print("✅ prices.json 更新完成")
+else:
+    print("⚠️ 無資料，保留舊版 prices.json")
