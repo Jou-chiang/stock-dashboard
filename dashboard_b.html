@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>績優股雷達｜Dashboard B</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0e10;--bg2:#131619;--bg3:#1a1e22;--bg4:#212730;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --text:#e8eaed;--text2:#8b9099;--text3:#565c66;
+  --amber:#f0a03a;--amber2:#7a4e12;
+  --green:#3fc97c;--red:#f25f5f;--blue:#5ba3f5;
+  --purple:#b072f2;
+  --mono:'IBM Plex Mono',monospace;--sans:'Noto Sans TC',sans-serif;
+  --r:6px;--rl:10px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);pointer-events:none;z-index:999;}
+.layout{max-width:1400px;margin:0 auto;padding:0 20px 60px;}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--border);margin-bottom:20px;gap:12px;flex-wrap:wrap;}
+.brand-title{font-family:var(--mono);font-size:16px;font-weight:500;color:var(--amber);}
+.brand-sub{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.07em;margin-top:2px;}
+.badge{font-family:var(--mono);font-size:10px;background:rgba(176,114,242,.15);border:1px solid rgba(176,114,242,.3);color:var(--purple);padding:3px 8px;border-radius:20px;}
+.btn-back{font-family:var(--mono);font-size:11px;color:var(--text3);text-decoration:none;border:1px solid var(--border2);padding:5px 10px;border-radius:var(--r);}
+.status-bar{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:12px 18px;display:flex;gap:24px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
+.status-item{font-family:var(--mono);font-size:11px;}
+.status-label{color:var(--text3);}
+.status-val{color:var(--text);margin-left:6px;}
+.status-val.gold{color:#ffd700;}
+.status-val.green{color:var(--green);}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:6px;}
+.dot.ok{background:var(--green);box-shadow:0 0 6px var(--green);}
+.dot.warn{background:var(--amber);}
+.filter-panel{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);padding:16px 20px;margin-bottom:16px;}
+.filter-title{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:.08em;margin-bottom:12px;text-transform:uppercase;}
+.filter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
+.filter-item label{font-family:var(--mono);font-size:10px;color:var(--text3);display:block;margin-bottom:6px;}
+.filter-item .val{font-family:var(--mono);font-size:11px;color:var(--amber);margin-left:6px;}
+input[type=range]{width:100%;accent-color:var(--amber);cursor:pointer;}
+.filter-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px;}
+.btn{font-family:var(--mono);font-size:12px;padding:7px 16px;border-radius:var(--r);border:none;cursor:pointer;transition:all .2s;}
+.btn-primary{background:var(--amber);color:#000;font-weight:500;}
+.btn-primary:hover{background:#d4891f;}
+.btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--text2);}
+.btn-ghost:hover{border-color:var(--text2);}
+.sector-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.sector-chip{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:12px;border:1px solid var(--border2);color:var(--text3);cursor:pointer;transition:all .15s;}
+.sector-chip.active{border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.08);}
+.zone-header{display:flex;align-items:center;gap:10px;margin:24px 0 12px;}
+.zone-title{font-family:var(--mono);font-size:13px;font-weight:500;}
+.zone-count{font-family:var(--mono);font-size:11px;color:var(--text3);}
+.zone-5 .zone-title{color:#ffd700;}
+.zone-4 .zone-title{color:var(--green);}
+.zone-3 .zone-title{color:var(--text2);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;}
+.stock-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:16px;position:relative;overflow:hidden;}
+.stock-card.score-5{border-color:rgba(255,215,0,.2);}
+.stock-card.score-5::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#ffd700,#f0a03a);}
+.stock-card.score-4{border-color:rgba(63,201,124,.18);}
+.stock-card.score-4::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--green);}
+.stock-card.score-3::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--text3);}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;}
+.card-code{font-family:var(--mono);font-size:11px;color:var(--text3);}
+.card-name{font-size:15px;font-weight:500;margin-top:2px;}
+.card-sector{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:2px;}
+.score-badge{font-family:var(--mono);font-size:20px;font-weight:500;text-align:right;}
+.score-badge.s5{color:#ffd700;}
+.score-badge.s4{color:var(--green);}
+.score-badge.s3{color:var(--text2);}
+.stars{font-size:10px;margin-top:2px;}
+.card-price-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.card-price{font-family:var(--mono);font-size:19px;font-weight:500;}
+.card-chg{font-family:var(--mono);font-size:11px;padding:2px 6px;border-radius:4px;}
+.card-chg.up{background:rgba(242,95,95,.12);color:var(--red);}
+.card-chg.dn{background:rgba(63,201,124,.08);color:var(--green);}
+.card-chg.flat{background:rgba(255,255,255,.05);color:var(--text3);}
+.criteria-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;}
+.chip{font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:3px;border:1px solid;}
+.chip.pass{background:rgba(63,201,124,.07);border-color:rgba(63,201,124,.22);color:var(--green);}
+.chip.fail{background:rgba(255,255,255,.02);border-color:var(--border);color:var(--text3);}
+.card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--border);}
+.card-meta{font-family:var(--mono);font-size:10px;color:var(--text3);}
+.btn-add{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:4px;border:1px solid rgba(240,160,58,.3);background:rgba(240,160,58,.07);color:var(--amber);cursor:pointer;transition:all .2s;}
+.btn-add:hover{background:rgba(240,160,58,.15);}
+.empty{text-align:center;padding:48px;color:var(--text3);font-family:var(--mono);font-size:12px;}
+.empty-icon{font-size:28px;margin-bottom:10px;}
+.loading{text-align:center;padding:60px;color:var(--text3);font-family:var(--mono);font-size:12px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:24px;height:24px;border:2px solid var(--border2);border-top-color:var(--amber);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px;}
+.note-bar{background:rgba(240,160,58,.07);border:1px solid var(--amber2);border-radius:var(--r);padding:10px 14px;font-family:var(--mono);font-size:11px;color:var(--amber);margin-bottom:12px;}
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="topbar">
+    <div>
+      <div class="brand-title">📡 績優股雷達</div>
+      <div class="brand-sub">DASHBOARD B · 五星積分篩選系統</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="badge">AUTO</span>
+      <a href="index.html" class="btn-back">← 儀表板 A</a>
+    </div>
+  </div>
+  <div class="status-bar" id="status-bar">
+    <div class="status-item"><span class="dot warn"></span><span class="status-label">載入中...</span></div>
+  </div>
+  <div class="note-bar" id="note-bar" style="display:none"></div>
+  <div class="filter-panel">
+    <div class="filter-title">篩選條件（滿分 6 分）</div>
+    <div class="filter-grid">
+      <div class="filter-item">
+        <label>最低積分 <span class="val" id="score-val">3</span> 分</label>
+        <input type="range" id="f-score" min="1" max="5" value="3" oninput="document.getElementById('score-val').textContent=this.value;applyFilter()">
+      </div>
+      <div class="filter-item">
+        <label>K值上限 <span class="val" id="k-val">70</span></label>
+        <input type="range" id="f-k" min="10" max="100" value="70" oninput="document.getElementById('k-val').textContent=this.value;applyFilter()">
+      </div>
+      <div class="filter-item">
+        <label>量比下限 <span class="val" id="vol-val">0.0</span> 倍</label>
+        <input type="range" id="f-vol" min="0" max="3" step="0.1" value="0" oninput="document.getElementById('vol-val').textContent=parseFloat(this.value).toFixed(1);applyFilter()">
+      </div>
+      <div class="filter-item">
+        <label>均線差上限 <span class="val" id="ma-val">10</span>%</label>
+        <input type="range" id="f-ma" min="1" max="20" value="10" oninput="document.getElementById('ma-val').textContent=this.value;applyFilter()">
+      </div>
+    </div>
+    <div style="margin-top:12px;">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-bottom:6px;">產業篩選</div>
+      <div class="sector-wrap" id="sector-wrap"></div>
+    </div>
+    <div class="filter-row">
+      <button class="btn btn-ghost" onclick="resetFilter()">重置</button>
+      <span id="filter-count" style="font-family:var(--mono);font-size:11px;color:var(--text3);"></span>
+    </div>
+  </div>
+  <div id="result-area"><div class="loading"><div class="spinner"></div>載入資料中...</div></div>
+</div>
+<script>
+let allScores=[];
+let activeSectors=new Set();
+
+async function loadScores(){
+  try{
+    const r=await fetch('pool_scores.json?_='+Date.now());
+    if(!r.ok) throw new Error('not found');
+    const j=await r.json();
+    allScores=j.scores||[];
+    const z5=allScores.filter(s=>s.score===5).length;
+    const z4=allScores.filter(s=>s.score===4).length;
+    document.getElementById('status-bar').innerHTML=`
+      <div class="status-item"><span class="dot ok"></span><span class="status-label">資料已載入</span></div>
+      <div class="status-item"><span class="status-label">更新時間</span><span class="status-val">${j.updated||'—'}</span></div>
+      <div class="status-item"><span class="status-label">股票池</span><span class="status-val">${j.total} 支</span></div>
+      <div class="status-item"><span class="status-label">🏆 5分</span><span class="status-val gold">${z5} 支</span></div>
+      <div class="status-item"><span class="status-label">⚔️ 4分</span><span class="status-val green">${z4} 支</span></div>`;
+    if(allScores[0]?.note){
+      document.getElementById('note-bar').style.display='block';
+      document.getElementById('note-bar').textContent='⚠ '+allScores[0].note;
+    }
+    const sectors=[...new Set(allScores.map(s=>s.sector).filter(Boolean))].sort();
+    document.getElementById('sector-wrap').innerHTML=
+      `<span class="sector-chip active" data-sector="ALL" onclick="toggleSector('ALL',this)">全部</span>`+
+      sectors.map(s=>`<span class="sector-chip" data-sector="${s}" onclick="toggleSector('${s}',this)">${s}</span>`).join('');
+    applyFilter();
+  }catch(e){
+    document.getElementById('result-area').innerHTML=`<div class="empty"><div class="empty-icon">📭</div><div>尚無資料</div><div style="margin-top:6px;color:var(--text3)">pool_scores.json 尚未產生<br>請等待明日開盤後 GitHub Actions 自動更新</div></div>`;
+    document.getElementById('status-bar').innerHTML=`<div class="status-item"><span class="dot warn"></span><span class="status-label" style="color:var(--amber)">資料尚未產生</span></div>`;
+  }
+}
+
+function toggleSector(sector,el){
+  if(sector==='ALL'){
+    activeSectors.clear();
+    document.querySelectorAll('.sector-chip').forEach(c=>c.classList.toggle('active',c.dataset.sector==='ALL'));
+  }else{
+    document.querySelector('[data-sector="ALL"]').classList.remove('active');
+    el.classList.toggle('active');
+    if(el.classList.contains('active')) activeSectors.add(sector);
+    else activeSectors.delete(sector);
+    if(activeSectors.size===0) document.querySelector('[data-sector="ALL"]').classList.add('active');
+  }
+  applyFilter();
+}
+
+function applyFilter(){
+  const minScore=parseInt(document.getElementById('f-score').value);
+  const maxK=parseFloat(document.getElementById('f-k').value);
+  const minVol=parseFloat(document.getElementById('f-vol').value);
+  const maxMa=parseFloat(document.getElementById('f-ma').value);
+  let filtered=allScores.filter(s=>{
+    if(s.score<minScore) return false;
+    if(s.k>maxK) return false;
+    if(s.vol_ratio<minVol) return false;
+    if(s.ma_gap>maxMa) return false;
+    if(activeSectors.size>0&&!activeSectors.has(s.sector)) return false;
+    return true;
+  });
+  document.getElementById('filter-count').textContent=`共篩出 ${filtered.length} 支`;
+  renderResults(filtered);
+}
+
+function resetFilter(){
+  document.getElementById('f-score').value=3;document.getElementById('score-val').textContent='3';
+  document.getElementById('f-k').value=70;document.getElementById('k-val').textContent='70';
+  document.getElementById('f-vol').value=0;document.getElementById('vol-val').textContent='0.0';
+  document.getElementById('f-ma').value=10;document.getElementById('ma-val').textContent='10';
+  activeSectors.clear();
+  document.querySelectorAll('.sector-chip').forEach(c=>c.classList.toggle('active',c.dataset.sector==='ALL'));
+  applyFilter();
+}
+
+function renderResults(data){
+  const z5=data.filter(s=>s.score===5);
+  const z4=data.filter(s=>s.score===4);
+  const z3=data.filter(s=>s.score<=3);
+  let html='';
+  if(!data.length){
+    html=`<div class="empty"><div class="empty-icon">🔍</div>沒有符合條件的股票<br><span style="color:var(--text3)">試著放寬篩選條件</span></div>`;
+  }else{
+    if(z5.length) html+=`<div class="zone-header zone-5"><div class="zone-title">🏆 5分區 — Must Watch</div><div class="zone-count">共 ${z5.length} 支</div></div><div class="card-grid">${z5.map(renderCard).join('')}</div>`;
+    if(z4.length) html+=`<div class="zone-header zone-4"><div class="zone-title">⚔️ 4分區 — Strong Potential</div><div class="zone-count">共 ${z4.length} 支</div></div><div class="card-grid">${z4.map(renderCard).join('')}</div>`;
+    if(z3.length) html+=`<div class="zone-header zone-3"><div class="zone-title">📋 3分以下</div><div class="zone-count">共 ${z3.length} 支</div></div><div class="card-grid">${z3.map(renderCard).join('')}</div>`;
+  }
+  document.getElementById('result-area').innerHTML=html;
+}
+
+function renderCard(s){
+  const sc=s.score;
+  const bc=sc>=5?'s5':sc>=4?'s4':'s3';
+  const cc=sc>=5?'score-5':sc>=4?'score-4':'score-3';
+  const chgUp=s.chg_pct>0,chgFlat=s.chg_pct===0;
+  const chgClass=chgFlat?'flat':chgUp?'up':'dn';
+  const fire=s.buy_days>=5?'🔥':'';
+  const criteria=[
+    {label:`投信連買${s.buy_days}天`,pass:s.criteria?.s1},
+    {label:`外資連買${s.foreign_days||0}天`,pass:s.criteria?.s6},
+    {label:`投信持股尚低`,pass:s.criteria?.s2},
+    {label:`K=${s.k}`,pass:s.criteria?.s3},
+    {label:`量比${s.vol_ratio}倍`,pass:s.criteria?.s4},
+    {label:`均線差${s.ma_gap}%`,pass:s.criteria?.s5},
+  ];
+  const chips=criteria.map(c=>`<span class="chip ${c.pass?'pass':'fail'}">${c.label}</span>`).join('');
+  const starColor=sc>=5?'#ffd700':sc>=4?'var(--green)':'var(--text3)';
+  return `<div class="stock-card ${cc}">
+    <div class="card-top">
+      <div><div class="card-code">${s.code}</div><div class="card-name">${s.name}${fire}</div><div class="card-sector">${s.sector}</div></div>
+      <div style="text-align:right"><div class="score-badge ${bc}">${sc}/6</div><div class="stars" style="color:${starColor}">${'★'.repeat(sc)+'☆'.repeat(6-sc)}</div></div>
+    </div>
+    <div class="card-price-row"><span class="card-price">${s.price}</span><span class="card-chg ${chgClass}">${chgUp?'+':''}${s.chg_pct?.toFixed(2)}%</span></div>
+    <div class="criteria-row">${chips}</div>
+    <div class="card-footer"><div class="card-meta">MA5 ${s.ma5||'—'} · MA20 ${s.ma20||'—'} · 量${s.volume}張</div><button class="btn-add" onclick="addToA('${s.code}','${s.name}')">+ 加入A板</button></div>
+  </div>`;
+}
+
+function addToA(code,name){
+  const list=JSON.parse(localStorage.getItem('watchlist_a_pending')||'[]');
+  if(!list.includes(code)){list.push(code);localStorage.setItem('watchlist_a_pending',JSON.stringify(list));}
+  alert(`${code} ${name} 已記錄！\n開啟儀表板 A 後在輸入框輸入 ${code} 新增。`);
+}
+
+loadScores();
+</script>
+</body>
+</html>
