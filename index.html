@@ -308,7 +308,7 @@ function updateTokenUI(){
     document.getElementById('token-collapsed').style.display='block';
   } else {
     nb.className='notice warn';
-    nt.textContent='⚠️ 請先輸入 FinMind Token 才能查詢資料';
+    nt.innerHTML='⚠️ 未設定 FinMind Token｜僅顯示 prices.json 即時價格，技術指標（KDJ/RSI/DIF）不可用';
     st.textContent='⚪ 未設定 Token';st.className='token-status warn';
   }
 }
@@ -648,6 +648,33 @@ function parseInst(rows){
 
 async function fetchOne(sym){
   loading.add(sym);render();
+
+  // 沒有 token 時，直接從 prices.json 顯示即時價格
+  if(!getToken()){
+    try{
+      const pj = await loadPricesJson();
+      if(pj && pj.prices){
+        const entry = pj.prices.find(p => p.id === sym);
+        if(entry && entry.price){
+          const name=(stockList.find(s=>s.id===sym)||{}).name||sym;
+          data[sym]={
+            symbol:sym, name, price:entry.price,
+            changePercent:null, rtType:'live',
+            K:null,D:null,J:null,RSI:null,DIF:null,DIFprev:null,
+            VOL:null, VOL5:null, MA5:null, HIGH20:null, signal:null
+          };
+          loading.delete(sym);done++;
+          document.getElementById('ts').textContent='更新：'+new Date().toLocaleTimeString('zh-TW');
+          render();
+          return;
+        }
+      }
+    }catch(e){}
+    data[sym]={error:true,symbol:sym,msg:'請設定 FinMind Token 或等待 prices.json 更新'};
+    loading.delete(sym);done++;render();
+    return;
+  }
+
   try{
     const rows=await fmGet('TaiwanStockPrice',sym,100);
     if(!rows.length) throw new Error('查無此股票');
