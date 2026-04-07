@@ -17,18 +17,16 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install shioaji
+        run: pip install requests
 
       - name: Run fetch script
-        env:
-          SHIOAJI_API_KEY: ${{ secrets.SHIOAJI_API_KEY }}
-          SHIOAJI_SECRET_KEY: ${{ secrets.SHIOAJI_SECRET_KEY }}
         run: python fetch_prices.py
 
       - name: Commit and push prices.json
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
+          git pull --rebase origin main
           git add prices.json
           git diff --staged --quiet || git commit -m "Update prices"
           git push
