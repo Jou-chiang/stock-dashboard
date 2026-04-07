@@ -1,73 +1,53 @@
-import os
 import json
 import time
+import requests
 from datetime import datetime
-import shioaji as sj
-
-# 從 GitHub Secrets 讀取 Key
-api_key = os.environ["SHIOAJI_API_KEY"]
-secret_key = os.environ["SHIOAJI_SECRET_KEY"]
 
 # 讀取股票清單
 with open("stocks.json", "r", encoding="utf-8") as f:
     stocks = json.load(f)
 
-# 登入 Shioaji，失敗自動重試最多 3 次
-api = None
-for attempt in range(3):
-    try:
-        print(f"登入嘗試 {attempt+1}/3...")
-        api = sj.Shioaji()
-        api.login(api_key=api_key, secret_key=secret_key, fetch_contract=True, contracts_timeout=120)
-        time.sleep(10)
-        # 確認合約有載入
-        _ = api.Contracts.Stocks
-        print("✅ 登入成功，合約載入完成")
-        break
-    except Exception as e:
-        print(f"❌ 嘗試 {attempt+1} 失敗: {e}")
-        try:
-            api.logout()
-        except:
-            pass
-        api = None
-        if attempt < 2:
-            print("等待 10 秒後重試...")
-            time.sleep(10)
-
-if api is None:
-    print("❌ 登入失敗，無法抓取報價")
-    # 寫入空的 prices.json 避免覆蓋舊資料
-    exit(1)
-
 prices = {}
+
 for stock in stocks:
     code = stock["id"]
-    try:
-        contract = api.Contracts.Stocks[code]
-        snapshot = api.snapshots([contract])
-        if snapshot:
-            s = snapshot[0]
+    # Yahoo Finance 台股格式：代號.TW 或 代號.TWO
+    for suffix in [".TW", ".TWO"]:
+        try:
+            url = f"https://query1.finance.yahoo.com/v8/finance/chart/{code}{suffix}"
+            headers = {"User-Agent": "Mozilla/5.0"}
+            r = requests.get(url, headers=headers, timeout=10)
+            j = r.json()
+
+            result = j.get("chart", {}).get("result", [])
+            if not result:
+                continue
+
+            meta = result[0].get("meta", {})
+            price = meta.get("regularMarketPrice")
+            if not price:
+                continue
+
             prices[code] = {
-                "price": s.close,
-                "open": s.open,
-                "high": s.high,
-                "low": s.low,
-                "volume": s.volume,
-                "change": s.change_price,
-                "change_pct": s.change_rate,
+                "price": price,
+                "open": meta.get("regularMarketOpen", price),
+                "high": meta.get("regularMarketDayHigh", price),
+                "low": meta.get("regularMarketDayLow", price),
+                "volume": meta.get("regularMarketVolume", 0),
+                "change": round(price - meta.get("previousClose", price), 2),
+                "change_pct": round((price - meta.get("previousClose", price)) / meta.get("previousClose", price) * 100, 2) if meta.get("previousClose") else 0,
                 "updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
-            print(f"✅ {code}: {s.close}")
-        else:
-            print(f"⚠️ {code}: 無資料")
-    except Exception as e:
-        print(f"❌ {code} 錯誤: {e}")
+            print(f"✅ {code}{suffix}: {price}")
+            break
 
-# 登出
-api.logout()
+        except Exception as e:
+            print(f"❌ {code}{suffix}: {e}")
+            continue
 
-# 只有有資料才寫入，避免覆蓋舊資料
+    time.sleep(0.3)
+
+# 寫入 prices.json
 if prices:
     output = {
         "prices": [
@@ -83,6 +63,6 @@ if prices:
     }
     with open("prices.json", "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
-    print("✅ prices.json 更新完成")
+    print(f"✅ prices.json 更新完成，共 {len(prices)} 支")
 else:
-    print("⚠️ 無資料，保留舊版 prices.json")
+    print("⚠️ 無資料")
