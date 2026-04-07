@@ -47,9 +47,9 @@ for stock in stocks:
         print(f"❌ {code}: {e}")
 
 # 儲存結果
+output = {"prices": [{"id": k, "price": v["price"]} for k, v in prices.items()]}
 with open("prices.json", "w", encoding="utf-8") as f:
-    json.dump(prices, f, ensure_ascii=False, indent=2)
-print(f"\n結果：成功 {len(prices)} 支，失敗 {len(stocks)-len(prices)} 支")
+    json.dump(output, f, ensure_ascii=False, indent=2)
 
 try:
     api.logout()
