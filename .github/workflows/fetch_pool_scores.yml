@@ -28,7 +28,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git stash
+          git stash -u
           git pull --rebase origin main
           git stash pop
           git add history_data.csv pool_scores.json
