@@ -133,6 +133,8 @@ tr:hover td{background:var(--bg3);}
 .sig-trend-collapse .sig-dot{background:#ff1744;box-shadow:0 0 8px #ff1744;}
 .sig-high-dullness-weak{background:rgba(0,229,255,.05);border-color:rgba(0,229,255,.2);color:#5ba3f5;}
 .sig-high-dullness-weak .sig-dot{background:#5ba3f5;}
+.sig-limit-up{background:rgba(255,64,129,.15);border-color:rgba(255,64,129,.5);color:#ff4081;font-weight:700;}
+.sig-limit-up .sig-dot{background:#ff4081;box-shadow:0 0 6px #ff4081;}
 .sig-vol-warning{background:rgba(183,28,28,.12);border-color:rgba(229,57,53,.4);color:#ef9a9a;}
 .sig-vol-warning .sig-dot{background:#ef5350;box-shadow:0 0 5px #ef5350;}
 .cost-input{background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--text);font-family:var(--mono);font-size:11px;padding:3px 6px;width:68px;outline:none;text-align:right;}
@@ -378,9 +380,14 @@ function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr, high20)
       sig='dullness-end';
     } else if(jToday>=3){
       if(!['sell','strong-sell'].includes(sig)){
-        // 高檔鈍化：相對量 ≥ 1.2倍均量才算有效
-        const hasVol = vol!==null && vol5!==null && vol5>0 && vol >= vol5*1.2;
-        sig = hasVol ? 'high-dullness' : 'high-dullness-weak';
+        // 漲停補丁：漲幅 > 9.5% 視為強勢鎖死，忽略量能判斷
+        if(chg !== null && chg > 9.5){
+          sig = 'limit-up-lock';
+        } else {
+          // 高檔鈍化：相對量 ≥ 1.2倍均量才算有效
+          const hasVol = vol!==null && vol5!==null && vol5>0 && vol >= vol5*1.2;
+          sig = hasVol ? 'high-dullness' : 'high-dullness-weak';
+        }
       }
     } else if(jToday===1||jToday===2){
       if(!['sell','strong-sell'].includes(sig)) sig='initial-spurt';
@@ -414,6 +421,7 @@ function renderSignal(sig){
     'neutral':['sig-neutral','觀望'],
     'trend-collapse':['sig-trend-collapse','💀趨勢崩壞'],
     'high-dullness-weak':['sig-high-dullness-weak','量不足鈍化'],
+    'limit-up-lock':['sig-limit-up','🔒強勢鎖死'],
     'strong-hold':['sig-strong-hold','強勢震盪'],
     'strong-hold-warn':['sig-strong-hold-warn','強勢震盪⚠放量'],
     'vol-warning':['sig-vol-warning','爆量警示'],
@@ -809,8 +817,10 @@ function fmtEntryPrice(price, ma5, signal, sym, high20){
       return `<span class="entry-price entry-follow">持有，等下一波</span>`;
     if(signal==='high-dullness')
       return `<span class="entry-price entry-follow">持有，等下一波噴發</span>`;
+    if(signal==='limit-up-lock')
+      return `<span class="entry-price" style="color:#ff4081;font-weight:700">🔒 漲停鎖死，持有</span>`;
     if(signal==='strong-hold'||signal==='strong-hold-warn')
-      return `<span class="entry-price entry-hold">持有觀察 (${roiStr})</span>`;
+      return `<span class="entry-price entry-hold">持有觀察${costColsVisible?" ("+roiStr+")":""}</span>`;
     if(signal==='strong-buy'){
       const addEntry = ma5 ? `≈${(((price+ma5)/2)*1.005).toFixed(1)}` : '';
       return `<span class="entry-price" style="color:var(--green)">持有，低位可加碼 ${addEntry}</span>`;
@@ -820,7 +830,7 @@ function fmtEntryPrice(price, ma5, signal, sym, high20){
       return `<span class="entry-price" style="color:var(--green)">持有，可考慮加碼 ${addEntry}</span>`;
     }
     // neutral 或其他：持有中
-    return `<span class="entry-price entry-hold">持有中 (${roiStr})</span>`;
+    return `<span class="entry-price entry-hold">持有中${costColsVisible?" ("+roiStr+")":""}</span>`;
   }
 
   // ── 空手者：給買點建議 ────────────────────────────────
@@ -832,6 +842,8 @@ function fmtEntryPrice(price, ma5, signal, sym, high20){
     const entry = ma5 ? (ma5*1.005).toFixed(1) : '—';
     return `<span class="entry-price entry-wait">過熱，等回測 ≈${entry}</span>`;
   }
+  if(signal==='limit-up-lock')
+    return `<span class="entry-price" style="color:#ff4081;font-weight:700">🔒 漲停，勿追高</span>`;
   if(signal==='dullness-end')
     return `<span class="entry-price" style="color:var(--red)">高位反轉，勿追</span>`;
   if(signal==='trend-collapse')
