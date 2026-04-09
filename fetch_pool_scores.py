@@ -123,12 +123,12 @@ df_all.to_csv(HISTORY_FILE, index=False, encoding="utf-8-sig")
 print(f"\n✅ history_data.csv 更新完成：{len(df_all)} 筆")
 
 # ── 計算指標 ─────────────────────────────────────────────
-def calc_kdj(prices):
+def calc_kdj(prices, p=9):
     k, d = 50.0, 50.0
-    for i in range(len(prices)):
-        window = prices[max(0, i-8): i+1]
-        hh = max(p["high"] for p in window)
-        ll = min(p["low"]  for p in window)
+    for i in range(p-1, len(prices)):  # 從第 p-1 個 index 開始，跟 JS 一致
+        window = prices[i-p+1: i+1]   # 固定 p 天 window
+        hh = max(r["high"] for r in window)
+        ll = min(r["low"]  for r in window)
         rsv = 50 if hh == ll else (prices[i]["close"] - ll) / (hh - ll) * 100
         k = k * (2/3) + rsv * (1/3)
         d = d * (2/3) + k * (1/3)
@@ -147,6 +147,33 @@ def calc_avg_vol(volumes, n):
 def calc_inst_buy_days(inst_rows):
     rows = sorted(
         [r for r in inst_rows if "Investment_Trust" in str(r.get("name", ""))],
+        key=lambda x: x["date"]
+    )
+    days = 0
+    for r in reversed(rows):
+        net = float(r.get("buy", 0)) - float(r.get("sell", 0))
+        if net > 0:
+            days += 1
+        else:
+            break
+    return days
+
+def calc_inst_net_buy_ratio(inst_rows, last_volume_shares):
+    rows = sorted(
+        [r for r in inst_rows if "Investment_Trust" in str(r.get("name", ""))],
+        key=lambda x: x["date"]
+    )
+    if not rows or not last_volume_shares:
+        return 0.0
+    last = rows[-1]
+    net_shares = float(last.get("buy", 0)) - float(last.get("sell", 0))
+    if net_shares <= 0:
+        return 0.0
+    return round((net_shares / last_volume_shares) * 100, 2)
+
+def calc_foreign_buy_days(inst_rows):
+    rows = sorted(
+        [r for r in inst_rows if "Foreign" in str(r.get("name", ""))],
         key=lambda x: x["date"]
     )
     days = 0
@@ -184,18 +211,22 @@ for code in codes:
     ma_gap  = round(abs(ma5 - ma20) / ma20 * 100, 1) if ma5 and ma20 else 999
     vol_ratio = round(last["volume"] / avg_vol5, 2) if avg_vol5 else 0
 
-    # 投信連買天數
+    # 投信連買天數 & 買盤力道 & 外資連買
     inst_rows = inst_data_map.get(code, [])
     buy_days = calc_inst_buy_days(inst_rows)
+    last_volume_shares = last["volume"] * 1000
+    net_buy_ratio = calc_inst_net_buy_ratio(inst_rows, last_volume_shares)
+    foreign_buy_days = calc_foreign_buy_days(inst_rows)
 
-    # 積分計算
-    s1 = buy_days >= 3           # 投信連買 ≥ 3天
-    s2 = buy_days > 0 and buy_days < 15  # 投信持股尚低（代理：連買天數合理）
+    # 積分計算（6分制）
+    s1 = buy_days >= 3           # 投信連買 ≥ 3天（耐力）
+    s2 = net_buy_ratio >= 5.0    # 投信強點火：買超佔成交量 ≥ 5%
     s3 = k < 50                  # K < 50
     s4 = vol_ratio >= 1.5        # 量 > 均量 1.5倍
     s5 = ma_gap < 3              # 均線糾結
+    s6 = foreign_buy_days >= 3   # 外資連買 ≥ 3天
 
-    score = sum([s1, s2, s3, s4, s5])
+    score = sum([s1, s2, s3, s4, s5, s6])
     info  = pool_map.get(code, {})
 
     scores.append({
@@ -213,9 +244,11 @@ for code in codes:
         "volume":    round(last["volume"]),
         "avg_vol5":  avg_vol5,
         "vol_ratio": vol_ratio,
-        "buy_days":  buy_days,
-        "score":     score,
-        "criteria":  {"s1": s1, "s2": s2, "s3": s3, "s4": s4, "s5": s5},
+        "buy_days":         buy_days,
+        "net_buy_ratio":    net_buy_ratio,
+        "foreign_buy_days": foreign_buy_days,
+        "score":            score,
+        "criteria":         {"s1": s1, "s2": s2, "s3": s3, "s4": s4, "s5": s5, "s6": s6},
         "updated":   today,
     })
 
