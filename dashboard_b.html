@@ -98,7 +98,7 @@ input[type=range]{width:100%;accent-color:var(--amber);cursor:pointer;}
   <div class="topbar">
     <div>
       <div class="brand-title">📡 績優股雷達</div>
-      <div class="brand-sub">DASHBOARD B · 五星積分篩選系統</div>
+      <div class="brand-sub">DASHBOARD B · 六星積分篩選系統</div>
     </div>
     <div style="display:flex;gap:8px;align-items:center;">
       <span class="badge">AUTO</span>
@@ -114,7 +114,7 @@ input[type=range]{width:100%;accent-color:var(--amber);cursor:pointer;}
     <div class="filter-grid">
       <div class="filter-item">
         <label>最低積分 <span class="val" id="score-val">3</span> 分</label>
-        <input type="range" id="f-score" min="1" max="5" value="3" oninput="document.getElementById('score-val').textContent=this.value;applyFilter()">
+        <input type="range" id="f-score" min="1" max="6" value="3" oninput="document.getElementById('score-val').textContent=this.value;applyFilter()">
       </div>
       <div class="filter-item">
         <label>K值上限 <span class="val" id="k-val">70</span></label>
@@ -238,8 +238,8 @@ function renderCard(s){
   const fire=s.buy_days>=5?'🔥':'';
   const criteria=[
     {label:`投信連買${s.buy_days}天`,pass:s.criteria?.s1},
-    {label:`外資連買${s.foreign_days||0}天`,pass:s.criteria?.s6},
-    {label:`投信持股尚低`,pass:s.criteria?.s2},
+    {label:`投信強點火 ${s.net_buy_ratio?.toFixed(1)||0}%`,pass:s.criteria?.s2},
+    {label:`外資連買${s.foreign_buy_days||0}天`,pass:s.criteria?.s6},
     {label:`K=${s.k}`,pass:s.criteria?.s3},
     {label:`量比${s.vol_ratio}倍`,pass:s.criteria?.s4},
     {label:`均線差${s.ma_gap}%`,pass:s.criteria?.s5},
