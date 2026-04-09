@@ -839,7 +839,7 @@ function fmtEntryPrice(price, ma5, signal, sym, high20){
   if(signal==='vol-breakout')
     return `<span class="entry-price entry-follow">≈${price.toFixed(1)} 直接跟進</span>`;
   if(signal==='initial-spurt')
-    return `<span class="entry-price" style="color:var(--purple)">短線觀察，等量確認</span>`;
+    return `<span class="entry-price" style="color:var(--purple)">不追，等 J 值回落 100 以下</span>`;
   if(signal==='high-dullness'){
     const entry = ma5 ? (ma5*1.005).toFixed(1) : '—';
     return `<span class="entry-price entry-wait">過熱，等回測 ≈${entry}</span>`;
@@ -859,7 +859,7 @@ function fmtEntryPrice(price, ma5, signal, sym, high20){
     return `<span class="entry-price" style="color:var(--red)">超買區，暫勿追高</span>`;
   }
   if(['trend-weakening','weak-rebound'].includes(signal))
-    return `<span class="entry-price" style="color:var(--red)">勿追，等訊號</span>`;
+    return `<span class="entry-price" style="color:var(--red)">觀望，等 DIF 轉正再看</span>`;
   if(signal==='vol-warning')
     return `<span class="entry-price" style="color:#ef5350">勿追，爆量風險</span>`;
 
