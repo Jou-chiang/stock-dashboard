@@ -684,7 +684,7 @@ async function fetchOne(sym){
   }
 
   try{
-    const rows=await fmGet('TaiwanStockPrice',sym,100);
+    const rows=await fmGet('TaiwanStockPrice',sym,60);
     if(!rows.length) throw new Error('查無此股票');
     const sorted=rows.sort((a,b)=>a.date.localeCompare(b.date));
     const last=sorted[sorted.length-1];
@@ -801,8 +801,10 @@ function fmtEntryPrice(price, ma5, signal, sym, high20){
       if(roi>=20) return `<span class="entry-price" style="color:#ef5350;font-weight:500">⚠ 獲利${roi.toFixed(0)}% 建議減碼</span>`;
       return `<span class="entry-price" style="color:#fdd835">鈍化結束，注意出場</span>`;
     }
-    if(signal==='sell'||signal==='strong-sell')
-      return `<span class="entry-price" style="color:#ef5350">持有中(${roiStr})，考慮減碼</span>`;
+    if(signal==='sell'||signal==='strong-sell'){
+      if(roi >= 15) return `<span class="entry-price" style="color:#ef5350;font-weight:700">⚠ 獲利${roi.toFixed(0)}%，建議止盈</span>`;
+      return `<span class="entry-price" style="color:#ef5350">高檔噴發中，考慮減碼</span>`;
+    }
     if(signal==='weak-rebound')
       return `<span class="entry-price" style="color:#f0a03a">持有觀察，等訊號轉強</span>`;
     if(signal==='vol-warning')
@@ -848,7 +850,15 @@ function fmtEntryPrice(price, ma5, signal, sym, high20){
     return `<span class="entry-price" style="color:var(--red)">高位反轉，勿追</span>`;
   if(signal==='trend-collapse')
     return `<span class="entry-price" style="color:#ff1744;font-weight:700">💀 趨勢崩壞，嚴禁摸底</span>`;
-  if(['trend-weakening','sell','strong-sell','weak-rebound'].includes(signal))
+  if(['sell','strong-sell'].includes(signal)){
+    // 超買區：計算建議回測進場價
+    if(ma5){
+      const suggested = ma5.toFixed(1);
+      return `<span class="entry-price" style="color:var(--red)">超買區，等回測 ≈${suggested}</span>`;
+    }
+    return `<span class="entry-price" style="color:var(--red)">超買區，暫勿追高</span>`;
+  }
+  if(['trend-weakening','weak-rebound'].includes(signal))
     return `<span class="entry-price" style="color:var(--red)">勿追，等訊號</span>`;
   if(signal==='vol-warning')
     return `<span class="entry-price" style="color:#ef5350">勿追，爆量風險</span>`;
