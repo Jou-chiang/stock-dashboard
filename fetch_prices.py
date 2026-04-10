@@ -7,14 +7,12 @@ import shioaji as sj
 # 從環境變數讀取 API key（GitHub Secrets）
 api_key = os.environ.get("SHIOAJI_API_KEY", "")
 secret_key = os.environ.get("SHIOAJI_SECRET_KEY", "")
-
 if not api_key or not secret_key:
     raise Exception("請設定 SHIOAJI_API_KEY 和 SHIOAJI_SECRET_KEY 環境變數")
 
 # 讀取股票清單
 with open("stocks.json", "r", encoding="utf-8") as f:
     stocks = json.load(f)
-
 print(f"股票清單：{len(stocks)} 支，開始登入...")
 
 api = sj.Shioaji()
@@ -47,11 +45,16 @@ for stock in stocks:
     except Exception as e:
         print(f"❌ {code}: {e}")
 
-# 儲存成 prices.json
-output = {"prices": [{"id": k, "price": v["price"]} for k, v in prices.items()]}
+# 儲存成 prices.json（加上 is_realtime 讓儀表板顯示綠點）
+output = {
+    "updated": datetime.now().strftime("%Y-%m-%d %H:%M"),
+    "prices": [
+        {"id": k, "price": v["price"], "is_realtime": True}
+        for k, v in prices.items()
+    ]
+}
 with open("prices.json", "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
-
 print(f"\n✅ prices.json 更新完成，共 {len(prices)} 支")
 
 try:
