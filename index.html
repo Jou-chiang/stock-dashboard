@@ -694,6 +694,7 @@ function toggleCostCols(){
   costColsVisible = !costColsVisible;
   localStorage.setItem('cost_cols_visible', costColsVisible);
   applyCostVisibility();
+  render(); // 
 }
 function applyCostVisibility(){
   const table = document.getElementById('stock-table');
