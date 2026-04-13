@@ -260,7 +260,7 @@ tr:hover td{background:var(--bg3);}
     <th style="min-width:76px">5日均量</th>
     <th class="cg cost-col" style="min-width:72px">成本價</th>
     <th class="cost-col" style="min-width:72px">損益%</th>
-    <th class="cost-col" style="min-width:80px">破MA5剩餘%</th>
+    <th class="cost-col" style="min-width:80px">距MA5%</th>
     <th style="min-width:100px">建議買點</th>
     <th class="cg" style="min-width:90px">訊號</th>
   </tr></thead>
@@ -827,16 +827,28 @@ function fmtROI(price, sym){
 }
 
 function fmtStopLine(price, ma5, sym){
-  const cost = getCost(sym);
-  if(isNaN(cost)||cost<=0||!ma5||isNaN(ma5)) return '<span class="na">—</span>';
-  const roiAtStop = (ma5 - cost) / cost * 100;
-  const arrow = price > ma5 ? '↘' : '⚠';
-  const sign = roiAtStop >= 0 ? '+' : '';
-  let style;
-  if(roiAtStop < 0) style = 'color:var(--red);font-weight:500';
-  else if(roiAtStop < 3) style = 'color:#f0a03a;font-weight:500';
-  else style = 'color:var(--green)';
-  return `<span class="stop-line" style="${style}">${arrow}${sign}${roiAtStop.toFixed(1)}%</span>`;
+  if(!ma5||isNaN(ma5)||!price||isNaN(price)) return '<span class="na">—</span>';
+  const dist = (price - ma5) / ma5 * 100;
+  const sign = dist >= 0 ? '+' : '';
+  let style, hint;
+  if(dist < 0){
+    // 跌破 MA5
+    style = 'color:var(--red);font-weight:500';
+    hint = '↓';
+  } else if(dist <= 3){
+    // 貼近 MA5，佈局甜蜜點
+    style = 'color:var(--green);font-weight:500';
+    hint = '↑';
+  } else if(dist <= 8){
+    // 適度領先
+    style = 'color:var(--amber)';
+    hint = '↑';
+  } else {
+    // 過熱，遠離均線
+    style = 'color:var(--red);font-weight:500';
+    hint = '↑';
+  }
+  return `<span class="stop-line" style="${style}">${hint}${sign}${dist.toFixed(1)}%</span>`;
 }
 
 function getDisplaySignal(sym){
