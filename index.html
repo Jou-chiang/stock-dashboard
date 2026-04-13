@@ -225,6 +225,8 @@ tr:hover td{background:var(--bg3);}
   <span class="legend-item"><span class="signal sig-trend-collapse" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>💀趨勢崩壞</span>J&lt;0連3天，禁止摸底</span>
   <span class="legend-item"><span class="signal sig-initial-spurt" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>強勢噴發</span>J&gt;100(1~2天)，短線觀察等量確認</span>
   <span class="legend-item"><span class="signal sig-high-dullness" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>高檔鈍化</span>J&gt;100連3天，持有</span>
+  <span class="legend-item"><span class="signal sig-high-dullness-weak" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>量不足鈍化</span>J&gt;100連3天但量能不足，持有觀察</span>
+  <span class="legend-item"><span class="signal sig-limit-up" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>🔒強勢鎖死</span>漲幅&gt;9.5%漲停，勿追</span>
   <span class="legend-item"><span class="signal sig-dullness-end" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>鈍化結束</span>高位反轉，獲利&gt;20%減碼</span>
   <span class="legend-item"><span class="signal sig-vol" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>帶量突破</span>放量上攻，跟進</span>
   <span class="legend-item"><span class="signal sig-strong-buy" style="padding:2px 7px;font-size:10px"><span class="sig-dot"></span>強力買入</span>深度超賣，佈局</span>
@@ -694,7 +696,6 @@ function toggleCostCols(){
   costColsVisible = !costColsVisible;
   localStorage.setItem('cost_cols_visible', costColsVisible);
   applyCostVisibility();
-  render(); // 
 }
 function applyCostVisibility(){
   const table = document.getElementById('stock-table');
