@@ -77,7 +77,7 @@
       "vol_ratio": 1.59,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
+      "foreign_buy_days": 1,
       "score": 3,
       "criteria": {
         "s1": false,
@@ -395,7 +395,7 @@
       "avg_vol5": 133633.0,
       "vol_ratio": 0.93,
       "buy_days": 1,
-      "net_buy_ratio": 16.46,
+      "net_buy_ratio": 16.44,
       "foreign_buy_days": 0,
       "score": 2,
       "criteria": {
@@ -569,7 +569,7 @@
       "avg_vol5": 77068.6,
       "vol_ratio": 0.8,
       "buy_days": 1,
-      "net_buy_ratio": 15.56,
+      "net_buy_ratio": 15.5,
       "foreign_buy_days": 0,
       "score": 2,
       "criteria": {
@@ -1178,7 +1178,7 @@
       "avg_vol5": 4434.4,
       "vol_ratio": 1.04,
       "buy_days": 3,
-      "net_buy_ratio": 18.38,
+      "net_buy_ratio": 18.34,
       "foreign_buy_days": 0,
       "score": 2,
       "criteria": {
@@ -1439,7 +1439,7 @@
       "avg_vol5": 32107.0,
       "vol_ratio": 0.52,
       "buy_days": 10,
-      "net_buy_ratio": 1.5,
+      "net_buy_ratio": 1.48,
       "foreign_buy_days": 0,
       "score": 1,
       "criteria": {
@@ -1584,7 +1584,7 @@
       "avg_vol5": 3120.4,
       "vol_ratio": 0.93,
       "buy_days": 1,
-      "net_buy_ratio": 2.97,
+      "net_buy_ratio": 2.9,
       "foreign_buy_days": 0,
       "score": 1,
       "criteria": {
@@ -1758,7 +1758,7 @@
       "avg_vol5": 8142.4,
       "vol_ratio": 1.12,
       "buy_days": 1,
-      "net_buy_ratio": 0.21,
+      "net_buy_ratio": 0.2,
       "foreign_buy_days": 0,
       "score": 1,
       "criteria": {
@@ -1787,7 +1787,7 @@
       "avg_vol5": 2627.1,
       "vol_ratio": 1.46,
       "buy_days": 10,
-      "net_buy_ratio": 2.85,
+      "net_buy_ratio": 2.26,
       "foreign_buy_days": 0,
       "score": 1,
       "criteria": {
@@ -2193,7 +2193,7 @@
       "avg_vol5": 4212.6,
       "vol_ratio": 0.7,
       "buy_days": 4,
-      "net_buy_ratio": 2.36,
+      "net_buy_ratio": 2.33,
       "foreign_buy_days": 0,
       "score": 1,
       "criteria": {
@@ -2455,7 +2455,7 @@
       "vol_ratio": 0.94,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
+      "foreign_buy_days": 1,
       "score": 1,
       "criteria": {
         "s1": false,
@@ -3701,7 +3701,7 @@
       "avg_vol5": 2062.2,
       "vol_ratio": 1.12,
       "buy_days": 1,
-      "net_buy_ratio": 0.21,
+      "net_buy_ratio": 0.12,
       "foreign_buy_days": 0,
       "score": 0,
       "criteria": {
