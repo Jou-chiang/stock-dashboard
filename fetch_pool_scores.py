@@ -152,10 +152,10 @@ def filter_inst_rows(inst_rows, keyword):
     )
 
 def calc_inst_buy_days(inst_rows):
-    """投信連買天數（中文：投信，英文備援：Investment_Trust）"""
-    rows = filter_inst_rows(inst_rows, "投信")
+    """投信連買天數（英文：Investment_Trust，中文備援：投信）"""
+    rows = filter_inst_rows(inst_rows, "Investment_Trust")
     if not rows:
-        rows = filter_inst_rows(inst_rows, "Investment_Trust")
+        rows = filter_inst_rows(inst_rows, "投信")
     days = 0
     for r in reversed(rows):
         net = float(r.get("buy", 0)) - float(r.get("sell", 0))
@@ -167,9 +167,9 @@ def calc_inst_buy_days(inst_rows):
 
 def calc_inst_net_buy_ratio(inst_rows, last_volume_shares):
     """投信淨買超比率"""
-    rows = filter_inst_rows(inst_rows, "投信")
+    rows = filter_inst_rows(inst_rows, "Investment_Trust")
     if not rows:
-        rows = filter_inst_rows(inst_rows, "Investment_Trust")
+        rows = filter_inst_rows(inst_rows, "投信")
     if not rows or not last_volume_shares:
         return 0.0
     last = rows[-1]
@@ -179,10 +179,10 @@ def calc_inst_net_buy_ratio(inst_rows, last_volume_shares):
     return round((net_shares / last_volume_shares) * 100, 2)
 
 def calc_foreign_buy_days(inst_rows):
-    """外資連買天數（中文：外資，英文備援：Foreign）"""
-    rows = filter_inst_rows(inst_rows, "外資")
+    """外資連買天數（英文：Foreign_Investor，中文備援：外資）"""
+    rows = filter_inst_rows(inst_rows, "Foreign_Investor")
     if not rows:
-        rows = filter_inst_rows(inst_rows, "Foreign")
+        rows = filter_inst_rows(inst_rows, "外資")
     days = 0
     for r in reversed(rows):
         net = float(r.get("buy", 0)) - float(r.get("sell", 0))
