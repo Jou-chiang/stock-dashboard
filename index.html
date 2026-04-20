@@ -323,6 +323,9 @@ let acItems = [], acSel = -1;
 function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr, high20){
   if([K,D,RSI].some(v=>v===null||v===undefined||isNaN(v))) return null;
 
+  // 最優先：漲停直接鎖死，蓋掉所有其他訊號
+  if(chg !== null && chg > 9.5) return 'limit-up-lock';
+
   let jLow = 0;
   if(jArr && jArr.length > 0){
     for(let i=jArr.length-1; i>=0; i--){ if(jArr[i]<0) jLow++; else break; }
@@ -359,12 +362,8 @@ function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr, high20)
       sig='dullness-end';
     } else if(jToday>=3){
       if(!['sell','strong-sell'].includes(sig)){
-        if(chg !== null && chg > 9.5){
-          sig = 'limit-up-lock';
-        } else {
-          const hasVol = vol!==null && vol5!==null && vol5>0 && vol >= vol5*1.2;
-          sig = hasVol ? 'high-dullness' : 'high-dullness-weak';
-        }
+        const hasVol = vol!==null && vol5!==null && vol5>0 && vol >= vol5*1.2;
+        sig = hasVol ? 'high-dullness' : 'high-dullness-weak';
       }
     } else if(jToday===1||jToday===2){
       if(!['sell','strong-sell'].includes(sig)) sig='initial-spurt';
