@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-20",
+  "updated": "2026-04-21",
   "total": 143,
   "scores": [
     {
@@ -29,7 +29,65 @@
         "s5": true,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "5904",
+      "name": "寶雅",
+      "sector": "貿易百貨",
+      "price": 519.0,
+      "chg_pct": 1.76,
+      "k": 74.9,
+      "d": 63.2,
+      "j": 98.2,
+      "ma5": 507.0,
+      "ma20": 506.7,
+      "ma_gap": 0.1,
+      "volume": 563,
+      "avg_vol5": 333.1,
+      "vol_ratio": 1.69,
+      "buy_days": 2,
+      "net_buy_ratio": 6.4,
+      "foreign_buy_days": 3,
+      "score": 4,
+      "criteria": {
+        "s1": false,
+        "s2": true,
+        "s3": false,
+        "s4": true,
+        "s5": true,
+        "s6": true
+      },
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "2603",
+      "name": "長榮",
+      "sector": "航運",
+      "price": 197.0,
+      "chg_pct": -0.51,
+      "k": 22.4,
+      "d": 31.9,
+      "j": 3.3,
+      "ma5": 200.1,
+      "ma20": 202.6,
+      "ma_gap": 1.2,
+      "volume": 14107,
+      "avg_vol5": 10963.6,
+      "vol_ratio": 1.29,
+      "buy_days": 1,
+      "net_buy_ratio": 5.52,
+      "foreign_buy_days": 0,
+      "score": 3,
+      "criteria": {
+        "s1": false,
+        "s2": true,
+        "s3": true,
+        "s4": false,
+        "s5": true,
+        "s6": false
+      },
+      "updated": "2026-04-21"
     },
     {
       "code": "1102",
@@ -58,7 +116,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "9904",
@@ -87,36 +145,36 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
-      "code": "2371",
-      "name": "大同",
-      "sector": "電機機械",
-      "price": 31.7,
-      "chg_pct": -4.23,
-      "k": 49.3,
-      "d": 55.5,
-      "j": 37.0,
-      "ma5": 32.27,
-      "ma20": 31.54,
-      "ma_gap": 2.3,
-      "volume": 35316,
-      "avg_vol5": 17098.9,
-      "vol_ratio": 2.07,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
+      "code": "9910",
+      "name": "豐泰",
+      "sector": "其他",
+      "price": 78.1,
+      "chg_pct": 0.77,
+      "k": 31.7,
+      "d": 25.4,
+      "j": 44.2,
+      "ma5": 77.3,
+      "ma20": 79.33,
+      "ma_gap": 2.6,
+      "volume": 2374,
+      "avg_vol5": 1910.5,
+      "vol_ratio": 1.24,
+      "buy_days": 1,
+      "net_buy_ratio": 32.93,
       "foreign_buy_days": 0,
       "score": 3,
       "criteria": {
         "s1": false,
-        "s2": false,
+        "s2": true,
         "s3": true,
-        "s4": true,
+        "s4": false,
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "8028",
@@ -145,55 +203,55 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
-      "code": "3533",
-      "name": "嘉澤",
-      "sector": "電子零組件",
-      "price": 2625.0,
-      "chg_pct": 5.42,
-      "k": 83.3,
-      "d": 77.1,
-      "j": 95.9,
-      "ma5": 2445.0,
-      "ma20": 2222.0,
-      "ma_gap": 10.0,
-      "volume": 2224,
-      "avg_vol5": 1169.7,
-      "vol_ratio": 1.9,
-      "buy_days": 4,
-      "net_buy_ratio": 12.68,
+      "code": "1476",
+      "name": "儒鴻",
+      "sector": "紡織",
+      "price": 345.0,
+      "chg_pct": -2.54,
+      "k": 81.2,
+      "d": 74.3,
+      "j": 95.1,
+      "ma5": 347.0,
+      "ma20": 337.95,
+      "ma_gap": 2.7,
+      "volume": 2154,
+      "avg_vol5": 1379.0,
+      "vol_ratio": 1.56,
+      "buy_days": 1,
+      "net_buy_ratio": 22.03,
       "foreign_buy_days": 0,
       "score": 3,
       "criteria": {
-        "s1": true,
+        "s1": false,
         "s2": true,
         "s3": false,
         "s4": true,
-        "s5": false,
+        "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
-      "code": "3036",
-      "name": "文曄",
-      "sector": "電子通路",
-      "price": 217.0,
-      "chg_pct": -5.65,
-      "k": 42.5,
-      "d": 50.9,
-      "j": 25.8,
-      "ma5": 227.8,
-      "ma20": 229.45,
-      "ma_gap": 0.7,
-      "volume": 12831,
-      "avg_vol5": 6651.9,
-      "vol_ratio": 1.93,
+      "code": "9907",
+      "name": "統一實",
+      "sector": "其他",
+      "price": 17.9,
+      "chg_pct": -0.28,
+      "k": 12.2,
+      "d": 21.1,
+      "j": -5.6,
+      "ma5": 17.98,
+      "ma20": 18.18,
+      "ma_gap": 1.1,
+      "volume": 5052,
+      "avg_vol5": 2866.8,
+      "vol_ratio": 1.76,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
-      "foreign_buy_days": 1,
+      "foreign_buy_days": 0,
       "score": 3,
       "criteria": {
         "s1": false,
@@ -203,7 +261,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2303",
@@ -232,7 +290,7 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2881",
@@ -261,7 +319,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2412",
@@ -290,7 +348,7 @@
         "s5": true,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2891",
@@ -319,7 +377,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2002",
@@ -348,7 +406,7 @@
         "s5": true,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2884",
@@ -377,7 +435,7 @@
         "s5": true,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "5880",
@@ -406,7 +464,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "1216",
@@ -435,36 +493,7 @@
         "s5": true,
         "s6": true
       },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "2603",
-      "name": "長榮",
-      "sector": "航運",
-      "price": 197.0,
-      "chg_pct": -0.51,
-      "k": 22.4,
-      "d": 31.9,
-      "j": 3.3,
-      "ma5": 200.1,
-      "ma20": 202.6,
-      "ma_gap": 1.2,
-      "volume": 14107,
-      "avg_vol5": 10963.6,
-      "vol_ratio": 1.29,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 2,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": true,
-        "s4": false,
-        "s5": true,
-        "s6": false
-      },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2609",
@@ -493,7 +522,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2615",
@@ -522,7 +551,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2408",
@@ -551,7 +580,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2337",
@@ -580,7 +609,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2344",
@@ -609,7 +638,7 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2376",
@@ -626,7 +655,7 @@
       "volume": 8155,
       "avg_vol5": 14308.1,
       "vol_ratio": 0.57,
-      "buy_days": 13,
+      "buy_days": 12,
       "net_buy_ratio": 0.16,
       "foreign_buy_days": 9,
       "score": 2,
@@ -638,7 +667,7 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2353",
@@ -667,7 +696,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2481",
@@ -696,7 +725,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2618",
@@ -725,7 +754,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2610",
@@ -754,7 +783,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "5876",
@@ -783,7 +812,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "1402",
@@ -812,36 +841,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "9910",
-      "name": "豐泰",
-      "sector": "其他",
-      "price": 78.1,
-      "chg_pct": 0.77,
-      "k": 31.7,
-      "d": 25.4,
-      "j": 44.2,
-      "ma5": 77.3,
-      "ma20": 79.33,
-      "ma_gap": 2.6,
-      "volume": 2374,
-      "avg_vol5": 1910.5,
-      "vol_ratio": 1.24,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 2,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": true,
-        "s4": false,
-        "s5": true,
-        "s6": false
-      },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "9921",
@@ -870,7 +870,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "9945",
@@ -899,36 +899,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "5904",
-      "name": "寶雅",
-      "sector": "貿易百貨",
-      "price": 519.0,
-      "chg_pct": 1.76,
-      "k": 74.9,
-      "d": 63.2,
-      "j": 98.2,
-      "ma5": 507.0,
-      "ma20": 506.7,
-      "ma_gap": 0.1,
-      "volume": 563,
-      "avg_vol5": 333.1,
-      "vol_ratio": 1.69,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 2,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": false,
-        "s4": true,
-        "s5": true,
-        "s6": false
-      },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3045",
@@ -957,7 +928,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "4904",
@@ -986,25 +957,25 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3017",
       "name": "奇鋐",
       "sector": "電腦週邊",
-      "price": 2490.0,
-      "chg_pct": 3.75,
-      "k": 84.5,
-      "d": 79.6,
-      "j": 94.2,
-      "ma5": 2393.0,
-      "ma20": 2189.5,
-      "ma_gap": 9.3,
-      "volume": 3548,
-      "avg_vol5": 3735.3,
-      "vol_ratio": 0.95,
+      "price": 2565.0,
+      "chg_pct": 3.01,
+      "k": 88.0,
+      "d": 82.4,
+      "j": 99.2,
+      "ma5": 2444.0,
+      "ma20": 2215.25,
+      "ma_gap": 10.3,
+      "volume": 3935,
+      "avg_vol5": 3820.6,
+      "vol_ratio": 1.03,
       "buy_days": 6,
-      "net_buy_ratio": 9.01,
+      "net_buy_ratio": 8.13,
       "foreign_buy_days": 1,
       "score": 2,
       "criteria": {
@@ -1015,23 +986,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "1722",
       "name": "台肥",
       "sector": "化學",
-      "price": 45.25,
-      "chg_pct": -0.88,
-      "k": 20.2,
-      "d": 35.9,
-      "j": -11.1,
-      "ma5": 45.77,
-      "ma20": 45.9,
-      "ma_gap": 0.3,
-      "volume": 2761,
-      "avg_vol5": 3193.1,
-      "vol_ratio": 0.86,
+      "price": 45.1,
+      "chg_pct": -0.33,
+      "k": 14.2,
+      "d": 28.7,
+      "j": -14.6,
+      "ma5": 45.48,
+      "ma20": 45.8,
+      "ma_gap": 0.7,
+      "volume": 1867,
+      "avg_vol5": 3010.3,
+      "vol_ratio": 0.62,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -1044,23 +1015,23 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
-      "code": "1513",
-      "name": "中興電",
+      "code": "2371",
+      "name": "大同",
       "sector": "電機機械",
-      "price": 153.5,
-      "chg_pct": 0.33,
-      "k": 74.4,
-      "d": 70.2,
-      "j": 82.9,
-      "ma5": 152.7,
-      "ma20": 151.05,
-      "ma_gap": 1.1,
-      "volume": 7113,
-      "avg_vol5": 4202.2,
-      "vol_ratio": 1.69,
+      "price": 32.0,
+      "chg_pct": 0.95,
+      "k": 42.7,
+      "d": 51.2,
+      "j": 25.7,
+      "ma5": 32.28,
+      "ma20": 31.61,
+      "ma_gap": 2.1,
+      "volume": 13734,
+      "avg_vol5": 21015.1,
+      "vol_ratio": 0.65,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -1068,30 +1039,30 @@
       "criteria": {
         "s1": false,
         "s2": false,
-        "s3": false,
-        "s4": true,
+        "s3": true,
+        "s4": false,
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2006",
       "name": "東和鋼鐵",
       "sector": "鋼鐵",
-      "price": 70.1,
-      "chg_pct": -2.37,
-      "k": 47.1,
-      "d": 54.2,
-      "j": 32.9,
-      "ma5": 70.76,
-      "ma20": 70.58,
-      "ma_gap": 0.3,
-      "volume": 3004,
-      "avg_vol5": 2348.4,
-      "vol_ratio": 1.28,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
+      "price": 70.2,
+      "chg_pct": 0.14,
+      "k": 38.1,
+      "d": 48.8,
+      "j": 16.6,
+      "ma5": 70.66,
+      "ma20": 70.56,
+      "ma_gap": 0.1,
+      "volume": 2119,
+      "avg_vol5": 2469.9,
+      "vol_ratio": 0.86,
+      "buy_days": 1,
+      "net_buy_ratio": 2.85,
       "foreign_buy_days": 0,
       "score": 2,
       "criteria": {
@@ -1102,23 +1073,23 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2014",
       "name": "中鴻",
       "sector": "鋼鐵",
-      "price": 18.6,
-      "chg_pct": -0.27,
-      "k": 34.5,
-      "d": 37.2,
-      "j": 29.1,
-      "ma5": 18.6,
-      "ma20": 18.57,
-      "ma_gap": 0.2,
-      "volume": 6395,
-      "avg_vol5": 5424.8,
-      "vol_ratio": 1.18,
+      "price": 18.3,
+      "chg_pct": -1.61,
+      "k": 24.6,
+      "d": 33.0,
+      "j": 7.8,
+      "ma5": 18.52,
+      "ma20": 18.5,
+      "ma_gap": 0.1,
+      "volume": 6241,
+      "avg_vol5": 6008.4,
+      "vol_ratio": 1.04,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -1131,23 +1102,23 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2027",
       "name": "大成鋼",
       "sector": "鋼鐵",
       "price": 36.95,
-      "chg_pct": -1.73,
-      "k": 20.4,
-      "d": 32.4,
-      "j": -3.7,
-      "ma5": 37.55,
-      "ma20": 37.44,
-      "ma_gap": 0.3,
-      "volume": 21077,
-      "avg_vol5": 19671.4,
-      "vol_ratio": 1.07,
+      "chg_pct": 0.0,
+      "k": 16.2,
+      "d": 27.0,
+      "j": -5.4,
+      "ma5": 37.25,
+      "ma20": 37.42,
+      "ma_gap": 0.5,
+      "volume": 11699,
+      "avg_vol5": 20587.1,
+      "vol_ratio": 0.57,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -1160,26 +1131,26 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2201",
       "name": "裕隆",
       "sector": "汽車",
-      "price": 27.7,
-      "chg_pct": 3.55,
-      "k": 43.1,
-      "d": 32.2,
-      "j": 64.8,
-      "ma5": 27.14,
-      "ma20": 27.33,
-      "ma_gap": 0.7,
-      "volume": 4964,
-      "avg_vol5": 5903.3,
-      "vol_ratio": 0.84,
+      "price": 27.35,
+      "chg_pct": -1.26,
+      "k": 45.7,
+      "d": 36.7,
+      "j": 63.8,
+      "ma5": 27.31,
+      "ma20": 27.3,
+      "ma_gap": 0.0,
+      "volume": 3408,
+      "avg_vol5": 6303.3,
+      "vol_ratio": 0.54,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
+      "foreign_buy_days": 1,
       "score": 2,
       "criteria": {
         "s1": false,
@@ -1189,23 +1160,23 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2204",
       "name": "中華",
       "sector": "汽車",
-      "price": 54.2,
-      "chg_pct": -0.55,
-      "k": 28.5,
-      "d": 29.1,
-      "j": 27.3,
-      "ma5": 54.58,
-      "ma20": 54.94,
-      "ma_gap": 0.7,
-      "volume": 1027,
-      "avg_vol5": 1092.7,
-      "vol_ratio": 0.94,
+      "price": 54.1,
+      "chg_pct": -0.18,
+      "k": 26.9,
+      "d": 28.4,
+      "j": 23.8,
+      "ma5": 54.48,
+      "ma20": 54.9,
+      "ma_gap": 0.8,
+      "volume": 1614,
+      "avg_vol5": 1103.7,
+      "vol_ratio": 1.46,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -1218,23 +1189,23 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2313",
       "name": "華通",
       "sector": "電子零組件",
-      "price": 250.5,
-      "chg_pct": -4.21,
-      "k": 19.3,
-      "d": 37.2,
-      "j": -16.5,
-      "ma5": 258.5,
-      "ma20": 255.9,
-      "ma_gap": 1.0,
-      "volume": 72815,
-      "avg_vol5": 65722.5,
-      "vol_ratio": 1.11,
+      "price": 254.5,
+      "chg_pct": 1.6,
+      "k": 21.8,
+      "d": 32.0,
+      "j": 1.3,
+      "ma5": 257.9,
+      "ma20": 257.52,
+      "ma_gap": 0.1,
+      "volume": 83848,
+      "avg_vol5": 66970.2,
+      "vol_ratio": 1.25,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -1247,23 +1218,23 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2367",
       "name": "燿華",
       "sector": "電子零組件",
-      "price": 65.6,
-      "chg_pct": -4.23,
-      "k": 8.8,
-      "d": 17.7,
-      "j": -9.0,
-      "ma5": 69.72,
-      "ma20": 72.91,
-      "ma_gap": 4.4,
-      "volume": 61760,
-      "avg_vol5": 36208.3,
-      "vol_ratio": 1.71,
+      "price": 70.3,
+      "chg_pct": 7.16,
+      "k": 18.9,
+      "d": 18.1,
+      "j": 20.5,
+      "ma5": 69.38,
+      "ma20": 72.78,
+      "ma_gap": 4.7,
+      "volume": 87341,
+      "avg_vol5": 41180.6,
+      "vol_ratio": 2.12,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 1,
@@ -1276,7 +1247,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3661",
@@ -1305,7 +1276,7 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "6414",
@@ -1334,23 +1305,23 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3035",
       "name": "智原",
       "sector": "半導體",
-      "price": 174.5,
-      "chg_pct": 9.75,
-      "k": 86.3,
-      "d": 75.1,
-      "j": 108.6,
-      "ma5": 158.5,
-      "ma20": 150.7,
-      "ma_gap": 5.2,
-      "volume": 14759,
-      "avg_vol5": 3648.0,
-      "vol_ratio": 4.05,
+      "price": 180.0,
+      "chg_pct": 3.15,
+      "k": 88.9,
+      "d": 79.7,
+      "j": 107.3,
+      "ma5": 163.9,
+      "ma20": 151.82,
+      "ma_gap": 8.0,
+      "volume": 22102,
+      "avg_vol5": 6318.5,
+      "vol_ratio": 3.5,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 7,
@@ -1363,52 +1334,139 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
-      "code": "4938",
-      "name": "和碩",
+      "code": "2377",
+      "name": "微星",
       "sector": "電腦週邊",
-      "price": 82.7,
-      "chg_pct": -0.36,
-      "k": 70.0,
-      "d": 61.9,
-      "j": 86.3,
-      "ma5": 80.62,
-      "ma20": 78.92,
-      "ma_gap": 2.2,
-      "volume": 15277,
-      "avg_vol5": 15318.5,
-      "vol_ratio": 1.0,
-      "buy_days": 1,
-      "net_buy_ratio": 12.96,
+      "price": 93.8,
+      "chg_pct": 2.29,
+      "k": 72.7,
+      "d": 63.4,
+      "j": 91.3,
+      "ma5": 91.38,
+      "ma20": 90.08,
+      "ma_gap": 1.4,
+      "volume": 9767,
+      "avg_vol5": 5296.8,
+      "vol_ratio": 1.84,
+      "buy_days": 2,
+      "net_buy_ratio": 0.53,
       "foreign_buy_days": 0,
       "score": 2,
       "criteria": {
         "s1": false,
+        "s2": false,
+        "s3": false,
+        "s4": true,
+        "s5": true,
+        "s6": false
+      },
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "3533",
+      "name": "嘉澤",
+      "sector": "電子零組件",
+      "price": 2635.0,
+      "chg_pct": 0.38,
+      "k": 82.7,
+      "d": 78.9,
+      "j": 90.2,
+      "ma5": 2527.0,
+      "ma20": 2250.5,
+      "ma_gap": 12.3,
+      "volume": 1311,
+      "avg_vol5": 1436.5,
+      "vol_ratio": 0.91,
+      "buy_days": 4,
+      "net_buy_ratio": 21.51,
+      "foreign_buy_days": 0,
+      "score": 2,
+      "criteria": {
+        "s1": true,
         "s2": true,
         "s3": false,
+        "s4": false,
+        "s5": false,
+        "s6": false
+      },
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "3036",
+      "name": "文曄",
+      "sector": "電子通路",
+      "price": 217.5,
+      "chg_pct": 0.23,
+      "k": 34.3,
+      "d": 45.4,
+      "j": 12.3,
+      "ma5": 225.8,
+      "ma20": 227.62,
+      "ma_gap": 0.8,
+      "volume": 8452,
+      "avg_vol5": 8253.4,
+      "vol_ratio": 1.02,
+      "buy_days": 0,
+      "net_buy_ratio": 0.0,
+      "foreign_buy_days": 1,
+      "score": 2,
+      "criteria": {
+        "s1": false,
+        "s2": false,
+        "s3": true,
         "s4": false,
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "2633",
+      "name": "台灣高鐵",
+      "sector": "航運",
+      "price": 26.7,
+      "chg_pct": -0.19,
+      "k": 74.6,
+      "d": 82.6,
+      "j": 58.4,
+      "ma5": 26.86,
+      "ma20": 26.61,
+      "ma_gap": 0.9,
+      "volume": 8212,
+      "avg_vol5": 4338.8,
+      "vol_ratio": 1.89,
+      "buy_days": 0,
+      "net_buy_ratio": 0.0,
+      "foreign_buy_days": 0,
+      "score": 2,
+      "criteria": {
+        "s1": false,
+        "s2": false,
+        "s3": false,
+        "s4": true,
+        "s5": true,
+        "s6": false
+      },
+      "updated": "2026-04-21"
     },
     {
       "code": "2707",
       "name": "晶華",
       "sector": "觀光",
-      "price": 179.0,
-      "chg_pct": -0.83,
-      "k": 20.4,
-      "d": 40.3,
-      "j": -19.3,
-      "ma5": 184.7,
-      "ma20": 186.28,
-      "ma_gap": 0.8,
-      "volume": 528,
-      "avg_vol5": 555.9,
-      "vol_ratio": 0.95,
+      "price": 178.0,
+      "chg_pct": -0.56,
+      "k": 13.6,
+      "d": 31.4,
+      "j": -22.0,
+      "ma5": 181.8,
+      "ma20": 185.93,
+      "ma_gap": 2.2,
+      "volume": 236,
+      "avg_vol5": 509.7,
+      "vol_ratio": 0.46,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -1421,52 +1479,23 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "9933",
-      "name": "中鼎",
-      "sector": "其他",
-      "price": 36.4,
-      "chg_pct": -5.45,
-      "k": 49.3,
-      "d": 46.1,
-      "j": 55.7,
-      "ma5": 37.12,
-      "ma20": 36.22,
-      "ma_gap": 2.5,
-      "volume": 9889,
-      "avg_vol5": 10718.2,
-      "vol_ratio": 0.92,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 2,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": true,
-        "s4": false,
-        "s5": true,
-        "s6": false
-      },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "9939",
       "name": "宏全",
       "sector": "其他",
-      "price": 119.0,
-      "chg_pct": 3.93,
-      "k": 59.1,
-      "d": 40.6,
-      "j": 96.1,
-      "ma5": 113.9,
-      "ma20": 115.78,
-      "ma_gap": 1.6,
-      "volume": 2269,
-      "avg_vol5": 2377.5,
-      "vol_ratio": 0.95,
+      "price": 120.0,
+      "chg_pct": 0.84,
+      "k": 72.8,
+      "d": 51.3,
+      "j": 115.6,
+      "ma5": 115.9,
+      "ma20": 115.92,
+      "ma_gap": 0.0,
+      "volume": 1303,
+      "avg_vol5": 2055.1,
+      "vol_ratio": 0.63,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 6,
@@ -1479,23 +1508,23 @@
         "s5": true,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2449",
       "name": "京元電子",
       "sector": "半導體",
-      "price": 271.0,
-      "chg_pct": -1.45,
-      "k": 34.2,
-      "d": 49.3,
-      "j": 4.0,
-      "ma5": 284.3,
-      "ma20": 280.85,
-      "ma_gap": 1.2,
-      "volume": 25391,
-      "avg_vol5": 30921.9,
-      "vol_ratio": 0.82,
+      "price": 281.0,
+      "chg_pct": 3.69,
+      "k": 33.1,
+      "d": 43.9,
+      "j": 11.4,
+      "ma5": 280.3,
+      "ma20": 279.5,
+      "ma_gap": 0.3,
+      "volume": 25960,
+      "avg_vol5": 28002.7,
+      "vol_ratio": 0.93,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -1508,26 +1537,55 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "6443",
+      "name": "元晶",
+      "sector": "光電",
+      "price": 39.2,
+      "chg_pct": 0.26,
+      "k": 59.4,
+      "d": 48.6,
+      "j": 81.0,
+      "ma5": 39.69,
+      "ma20": 40.63,
+      "ma_gap": 2.3,
+      "volume": 4451,
+      "avg_vol5": 13747.4,
+      "vol_ratio": 0.32,
+      "buy_days": 0,
+      "net_buy_ratio": 0.0,
+      "foreign_buy_days": 7,
+      "score": 2,
+      "criteria": {
+        "s1": false,
+        "s2": false,
+        "s3": false,
+        "s4": false,
+        "s5": true,
+        "s6": true
+      },
+      "updated": "2026-04-21"
     },
     {
       "code": "6412",
       "name": "群電",
       "sector": "電子零組件",
-      "price": 77.8,
-      "chg_pct": -1.02,
-      "k": 47.4,
-      "d": 55.2,
-      "j": 32.0,
-      "ma5": 78.62,
-      "ma20": 76.93,
-      "ma_gap": 2.2,
-      "volume": 1067,
-      "avg_vol5": 1416.2,
-      "vol_ratio": 0.75,
+      "price": 78.7,
+      "chg_pct": 1.16,
+      "k": 40.5,
+      "d": 50.3,
+      "j": 21.0,
+      "ma5": 78.36,
+      "ma20": 76.95,
+      "ma_gap": 1.8,
+      "volume": 556,
+      "avg_vol5": 1153.2,
+      "vol_ratio": 0.48,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
+      "foreign_buy_days": 1,
       "score": 2,
       "criteria": {
         "s1": false,
@@ -1537,65 +1595,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "1477",
-      "name": "聚陽",
-      "sector": "紡織",
-      "price": 225.0,
-      "chg_pct": 4.65,
-      "k": 45.8,
-      "d": 27.3,
-      "j": 82.8,
-      "ma5": 217.6,
-      "ma20": 233.85,
-      "ma_gap": 6.9,
-      "volume": 2794,
-      "avg_vol5": 1571.4,
-      "vol_ratio": 1.78,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 2,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": true,
-        "s4": true,
-        "s5": false,
-        "s6": false
-      },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "9907",
-      "name": "統一實",
-      "sector": "其他",
-      "price": 17.95,
-      "chg_pct": -0.28,
-      "k": 15.4,
-      "d": 25.5,
-      "j": -5.0,
-      "ma5": 18.02,
-      "ma20": 18.18,
-      "ma_gap": 0.9,
-      "volume": 3632,
-      "avg_vol5": 2807.0,
-      "vol_ratio": 1.29,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 2,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": true,
-        "s4": false,
-        "s5": true,
-        "s6": false
-      },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2454",
@@ -1624,7 +1624,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2882",
@@ -1653,7 +1653,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2382",
@@ -1682,7 +1682,7 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2886",
@@ -1711,7 +1711,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2892",
@@ -1730,7 +1730,7 @@
       "vol_ratio": 1.37,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
+      "foreign_buy_days": 1,
       "score": 1,
       "criteria": {
         "s1": false,
@@ -1740,7 +1740,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2880",
@@ -1769,7 +1769,7 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2324",
@@ -1798,7 +1798,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3008",
@@ -1827,7 +1827,7 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2605",
@@ -1856,7 +1856,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2379",
@@ -1885,7 +1885,36 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "2301",
+      "name": "光寶科",
+      "sector": "電腦週邊",
+      "price": 165.0,
+      "chg_pct": 1.85,
+      "k": 78.1,
+      "d": 72.1,
+      "j": 90.0,
+      "ma5": 160.9,
+      "ma20": 154.32,
+      "ma_gap": 4.3,
+      "volume": 30333,
+      "avg_vol5": 21983.0,
+      "vol_ratio": 1.38,
+      "buy_days": 0,
+      "net_buy_ratio": 0.0,
+      "foreign_buy_days": 5,
+      "score": 1,
+      "criteria": {
+        "s1": false,
+        "s2": false,
+        "s3": false,
+        "s4": false,
+        "s5": false,
+        "s6": true
+      },
+      "updated": "2026-04-21"
     },
     {
       "code": "2395",
@@ -1914,7 +1943,7 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2352",
@@ -1943,7 +1972,7 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3034",
@@ -1972,7 +2001,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3037",
@@ -2001,7 +2030,7 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "8046",
@@ -2030,7 +2059,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2883",
@@ -2059,7 +2088,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2885",
@@ -2088,7 +2117,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2887",
@@ -2117,7 +2146,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "5871",
@@ -2146,23 +2175,52 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "2105",
+      "name": "正新",
+      "sector": "橡膠",
+      "price": 32.7,
+      "chg_pct": 0.15,
+      "k": 84.8,
+      "d": 81.7,
+      "j": 91.0,
+      "ma5": 32.5,
+      "ma20": 31.4,
+      "ma_gap": 3.5,
+      "volume": 9981,
+      "avg_vol5": 9742.0,
+      "vol_ratio": 1.02,
+      "buy_days": 1,
+      "net_buy_ratio": 28.93,
+      "foreign_buy_days": 0,
+      "score": 1,
+      "criteria": {
+        "s1": false,
+        "s2": true,
+        "s3": false,
+        "s4": false,
+        "s5": false,
+        "s6": false
+      },
+      "updated": "2026-04-21"
     },
     {
       "code": "2912",
       "name": "統一超",
       "sector": "貿易百貨",
-      "price": 238.0,
-      "chg_pct": 0.21,
-      "k": 88.3,
-      "d": 80.4,
-      "j": 104.2,
-      "ma5": 233.7,
-      "ma20": 225.75,
-      "ma_gap": 3.5,
-      "volume": 3380,
-      "avg_vol5": 2678.8,
-      "vol_ratio": 1.26,
+      "price": 236.5,
+      "chg_pct": -0.63,
+      "k": 87.0,
+      "d": 82.6,
+      "j": 95.8,
+      "ma5": 235.5,
+      "ma20": 226.72,
+      "ma_gap": 3.9,
+      "volume": 3235,
+      "avg_vol5": 2893.9,
+      "vol_ratio": 1.12,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 5,
@@ -2175,7 +2233,7 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "6176",
@@ -2204,7 +2262,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3231",
@@ -2233,7 +2291,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "6669",
@@ -2262,26 +2320,26 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "1304",
       "name": "台聚",
       "sector": "塑膠",
-      "price": 14.75,
-      "chg_pct": 1.37,
-      "k": 9.4,
-      "d": 17.8,
-      "j": -7.3,
-      "ma5": 15.23,
-      "ma20": 16.16,
-      "ma_gap": 5.8,
-      "volume": 12276,
-      "avg_vol5": 18661.0,
-      "vol_ratio": 0.66,
+      "price": 14.55,
+      "chg_pct": -1.36,
+      "k": 9.3,
+      "d": 15.0,
+      "j": -2.1,
+      "ma5": 14.89,
+      "ma20": 16.13,
+      "ma_gap": 7.7,
+      "volume": 9659,
+      "avg_vol5": 14799.0,
+      "vol_ratio": 0.65,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
+      "foreign_buy_days": 1,
       "score": 1,
       "criteria": {
         "s1": false,
@@ -2291,23 +2349,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "1308",
       "name": "亞聚",
       "sector": "塑膠",
-      "price": 15.45,
-      "chg_pct": 1.31,
-      "k": 9.3,
-      "d": 13.1,
-      "j": 1.9,
-      "ma5": 15.86,
-      "ma20": 17.21,
-      "ma_gap": 7.8,
-      "volume": 4464,
-      "avg_vol5": 8336.4,
-      "vol_ratio": 0.54,
+      "price": 15.35,
+      "chg_pct": -0.65,
+      "k": 9.6,
+      "d": 11.9,
+      "j": 5.0,
+      "ma5": 15.59,
+      "ma20": 17.15,
+      "ma_gap": 9.1,
+      "volume": 4057,
+      "avg_vol5": 6549.7,
+      "vol_ratio": 0.62,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 2,
@@ -2320,7 +2378,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "6505",
@@ -2349,7 +2407,7 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "6508",
@@ -2378,52 +2436,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "1503",
-      "name": "士電",
-      "sector": "電機機械",
-      "price": 194.5,
-      "chg_pct": -1.52,
-      "k": 73.9,
-      "d": 68.1,
-      "j": 85.7,
-      "ma5": 195.1,
-      "ma20": 189.62,
-      "ma_gap": 2.9,
-      "volume": 2352,
-      "avg_vol5": 1988.5,
-      "vol_ratio": 1.18,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 1,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": false,
-        "s4": false,
-        "s5": true,
-        "s6": false
-      },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "1504",
       "name": "東元",
       "sector": "電機機械",
-      "price": 61.8,
-      "chg_pct": -1.75,
-      "k": 67.6,
-      "d": 59.1,
-      "j": 84.5,
-      "ma5": 62.36,
-      "ma20": 62.41,
-      "ma_gap": 0.1,
-      "volume": 8306,
-      "avg_vol5": 9562.0,
-      "vol_ratio": 0.87,
+      "price": 63.7,
+      "chg_pct": 3.07,
+      "k": 77.1,
+      "d": 65.1,
+      "j": 101.0,
+      "ma5": 62.76,
+      "ma20": 62.24,
+      "ma_gap": 0.8,
+      "volume": 8836,
+      "avg_vol5": 9679.4,
+      "vol_ratio": 0.91,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -2436,54 +2465,25 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
-      "code": "1519",
-      "name": "華城",
+      "code": "1513",
+      "name": "中興電",
       "sector": "電機機械",
-      "price": 891.0,
-      "chg_pct": 2.18,
-      "k": 71.3,
-      "d": 61.9,
-      "j": 90.0,
-      "ma5": 868.4,
-      "ma20": 849.8,
-      "ma_gap": 2.2,
-      "volume": 4978,
-      "avg_vol5": 3653.6,
-      "vol_ratio": 1.36,
+      "price": 155.5,
+      "chg_pct": 1.3,
+      "k": 79.3,
+      "d": 73.2,
+      "j": 91.3,
+      "ma5": 153.5,
+      "ma20": 150.95,
+      "ma_gap": 1.7,
+      "volume": 3956,
+      "avg_vol5": 5048.5,
+      "vol_ratio": 0.78,
       "buy_days": 1,
-      "net_buy_ratio": 2.46,
-      "foreign_buy_days": 1,
-      "score": 1,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": false,
-        "s4": false,
-        "s5": true,
-        "s6": false
-      },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "2207",
-      "name": "和泰車",
-      "sector": "汽車",
-      "price": 507.0,
-      "chg_pct": -1.55,
-      "k": 71.9,
-      "d": 73.1,
-      "j": 69.3,
-      "ma5": 512.2,
-      "ma20": 498.35,
-      "ma_gap": 2.8,
-      "volume": 313,
-      "avg_vol5": 302.8,
-      "vol_ratio": 1.03,
-      "buy_days": 1,
-      "net_buy_ratio": 1.31,
+      "net_buy_ratio": 3.24,
       "foreign_buy_days": 0,
       "score": 1,
       "criteria": {
@@ -2494,23 +2494,81 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "2207",
+      "name": "和泰車",
+      "sector": "汽車",
+      "price": 518.0,
+      "chg_pct": 2.17,
+      "k": 76.9,
+      "d": 74.4,
+      "j": 82.0,
+      "ma5": 513.6,
+      "ma20": 499.45,
+      "ma_gap": 2.8,
+      "volume": 371,
+      "avg_vol5": 317.1,
+      "vol_ratio": 1.17,
+      "buy_days": 1,
+      "net_buy_ratio": 1.11,
+      "foreign_buy_days": 0,
+      "score": 1,
+      "criteria": {
+        "s1": false,
+        "s2": false,
+        "s3": false,
+        "s4": false,
+        "s5": true,
+        "s6": false
+      },
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "2368",
+      "name": "金像電",
+      "sector": "電子零組件",
+      "price": 1225.0,
+      "chg_pct": 1.24,
+      "k": 89.6,
+      "d": 84.9,
+      "j": 99.1,
+      "ma5": 1188.0,
+      "ma20": 1023.9,
+      "ma_gap": 16.0,
+      "volume": 4273,
+      "avg_vol5": 6072.9,
+      "vol_ratio": 0.7,
+      "buy_days": 1,
+      "net_buy_ratio": 6.44,
+      "foreign_buy_days": 0,
+      "score": 1,
+      "criteria": {
+        "s1": false,
+        "s2": true,
+        "s3": false,
+        "s4": false,
+        "s5": false,
+        "s6": false
+      },
+      "updated": "2026-04-21"
     },
     {
       "code": "2492",
       "name": "華新科",
       "sector": "被動元件",
-      "price": 149.5,
-      "chg_pct": 1.7,
-      "k": 82.8,
-      "d": 74.6,
-      "j": 99.2,
-      "ma5": 146.5,
-      "ma20": 129.55,
-      "ma_gap": 13.1,
-      "volume": 11547,
-      "avg_vol5": 21542.2,
-      "vol_ratio": 0.54,
+      "price": 149.0,
+      "chg_pct": -0.33,
+      "k": 83.5,
+      "d": 77.5,
+      "j": 95.5,
+      "ma5": 147.7,
+      "ma20": 130.43,
+      "ma_gap": 13.2,
+      "volume": 8451,
+      "avg_vol5": 19916.4,
+      "vol_ratio": 0.42,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 5,
@@ -2523,23 +2581,23 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3023",
       "name": "信邦",
       "sector": "電子零組件",
-      "price": 279.5,
-      "chg_pct": -0.89,
-      "k": 79.5,
+      "price": 282.5,
+      "chg_pct": 1.07,
+      "k": 76.8,
       "d": 76.8,
-      "j": 84.8,
-      "ma5": 275.5,
-      "ma20": 266.18,
-      "ma_gap": 3.5,
-      "volume": 2089,
-      "avg_vol5": 1473.2,
-      "vol_ratio": 1.42,
+      "j": 76.8,
+      "ma5": 278.4,
+      "ma20": 266.8,
+      "ma_gap": 4.3,
+      "volume": 1972,
+      "avg_vol5": 1710.6,
+      "vol_ratio": 1.15,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 11,
@@ -2552,7 +2610,7 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3443",
@@ -2581,7 +2639,36 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "6415",
+      "name": "矽力-KY",
+      "sector": "半導體",
+      "price": 365.5,
+      "chg_pct": 9.92,
+      "k": 75.8,
+      "d": 52.9,
+      "j": 121.6,
+      "ma5": 309.0,
+      "ma20": 290.65,
+      "ma_gap": 6.3,
+      "volume": 5784,
+      "avg_vol5": 7988.0,
+      "vol_ratio": 0.72,
+      "buy_days": 0,
+      "net_buy_ratio": 0.0,
+      "foreign_buy_days": 4,
+      "score": 1,
+      "criteria": {
+        "s1": false,
+        "s2": false,
+        "s3": false,
+        "s4": false,
+        "s5": false,
+        "s6": true
+      },
+      "updated": "2026-04-21"
     },
     {
       "code": "6239",
@@ -2610,23 +2697,52 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "2458",
+      "name": "義隆",
+      "sector": "半導體",
+      "price": 137.0,
+      "chg_pct": 1.48,
+      "k": 77.1,
+      "d": 78.1,
+      "j": 75.1,
+      "ma5": 137.0,
+      "ma20": 131.2,
+      "ma_gap": 4.4,
+      "volume": 3397,
+      "avg_vol5": 3846.4,
+      "vol_ratio": 0.88,
+      "buy_days": 0,
+      "net_buy_ratio": 0.0,
+      "foreign_buy_days": 9,
+      "score": 1,
+      "criteria": {
+        "s1": false,
+        "s2": false,
+        "s3": false,
+        "s4": false,
+        "s5": false,
+        "s6": true
+      },
+      "updated": "2026-04-21"
     },
     {
       "code": "4961",
       "name": "天鈺",
       "sector": "半導體",
-      "price": 155.5,
-      "chg_pct": 1.63,
-      "k": 68.2,
-      "d": 65.0,
-      "j": 74.6,
-      "ma5": 153.7,
-      "ma20": 149.35,
-      "ma_gap": 2.9,
-      "volume": 1367,
-      "avg_vol5": 1023.4,
-      "vol_ratio": 1.34,
+      "price": 154.0,
+      "chg_pct": -0.96,
+      "k": 63.3,
+      "d": 64.4,
+      "j": 60.9,
+      "ma5": 153.9,
+      "ma20": 149.8,
+      "ma_gap": 2.7,
+      "volume": 1153,
+      "avg_vol5": 1151.5,
+      "vol_ratio": 1.0,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -2639,110 +2755,81 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "8016",
-      "name": "矽創",
-      "sector": "半導體",
-      "price": 219.0,
-      "chg_pct": 1.86,
-      "k": 87.9,
-      "d": 81.0,
-      "j": 101.7,
-      "ma5": 211.4,
-      "ma20": 201.05,
-      "ma_gap": 5.1,
-      "volume": 1642,
-      "avg_vol5": 898.7,
-      "vol_ratio": 1.83,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 1,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": false,
-        "s4": true,
-        "s5": false,
-        "s6": false
-      },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2356",
       "name": "英業達",
       "sector": "電腦週邊",
-      "price": 46.6,
-      "chg_pct": 1.86,
-      "k": 85.4,
-      "d": 80.0,
-      "j": 96.3,
-      "ma5": 45.28,
-      "ma20": 43.1,
-      "ma_gap": 5.1,
-      "volume": 36082,
-      "avg_vol5": 22646.3,
-      "vol_ratio": 1.59,
+      "price": 47.35,
+      "chg_pct": 1.61,
+      "k": 87.6,
+      "d": 82.6,
+      "j": 97.8,
+      "ma5": 45.83,
+      "ma20": 43.32,
+      "ma_gap": 5.8,
+      "volume": 29247,
+      "avg_vol5": 27273.6,
+      "vol_ratio": 1.07,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 1,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": false,
-        "s4": true,
-        "s5": false,
-        "s6": false
-      },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "2377",
-      "name": "微星",
-      "sector": "電腦週邊",
-      "price": 91.7,
-      "chg_pct": -0.22,
-      "k": 63.9,
-      "d": 58.8,
-      "j": 74.2,
-      "ma5": 90.4,
-      "ma20": 90.06,
-      "ma_gap": 0.4,
-      "volume": 4953,
-      "avg_vol5": 5345.9,
-      "vol_ratio": 0.93,
-      "buy_days": 2,
-      "net_buy_ratio": 1.04,
-      "foreign_buy_days": 0,
+      "foreign_buy_days": 9,
       "score": 1,
       "criteria": {
         "s1": false,
         "s2": false,
         "s3": false,
         "s4": false,
-        "s5": true,
+        "s5": false,
+        "s6": true
+      },
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "4938",
+      "name": "和碩",
+      "sector": "電腦週邊",
+      "price": 84.0,
+      "chg_pct": 1.57,
+      "k": 78.6,
+      "d": 67.5,
+      "j": 100.9,
+      "ma5": 81.72,
+      "ma20": 79.27,
+      "ma_gap": 3.1,
+      "volume": 14330,
+      "avg_vol5": 15087.8,
+      "vol_ratio": 0.95,
+      "buy_days": 1,
+      "net_buy_ratio": 13.82,
+      "foreign_buy_days": 0,
+      "score": 1,
+      "criteria": {
+        "s1": false,
+        "s2": true,
+        "s3": false,
+        "s4": false,
+        "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3702",
       "name": "大聯大",
       "sector": "電子通路",
-      "price": 100.5,
-      "chg_pct": 1.72,
-      "k": 76.9,
-      "d": 69.3,
-      "j": 92.0,
-      "ma5": 98.3,
-      "ma20": 93.2,
-      "ma_gap": 5.5,
-      "volume": 18639,
-      "avg_vol5": 26549.5,
-      "vol_ratio": 0.7,
+      "price": 102.5,
+      "chg_pct": 1.99,
+      "k": 83.3,
+      "d": 74.0,
+      "j": 101.8,
+      "ma5": 99.5,
+      "ma20": 93.75,
+      "ma_gap": 6.1,
+      "volume": 14836,
+      "avg_vol5": 25061.5,
+      "vol_ratio": 0.59,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 11,
@@ -2755,26 +2842,26 @@
         "s5": false,
         "s6": true
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2474",
       "name": "可成",
       "sector": "其他電子",
-      "price": 206.5,
-      "chg_pct": -4.84,
-      "k": 78.8,
-      "d": 81.2,
-      "j": 73.9,
-      "ma5": 203.7,
-      "ma20": 193.18,
-      "ma_gap": 5.4,
-      "volume": 8588,
-      "avg_vol5": 3675.5,
-      "vol_ratio": 2.34,
+      "price": 210.0,
+      "chg_pct": 1.69,
+      "k": 70.7,
+      "d": 77.7,
+      "j": 56.8,
+      "ma5": 206.2,
+      "ma20": 194.38,
+      "ma_gap": 6.1,
+      "volume": 9478,
+      "avg_vol5": 5065.9,
+      "vol_ratio": 1.87,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
+      "foreign_buy_days": 2,
       "score": 1,
       "criteria": {
         "s1": false,
@@ -2784,23 +2871,139 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
-      "code": "3005",
-      "name": "神基",
-      "sector": "電腦週邊",
-      "price": 100.5,
-      "chg_pct": 1.62,
-      "k": 49.4,
-      "d": 34.6,
-      "j": 79.1,
-      "ma5": 98.68,
-      "ma20": 104.99,
-      "ma_gap": 6.0,
-      "volume": 4291,
-      "avg_vol5": 5065.0,
-      "vol_ratio": 0.85,
+      "code": "5434",
+      "name": "崇越",
+      "sector": "電子通路",
+      "price": 434.0,
+      "chg_pct": 3.7,
+      "k": 93.9,
+      "d": 91.4,
+      "j": 98.9,
+      "ma5": 419.8,
+      "ma20": 362.95,
+      "ma_gap": 15.7,
+      "volume": 993,
+      "avg_vol5": 1058.3,
+      "vol_ratio": 0.94,
+      "buy_days": 1,
+      "net_buy_ratio": 2.01,
+      "foreign_buy_days": 8,
+      "score": 1,
+      "criteria": {
+        "s1": false,
+        "s2": false,
+        "s3": false,
+        "s4": false,
+        "s5": false,
+        "s6": true
+      },
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "2606",
+      "name": "裕民",
+      "sector": "航運",
+      "price": 63.5,
+      "chg_pct": 2.42,
+      "k": 68.8,
+      "d": 73.4,
+      "j": 59.7,
+      "ma5": 63.5,
+      "ma20": 60.4,
+      "ma_gap": 5.1,
+      "volume": 3835,
+      "avg_vol5": 5523.6,
+      "vol_ratio": 0.69,
+      "buy_days": 1,
+      "net_buy_ratio": 11.35,
+      "foreign_buy_days": 0,
+      "score": 1,
+      "criteria": {
+        "s1": false,
+        "s2": true,
+        "s3": false,
+        "s4": false,
+        "s5": false,
+        "s6": false
+      },
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "2637",
+      "name": "慧洋-KY",
+      "sector": "航運",
+      "price": 74.8,
+      "chg_pct": 2.89,
+      "k": 78.5,
+      "d": 78.5,
+      "j": 78.5,
+      "ma5": 74.04,
+      "ma20": 70.37,
+      "ma_gap": 5.2,
+      "volume": 3013,
+      "avg_vol5": 4134.5,
+      "vol_ratio": 0.73,
+      "buy_days": 1,
+      "net_buy_ratio": 10.34,
+      "foreign_buy_days": 0,
+      "score": 1,
+      "criteria": {
+        "s1": false,
+        "s2": true,
+        "s3": false,
+        "s4": false,
+        "s5": false,
+        "s6": false
+      },
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "2634",
+      "name": "漢翔",
+      "sector": "航運",
+      "price": 49.25,
+      "chg_pct": -2.28,
+      "k": 60.4,
+      "d": 51.6,
+      "j": 78.0,
+      "ma5": 49.49,
+      "ma20": 48.28,
+      "ma_gap": 2.5,
+      "volume": 6859,
+      "avg_vol5": 7095.3,
+      "vol_ratio": 0.97,
+      "buy_days": 0,
+      "net_buy_ratio": 0.0,
+      "foreign_buy_days": 0,
+      "score": 1,
+      "criteria": {
+        "s1": false,
+        "s2": false,
+        "s3": false,
+        "s4": false,
+        "s5": true,
+        "s6": false
+      },
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "9933",
+      "name": "中鼎",
+      "sector": "其他",
+      "price": 37.2,
+      "chg_pct": 2.2,
+      "k": 48.7,
+      "d": 47.0,
+      "j": 52.1,
+      "ma5": 37.63,
+      "ma20": 36.37,
+      "ma_gap": 3.5,
+      "volume": 5304,
+      "avg_vol5": 11802.5,
+      "vol_ratio": 0.45,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -2813,141 +3016,25 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "2633",
-      "name": "台灣高鐵",
-      "sector": "航運",
-      "price": 26.75,
-      "chg_pct": -0.93,
-      "k": 83.3,
-      "d": 86.7,
-      "j": 76.4,
-      "ma5": 26.89,
-      "ma20": 26.59,
-      "ma_gap": 1.1,
-      "volume": 4330,
-      "avg_vol5": 4244.0,
-      "vol_ratio": 1.02,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 1,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": false,
-        "s4": false,
-        "s5": true,
-        "s6": false
-      },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "2606",
-      "name": "裕民",
-      "sector": "航運",
-      "price": 62.0,
-      "chg_pct": -4.62,
-      "k": 70.2,
-      "d": 75.6,
-      "j": 59.2,
-      "ma5": 62.86,
-      "ma20": 60.18,
-      "ma_gap": 4.5,
-      "volume": 5606,
-      "avg_vol5": 4883.7,
-      "vol_ratio": 1.15,
-      "buy_days": 1,
-      "net_buy_ratio": 7.77,
-      "foreign_buy_days": 0,
-      "score": 1,
-      "criteria": {
-        "s1": false,
-        "s2": true,
-        "s3": false,
-        "s4": false,
-        "s5": false,
-        "s6": false
-      },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "2637",
-      "name": "慧洋-KY",
-      "sector": "航運",
-      "price": 72.7,
-      "chg_pct": -3.96,
-      "k": 77.1,
-      "d": 78.5,
-      "j": 74.3,
-      "ma5": 73.12,
-      "ma20": 70.15,
-      "ma_gap": 4.2,
-      "volume": 3419,
-      "avg_vol5": 4082.3,
-      "vol_ratio": 0.84,
-      "buy_days": 1,
-      "net_buy_ratio": 9.11,
-      "foreign_buy_days": 0,
-      "score": 1,
-      "criteria": {
-        "s1": false,
-        "s2": true,
-        "s3": false,
-        "s4": false,
-        "s5": false,
-        "s6": false
-      },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "2634",
-      "name": "漢翔",
-      "sector": "航運",
-      "price": 50.4,
-      "chg_pct": 0.0,
-      "k": 62.8,
-      "d": 47.2,
-      "j": 94.1,
-      "ma5": 49.14,
-      "ma20": 48.3,
-      "ma_gap": 1.7,
-      "volume": 6483,
-      "avg_vol5": 6364.6,
-      "vol_ratio": 1.02,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 1,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": false,
-        "s4": false,
-        "s5": true,
-        "s6": false
-      },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "8464",
       "name": "億豐",
       "sector": "其他",
-      "price": 369.5,
-      "chg_pct": 0.27,
-      "k": 68.2,
-      "d": 66.9,
-      "j": 70.9,
-      "ma5": 368.4,
-      "ma20": 356.62,
-      "ma_gap": 3.3,
-      "volume": 496,
-      "avg_vol5": 919.9,
-      "vol_ratio": 0.54,
+      "price": 378.5,
+      "chg_pct": 2.44,
+      "k": 74.8,
+      "d": 69.5,
+      "j": 85.4,
+      "ma5": 368.7,
+      "ma20": 356.35,
+      "ma_gap": 3.5,
+      "volume": 805,
+      "avg_vol5": 779.3,
+      "vol_ratio": 1.03,
       "buy_days": 1,
-      "net_buy_ratio": 19.32,
+      "net_buy_ratio": 11.9,
       "foreign_buy_days": 0,
       "score": 1,
       "criteria": {
@@ -2958,7 +3045,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "8932",
@@ -2987,23 +3074,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3596",
       "name": "智易",
       "sector": "通信網路",
-      "price": 174.5,
-      "chg_pct": -1.41,
-      "k": 69.1,
-      "d": 73.6,
-      "j": 60.0,
-      "ma5": 175.1,
-      "ma20": 172.18,
-      "ma_gap": 1.7,
-      "volume": 1019,
-      "avg_vol5": 1578.8,
-      "vol_ratio": 0.65,
+      "price": 174.0,
+      "chg_pct": -0.29,
+      "k": 58.2,
+      "d": 68.5,
+      "j": 37.6,
+      "ma5": 175.6,
+      "ma20": 171.28,
+      "ma_gap": 2.5,
+      "volume": 1073,
+      "avg_vol5": 1558.8,
+      "vol_ratio": 0.69,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -3016,52 +3103,23 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "6443",
-      "name": "元晶",
-      "sector": "光電",
-      "price": 39.1,
-      "chg_pct": 0.26,
-      "k": 56.6,
-      "d": 43.1,
-      "j": 83.4,
-      "ma5": 39.25,
-      "ma20": 41.05,
-      "ma_gap": 4.4,
-      "volume": 7789,
-      "avg_vol5": 17657.0,
-      "vol_ratio": 0.44,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 7,
-      "score": 1,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": false,
-        "s4": false,
-        "s5": false,
-        "s6": true
-      },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3576",
       "name": "聯合再生",
       "sector": "光電",
-      "price": 17.2,
-      "chg_pct": -6.01,
-      "k": 37.3,
-      "d": 28.4,
-      "j": 55.1,
-      "ma5": 17.27,
-      "ma20": 20.27,
-      "ma_gap": 14.8,
-      "volume": 35649,
-      "avg_vol5": 40628.3,
-      "vol_ratio": 0.88,
+      "price": 16.85,
+      "chg_pct": -2.03,
+      "k": 37.1,
+      "d": 31.3,
+      "j": 48.7,
+      "ma5": 17.56,
+      "ma20": 19.96,
+      "ma_gap": 12.0,
+      "volume": 21078,
+      "avg_vol5": 43519.8,
+      "vol_ratio": 0.48,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 1,
@@ -3074,23 +3132,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2406",
       "name": "國碩",
       "sector": "光電",
-      "price": 34.45,
-      "chg_pct": 1.47,
-      "k": 62.6,
-      "d": 44.7,
-      "j": 98.4,
-      "ma5": 33.24,
-      "ma20": 33.55,
-      "ma_gap": 0.9,
-      "volume": 16976,
-      "avg_vol5": 13325.6,
-      "vol_ratio": 1.27,
+      "price": 33.7,
+      "chg_pct": -2.18,
+      "k": 63.8,
+      "d": 51.1,
+      "j": 89.3,
+      "ma5": 33.59,
+      "ma20": 33.38,
+      "ma_gap": 0.6,
+      "volume": 6530,
+      "avg_vol5": 15284.2,
+      "vol_ratio": 0.43,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -3103,52 +3161,23 @@
         "s5": true,
         "s6": false
       },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "2360",
-      "name": "致茂",
-      "sector": "其他電子",
-      "price": 2050.0,
-      "chg_pct": -9.09,
-      "k": 81.2,
-      "d": 82.0,
-      "j": 79.5,
-      "ma5": 2043.0,
-      "ma20": 1735.75,
-      "ma_gap": 17.7,
-      "volume": 8574,
-      "avg_vol5": 4765.9,
-      "vol_ratio": 1.8,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 1,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": false,
-        "s4": true,
-        "s5": false,
-        "s6": false
-      },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2312",
       "name": "金寶",
       "sector": "電腦週邊",
-      "price": 24.7,
-      "chg_pct": 0.61,
-      "k": 69.9,
-      "d": 63.4,
-      "j": 83.0,
-      "ma5": 24.21,
-      "ma20": 22.91,
-      "ma_gap": 5.7,
-      "volume": 48584,
-      "avg_vol5": 31123.7,
-      "vol_ratio": 1.56,
+      "price": 27.15,
+      "chg_pct": 9.92,
+      "k": 80.0,
+      "d": 68.9,
+      "j": 102.0,
+      "ma5": 25.1,
+      "ma20": 23.09,
+      "ma_gap": 8.7,
+      "volume": 65858,
+      "avg_vol5": 39402.6,
+      "vol_ratio": 1.67,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 1,
@@ -3161,36 +3190,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "1476",
-      "name": "儒鴻",
-      "sector": "紡織",
-      "price": 354.0,
-      "chg_pct": 1.29,
-      "k": 87.1,
-      "d": 70.8,
-      "j": 119.5,
-      "ma5": 346.4,
-      "ma20": 339.07,
-      "ma_gap": 2.2,
-      "volume": 1430,
-      "avg_vol5": 1278.4,
-      "vol_ratio": 1.12,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 1,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": false,
-        "s4": false,
-        "s5": true,
-        "s6": false
-      },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "4749",
@@ -3219,7 +3219,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2330",
@@ -3248,7 +3248,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2317",
@@ -3277,7 +3277,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2308",
@@ -3306,7 +3306,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3711",
@@ -3335,7 +3335,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2357",
@@ -3364,7 +3364,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "1301",
@@ -3393,7 +3393,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "1303",
@@ -3422,36 +3422,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "2301",
-      "name": "光寶科",
-      "sector": "電腦週邊",
-      "price": 165.0,
-      "chg_pct": 1.85,
-      "k": 78.1,
-      "d": 72.1,
-      "j": 90.0,
-      "ma5": 160.9,
-      "ma20": 154.32,
-      "ma_gap": 4.3,
-      "volume": 30333,
-      "avg_vol5": 21983.0,
-      "vol_ratio": 1.38,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 0,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": false,
-        "s4": false,
-        "s5": false,
-        "s6": false
-      },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3189",
@@ -3480,7 +3451,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "1101",
@@ -3509,52 +3480,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "2105",
-      "name": "正新",
-      "sector": "橡膠",
-      "price": 32.7,
-      "chg_pct": 0.15,
-      "k": 84.8,
-      "d": 81.7,
-      "j": 91.0,
-      "ma5": 32.5,
-      "ma20": 31.4,
-      "ma_gap": 3.5,
-      "volume": 9981,
-      "avg_vol5": 9742.0,
-      "vol_ratio": 1.02,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 0,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": false,
-        "s4": false,
-        "s5": false,
-        "s6": false
-      },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2345",
       "name": "智邦",
       "sector": "通信網路",
-      "price": 2005.0,
-      "chg_pct": -3.14,
-      "k": 84.0,
-      "d": 83.0,
-      "j": 85.9,
-      "ma5": 1994.0,
-      "ma20": 1738.0,
-      "ma_gap": 14.7,
-      "volume": 4047,
-      "avg_vol5": 4318.3,
-      "vol_ratio": 0.94,
+      "price": 2190.0,
+      "chg_pct": 9.23,
+      "k": 88.4,
+      "d": 84.8,
+      "j": 95.6,
+      "ma5": 2054.0,
+      "ma20": 1767.0,
+      "ma_gap": 16.2,
+      "volume": 6134,
+      "avg_vol5": 4540.9,
+      "vol_ratio": 1.35,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -3567,23 +3509,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2409",
       "name": "友達",
       "sector": "光電",
-      "price": 19.25,
-      "chg_pct": -3.02,
-      "k": 68.6,
-      "d": 75.7,
-      "j": 54.3,
-      "ma5": 19.93,
-      "ma20": 16.94,
-      "ma_gap": 17.7,
-      "volume": 309422,
-      "avg_vol5": 503600.8,
-      "vol_ratio": 0.61,
+      "price": 18.9,
+      "chg_pct": -1.82,
+      "k": 59.6,
+      "d": 70.3,
+      "j": 38.1,
+      "ma5": 19.75,
+      "ma20": 17.1,
+      "ma_gap": 15.5,
+      "volume": 250709,
+      "avg_vol5": 516000.7,
+      "vol_ratio": 0.49,
       "buy_days": 1,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -3596,7 +3538,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3481",
@@ -3625,23 +3567,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "1326",
       "name": "台化",
       "sector": "塑膠",
       "price": 50.5,
-      "chg_pct": -0.98,
-      "k": 63.2,
-      "d": 61.2,
-      "j": 67.2,
-      "ma5": 51.72,
-      "ma20": 46.92,
-      "ma_gap": 10.2,
-      "volume": 20321,
-      "avg_vol5": 70639.7,
-      "vol_ratio": 0.29,
+      "chg_pct": 0.0,
+      "k": 60.6,
+      "d": 61.0,
+      "j": 59.8,
+      "ma5": 50.9,
+      "ma20": 47.15,
+      "ma_gap": 8.0,
+      "volume": 21927,
+      "avg_vol5": 56624.5,
+      "vol_ratio": 0.39,
       "buy_days": 2,
       "net_buy_ratio": 0.01,
       "foreign_buy_days": 1,
@@ -3654,23 +3596,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "1717",
       "name": "長興",
       "sector": "化學",
-      "price": 79.9,
-      "chg_pct": -1.36,
-      "k": 81.2,
-      "d": 80.6,
-      "j": 82.5,
-      "ma5": 79.56,
-      "ma20": 68.74,
-      "ma_gap": 15.7,
-      "volume": 119645,
-      "avg_vol5": 96382.7,
-      "vol_ratio": 1.24,
+      "price": 80.8,
+      "chg_pct": 1.13,
+      "k": 80.0,
+      "d": 80.4,
+      "j": 79.2,
+      "ma5": 79.52,
+      "ma20": 69.45,
+      "ma_gap": 14.5,
+      "volume": 69882,
+      "avg_vol5": 90176.9,
+      "vol_ratio": 0.77,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -3683,23 +3625,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
-      "code": "2368",
-      "name": "金像電",
-      "sector": "電子零組件",
-      "price": 1210.0,
-      "chg_pct": 2.98,
-      "k": 87.6,
-      "d": 82.5,
-      "j": 97.6,
-      "ma5": 1173.0,
-      "ma20": 1012.05,
-      "ma_gap": 15.9,
-      "volume": 5890,
-      "avg_vol5": 5892.8,
-      "vol_ratio": 1.0,
+      "code": "1503",
+      "name": "士電",
+      "sector": "電機機械",
+      "price": 198.0,
+      "chg_pct": 1.8,
+      "k": 78.0,
+      "d": 71.4,
+      "j": 91.2,
+      "ma5": 196.0,
+      "ma20": 189.38,
+      "ma_gap": 3.5,
+      "volume": 1628,
+      "avg_vol5": 2053.4,
+      "vol_ratio": 0.79,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -3712,7 +3654,36 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "1519",
+      "name": "華城",
+      "sector": "電機機械",
+      "price": 919.0,
+      "chg_pct": 3.14,
+      "k": 77.4,
+      "d": 67.1,
+      "j": 98.2,
+      "ma5": 886.2,
+      "ma20": 849.95,
+      "ma_gap": 4.3,
+      "volume": 3815,
+      "avg_vol5": 4360.1,
+      "vol_ratio": 0.87,
+      "buy_days": 1,
+      "net_buy_ratio": 3.22,
+      "foreign_buy_days": 1,
+      "score": 0,
+      "criteria": {
+        "s1": false,
+        "s2": false,
+        "s3": false,
+        "s4": false,
+        "s5": false,
+        "s6": false
+      },
+      "updated": "2026-04-21"
     },
     {
       "code": "3044",
@@ -3741,7 +3712,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "6213",
@@ -3770,7 +3741,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "6271",
@@ -3799,26 +3770,26 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2327",
       "name": "國巨",
       "sector": "被動元件",
-      "price": 319.5,
-      "chg_pct": 0.95,
-      "k": 81.7,
-      "d": 81.2,
-      "j": 82.7,
-      "ma5": 319.0,
-      "ma20": 277.4,
-      "ma_gap": 15.0,
-      "volume": 31508,
-      "avg_vol5": 73003.0,
-      "vol_ratio": 0.43,
+      "price": 323.0,
+      "chg_pct": 1.1,
+      "k": 80.7,
+      "d": 81.0,
+      "j": 80.1,
+      "ma5": 321.2,
+      "ma20": 280.0,
+      "ma_gap": 14.7,
+      "volume": 32701,
+      "avg_vol5": 59541.2,
+      "vol_ratio": 0.55,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
+      "foreign_buy_days": 1,
       "score": 0,
       "criteria": {
         "s1": false,
@@ -3828,7 +3799,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "5269",
@@ -3857,36 +3828,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
-    },
-    {
-      "code": "6415",
-      "name": "矽力-KY",
-      "sector": "半導體",
-      "price": 365.5,
-      "chg_pct": 9.92,
-      "k": 75.8,
-      "d": 52.9,
-      "j": 121.6,
-      "ma5": 309.0,
-      "ma20": 290.65,
-      "ma_gap": 6.3,
-      "volume": 5784,
-      "avg_vol5": 7988.0,
-      "vol_ratio": 0.72,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
-      "score": 0,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": false,
-        "s4": false,
-        "s5": false,
-        "s6": false
-      },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "3532",
@@ -3915,7 +3857,7 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "6206",
@@ -3944,23 +3886,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
-      "code": "2458",
-      "name": "義隆",
+      "code": "8016",
+      "name": "矽創",
       "sector": "半導體",
-      "price": 135.0,
-      "chg_pct": -2.17,
-      "k": 78.7,
-      "d": 78.6,
-      "j": 78.8,
-      "ma5": 136.9,
-      "ma20": 131.15,
-      "ma_gap": 4.4,
-      "volume": 2975,
-      "avg_vol5": 4337.0,
-      "vol_ratio": 0.69,
+      "price": 219.0,
+      "chg_pct": 0.0,
+      "k": 88.8,
+      "d": 83.6,
+      "j": 99.1,
+      "ma5": 214.6,
+      "ma20": 201.95,
+      "ma_gap": 6.3,
+      "volume": 1571,
+      "avg_vol5": 1137.1,
+      "vol_ratio": 1.38,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -3973,23 +3915,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "2404",
       "name": "漢唐",
       "sector": "其他電子",
-      "price": 1025.0,
-      "chg_pct": 0.0,
-      "k": 83.1,
-      "d": 73.9,
-      "j": 101.6,
-      "ma5": 962.0,
-      "ma20": 908.1,
-      "ma_gap": 5.9,
-      "volume": 6877,
-      "avg_vol5": 5748.8,
-      "vol_ratio": 1.2,
+      "price": 1000.0,
+      "chg_pct": -2.44,
+      "k": 77.6,
+      "d": 75.1,
+      "j": 82.7,
+      "ma5": 979.0,
+      "ma20": 911.6,
+      "ma_gap": 7.4,
+      "volume": 6616,
+      "avg_vol5": 5984.5,
+      "vol_ratio": 1.11,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -4002,26 +3944,26 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
-      "code": "5434",
-      "name": "崇越",
-      "sector": "電子通路",
-      "price": 418.5,
-      "chg_pct": 0.36,
-      "k": 91.5,
-      "d": 90.1,
-      "j": 94.2,
-      "ma5": 413.2,
-      "ma20": 357.57,
-      "ma_gap": 15.6,
-      "volume": 767,
-      "avg_vol5": 1260.9,
-      "vol_ratio": 0.61,
+      "code": "3005",
+      "name": "神基",
+      "sector": "電腦週邊",
+      "price": 101.0,
+      "chg_pct": 0.5,
+      "k": 62.9,
+      "d": 44.0,
+      "j": 100.6,
+      "ma5": 99.26,
+      "ma20": 103.61,
+      "ma_gap": 4.2,
+      "volume": 6409,
+      "avg_vol5": 4828.9,
+      "vol_ratio": 1.33,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
-      "foreign_buy_days": 0,
+      "foreign_buy_days": 1,
       "score": 0,
       "criteria": {
         "s1": false,
@@ -4031,23 +3973,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "6285",
       "name": "啟碁",
       "sector": "通信網路",
-      "price": 251.5,
-      "chg_pct": -4.91,
-      "k": 82.7,
-      "d": 85.4,
-      "j": 77.2,
-      "ma5": 250.0,
-      "ma20": 205.82,
-      "ma_gap": 21.5,
-      "volume": 33052,
-      "avg_vol5": 49704.7,
-      "vol_ratio": 0.66,
+      "price": 249.5,
+      "chg_pct": -0.8,
+      "k": 74.8,
+      "d": 81.9,
+      "j": 60.6,
+      "ma5": 255.1,
+      "ma20": 209.62,
+      "ma_gap": 21.7,
+      "volume": 36870,
+      "avg_vol5": 50236.5,
+      "vol_ratio": 0.73,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
@@ -4060,23 +4002,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "5388",
       "name": "中磊",
       "sector": "通信網路",
-      "price": 83.3,
-      "chg_pct": 1.34,
-      "k": 54.3,
-      "d": 58.1,
-      "j": 46.7,
-      "ma5": 82.64,
-      "ma20": 79.91,
-      "ma_gap": 3.4,
-      "volume": 2459,
-      "avg_vol5": 5505.0,
-      "vol_ratio": 0.45,
+      "price": 83.6,
+      "chg_pct": 0.36,
+      "k": 54.9,
+      "d": 57.1,
+      "j": 50.7,
+      "ma5": 83.02,
+      "ma20": 80.13,
+      "ma_gap": 3.6,
+      "volume": 3229,
+      "avg_vol5": 4417.8,
+      "vol_ratio": 0.73,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 1,
@@ -4089,23 +4031,23 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
       "code": "8150",
       "name": "南茂",
       "sector": "半導體",
-      "price": 67.4,
-      "chg_pct": 0.15,
-      "k": 69.3,
-      "d": 73.7,
-      "j": 60.3,
-      "ma5": 67.68,
-      "ma20": 60.76,
-      "ma_gap": 11.4,
-      "volume": 43671,
-      "avg_vol5": 37466.0,
-      "vol_ratio": 1.17,
+      "price": 74.1,
+      "chg_pct": 9.94,
+      "k": 77.5,
+      "d": 75.0,
+      "j": 82.6,
+      "ma5": 69.9,
+      "ma20": 61.34,
+      "ma_gap": 14.0,
+      "volume": 54622,
+      "avg_vol5": 43513.7,
+      "vol_ratio": 1.26,
       "buy_days": 0,
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 1,
@@ -4118,25 +4060,25 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
-      "code": "8112",
-      "name": "至上",
-      "sector": "電子通路",
-      "price": 85.5,
-      "chg_pct": -1.95,
-      "k": 77.9,
-      "d": 71.9,
-      "j": 89.8,
-      "ma5": 84.86,
-      "ma20": 81.19,
-      "ma_gap": 4.5,
-      "volume": 21147,
-      "avg_vol5": 18018.8,
-      "vol_ratio": 1.17,
-      "buy_days": 1,
-      "net_buy_ratio": 1.02,
+      "code": "2360",
+      "name": "致茂",
+      "sector": "其他電子",
+      "price": 2025.0,
+      "chg_pct": -1.22,
+      "k": 72.4,
+      "d": 78.8,
+      "j": 59.6,
+      "ma5": 2080.0,
+      "ma20": 1757.75,
+      "ma_gap": 18.3,
+      "volume": 5629,
+      "avg_vol5": 5560.1,
+      "vol_ratio": 1.01,
+      "buy_days": 0,
+      "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
       "score": 0,
       "criteria": {
@@ -4147,7 +4089,65 @@
         "s5": false,
         "s6": false
       },
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "8112",
+      "name": "至上",
+      "sector": "電子通路",
+      "price": 86.8,
+      "chg_pct": 1.52,
+      "k": 78.4,
+      "d": 74.1,
+      "j": 87.1,
+      "ma5": 85.74,
+      "ma20": 81.12,
+      "ma_gap": 5.7,
+      "volume": 18814,
+      "avg_vol5": 20024.5,
+      "vol_ratio": 0.94,
+      "buy_days": 1,
+      "net_buy_ratio": 1.14,
+      "foreign_buy_days": 0,
+      "score": 0,
+      "criteria": {
+        "s1": false,
+        "s2": false,
+        "s3": false,
+        "s4": false,
+        "s5": false,
+        "s6": false
+      },
+      "updated": "2026-04-21"
+    },
+    {
+      "code": "1477",
+      "name": "聚陽",
+      "sector": "紡織",
+      "price": 224.5,
+      "chg_pct": -0.22,
+      "k": 58.6,
+      "d": 37.7,
+      "j": 100.5,
+      "ma5": 219.2,
+      "ma20": 230.82,
+      "ma_gap": 5.0,
+      "volume": 1576,
+      "avg_vol5": 1668.7,
+      "vol_ratio": 0.94,
+      "buy_days": 0,
+      "net_buy_ratio": 0.0,
+      "foreign_buy_days": 1,
+      "score": 0,
+      "criteria": {
+        "s1": false,
+        "s2": false,
+        "s3": false,
+        "s4": false,
+        "s5": false,
+        "s6": false
+      },
+      "updated": "2026-04-21"
     }
   ]
 }
