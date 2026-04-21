@@ -381,7 +381,12 @@ function calcSignal(K, D, J, RSI, DIF, DIFprev, chg, vol, vol5, price, ma5, jArr
   if(vol!==null&&vol5!==null&&vol>vol5*1.5&&chg>0){
     const cantOverride=['sell','strong-sell','dullness-end','trend-weakening',
       'high-dullness','high-dullness-weak','vol-warning','trend-collapse'];
-    if(!cantOverride.includes(sig)) sig='vol-breakout';
+    if(!cantOverride.includes(sig)){
+      sig='vol-breakout';
+    } else if(sig==='sell' && chg>0 && ma5!==null && price>ma5){
+      // 豁免條款：帶量上漲且站上MA5，即使超買也強制轉帶量突破
+      sig='vol-breakout';
+    }
   }
 
   return sig;
