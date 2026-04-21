@@ -38,8 +38,8 @@ for stock in stocks:
         snapshot = api.snapshots([contract])
         if snapshot:
             s = snapshot[0]
-            prices[code] = {"price": s.close}
-            print(f"✅ {code}: {s.close}")
+            prices[code] = {"price": s.close, "reference": s.reference}
+            print(f"✅ {code}: {s.close} (ref: {s.reference})")
         else:
             print(f"⚠️ {code}: 無資料")
     except Exception as e:
@@ -49,7 +49,12 @@ for stock in stocks:
 output = {
     "updated": datetime.now().strftime("%Y-%m-%d %H:%M"),
     "prices": [
-        {"id": k, "price": v["price"], "is_realtime": True}
+        {
+            "id": k,
+            "price": v["price"],
+            "reference": v.get("reference"),
+            "is_realtime": True
+        }
         for k, v in prices.items()
     ]
 }
