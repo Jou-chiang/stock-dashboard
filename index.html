@@ -592,6 +592,7 @@ async function getBestPrice(sym, fallback){
           price: entry.price,
           rtType: entry.is_realtime ? 'live' : 'close',
           vol: entry.vol || null,
+          reference: entry.reference || null,
         };
       }
     }
@@ -636,11 +637,13 @@ async function fetchOne(sym){
     const highs=sorted.map(r=>+r.max).filter(v=>v>0);
     const lows=sorted.map(r=>+r.min).filter(v=>v>0);
     const vols=sorted.map(r=>+r.Trading_Volume/1000).filter(v=>v>=0);
-    const prevClose=sorted.length>1?+sorted[sorted.length-2].close:+last.close;
     const bestPrice=await getBestPrice(sym,+last.close);
     const price=bestPrice.price;
     const rtType=bestPrice.rtType;
     const realtimeVol=bestPrice.vol||null;
+    // 優先用永豐參考價（昨日收盤），沒有才用 FinMind 前一日
+    const prevClose = bestPrice.reference || 
+      (sorted.length>1 ? +sorted[sorted.length-2].close : +last.close);
     const changePercent=((price-prevClose)/prevClose)*100;
     const kdj=calcKDJ(highs,lows,closes);
     const RSI=calcRSI(closes);
