@@ -323,8 +323,8 @@ let acItems = [], acSel = -1;
 function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr, high20){
   if([K,D,RSI].some(v=>v===null||v===undefined||isNaN(v))) return null;
 
-  // 最優先：漲停直接鎖死，蓋掉所有其他訊號
-  if(chg !== null && chg > 9.5) return 'limit-up-lock';
+  // 最優先：真正漲停（9.5%~11%）才鎖死，避免髒數據誤觸發
+  if(chg !== null && chg >= 9.5 && chg <= 11) return 'limit-up-lock';
 
   let jLow = 0;
   if(jArr && jArr.length > 0){
@@ -361,16 +361,16 @@ function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr, high20)
     if(jArr[jArr.length-1]<100&&jPrev>=3){
       sig='dullness-end';
     } else if(jToday>=3){
-      if(!['sell','strong-sell'].includes(sig)){
-        const hasVol = vol!==null && vol5!==null && vol5>0 && vol >= vol5*1.2;
-        sig = hasVol ? 'high-dullness' : 'high-dullness-weak';
-      }
+      // 高檔鈍化優先級高於超買判定，強制顯示
+      const hasVol = vol!==null && vol5!==null && vol5>0 && vol >= vol5*1.2;
+      sig = hasVol ? 'high-dullness' : 'high-dullness-weak';
     } else if(jToday===1||jToday===2){
       if(!['sell','strong-sell'].includes(sig)) sig='initial-spurt';
     }
   }
 
-  if(DIF!==null&&DIF<0){
+  // DIF < 0 且還在繼續下跌才視為弱勢，若已向上勾頭則保留原訊號
+  if(DIF!==null&&DIF<0&&(DIFprev===null||DIF<DIFprev)){
     if(['strong-hold','strong-hold-warn','vol-warning','high-dullness-weak'].includes(sig)){
       sig='trend-weakening';
     } else if(['strong-buy','buy','neutral'].includes(sig)){
@@ -380,7 +380,7 @@ function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr, high20)
 
   if(vol!==null&&vol5!==null&&vol>vol5*1.5&&chg>0){
     const cantOverride=['sell','strong-sell','dullness-end','trend-weakening',
-      'initial-spurt','high-dullness','high-dullness-weak','vol-warning','trend-collapse'];
+      'high-dullness','high-dullness-weak','vol-warning','trend-collapse'];
     if(!cantOverride.includes(sig)) sig='vol-breakout';
   }
 
