@@ -320,11 +320,11 @@ let data = {}, loading = new Set(), total = 0, done = 0, autoTimer = null;
 let stockList = [], listLoaded = false, listLoading = false;
 let acItems = [], acSel = -1;
 
-function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr, high20){
+function calcSignal(K, D, J, RSI, DIF, DIFprev, chg, vol, vol5, price, ma5, jArr, high20, hasReliableRef){
   if([K,D,RSI].some(v=>v===null||v===undefined||isNaN(v))) return null;
 
-  // 最優先：真正漲停（9.5%~11%）才鎖死，避免髒數據誤觸發
-  if(chg !== null && chg >= 9.5 && chg <= 11) return 'limit-up-lock';
+  // 最優先：真正漲停（9.5%~11%）才鎖死，需參考價可靠才判斷避免髒數據誤觸發
+  if(hasReliableRef && chg !== null && chg >= 9.5 && chg <= 11) return 'limit-up-lock';
 
   let jLow = 0;
   if(jArr && jArr.length > 0){
@@ -653,12 +653,13 @@ async function fetchOne(sym){
     const VOL5 = vols.length>=5 ? vols.slice(-5).reduce((a,b)=>a+b)/5 : null;
     const MA5  = closes.length>=5  ? closes.slice(-5).reduce((a,b)=>a+b)/5   : null;
     const HIGH20 = closes.length>=20 ? Math.max(...closes.slice(-20)) : null;
+    const hasReliableRef = !!(bestPrice.reference);
 
     data[sym]={
       symbol:sym,name,price,changePercent,rtType,
       K:kdj.K,D:kdj.D,J:kdj.J,RSI,DIF,DIFprev,
       VOL, VOL5, MA5, HIGH20,
-      signal:calcSignal(kdj.K,kdj.D,kdj.J,RSI,DIF, changePercent, VOL, VOL5, price, MA5, kdj.jArr, HIGH20)
+      signal:calcSignal(kdj.K,kdj.D,kdj.J,RSI,DIF,DIFprev, changePercent, VOL, VOL5, price, MA5, kdj.jArr, HIGH20, hasReliableRef)
     };
   }catch(e){
     console.error(`[${sym}]`,e);
