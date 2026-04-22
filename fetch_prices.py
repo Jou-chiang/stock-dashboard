@@ -38,8 +38,12 @@ for stock in stocks:
         snapshot = api.snapshots([contract])
         if snapshot:
             s = snapshot[0]
-            prices[code] = {"price": s.close, "reference": s.reference}
-            print(f"✅ {code}: {s.close} (ref: {s.reference})")
+            prices[code] = {
+                "price": s.close,
+                "reference": getattr(s, "reference", None) or getattr(s, "ref_price", None),
+            }
+            ref = prices[code]["reference"]
+            print(f"✅ {code}: {s.close} (ref: {ref})")
         else:
             print(f"⚠️ {code}: 無資料")
     except Exception as e:
