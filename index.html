@@ -172,6 +172,7 @@ tr:hover td{background:var(--bg3);}
     <span class="dot" id="dot"></span>
     <span class="ts" id="ts">—</span>
     <a href="dashboard_b.html" target="_blank" class="btn btn-p" style="text-decoration:none;font-size:12px;">📡 績優股雷達</a>
+    <a href="dashboard_c.html" target="_blank" class="btn btn-p" style="text-decoration:none;font-size:12px;">🔭 大戶追蹤</a>
     <button class="btn btn-p" onclick="fetchAll()">全部查詢</button>
   </div>
 </div>
@@ -320,11 +321,11 @@ let data = {}, loading = new Set(), total = 0, done = 0, autoTimer = null;
 let stockList = [], listLoaded = false, listLoading = false;
 let acItems = [], acSel = -1;
 
-function calcSignal(K, D, J, RSI, DIF, DIFprev, chg, vol, vol5, price, ma5, jArr, high20, hasReliableRef){
+function calcSignal(K, D, J, RSI, DIF, chg, vol, vol5, price, ma5, jArr, high20){
   if([K,D,RSI].some(v=>v===null||v===undefined||isNaN(v))) return null;
 
-  // 最優先：真正漲停（9.5%~11%）才鎖死，需參考價可靠才判斷避免髒數據誤觸發
-  if(hasReliableRef && chg !== null && chg >= 9.5 && chg <= 11) return 'limit-up-lock';
+  // 最優先：真正漲停（9.5%~11%）才鎖死，避免髒數據誤觸發
+  if(chg !== null && chg >= 9.5 && chg <= 11) return 'limit-up-lock';
 
   let jLow = 0;
   if(jArr && jArr.length > 0){
@@ -381,12 +382,7 @@ function calcSignal(K, D, J, RSI, DIF, DIFprev, chg, vol, vol5, price, ma5, jArr
   if(vol!==null&&vol5!==null&&vol>vol5*1.5&&chg>0){
     const cantOverride=['sell','strong-sell','dullness-end','trend-weakening',
       'high-dullness','high-dullness-weak','vol-warning','trend-collapse'];
-    if(!cantOverride.includes(sig)){
-      sig='vol-breakout';
-    } else if(sig==='sell' && chg>0 && ma5!==null && price>ma5){
-      // 豁免條款：帶量上漲且站上MA5，即使超買也強制轉帶量突破
-      sig='vol-breakout';
-    }
+    if(!cantOverride.includes(sig)) sig='vol-breakout';
   }
 
   return sig;
@@ -658,13 +654,12 @@ async function fetchOne(sym){
     const VOL5 = vols.length>=5 ? vols.slice(-5).reduce((a,b)=>a+b)/5 : null;
     const MA5  = closes.length>=5  ? closes.slice(-5).reduce((a,b)=>a+b)/5   : null;
     const HIGH20 = closes.length>=20 ? Math.max(...closes.slice(-20)) : null;
-    const hasReliableRef = !!(bestPrice.reference);
 
     data[sym]={
       symbol:sym,name,price,changePercent,rtType,
       K:kdj.K,D:kdj.D,J:kdj.J,RSI,DIF,DIFprev,
       VOL, VOL5, MA5, HIGH20,
-      signal:calcSignal(kdj.K,kdj.D,kdj.J,RSI,DIF,DIFprev, changePercent, VOL, VOL5, price, MA5, kdj.jArr, HIGH20, hasReliableRef)
+      signal:calcSignal(kdj.K,kdj.D,kdj.J,RSI,DIF, changePercent, VOL, VOL5, price, MA5, kdj.jArr, HIGH20)
     };
   }catch(e){
     console.error(`[${sym}]`,e);
