@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大戶追蹤器｜Dashboard C</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#0c0e10;--bg2:#131619;--bg3:#1a1e22;--bg4:#212730;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --text:#e8eaed;--text2:#8b9099;--text3:#565c66;
+  --amber:#f0a03a;--amber2:#7a4e12;
+  --green:#3fc97c;--red:#f25f5f;--blue:#5ba3f5;
+  --purple:#b072f2;--neon:#00e5ff;
+  --mono:'IBM Plex Mono',monospace;--sans:'Noto Sans TC',sans-serif;
+  --r:6px;--rl:10px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);pointer-events:none;z-index:999;}
+.layout{max-width:1400px;margin:0 auto;padding:0 20px 60px;}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--border);margin-bottom:20px;gap:12px;flex-wrap:wrap;}
+.brand-title{font-family:var(--mono);font-size:16px;font-weight:500;color:var(--amber);}
+.brand-sub{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.07em;margin-top:2px;}
+.badge{font-family:var(--mono);font-size:10px;background:rgba(91,163,245,.15);border:1px solid rgba(91,163,245,.3);color:var(--blue);padding:3px 8px;border-radius:20px;}
+.nav-links{display:flex;gap:8px;}
+.btn-nav{font-family:var(--mono);font-size:11px;color:var(--text3);text-decoration:none;border:1px solid var(--border2);padding:5px 10px;border-radius:var(--r);transition:all .15s;}
+.btn-nav:hover{border-color:var(--amber);color:var(--amber);}
+.token-box{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);padding:14px 18px;margin-bottom:14px;}
+.token-label{font-size:11px;font-family:var(--mono);color:var(--text3);letter-spacing:.07em;margin-bottom:8px;}
+.token-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.token-input{flex:1;min-width:200px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);font-family:var(--mono);font-size:12px;padding:8px 12px;outline:none;transition:border-color .2s;}
+.token-input:focus{border-color:var(--amber);}
+.search-bar{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);padding:16px 20px;margin-bottom:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.sym-input{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);font-family:var(--mono);font-size:14px;padding:9px 14px;width:160px;outline:none;transition:border-color .2s;letter-spacing:.05em;}
+.sym-input:focus{border-color:var(--amber);}
+.btn{font-family:var(--mono);font-size:12px;padding:8px 16px;border-radius:var(--r);border:none;cursor:pointer;transition:all .2s;}
+.btn-primary{background:var(--amber);color:#000;font-weight:500;}
+.btn-primary:hover{background:#d4891f;}
+.btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--text2);}
+.btn-ghost:hover{border-color:var(--text2);}
+.days-wrap{display:flex;gap:6px;}
+.day-btn{font-family:var(--mono);font-size:11px;padding:5px 10px;border-radius:var(--r);border:1px solid var(--border2);background:transparent;color:var(--text3);cursor:pointer;transition:all .15s;}
+.day-btn.active{border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.08);}
+.stock-info{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+.info-code{font-family:var(--mono);font-size:13px;color:var(--amber);}
+.info-name{font-size:16px;font-weight:500;}
+.info-price{font-family:var(--mono);font-size:22px;font-weight:500;}
+.info-chg{font-family:var(--mono);font-size:13px;padding:3px 8px;border-radius:4px;}
+.info-chg.up{background:rgba(242,95,95,.12);color:var(--red);}
+.info-chg.dn{background:rgba(63,201,124,.08);color:var(--green);}
+.info-chg.flat{background:rgba(255,255,255,.05);color:var(--text3);}
+.chart-block{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:16px 20px;margin-bottom:10px;}
+.chart-label{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.legend-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px;}
+canvas{display:block;width:100%!important;}
+.inst-legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:10px;}
+.inst-item{font-family:var(--mono);font-size:10px;display:flex;align-items:center;gap:5px;}
+.loading-overlay{text-align:center;padding:80px 20px;color:var(--text3);font-family:var(--mono);font-size:12px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:28px;height:28px;border:2px solid var(--border2);border-top-color:var(--amber);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px;}
+.error-bar{background:rgba(242,95,95,.08);border:1px solid rgba(242,95,95,.3);border-radius:var(--r);padding:10px 14px;font-family:var(--mono);font-size:11px;color:var(--red);margin-bottom:12px;display:none;}
+.hint{font-family:var(--mono);font-size:11px;color:var(--text3);}
+.summary-row{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:14px;}
+.summary-item{font-family:var(--mono);font-size:11px;}
+.summary-label{color:var(--text3);}
+.summary-val{margin-left:6px;}
+.summary-val.pos{color:var(--green);}
+.summary-val.neg{color:var(--red);}
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="topbar">
+    <div>
+      <div class="brand-title">🔭 大戶追蹤器</div>
+      <div class="brand-sub">DASHBOARD C · 法人籌碼 × 技術指標</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="badge">FinMind</span>
+      <div class="nav-links">
+        <a href="index.html" class="btn-nav">儀表板 A</a>
+        <a href="dashboard_b.html" class="btn-nav">雷達 B</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="token-box" id="token-box">
+    <div class="token-label">FinMind API Token</div>
+    <div class="token-row">
+      <input class="token-input" id="token-input" type="password" placeholder="貼上 FinMind Token" autocomplete="off"/>
+      <button class="btn btn-primary" onclick="saveToken()">儲存</button>
+      <button class="btn btn-ghost" onclick="toggleToken()">收起</button>
+    </div>
+  </div>
+  <div id="token-collapsed" style="display:none;margin-bottom:14px;">
+    <span style="font-family:var(--mono);font-size:11px;color:var(--green)">✓ Token 已設定</span>
+    <button class="btn btn-ghost" onclick="toggleToken()" style="font-size:11px;padding:4px 10px;margin-left:8px">更新</button>
+  </div>
+
+  <div class="search-bar">
+    <input class="sym-input" id="sym" type="text" placeholder="股票代號" maxlength="6"
+      onkeydown="if(event.key==='Enter') query()" />
+    <button class="btn btn-primary" onclick="query()">查詢</button>
+    <div class="days-wrap">
+      <button class="day-btn" data-d="30" onclick="setDays(30,this)">30天</button>
+      <button class="day-btn active" data-d="60" onclick="setDays(60,this)">60天</button>
+      <button class="day-btn" data-d="90" onclick="setDays(90,this)">90天</button>
+    </div>
+    <div class="stock-info" id="stock-info"></div>
+  </div>
+
+  <div class="error-bar" id="err-bar"></div>
+  <div id="main-area">
+    <div class="loading-overlay" id="welcome">
+      <div style="font-size:32px;margin-bottom:12px">🔭</div>
+      <div>輸入股票代號開始追蹤法人籌碼</div>
+      <div style="margin-top:6px;color:var(--text3);font-size:10px">資料來源：FinMind｜法人資料為前一交易日</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const FM = 'https://api.finmindtrade.com/api/v4/data';
+let DAYS = 60;
+let charts = {};
+
+function getToken(){ return localStorage.getItem('fm_token')||''; }
+function saveToken(){
+  const v = document.getElementById('token-input').value.trim();
+  if(!v){alert('請貼上 Token');return;}
+  localStorage.setItem('fm_token', v);
+  toggleToken();
+}
+function toggleToken(){
+  const box = document.getElementById('token-box');
+  const col = document.getElementById('token-collapsed');
+  if(box.style.display==='none'){box.style.display='';col.style.display='none';}
+  else{box.style.display='none';col.style.display='block';}
+}
+function initTokenUI(){
+  const tok = getToken();
+  if(tok){
+    document.getElementById('token-input').value = tok;
+    document.getElementById('token-box').style.display = 'none';
+    document.getElementById('token-collapsed').style.display = 'block';
+  }
+}
+
+function setDays(d, el){
+  DAYS = d;
+  document.querySelectorAll('.day-btn').forEach(b=>b.classList.toggle('active', b.dataset.d==d));
+  if(document.getElementById('sym').value.trim()) query();
+}
+
+function dateStr(d){ return d.toISOString().slice(0,10); }
+function startDate(days){ const d=new Date(); d.setDate(d.getDate()-days); return dateStr(d); }
+function today(){ return dateStr(new Date()); }
+
+async function fmGet(dataset, id, days){
+  const tok = getToken();
+  if(!tok) throw new Error('請先設定 FinMind Token');
+  const params = new URLSearchParams({dataset, data_id:id, start_date:startDate(days), end_date:today(), token:tok});
+  const r = await fetch(`${FM}?${params}`);
+  const j = await r.json();
+  if(j.status !== 200) throw new Error(j.msg || `API error ${j.status}`);
+  return j.data || [];
+}
+
+function showErr(msg){
+  const bar = document.getElementById('err-bar');
+  bar.textContent = '⚠ ' + msg;
+  bar.style.display = 'block';
+}
+function clearErr(){ document.getElementById('err-bar').style.display='none'; }
+
+function showLoading(){
+  destroyCharts();
+  document.getElementById('main-area').innerHTML = `<div class="loading-overlay"><div class="spinner"></div>載入中...</div>`;
+}
+
+function destroyCharts(){
+  Object.values(charts).forEach(c=>{ try{c.destroy();}catch(e){} });
+  charts = {};
+}
+
+// ── 技術指標計算 ────────────────────────────────────────
+function ema(arr, p){
+  const k=2/(p+1); let e=arr[0];
+  return arr.map((v,i)=>i===0?e:(e=v*k+e*(1-k)));
+}
+function calcMA(arr, n){
+  return arr.map((_,i)=>i<n-1?null:arr.slice(i-n+1,i+1).reduce((a,b)=>a+b)/n);
+}
+function calcKDJ(highs, lows, closes, p=9){
+  let k=50,d=50; const Ks=[],Ds=[],Js=[];
+  for(let i=0;i<closes.length;i++){
+    if(i<p-1){Ks.push(null);Ds.push(null);Js.push(null);continue;}
+    const hh=Math.max(...highs.slice(i-p+1,i+1));
+    const ll=Math.min(...lows.slice(i-p+1,i+1));
+    const rsv=hh===ll?50:(closes[i]-ll)/(hh-ll)*100;
+    k=k*2/3+rsv/3; d=d*2/3+k/3;
+    Ks.push(parseFloat(k.toFixed(2)));
+    Ds.push(parseFloat(d.toFixed(2)));
+    Js.push(parseFloat((3*k-2*d).toFixed(2)));
+  }
+  return {K:Ks,D:Ds,J:Js};
+}
+function calcMACD(closes, f=12, s=26, sig=9){
+  const e12=ema(closes,f), e26=ema(closes,s);
+  const dif=closes.map((_,i)=>parseFloat((e12[i]-e26[i]).toFixed(3)));
+  const dea=ema(dif,sig).map(v=>parseFloat(v.toFixed(3)));
+  const hist=dif.map((v,i)=>parseFloat(((v-dea[i])*2).toFixed(3)));
+  return {DIF:dif,DEA:dea,HIST:hist};
+}
+
+// ── Chart 工廠 ──────────────────────────────────────────
+const GRID = { color:'rgba(255,255,255,0.04)', drawBorder:false };
+const TICK = { color:'#565c66', font:{family:"'IBM Plex Mono'",size:10} };
+const baseOpts = (labels, yMin, yMax) => ({
+  responsive:true, maintainAspectRatio:false, animation:false,
+  interaction:{mode:'index',intersect:false},
+  plugins:{legend:{display:false},tooltip:{
+    backgroundColor:'rgba(19,22,25,0.95)',
+    borderColor:'rgba(255,255,255,0.1)',borderWidth:1,
+    titleColor:'#8b9099',bodyColor:'#e8eaed',
+    titleFont:{family:"'IBM Plex Mono'",size:10},
+    bodyFont:{family:"'IBM Plex Mono'",size:11},
+    padding:10,
+  }},
+  scales:{
+    x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0}},
+    y:{grid:GRID,ticks:{...TICK},position:'right',
+       min:yMin!==undefined?yMin:undefined,
+       max:yMax!==undefined?yMax:undefined}
+  }
+});
+
+function makeChart(id, config){ charts[id]=new Chart(document.getElementById(id).getContext('2d'),config); }
+
+async function query(){
+  const sym = document.getElementById('sym').value.trim().toUpperCase();
+  if(!sym) return;
+  if(!getToken()){showErr('請先設定 FinMind Token');return;}
+  clearErr();
+  showLoading();
+
+  try{
+    // 多抓一些用於計算指標（+30天緩衝）
+    const fetchDays = DAYS + 40;
+    const [priceData, instData] = await Promise.all([
+      fmGet('TaiwanStockPrice', sym, fetchDays),
+      fmGet('TaiwanStockInstitutionalInvestorsBuySell', sym, DAYS+5),
+    ]);
+
+    if(!priceData.length) throw new Error(`找不到股票 ${sym}`);
+
+    // 排序
+    const sorted = priceData.sort((a,b)=>a.date.localeCompare(b.date));
+    // 取最後 DAYS 筆顯示，但用全部資料計算指標
+    const allCloses = sorted.map(r=>+r.close);
+    const allHighs  = sorted.map(r=>+r.max);
+    const allLows   = sorted.map(r=>+r.min);
+    const allVols   = sorted.map(r=>Math.round(+r.Trading_Volume/1000));
+
+    const kdj  = calcKDJ(allHighs, allLows, allCloses);
+    const macd = calcMACD(allCloses);
+    const ma5  = calcMA(allCloses,5);
+    const ma20 = calcMA(allCloses,20);
+
+    // 截取顯示區間
+    const display = sorted.slice(-DAYS);
+    const offset  = sorted.length - DAYS;
+    const labels  = display.map(r=>r.date.slice(5)); // MM-DD
+    const closes  = display.map(r=>+r.close);
+    const highs   = display.map(r=>+r.max);
+    const lows    = display.map(r=>+r.min);
+    const vols    = display.map(r=>Math.round(+r.Trading_Volume/1000));
+    const K  = kdj.K.slice(offset);
+    const D  = kdj.D.slice(offset);
+    const J  = kdj.J.slice(offset);
+    const DIF  = macd.DIF.slice(offset);
+    const DEA  = macd.DEA.slice(offset);
+    const HIST = macd.HIST.slice(offset);
+    const MA5  = ma5.slice(offset);
+    const MA20 = ma20.slice(offset);
+
+    // 法人資料處理
+    const instByDate = {};
+    for(const r of instData){
+      if(!instByDate[r.date]) instByDate[r.date]={foreign:0,trust:0,dealer:0};
+      const net = (+r.buy - +r.sell)/1000; // 張
+      const n = r.name||'';
+      if(n.includes('Foreign_Investor')||n.includes('外資')) instByDate[r.date].foreign+=net;
+      else if(n.includes('Investment_Trust')||n.includes('投信')) instByDate[r.date].trust+=net;
+      else if(n.includes('Dealer')||n.includes('自營')) instByDate[r.date].dealer+=net;
+    }
+    const instDates = display.map(r=>r.date);
+    const foreignNet = instDates.map(d=>instByDate[d]?Math.round(instByDate[d].foreign):null);
+    const trustNet   = instDates.map(d=>instByDate[d]?Math.round(instByDate[d].trust):null);
+    const dealerNet  = instDates.map(d=>instByDate[d]?Math.round(instByDate[d].dealer):null);
+
+    // 最新資料
+    const last = display[display.length-1];
+    const prev = display[display.length-2]||last;
+    const chgPct = ((+last.close - +prev.close)/+prev.close*100).toFixed(2);
+    const chgClass = chgPct>0?'up':chgPct<0?'dn':'flat';
+
+    // 三大法人最近合計
+    const recentDays = 5;
+    const recentDates = instDates.slice(-recentDays);
+    let sumF=0,sumT=0,sumD=0;
+    recentDates.forEach(d=>{
+      if(instByDate[d]){sumF+=instByDate[d].foreign;sumT+=instByDate[d].trust;sumD+=instByDate[d].dealer;}
+    });
+    const sumTotal=sumF+sumT+sumD;
+
+    // 股價範圍
+    const priceMin = Math.min(...lows)*0.995;
+    const priceMax = Math.max(...highs)*1.005;
+
+    // ── 渲染 HTML ──
+    document.getElementById('stock-info').innerHTML=`
+      <span class="info-code">${sym}</span>
+      <span class="info-price">${(+last.close).toFixed(2)}</span>
+      <span class="info-chg ${chgClass}">${chgPct>0?'+':''}${chgPct}%</span>`;
+
+    document.getElementById('main-area').innerHTML=`
+      <div class="summary-row">
+        <div class="summary-item"><span class="summary-label">外資近5日</span><span class="summary-val ${sumF>=0?'pos':'neg'}">${sumF>=0?'+':''}${Math.round(sumF).toLocaleString()} 張</span></div>
+        <div class="summary-item"><span class="summary-label">投信近5日</span><span class="summary-val ${sumT>=0?'pos':'neg'}">${sumT>=0?'+':''}${Math.round(sumT).toLocaleString()} 張</span></div>
+        <div class="summary-item"><span class="summary-label">自營近5日</span><span class="summary-val ${sumD>=0?'pos':'neg'}">${sumD>=0?'+':''}${Math.round(sumD).toLocaleString()} 張</span></div>
+        <div class="summary-item"><span class="summary-label">三大合計</span><span class="summary-val ${sumTotal>=0?'pos':'neg'}">${sumTotal>=0?'+':''}${Math.round(sumTotal).toLocaleString()} 張</span></div>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-label">
+          📈 收盤價
+          <span><span class="legend-dot" style="background:#e8eaed"></span>收盤</span>
+          <span><span class="legend-dot" style="background:#f0a03a"></span>MA5</span>
+          <span><span class="legend-dot" style="background:#5ba3f5"></span>MA20</span>
+        </div>
+        <div style="height:260px"><canvas id="c-price"></canvas></div>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-label">📊 成交量（張）</div>
+        <div style="height:100px"><canvas id="c-vol"></canvas></div>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-label">
+          〽️ KDJ
+          <span><span class="legend-dot" style="background:#f0a03a"></span>K</span>
+          <span><span class="legend-dot" style="background:#5ba3f5"></span>D</span>
+          <span><span class="legend-dot" style="background:#b072f2"></span>J</span>
+        </div>
+        <div style="height:120px"><canvas id="c-kdj"></canvas></div>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-label">
+          📉 MACD
+          <span><span class="legend-dot" style="background:#00e5ff"></span>DIF</span>
+          <span><span class="legend-dot" style="background:#f0a03a"></span>DEA</span>
+          <span><span class="legend-dot" style="background:#565c66"></span>柱狀</span>
+        </div>
+        <div style="height:120px"><canvas id="c-macd"></canvas></div>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-label">🏦 三大法人淨買超（張）</div>
+        <div class="inst-legend">
+          <span class="inst-item"><span class="legend-dot" style="background:#5ba3f5"></span>外資</span>
+          <span class="inst-item"><span class="legend-dot" style="background:#3fc97c"></span>投信</span>
+          <span class="inst-item"><span class="legend-dot" style="background:#b072f2"></span>自營</span>
+        </div>
+        <div style="height:140px"><canvas id="c-inst"></canvas></div>
+      </div>`;
+
+    // ── 價格圖 ──
+    makeChart('c-price',{
+      type:'line',
+      data:{labels, datasets:[
+        {label:'收盤',data:closes,borderColor:'rgba(232,234,237,0.8)',borderWidth:1.5,pointRadius:0,tension:0.1,fill:false},
+        {label:'MA5',data:MA5,borderColor:'#f0a03a',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false,borderDash:[]},
+        {label:'MA20',data:MA20,borderColor:'#5ba3f5',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false},
+      ]},
+      options:{...baseOpts(labels,priceMin,priceMax)}
+    });
+
+    // ── 成交量 ──
+    makeChart('c-vol',{
+      type:'bar',
+      data:{labels, datasets:[{
+        label:'成交量',data:vols,
+        backgroundColor: closes.map((c,i)=>i===0?'rgba(139,144,153,0.5)':c>=closes[i-1]?'rgba(242,95,95,0.6)':'rgba(63,201,124,0.6)'),
+        borderRadius:1,
+      }]},
+      options:{...baseOpts(labels),scales:{
+        x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0}},
+        y:{grid:GRID,ticks:{...TICK},position:'right'}
+      }}
+    });
+
+    // ── KDJ ──
+    makeChart('c-kdj',{
+      type:'line',
+      data:{labels, datasets:[
+        {label:'K',data:K,borderColor:'#f0a03a',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false},
+        {label:'D',data:D,borderColor:'#5ba3f5',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false},
+        {label:'J',data:J,borderColor:'#b072f2',borderWidth:1,pointRadius:0,tension:0.3,fill:false},
+      ]},
+      options:{...baseOpts(labels)}
+    });
+
+    // ── MACD ──
+    makeChart('c-macd',{
+      type:'bar',
+      data:{labels, datasets:[
+        {label:'柱狀',data:HIST,backgroundColor:HIST.map(v=>v>=0?'rgba(63,201,124,0.5)':'rgba(242,95,95,0.5)'),borderRadius:1,order:2},
+        {label:'DIF',data:DIF,type:'line',borderColor:'#00e5ff',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false,order:1},
+        {label:'DEA',data:DEA,type:'line',borderColor:'#f0a03a',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false,order:1},
+      ]},
+      options:{...baseOpts(labels)}
+    });
+
+    // ── 三大法人 ──
+    makeChart('c-inst',{
+      type:'bar',
+      data:{labels, datasets:[
+        {label:'外資',data:foreignNet,backgroundColor:'rgba(91,163,245,0.7)',borderRadius:1,stack:'inst'},
+        {label:'投信',data:trustNet,backgroundColor:'rgba(63,201,124,0.7)',borderRadius:1,stack:'inst'},
+        {label:'自營',data:dealerNet,backgroundColor:'rgba(176,114,242,0.7)',borderRadius:1,stack:'inst'},
+      ]},
+      options:{...baseOpts(labels),scales:{
+        x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},stacked:true},
+        y:{grid:GRID,ticks:{...TICK},position:'right',stacked:true}
+      }}
+    });
+
+  }catch(e){
+    destroyCharts();
+    document.getElementById('main-area').innerHTML=`<div class="loading-overlay"><div style="font-size:24px;margin-bottom:10px">⚠️</div>${e.message}</div>`;
+    showErr(e.message);
+  }
+}
+
+initTokenUI();
+</script>
+</body>
+</html>
