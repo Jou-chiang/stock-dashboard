@@ -257,6 +257,21 @@ async function query(){
 
     if(!priceData.length) throw new Error(`找不到股票 ${sym}`);
 
+    // 抓股票中文名（先從 localStorage 快取找，找不到才 API）
+    let stockName = sym;
+    try{
+      const cached = localStorage.getItem('fm_sl4');
+      if(cached){
+        const list = JSON.parse(cached);
+        const found = list.find(s=>s.id===sym);
+        if(found) stockName = found.name;
+      }
+      if(stockName === sym){
+        const infoData = await fmGet('TaiwanStockInfo', sym, 1);
+        if(infoData.length) stockName = infoData[0].stock_name || sym;
+      }
+    }catch(e){}
+
     // 排序
     const sorted = priceData.sort((a,b)=>a.date.localeCompare(b.date));
     // 取最後 DAYS 筆顯示，但用全部資料計算指標
@@ -324,6 +339,7 @@ async function query(){
     // ── 渲染 HTML ──
     document.getElementById('stock-info').innerHTML=`
       <span class="info-code">${sym}</span>
+      <span class="info-name">${stockName}</span>
       <span class="info-price">${(+last.close).toFixed(2)}</span>
       <span class="info-chg ${chgClass}">${chgPct>0?'+':''}${chgPct}%</span>`;
 
@@ -337,17 +353,20 @@ async function query(){
 
       <div class="chart-block">
         <div class="chart-label">
-          📈 收盤價
+          📈 收盤價 × 三大法人合計
           <span><span class="legend-dot" style="background:#e8eaed"></span>收盤</span>
           <span><span class="legend-dot" style="background:#f0a03a"></span>MA5</span>
           <span><span class="legend-dot" style="background:#5ba3f5"></span>MA20</span>
+          <span><span class="legend-dot" style="background:rgba(91,163,245,0.5)"></span>外資</span>
+          <span><span class="legend-dot" style="background:rgba(63,201,124,0.5)"></span>投信</span>
+          <span><span class="legend-dot" style="background:rgba(176,114,242,0.5)"></span>自營</span>
         </div>
-        <div style="height:260px"><canvas id="c-price"></canvas></div>
+        <div style="height:300px"><canvas id="c-price"></canvas></div>
       </div>
 
       <div class="chart-block">
         <div class="chart-label">📊 成交量（張）</div>
-        <div style="height:100px"><canvas id="c-vol"></canvas></div>
+        <div style="height:90px"><canvas id="c-vol"></canvas></div>
       </div>
 
       <div class="chart-block">
@@ -357,7 +376,7 @@ async function query(){
           <span><span class="legend-dot" style="background:#5ba3f5"></span>D</span>
           <span><span class="legend-dot" style="background:#b072f2"></span>J</span>
         </div>
-        <div style="height:120px"><canvas id="c-kdj"></canvas></div>
+        <div style="height:110px"><canvas id="c-kdj"></canvas></div>
       </div>
 
       <div class="chart-block">
@@ -367,28 +386,52 @@ async function query(){
           <span><span class="legend-dot" style="background:#f0a03a"></span>DEA</span>
           <span><span class="legend-dot" style="background:#565c66"></span>柱狀</span>
         </div>
-        <div style="height:120px"><canvas id="c-macd"></canvas></div>
+        <div style="height:110px"><canvas id="c-macd"></canvas></div>
       </div>
 
       <div class="chart-block">
-        <div class="chart-label">🏦 三大法人淨買超（張）</div>
-        <div class="inst-legend">
-          <span class="inst-item"><span class="legend-dot" style="background:#5ba3f5"></span>外資</span>
-          <span class="inst-item"><span class="legend-dot" style="background:#3fc97c"></span>投信</span>
-          <span class="inst-item"><span class="legend-dot" style="background:#b072f2"></span>自營</span>
-        </div>
-        <div style="height:140px"><canvas id="c-inst"></canvas></div>
+        <div class="chart-label"><span style="color:#5ba3f5">🏦 外資</span> 淨買超（張）</div>
+        <div style="height:100px"><canvas id="c-foreign"></canvas></div>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-label"><span style="color:#3fc97c">🏦 投信</span> 淨買超（張）</div>
+        <div style="height:100px"><canvas id="c-trust"></canvas></div>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-label"><span style="color:#b072f2">🏦 自營</span> 淨買超（張）</div>
+        <div style="height:100px"><canvas id="c-dealer"></canvas></div>
       </div>`;
 
-    // ── 價格圖 ──
+    // ── 價格圖 + 三大法人合計（雙軸）──
+    const instTotal = instDates.map(d=>instByDate[d]?Math.round(instByDate[d].foreign+instByDate[d].trust+instByDate[d].dealer):null);
     makeChart('c-price',{
-      type:'line',
+      type:'bar',
       data:{labels, datasets:[
-        {label:'收盤',data:closes,borderColor:'rgba(232,234,237,0.8)',borderWidth:1.5,pointRadius:0,tension:0.1,fill:false},
-        {label:'MA5',data:MA5,borderColor:'#f0a03a',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false,borderDash:[]},
-        {label:'MA20',data:MA20,borderColor:'#5ba3f5',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false},
+        // 法人柱狀（次軸，背景）
+        {label:'外資',data:foreignNet,backgroundColor:foreignNet.map(v=>v===null?'transparent':v>=0?'rgba(91,163,245,0.35)':'rgba(242,95,95,0.25)'),borderRadius:1,yAxisID:'y1',order:3},
+        {label:'投信',data:trustNet,backgroundColor:trustNet.map(v=>v===null?'transparent':v>=0?'rgba(63,201,124,0.35)':'rgba(242,95,95,0.2)'),borderRadius:1,yAxisID:'y1',order:3},
+        {label:'自營',data:dealerNet,backgroundColor:dealerNet.map(v=>v===null?'transparent':v>=0?'rgba(176,114,242,0.35)':'rgba(242,95,95,0.15)'),borderRadius:1,yAxisID:'y1',order:3},
+        // 價格線（主軸，前景）
+        {label:'收盤',data:closes,type:'line',borderColor:'rgba(232,234,237,0.85)',borderWidth:1.5,pointRadius:0,tension:0.1,fill:false,yAxisID:'y',order:1},
+        {label:'MA5',data:MA5,type:'line',borderColor:'#f0a03a',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false,yAxisID:'y',order:1},
+        {label:'MA20',data:MA20,type:'line',borderColor:'#5ba3f5',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false,yAxisID:'y',order:1},
       ]},
-      options:{...baseOpts(labels,priceMin,priceMax)}
+      options:{
+        responsive:true,maintainAspectRatio:false,animation:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{display:false},tooltip:{
+          backgroundColor:'rgba(19,22,25,0.95)',borderColor:'rgba(255,255,255,0.1)',borderWidth:1,
+          titleColor:'#8b9099',bodyColor:'#e8eaed',
+          titleFont:{family:"'IBM Plex Mono'",size:10},bodyFont:{family:"'IBM Plex Mono'",size:11},padding:10,
+        }},
+        scales:{
+          x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},stacked:true},
+          y:{grid:GRID,ticks:{...TICK},position:'right',min:priceMin,max:priceMax},
+          y1:{grid:{display:false},ticks:{...TICK,display:false},position:'left',stacked:true},
+        }
+      }
     });
 
     // ── 成交量 ──
@@ -396,7 +439,7 @@ async function query(){
       type:'bar',
       data:{labels, datasets:[{
         label:'成交量',data:vols,
-        backgroundColor: closes.map((c,i)=>i===0?'rgba(139,144,153,0.5)':c>=closes[i-1]?'rgba(242,95,95,0.6)':'rgba(63,201,124,0.6)'),
+        backgroundColor:closes.map((c,i)=>i===0?'rgba(139,144,153,0.5)':c>=closes[i-1]?'rgba(242,95,95,0.6)':'rgba(63,201,124,0.6)'),
         borderRadius:1,
       }]},
       options:{...baseOpts(labels),scales:{
@@ -427,17 +470,45 @@ async function query(){
       options:{...baseOpts(labels)}
     });
 
-    // ── 三大法人 ──
-    makeChart('c-inst',{
+    // ── 外資 ──
+    makeChart('c-foreign',{
       type:'bar',
-      data:{labels, datasets:[
-        {label:'外資',data:foreignNet,backgroundColor:'rgba(91,163,245,0.7)',borderRadius:1,stack:'inst'},
-        {label:'投信',data:trustNet,backgroundColor:'rgba(63,201,124,0.7)',borderRadius:1,stack:'inst'},
-        {label:'自營',data:dealerNet,backgroundColor:'rgba(176,114,242,0.7)',borderRadius:1,stack:'inst'},
-      ]},
+      data:{labels, datasets:[{
+        label:'外資',data:foreignNet,
+        backgroundColor:foreignNet.map(v=>v===null?'transparent':v>=0?'rgba(91,163,245,0.7)':'rgba(242,95,95,0.6)'),
+        borderRadius:1,
+      }]},
       options:{...baseOpts(labels),scales:{
-        x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},stacked:true},
-        y:{grid:GRID,ticks:{...TICK},position:'right',stacked:true}
+        x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0}},
+        y:{grid:GRID,ticks:{...TICK},position:'right'}
+      }}
+    });
+
+    // ── 投信 ──
+    makeChart('c-trust',{
+      type:'bar',
+      data:{labels, datasets:[{
+        label:'投信',data:trustNet,
+        backgroundColor:trustNet.map(v=>v===null?'transparent':v>=0?'rgba(63,201,124,0.7)':'rgba(242,95,95,0.6)'),
+        borderRadius:1,
+      }]},
+      options:{...baseOpts(labels),scales:{
+        x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0}},
+        y:{grid:GRID,ticks:{...TICK},position:'right'}
+      }}
+    });
+
+    // ── 自營 ──
+    makeChart('c-dealer',{
+      type:'bar',
+      data:{labels, datasets:[{
+        label:'自營',data:dealerNet,
+        backgroundColor:dealerNet.map(v=>v===null?'transparent':v>=0?'rgba(176,114,242,0.7)':'rgba(242,95,95,0.6)'),
+        borderRadius:1,
+      }]},
+      options:{...baseOpts(labels),scales:{
+        x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0}},
+        y:{grid:GRID,ticks:{...TICK},position:'right'}
       }}
     });
 
