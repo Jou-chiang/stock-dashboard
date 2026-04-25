@@ -359,7 +359,9 @@ async function query(sym,nameHint){
     const macd=calcMACD(allC);
     const ma5=calcMA(allC,5),ma20=calcMA(allC,20);
 
-    const display=sorted.slice(-DAYS),offset=sorted.length-DAYS;
+    // 修正3：以實際抓到的天數為準，不超過 DAYS
+    const actualDays = Math.min(DAYS, sorted.length);
+    const display=sorted.slice(-actualDays),offset=sorted.length-actualDays;
     const labels=display.map(r=>r.date.slice(5));
     const opens=display.map(r=>+r.open),highs=display.map(r=>+r.max),
           lows=display.map(r=>+r.min),closes=display.map(r=>+r.close);
@@ -426,9 +428,8 @@ async function query(sym,nameHint){
         <div class="chart-label">
           📊 成交量 + MACD
           <span style="color:var(--text3)">量（右軸）</span>
-          <span><span class="legend-dot" style="background:#00e5ff"></span>DIF</span>
-          <span><span class="legend-dot" style="background:#f0a03a"></span>DEA</span>
-          <span><span class="legend-dot" style="background:rgba(63,201,124,0.6)"></span>柱（左軸）</span>
+          <span><span class="legend-dot" style="background:#00e5ff"></span>DIF（左軸）</span>
+          <span><span class="legend-dot" style="background:#f0a03a"></span>DEA（左軸）</span>
         </div>
         <div style="height:130px"><canvas id="c-vol-macd"></canvas></div>
       </div>
@@ -444,17 +445,29 @@ async function query(sym,nameHint){
       </div>
 
       <div class="chart-block">
-        <div class="chart-label" style="color:#5ba3f5">外資 淨買超（張）</div>
+        <div class="chart-label">
+          <span style="color:#5ba3f5">外資</span> 淨買超（張）
+          <span><span class="legend-dot" style="background:rgba(242,95,95,0.75)"></span>買超</span>
+          <span><span class="legend-dot" style="background:rgba(63,201,124,0.75)"></span>賣超</span>
+        </div>
         <div style="height:90px"><canvas id="c-foreign"></canvas></div>
       </div>
 
       <div class="chart-block">
-        <div class="chart-label" style="color:#3fc97c">投信 淨買超（張）</div>
+        <div class="chart-label">
+          <span style="color:#3fc97c">投信</span> 淨買超（張）
+          <span><span class="legend-dot" style="background:rgba(242,95,95,0.75)"></span>買超</span>
+          <span><span class="legend-dot" style="background:rgba(63,201,124,0.75)"></span>賣超</span>
+        </div>
         <div style="height:90px"><canvas id="c-trust"></canvas></div>
       </div>
 
       <div class="chart-block">
-        <div class="chart-label" style="color:#b072f2">自營商 淨買超（張）</div>
+        <div class="chart-label">
+          <span style="color:#b072f2">自營商</span> 淨買超（張）
+          <span><span class="legend-dot" style="background:rgba(242,95,95,0.75)"></span>買超</span>
+          <span><span class="legend-dot" style="background:rgba(63,201,124,0.75)"></span>賣超</span>
+        </div>
         <div style="height:90px"><canvas id="c-dealer"></canvas></div>
       </div>`;
 
@@ -468,27 +481,25 @@ async function query(sym,nameHint){
         {label:'MA5',data:MA5,type:'line',borderColor:'#f0a03a',borderWidth:1.3,pointRadius:0,tension:0.3,fill:false},
         {label:'MA20',data:MA20,type:'line',borderColor:'#5ba3f5',borderWidth:1.3,pointRadius:0,tension:0.3,fill:false},
       ]},
-      options:bOpts({y:{grid:GRID,ticks:{...TICK},position:'right',min:priceMin,max:priceMax}})
+      options:bOpts({y:{grid:GRID,ticks:{...TICK},position:'right',min:priceMin,max:priceMax},
+                     x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},offset:false}})
     });
 
-    // 成交量 + MACD 雙軸
+    // 成交量 + MACD 雙軸（無柱狀，只有 DIF/DEA 線）
     mkChart('c-vol-macd',{
       type:'bar',
       data:{labels,datasets:[
         {label:'量',data:vols,
           backgroundColor:closes.map((c,i)=>i===0?'rgba(139,144,153,0.25)':c>=closes[i-1]?'rgba(242,95,95,0.2)':'rgba(63,201,124,0.18)'),
-          borderRadius:1,yAxisID:'yV',order:4},
-        {label:'MACD柱',data:HIST,type:'bar',
-          backgroundColor:HIST.map(v=>v>=0?'rgba(63,201,124,0.6)':'rgba(242,95,95,0.6)'),
-          borderRadius:1,yAxisID:'yM',order:3},
-        {label:'DIF',data:DIF,type:'line',borderColor:'#00e5ff',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false,yAxisID:'yM',order:1},
-        {label:'DEA',data:DEA,type:'line',borderColor:'#f0a03a',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false,yAxisID:'yM',order:2},
+          borderRadius:1,yAxisID:'yV',order:2},
+        {label:'DIF',data:DIF,type:'line',borderColor:'#00e5ff',borderWidth:1.5,pointRadius:0,tension:0.3,fill:false,yAxisID:'yM',order:1},
+        {label:'DEA',data:DEA,type:'line',borderColor:'#f0a03a',borderWidth:1.5,pointRadius:0,tension:0.3,fill:false,yAxisID:'yM',order:1},
       ]},
       options:{responsive:true,maintainAspectRatio:false,animation:false,
         interaction:{mode:'index',intersect:false},
         plugins:{legend:{display:false},tooltip:TT},
         scales:{
-          x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0}},
+          x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},offset:false},
           yV:{grid:GRID,ticks:{...TICK},position:'right'},
           yM:{grid:{display:false},ticks:{...TICK,maxTicksLimit:4},position:'left'},
         }}
@@ -502,23 +513,26 @@ async function query(sym,nameHint){
         {label:'J',data:J,borderColor:'#b072f2',borderWidth:1,pointRadius:0,tension:0.3,fill:false},
       ]},options:bOpts()});
 
-    // 外資
+    // 外資（正值=買超=紅，負值=賣超=綠）
     mkChart('c-foreign',{type:'bar',
       data:{labels,datasets:[{label:'外資',data:foreignNet,
-        backgroundColor:foreignNet.map(v=>v===null?'transparent':v>=0?'rgba(91,163,245,0.75)':'rgba(242,95,95,0.6)'),
-        borderRadius:1}]},options:bOpts()});
+        backgroundColor:foreignNet.map(v=>v===null?'transparent':v>=0?'rgba(242,95,95,0.75)':'rgba(63,201,124,0.75)'),
+        borderRadius:1}]},
+      options:{...bOpts(),scales:{x:{...bOpts().scales.x,offset:false},y:{grid:GRID,ticks:{...TICK},position:'right'}}}});
 
     // 投信
     mkChart('c-trust',{type:'bar',
       data:{labels,datasets:[{label:'投信',data:trustNet,
-        backgroundColor:trustNet.map(v=>v===null?'transparent':v>=0?'rgba(63,201,124,0.75)':'rgba(242,95,95,0.6)'),
-        borderRadius:1}]},options:bOpts()});
+        backgroundColor:trustNet.map(v=>v===null?'transparent':v>=0?'rgba(242,95,95,0.75)':'rgba(63,201,124,0.75)'),
+        borderRadius:1}]},
+      options:{...bOpts(),scales:{x:{...bOpts().scales.x,offset:false},y:{grid:GRID,ticks:{...TICK},position:'right'}}}});
 
     // 自營
     mkChart('c-dealer',{type:'bar',
       data:{labels,datasets:[{label:'自營',data:dealerNet,
-        backgroundColor:dealerNet.map(v=>v===null?'transparent':v>=0?'rgba(176,114,242,0.75)':'rgba(242,95,95,0.6)'),
-        borderRadius:1}]},options:bOpts()});
+        backgroundColor:dealerNet.map(v=>v===null?'transparent':v>=0?'rgba(242,95,95,0.75)':'rgba(63,201,124,0.75)'),
+        borderRadius:1}]},
+      options:{...bOpts(),scales:{x:{...bOpts().scales.x,offset:false},y:{grid:GRID,ticks:{...TICK},position:'right'}}}});
 
   }catch(e){
     destroyCharts();
