@@ -317,23 +317,24 @@ const wickPlugin={
 };
 Chart.register(wickPlugin);
 
-// ── 十字線 Plugin（所有圖表同步）────────────────────────
-let crosshairX = null;
+// ── 十字線 Plugin（對齊資料 index，所有圖同步）──────────
+let crosshairIndex = null;
 const crosshairPlugin = {
   id: 'crosshair',
   afterDraw(chart){
-    if(crosshairX === null) return;
-    const ctx = chart.ctx;
+    if(crosshairIndex === null) return;
     const xScale = chart.scales.x;
     const yScale = chart.scales.y || chart.scales.yV;
     if(!xScale || !yScale) return;
-    // 找最近的 x 像素
-    const x = crosshairX;
+    const meta = chart.getDatasetMeta(0);
+    if(!meta || !meta.data || !meta.data[crosshairIndex]) return;
+    const x = meta.data[crosshairIndex].x;
     if(x < xScale.left || x > xScale.right) return;
+    const ctx = chart.ctx;
     ctx.save();
     ctx.beginPath();
-    ctx.setLineDash([4, 4]);
-    ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+    ctx.setLineDash([]);
+    ctx.strokeStyle = 'rgba(255, 210, 0, 0.7)';
     ctx.lineWidth = 1;
     ctx.moveTo(x, yScale.top);
     ctx.lineTo(x, yScale.bottom);
@@ -343,11 +344,20 @@ const crosshairPlugin = {
   afterEvent(chart, args){
     const event = args.event;
     if(event.type === 'mousemove'){
-      crosshairX = event.x;
+      const xScale = chart.scales.x;
+      if(!xScale) return;
+      const meta = chart.getDatasetMeta(0);
+      if(!meta || !meta.data) return;
+      // 找最近的資料點 index
+      let minDist = Infinity, idx = null;
+      meta.data.forEach((pt, i) => {
+        const dist = Math.abs(pt.x - event.x);
+        if(dist < minDist){ minDist = dist; idx = i; }
+      });
+      crosshairIndex = idx;
     } else if(event.type === 'mouseout'){
-      crosshairX = null;
+      crosshairIndex = null;
     }
-    // 觸發所有其他圖表重繪
     Object.values(charts).forEach(c => { if(c !== chart) c.draw(); });
   }
 };
