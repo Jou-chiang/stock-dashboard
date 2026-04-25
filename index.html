@@ -751,13 +751,30 @@ function applyCostVisibility(){
   }
 }
 
-function fmtEntryPrice(price, ma5, signal, sym, high20){
+function fmtEntryPrice(price, ma5, signal, sym, high20, ma20){
   if(!price || isNaN(price)) return '<span class="na">—</span>';
 
   const cost = getCost(sym);
   const hasCost = !isNaN(cost) && cost > 0;
   const roi = hasCost ? (price - cost) / cost * 100 : 0;
   const roiStr = `${roi>=0?'+':''}${roi.toFixed(1)}%`;
+
+  // ── 最高否決權：停損條件先跑，蓋掉所有其他建議 ──────────
+  if(hasCost){
+    const belowMA20 = ma20 && price < ma20;
+    const stopLoss  = roi <= -8;
+
+    // 修正3：虧損已達停損線 → 強制清倉，不管訊號是什麼
+    if(stopLoss){
+      return `<span class="entry-price" style="color:#ff1744;font-weight:700">🚨 停損觸發 虧${Math.abs(roi).toFixed(0)}%，清倉</span>`;
+    }
+    // 修正1&2：跌破MA20 → 強制出場建議，不管KDJ多低
+    if(belowMA20){
+      if(roi >= 0)
+        return `<span class="entry-price" style="color:#ef5350;font-weight:600">⚠ 跌破月線，獲利${roi.toFixed(0)}% 建議出場</span>`;
+      return `<span class="entry-price" style="color:#ef5350;font-weight:600">⚠ 跌破月線，建議停損出場</span>`;
+    }
+  }
 
   if(hasCost){
     if(signal==='trend-collapse')
@@ -794,13 +811,22 @@ function fmtEntryPrice(price, ma5, signal, sym, high20){
     }
     if(signal==='strong-hold'||signal==='strong-hold-warn')
       return `<span class="entry-price entry-hold">持有觀察${costColsVisible?" ("+roiStr+")":""}</span>`;
+    // 修正2：買入/加碼建議需確認站上MA20才顯示
     if(signal==='strong-buy'){
-      const addEntry = ma5 ? `≈${(((price+ma5)/2)*1.005).toFixed(1)}` : '';
-      return `<span class="entry-price" style="color:var(--green)">持有，低位可加碼 ${addEntry}</span>`;
+      const aboveMA20 = !ma20 || price > ma20;
+      if(aboveMA20){
+        const addEntry = ma5 ? `≈${(((price+ma5)/2)*1.005).toFixed(1)}` : '';
+        return `<span class="entry-price" style="color:var(--green)">持有，低位可加碼 ${addEntry}</span>`;
+      }
+      return `<span class="entry-price" style="color:#f0a03a">月線承壓，暫不加碼</span>`;
     }
     if(signal==='buy'){
-      const addEntry = ma5 ? `≈${(((price+ma5)/2)*1.005).toFixed(1)}` : '';
-      return `<span class="entry-price" style="color:var(--green)">持有，可考慮加碼 ${addEntry}</span>`;
+      const aboveMA20 = !ma20 || price > ma20;
+      if(aboveMA20){
+        const addEntry = ma5 ? `≈${(((price+ma5)/2)*1.005).toFixed(1)}` : '';
+        return `<span class="entry-price" style="color:var(--green)">持有，可考慮加碼 ${addEntry}</span>`;
+      }
+      return `<span class="entry-price" style="color:#f0a03a">月線承壓，暫不加碼</span>`;
     }
     return `<span class="entry-price entry-hold">持有中${costColsVisible?" ("+roiStr+")":""}</span>`;
   }
@@ -980,7 +1006,7 @@ function render(){
       <td class="cost-col">${fmtROI(d.price, sym)}</td>
       <td class="cost-col">${fmtStopLine(d.price, d.MA5, d.MA20, sym)}</td>
       <td>${fmtTrend(d.DIF, d.MA5, d.MA20)}</td>
-      <td>${fmtEntryPrice(d.price, d.MA5, d.signal, sym, d.HIGH20)}</td>
+      <td>${fmtEntryPrice(d.price, d.MA5, d.signal, sym, d.HIGH20, d.MA20)}</td>
       <td class="cg">${renderSignal(getDisplaySignal(sym))}</td>
     </tr>`;
   }).join('');
