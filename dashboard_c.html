@@ -317,7 +317,7 @@ const wickPlugin={
 };
 Chart.register(wickPlugin);
 
-// ── 十字線 Plugin（對齊資料 index，所有圖同步）──────────
+// ── 十字線 Plugin（用 xScale 統一換算，所有圖對齊）──────
 let crosshairIndex = null;
 const crosshairPlugin = {
   id: 'crosshair',
@@ -326,15 +326,13 @@ const crosshairPlugin = {
     const xScale = chart.scales.x;
     const yScale = chart.scales.y || chart.scales.yV;
     if(!xScale || !yScale) return;
-    const meta = chart.getDatasetMeta(0);
-    if(!meta || !meta.data || !meta.data[crosshairIndex]) return;
-    const x = meta.data[crosshairIndex].x;
+    const x = xScale.getPixelForValue(crosshairIndex);
     if(x < xScale.left || x > xScale.right) return;
     const ctx = chart.ctx;
     ctx.save();
     ctx.beginPath();
     ctx.setLineDash([]);
-    ctx.strokeStyle = 'rgba(255, 210, 0, 0.7)';
+    ctx.strokeStyle = 'rgba(255,210,0,0.75)';
     ctx.lineWidth = 1;
     ctx.moveTo(x, yScale.top);
     ctx.lineTo(x, yScale.bottom);
@@ -346,15 +344,11 @@ const crosshairPlugin = {
     if(event.type === 'mousemove'){
       const xScale = chart.scales.x;
       if(!xScale) return;
-      const meta = chart.getDatasetMeta(0);
-      if(!meta || !meta.data) return;
-      // 找最近的資料點 index
-      let minDist = Infinity, idx = null;
-      meta.data.forEach((pt, i) => {
-        const dist = Math.abs(pt.x - event.x);
-        if(dist < minDist){ minDist = dist; idx = i; }
-      });
-      crosshairIndex = idx;
+      // 用 xScale 反查最近的 index
+      const value = xScale.getValueForPixel(event.x);
+      const idx = Math.round(value);
+      const max = (chart.data.labels||[]).length - 1;
+      crosshairIndex = Math.max(0, Math.min(idx, max));
     } else if(event.type === 'mouseout'){
       crosshairIndex = null;
     }
@@ -442,6 +436,19 @@ async function query(sym,nameHint){
     const trustNet=instDates.map(d=>instByDate[d]?Math.round(instByDate[d].trust):null);
     const dealerNet=instDates.map(d=>instByDate[d]?Math.round(instByDate[d].dealer):null);
 
+    // 累計買賣超（null 視為 0 計算，但顯示為 null 的天跳過）
+    function calcCumulative(arr){
+      let sum=0;
+      return arr.map(v=>{
+        if(v===null) return null;
+        sum+=v;
+        return sum;
+      });
+    }
+    const foreignCum = calcCumulative(foreignNet);
+    const trustCum   = calcCumulative(trustNet);
+    const dealerCum  = calcCumulative(dealerNet);
+
     const last=display[display.length-1],prev=display[display.length-2]||last;
     const chgPct=((+last.close - +prev.close)/+prev.close*100).toFixed(2);
     const chgClass=chgPct>0?'up':chgPct<0?'dn':'flat';
@@ -507,8 +514,9 @@ async function query(sym,nameHint){
           <span style="color:#5ba3f5">外資</span> 淨買超（張）
           <span><span class="legend-dot" style="background:rgba(242,95,95,0.75)"></span>買超</span>
           <span><span class="legend-dot" style="background:rgba(63,201,124,0.75)"></span>賣超</span>
+          <span><span class="legend-dot" style="background:#5ba3f5;border-radius:2px;width:16px;height:3px;display:inline-block;margin-right:3px"></span>累計（右軸）</span>
         </div>
-        <div style="height:90px"><canvas id="c-foreign"></canvas></div>
+        <div style="height:120px"><canvas id="c-foreign"></canvas></div>
       </div>
 
       <div class="chart-block">
@@ -516,8 +524,9 @@ async function query(sym,nameHint){
           <span style="color:#3fc97c">投信</span> 淨買超（張）
           <span><span class="legend-dot" style="background:rgba(242,95,95,0.75)"></span>買超</span>
           <span><span class="legend-dot" style="background:rgba(63,201,124,0.75)"></span>賣超</span>
+          <span><span class="legend-dot" style="background:#3fc97c;border-radius:2px;width:16px;height:3px;display:inline-block;margin-right:3px"></span>累計（右軸）</span>
         </div>
-        <div style="height:90px"><canvas id="c-trust"></canvas></div>
+        <div style="height:120px"><canvas id="c-trust"></canvas></div>
       </div>
 
       <div class="chart-block">
@@ -525,8 +534,9 @@ async function query(sym,nameHint){
           <span style="color:#b072f2">自營商</span> 淨買超（張）
           <span><span class="legend-dot" style="background:rgba(242,95,95,0.75)"></span>買超</span>
           <span><span class="legend-dot" style="background:rgba(63,201,124,0.75)"></span>賣超</span>
+          <span><span class="legend-dot" style="background:#b072f2;border-radius:2px;width:16px;height:3px;display:inline-block;margin-right:3px"></span>累計（右軸）</span>
         </div>
-        <div style="height:90px"><canvas id="c-dealer"></canvas></div>
+        <div style="height:120px"><canvas id="c-dealer"></canvas></div>
       </div>`;
 
     // K線圖
@@ -571,26 +581,47 @@ async function query(sym,nameHint){
         {label:'J',data:J,borderColor:'#b072f2',borderWidth:1,pointRadius:0,tension:0.3,fill:false},
       ]},options:bOpts()});
 
-    // 外資（正值=買超=紅，負值=賣超=綠）
+    // 法人圖雙軸設定（左=每日，右=累計折線）
+    function instOpts(){
+      return {responsive:true,maintainAspectRatio:false,animation:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{display:false},tooltip:TT},
+        scales:{
+          x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},offset:true},
+          yBar:{grid:GRID,ticks:{...TICK},position:'left'},
+          yCum:{grid:{display:false},ticks:{...TICK},position:'right'},
+        }};
+    }
+
     mkChart('c-foreign',{type:'bar',
-      data:{labels,datasets:[{label:'外資',data:foreignNet,
-        backgroundColor:foreignNet.map(v=>v===null?'transparent':v>=0?'rgba(242,95,95,0.75)':'rgba(63,201,124,0.75)'),
-        borderRadius:1}]},
-      options:bOpts()});
+      data:{labels,datasets:[
+        {label:'外資每日',data:foreignNet,
+          backgroundColor:foreignNet.map(v=>v===null?'transparent':v>=0?'rgba(242,95,95,0.7)':'rgba(63,201,124,0.7)'),
+          borderRadius:1,yAxisID:'yBar',order:2},
+        {label:'外資累計',data:foreignCum,type:'line',
+          borderColor:'#5ba3f5',borderWidth:1.5,pointRadius:0,tension:0.3,fill:false,
+          yAxisID:'yCum',order:1},
+      ]},options:instOpts()});
 
-    // 投信
     mkChart('c-trust',{type:'bar',
-      data:{labels,datasets:[{label:'投信',data:trustNet,
-        backgroundColor:trustNet.map(v=>v===null?'transparent':v>=0?'rgba(242,95,95,0.75)':'rgba(63,201,124,0.75)'),
-        borderRadius:1}]},
-      options:bOpts()});
+      data:{labels,datasets:[
+        {label:'投信每日',data:trustNet,
+          backgroundColor:trustNet.map(v=>v===null?'transparent':v>=0?'rgba(242,95,95,0.7)':'rgba(63,201,124,0.7)'),
+          borderRadius:1,yAxisID:'yBar',order:2},
+        {label:'投信累計',data:trustCum,type:'line',
+          borderColor:'#3fc97c',borderWidth:1.5,pointRadius:0,tension:0.3,fill:false,
+          yAxisID:'yCum',order:1},
+      ]},options:instOpts()});
 
-    // 自營
     mkChart('c-dealer',{type:'bar',
-      data:{labels,datasets:[{label:'自營',data:dealerNet,
-        backgroundColor:dealerNet.map(v=>v===null?'transparent':v>=0?'rgba(242,95,95,0.75)':'rgba(63,201,124,0.75)'),
-        borderRadius:1}]},
-      options:bOpts()});
+      data:{labels,datasets:[
+        {label:'自營每日',data:dealerNet,
+          backgroundColor:dealerNet.map(v=>v===null?'transparent':v>=0?'rgba(242,95,95,0.7)':'rgba(63,201,124,0.7)'),
+          borderRadius:1,yAxisID:'yBar',order:2},
+        {label:'自營累計',data:dealerCum,type:'line',
+          borderColor:'#b072f2',borderWidth:1.5,pointRadius:0,tension:0.3,fill:false,
+          yAxisID:'yCum',order:1},
+      ]},options:instOpts()});
 
   }catch(e){
     destroyCharts();
