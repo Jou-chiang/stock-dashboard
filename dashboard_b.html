@@ -248,7 +248,7 @@ function renderCard(s){
   const starColor=sc>=5?'#ffd700':sc>=4?'var(--green)':'var(--text3)';
   return `<div class="stock-card ${cc}">
     <div class="card-top">
-      <div><div class="card-code">${s.code}</div><div class="card-name">${s.name}${fire}</div><div class="card-sector">${s.sector}</div></div>
+      <div><div class="card-code"><a href="https://goodinfo.tw/tw/StockDetail.asp?STOCK_ID=${s.code}" target="_blank" style="color:var(--text3);text-decoration:none;" onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--text3)'">${s.code} ↗</a></div><div class="card-name">${s.name}${fire}</div><div class="card-sector">${s.sector}</div></div>
       <div style="text-align:right"><div class="score-badge ${bc}">${sc}/6</div><div class="stars" style="color:${starColor}">${'★'.repeat(sc)+'☆'.repeat(6-sc)}</div></div>
     </div>
     <div class="card-price-row"><span class="card-price">${s.price}</span><span class="card-chg ${chgClass}">${chgUp?'+':''}${s.chg_pct?.toFixed(2)}%</span></div>
