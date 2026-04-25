@@ -317,6 +317,42 @@ const wickPlugin={
 };
 Chart.register(wickPlugin);
 
+// ── 十字線 Plugin（所有圖表同步）────────────────────────
+let crosshairX = null;
+const crosshairPlugin = {
+  id: 'crosshair',
+  afterDraw(chart){
+    if(crosshairX === null) return;
+    const ctx = chart.ctx;
+    const xScale = chart.scales.x;
+    const yScale = chart.scales.y || chart.scales.yV;
+    if(!xScale || !yScale) return;
+    // 找最近的 x 像素
+    const x = crosshairX;
+    if(x < xScale.left || x > xScale.right) return;
+    ctx.save();
+    ctx.beginPath();
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+    ctx.lineWidth = 1;
+    ctx.moveTo(x, yScale.top);
+    ctx.lineTo(x, yScale.bottom);
+    ctx.stroke();
+    ctx.restore();
+  },
+  afterEvent(chart, args){
+    const event = args.event;
+    if(event.type === 'mousemove'){
+      crosshairX = event.x;
+    } else if(event.type === 'mouseout'){
+      crosshairX = null;
+    }
+    // 觸發所有其他圖表重繪
+    Object.values(charts).forEach(c => { if(c !== chart) c.draw(); });
+  }
+};
+Chart.register(crosshairPlugin);
+
 // ── Chart 設定 ────────────────────────────────────────────
 const GRID={color:'rgba(255,255,255,0.04)',drawBorder:false};
 const TICK={color:'#565c66',font:{family:"'IBM Plex Mono'",size:10}};
