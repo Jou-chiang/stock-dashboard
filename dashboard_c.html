@@ -324,7 +324,7 @@ const crosshairPlugin = {
   afterDraw(chart){
     if(crosshairIndex === null) return;
     const xScale = chart.scales.x;
-    const yScale = chart.scales.y || chart.scales.yV;
+    const yScale = chart.scales.y || chart.scales.yV || chart.scales.yBar || chart.scales.yCum;
     if(!xScale || !yScale) return;
     const x = xScale.getPixelForValue(crosshairIndex);
     if(x < xScale.left || x > xScale.right) return;
@@ -449,6 +449,24 @@ async function query(sym,nameHint){
     const trustCum   = calcCumulative(trustNet);
     const dealerCum  = calcCumulative(dealerNet);
 
+    // 外資 VWAP 估算成本（加權平均買入價）
+    let totalCost = 0, totalShares = 0;
+    display.forEach((row, i) => {
+      const net = foreignNet[i];
+      if(net === null) return;
+      if(net > 0){
+        totalCost += net * +row.close;
+        totalShares += net;
+      } else if(net < 0 && totalShares > 0){
+        // 賣出時按比例扣除持倉
+        const ratio = Math.min(1, Math.abs(net) / totalShares);
+        totalCost *= (1 - ratio);
+        totalShares += net; // net 是負數
+        if(totalShares < 0) { totalShares = 0; totalCost = 0; }
+      }
+    });
+    const foreignVWAP = totalShares > 0 ? (totalCost / totalShares).toFixed(2) : null;
+
     const last=display[display.length-1],prev=display[display.length-2]||last;
     const chgPct=((+last.close - +prev.close)/+prev.close*100).toFixed(2);
     const chgClass=chgPct>0?'up':chgPct<0?'dn':'flat';
@@ -476,6 +494,7 @@ async function query(sym,nameHint){
         <div class="summary-item"><span class="summary-label">投信近5日</span><span class="summary-val ${sumT>=0?'pos':'neg'}">${sumT>=0?'+':''}${Math.round(sumT).toLocaleString()} 張</span></div>
         <div class="summary-item"><span class="summary-label">自營近5日</span><span class="summary-val ${sumD>=0?'pos':'neg'}">${sumD>=0?'+':''}${Math.round(sumD).toLocaleString()} 張</span></div>
         <div class="summary-item"><span class="summary-label">三大合計</span><span class="summary-val ${sumTotal>=0?'pos':'neg'}">${sumTotal>=0?'+':''}${Math.round(sumTotal).toLocaleString()} 張</span></div>
+        ${foreignVWAP ? `<div class="summary-item"><span class="summary-label">外資估算成本</span><span class="summary-val" style="color:#f0a03a">≈ ${foreignVWAP}</span></div>` : ''}
       </div>
 
       <div class="chart-block">
