@@ -366,7 +366,7 @@ const TT={backgroundColor:'rgba(19,22,25,0.95)',borderColor:'rgba(255,255,255,0.
 function bOpts(extra={}){
   return{responsive:true,maintainAspectRatio:false,animation:false,
     interaction:{mode:'index',intersect:false},
-    layout:{padding:{left:8,right:24}},
+    layout:{padding:{left:8,right:40}},
     plugins:{legend:{display:false},tooltip:TT},
     scales:{x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},offset:false},y:{grid:GRID,ticks:{...TICK},position:'right'},...extra}};
 }
@@ -384,7 +384,7 @@ async function query(sym,nameHint){
     const fetchDays=DAYS+80; // 多抓讓MA60有足夠暖機資料
     const [priceData,instData]=await Promise.all([
       fmGet('TaiwanStockPrice',sym,fetchDays),
-      fmGet('TaiwanStockInstitutionalInvestorsBuySell',sym,DAYS+5),
+      fmGet('TaiwanStockInstitutionalInvestorsBuySell',sym,fetchDays),
     ]);
     if(!priceData.length) throw new Error(`找不到股票 ${sym}`);
 
@@ -572,7 +572,7 @@ async function query(sym,nameHint){
         {label:'MA60',data:MA60,type:'line',borderColor:'#b072f2',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false,borderDash:[4,3]},
       ]},
       options:bOpts({y:{grid:GRID,ticks:{...TICK},position:'right',min:priceMin,max:priceMax},
-                     x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},offset:false}})
+                     x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},offset:false},afterFit(axis){axis.paddingRight=40;}})
     });
 
     // 成交量 + MACD 雙軸（無柱狀，只有 DIF/DEA 線）
@@ -607,7 +607,7 @@ async function query(sym,nameHint){
     function instOpts(){
       return {responsive:true,maintainAspectRatio:false,animation:false,
         interaction:{mode:'index',intersect:false},
-        layout:{padding:{left:8,right:24}},
+        layout:{padding:{left:8,right:40}},
         plugins:{legend:{display:false},tooltip:TT},
         scales:{
           x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},offset:false},
