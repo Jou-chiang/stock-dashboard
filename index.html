@@ -214,6 +214,8 @@ tr:hover td{background:var(--bg3);}
   <div class="sep"></div>
   <button class="btn-toggle-cost" id="cost-toggle-btn" onclick="toggleCostCols()" title="顯示/隱藏戰情欄">戰情欄 👁</button>
   <div class="sep"></div>
+  <button class="btn-toggle-cost" id="legend-toggle-btn" onclick="toggleLegend()" title="顯示/隱藏訊號說明">訊號說明 👁</button>
+  <div class="sep"></div>
   <div class="auto-r">自動刷新：
     <select id="ai" onchange="setAuto()">
       <option value="0">關閉</option>
@@ -731,7 +733,26 @@ function setCost(sym, val){
   render();
 }
 
-let costColsVisible = localStorage.getItem('cost_cols_visible') !== 'false';
+let legendVisible = localStorage.getItem('legend_visible') !== 'false';
+function toggleLegend(){
+  legendVisible = !legendVisible;
+  localStorage.setItem('legend_visible', legendVisible);
+  applyLegendVisibility();
+}
+function applyLegendVisibility(){
+  const legend = document.querySelector('.legend');
+  const btn = document.getElementById('legend-toggle-btn');
+  if(!legend) return;
+  if(legendVisible){
+    legend.style.display = '';
+    btn.classList.add('active');
+    btn.textContent = '訊號說明 👁';
+  } else {
+    legend.style.display = 'none';
+    btn.classList.remove('active');
+    btn.textContent = '訊號說明 🙈';
+  }
+}
 function toggleCostCols(){
   costColsVisible = !costColsVisible;
   localStorage.setItem('cost_cols_visible', costColsVisible);
@@ -1014,6 +1035,7 @@ function render(){
 
 updateTokenUI();
 applyCostVisibility();
+applyLegendVisibility();
 render();
 loadStockList();
 </script>
