@@ -733,6 +733,7 @@ function setCost(sym, val){
   render();
 }
 
+let costColsVisible = localStorage.getItem('cost_cols_visible') !== 'false';
 let legendVisible = localStorage.getItem('legend_visible') !== 'false';
 function toggleLegend(){
   legendVisible = !legendVisible;
