@@ -318,17 +318,18 @@ const wickPlugin={
 Chart.register(wickPlugin);
 
 // ── 十字線 Plugin（用 xScale 統一換算，所有圖對齊）──────
-let crosshairIndex = null;
-let crosshairRatio = null; // 用比例而非 index，確保跨不同軸寬的圖表對齊
+let crosshairLabel = null; // 用日期標籤對齊，不用 index 或比例
 const crosshairPlugin = {
   id: 'crosshair',
   afterDraw(chart){
-    if(crosshairRatio === null) return;
+    if(!crosshairLabel) return;
     const xScale = chart.scales.x;
     const yScale = chart.scales.y || chart.scales.yV || chart.scales.yBar || chart.scales.yCum;
     if(!xScale || !yScale) return;
-    // 用相同比例換算這張圖的 x 像素
-    const x = xScale.left + crosshairRatio * (xScale.right - xScale.left);
+    // 在這張圖的 labels 裡找對應日期
+    const idx = (chart.data.labels||[]).indexOf(crosshairLabel);
+    if(idx === -1) return;
+    const x = xScale.getPixelForValue(idx);
     if(x < xScale.left || x > xScale.right) return;
     const ctx = chart.ctx;
     ctx.save();
@@ -346,16 +347,11 @@ const crosshairPlugin = {
     if(event.type === 'mousemove'){
       const xScale = chart.scales.x;
       if(!xScale) return;
-      // 換算成 0~1 的比例，讓所有圖表都能用同一個比例還原
-      const ratio = (event.x - xScale.left) / (xScale.right - xScale.left);
-      crosshairRatio = Math.max(0, Math.min(1, ratio));
-      // 同時更新 index 供 tooltip 使用
       const value = xScale.getValueForPixel(event.x);
-      const max = (chart.data.labels||[]).length - 1;
-      crosshairIndex = Math.max(0, Math.min(Math.round(value), max));
+      const idx = Math.max(0, Math.min(Math.round(value), (chart.data.labels||[]).length-1));
+      crosshairLabel = (chart.data.labels||[])[idx] || null;
     } else if(event.type === 'mouseout'){
-      crosshairRatio = null;
-      crosshairIndex = null;
+      crosshairLabel = null;
     }
     Object.values(charts).forEach(c => { if(c !== chart) c.draw(); });
   }
