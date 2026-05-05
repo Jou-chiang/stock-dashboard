@@ -379,9 +379,11 @@ function bOpts(extra={}){
   };
   // 對所有 scale 注入 afterFit
   Object.values(scales).forEach(s=>{ if(s.position && !s.afterFit) s.afterFit=fitY; });
+  // 沒有左軸的圖補上等量 padding，讓繪圖區左右邊界跟有左軸的圖對齊
+  const hasLeftAxis = Object.values(scales).some(s=>s.position==='left');
   return{responsive:true,maintainAspectRatio:false,animation:false,
     interaction:{mode:'index',intersect:false},
-    layout:{padding:{left:8,right:8}},
+    layout:{padding:{left: hasLeftAxis ? 8 : Y_LEFT_W+8, right:8}},
     plugins:{legend:{display:false},tooltip:TT},
     scales};
 }
