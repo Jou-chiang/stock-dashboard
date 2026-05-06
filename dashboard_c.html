@@ -371,7 +371,6 @@ function fitY(axis){
   if(axis.position==='left')  axis.width = Y_LEFT_W;
 }
 function bOpts(extra={}){
-  // 對 extra 裡的每個 scale 注入 afterFit
   const scales = {
     x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},offset:false},
     y:{grid:GRID,ticks:{...TICK},position:'right',afterFit:fitY},
@@ -379,11 +378,15 @@ function bOpts(extra={}){
   };
   // 對所有 scale 注入 afterFit
   Object.values(scales).forEach(s=>{ if(s.position && !s.afterFit) s.afterFit=fitY; });
-  // 沒有左軸的圖補上等量 padding，讓繪圖區左右邊界跟有左軸的圖對齊
+  // 若無左軸，補一個隱藏左軸讓 chartArea.left 與有左軸的圖一致
   const hasLeftAxis = Object.values(scales).some(s=>s.position==='left');
+  if(!hasLeftAxis){
+    scales._dummyLeft = {display:true,position:'left',grid:{display:false},
+      ticks:{display:false},afterFit:fitY};
+  }
   return{responsive:true,maintainAspectRatio:false,animation:false,
     interaction:{mode:'index',intersect:false},
-    layout:{padding:{left: hasLeftAxis ? 8 : Y_LEFT_W+8, right:8}},
+    layout:{padding:{left:8,right:8}},
     plugins:{legend:{display:false},tooltip:TT},
     scales};
 }
