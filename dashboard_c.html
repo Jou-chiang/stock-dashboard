@@ -364,31 +364,54 @@ const TICK={color:'#565c66',font:{family:"'IBM Plex Mono'",size:10}};
 const TT={backgroundColor:'rgba(19,22,25,0.95)',borderColor:'rgba(255,255,255,0.1)',borderWidth:1,
   titleColor:'#8b9099',bodyColor:'#e8eaed',
   titleFont:{family:"'IBM Plex Mono'",size:10},bodyFont:{family:"'IBM Plex Mono'",size:11},padding:10};
-const Y_RIGHT_W = 70; // 右軸固定寬度
-const Y_LEFT_W  = 72; // 左軸固定寬度
+// ── 固定軸寬，確保所有圖 chartArea 完全對齊 ────────────
+const Y_RIGHT_W = 72;
+const Y_LEFT_W  = 72;
+
 function fitY(axis){
   if(axis.position==='right') axis.width = Y_RIGHT_W;
   if(axis.position==='left')  axis.width = Y_LEFT_W;
 }
-function bOpts(extra={}){
+
+// 所有圖共用的 x 軸設定
+function xScale(){
+  return {grid:GRID, ticks:{...TICK,maxTicksLimit:8,maxRotation:0},
+    offset:false, afterFit(axis){ axis.paddingLeft=0; axis.paddingRight=0; }};
+}
+
+// 無左軸的圖（K線、KDJ）用這個：補一個佔位左軸
+function dummyLeft(){
+  return {position:'left', display:true,
+    grid:{display:false}, border:{display:false},
+    ticks:{display:false, maxTicksLimit:0},
+    afterFit:fitY};
+}
+
+function bOpts(hasLeft=false, extra={}){
   const scales = {
-    x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},offset:false},
-    y:{grid:GRID,ticks:{...TICK},position:'right',afterFit:fitY},
-    ...extra
+    x: xScale(),
+    y: {grid:GRID, ticks:{...TICK}, position:'right', afterFit:fitY},
+    ...(hasLeft ? {} : {_pad: dummyLeft()}),
+    ...extra,
   };
-  // 對所有 scale 注入 afterFit
   Object.values(scales).forEach(s=>{ if(s.position && !s.afterFit) s.afterFit=fitY; });
-  // 若無左軸，補一個隱藏左軸讓 chartArea.left 與有左軸的圖一致
-  const hasLeftAxis = Object.values(scales).some(s=>s.position==='left');
-  if(!hasLeftAxis){
-    scales._dummyLeft = {display:true,position:'left',grid:{display:false},
-      ticks:{display:false},afterFit:fitY};
-  }
-  return{responsive:true,maintainAspectRatio:false,animation:false,
+  return {responsive:true, maintainAspectRatio:false, animation:false,
     interaction:{mode:'index',intersect:false},
-    layout:{padding:{left:8,right:8}},
-    plugins:{legend:{display:false},tooltip:TT},
+    layout:{padding:{left:0,right:0}},
+    plugins:{legend:{display:false}, tooltip:TT},
     scales};
+}
+
+function instOpts(){
+  return {responsive:true, maintainAspectRatio:false, animation:false,
+    interaction:{mode:'index',intersect:false},
+    layout:{padding:{left:0,right:0}},
+    plugins:{legend:{display:false}, tooltip:TT},
+    scales:{
+      x: xScale(),
+      yBar:{grid:GRID, ticks:{...TICK}, position:'left', afterFit:fitY},
+      yCum:{grid:{display:false}, border:{display:false}, ticks:{...TICK}, position:'right', afterFit:fitY},
+    }};
 }
 function mkChart(id,cfg){charts[id]=new Chart(document.getElementById(id).getContext('2d'),cfg);}
 
@@ -591,8 +614,7 @@ async function query(sym,nameHint){
         {label:'MA20',data:MA20,type:'line',borderColor:'#5ba3f5',borderWidth:1.3,pointRadius:0,tension:0.3,fill:false},
         {label:'MA60',data:MA60,type:'line',borderColor:'#b072f2',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false,borderDash:[4,3]},
       ]},
-      options:bOpts({y:{grid:GRID,ticks:{...TICK},position:'right',min:priceMin,max:priceMax,afterFit:fitY},
-                     x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},offset:false}})
+      options:bOpts(false,{y:{grid:GRID,ticks:{...TICK},position:'right',min:priceMin,max:priceMax,afterFit:fitY}})
     });
 
     // 成交量 + MACD 雙軸（無柱狀，只有 DIF/DEA 線）
@@ -607,11 +629,12 @@ async function query(sym,nameHint){
       ]},
       options:{responsive:true,maintainAspectRatio:false,animation:false,
         interaction:{mode:'index',intersect:false},
+        layout:{padding:{left:0,right:0}},
         plugins:{legend:{display:false},tooltip:TT},
         scales:{
-          x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},offset:false},
+          x:xScale(),
           yV:{grid:GRID,ticks:{...TICK},position:'right',afterFit:fitY},
-          yM:{grid:{display:false},ticks:{...TICK,maxTicksLimit:4},position:'left',afterFit:fitY},
+          yM:{grid:{display:false},border:{display:false},ticks:{...TICK,maxTicksLimit:4},position:'left',afterFit:fitY},
         }}
     });
 
@@ -621,7 +644,7 @@ async function query(sym,nameHint){
         {label:'K',data:K,borderColor:'#f0a03a',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false},
         {label:'D',data:D,borderColor:'#5ba3f5',borderWidth:1.2,pointRadius:0,tension:0.3,fill:false},
         {label:'J',data:J,borderColor:'#b072f2',borderWidth:1,pointRadius:0,tension:0.3,fill:false},
-      ]},options:bOpts()});
+      ]},options:bOpts(false)});
 
     // 法人圖雙軸設定（左=每日，右=累計折線）
     function instOpts(){
