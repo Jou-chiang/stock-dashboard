@@ -230,7 +230,7 @@ for code in codes:
     # ── 積分計算（6分制，加入新邏輯）────────────────────
     s1 = buy_days >= 3                          # 投信連買 ≥ 3天
     s2 = net_buy_ratio >= 5.0                   # 投信強點火
-    s3 = k < 50 and (dif is None or dif > 0)   # 修正：低K值需 DIF > 0 保護
+    s3 = k < 70 and (dif is None or dif > 0)   # 修正：放寬K值至70，容許多頭強勢震盪
     s4 = vol_ratio >= 1.5 and chg_pct > 0       # 修正：帶量上漲才算，帶量下跌不給分
     s5 = (ma_gap < 3                             # 修正：均線糾結需股價站上 MA5
           and ma5 is not None
