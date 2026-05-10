@@ -1,68 +1,72 @@
+import os
 import json
 import time
-import requests
 from datetime import datetime
+import shioaji as sj
+
+# 從環境變數讀取 API key（GitHub Secrets）
+api_key = os.environ.get("SHIOAJI_API_KEY", "")
+secret_key = os.environ.get("SHIOAJI_SECRET_KEY", "")
+if not api_key or not secret_key:
+    raise Exception("請設定 SHIOAJI_API_KEY 和 SHIOAJI_SECRET_KEY 環境變數")
 
 # 讀取股票清單
 with open("stocks.json", "r", encoding="utf-8") as f:
     stocks = json.load(f)
+print(f"股票清單：{len(stocks)} 支，開始登入...")
 
+api = sj.Shioaji()
+try:
+    api.login(
+        api_key=api_key,
+        secret_key=secret_key,
+        fetch_contract=True
+    )
+    print("✅ 登入成功！")
+except Exception as e:
+    print(f"❌ 登入失敗: {e}")
+    exit(1)
+
+time.sleep(3)
+
+# 逐支抓報價
 prices = {}
-
 for stock in stocks:
     code = stock["id"]
-    # Yahoo Finance 台股格式：代號.TW 或 代號.TWO
-    for suffix in [".TW", ".TWO"]:
-        try:
-            url = f"https://query1.finance.yahoo.com/v8/finance/chart/{code}{suffix}"
-            headers = {"User-Agent": "Mozilla/5.0"}
-            r = requests.get(url, headers=headers, timeout=10)
-            j = r.json()
-
-            result = j.get("chart", {}).get("result", [])
-            if not result:
-                continue
-
-            meta = result[0].get("meta", {})
-            price = meta.get("regularMarketPrice")
-            if not price:
-                continue
-
+    try:
+        contract = api.Contracts.Stocks[code]
+        snapshot = api.snapshots([contract])
+        if snapshot:
+            s = snapshot[0]
             prices[code] = {
-                "price": price,
-                "open": meta.get("regularMarketOpen", price),
-                "high": meta.get("regularMarketDayHigh", price),
-                "low": meta.get("regularMarketDayLow", price),
-                "volume": meta.get("regularMarketVolume", 0),
-                "change": round(price - meta.get("previousClose", price), 2),
-                "change_pct": round((price - meta.get("previousClose", price)) / meta.get("previousClose", price) * 100, 2) if meta.get("previousClose") else 0,
-                "updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                "price": s.close,
+                "reference": getattr(s, "reference", None) or getattr(s, "ref_price", None),
             }
-            print(f"✅ {code}{suffix}: {price}")
-            break
+            ref = prices[code]["reference"]
+            print(f"✅ {code}: {s.close} (ref: {ref})")
+        else:
+            print(f"⚠️ {code}: 無資料")
+    except Exception as e:
+        print(f"❌ {code}: {e}")
 
-        except Exception as e:
-            print(f"❌ {code}{suffix}: {e}")
-            continue
+# 儲存成 prices.json（加上 is_realtime 讓儀表板顯示綠點）
+output = {
+    "updated": datetime.now().strftime("%Y-%m-%d %H:%M"),
+    "prices": [
+        {
+            "id": k,
+            "price": v["price"],
+            "reference": v.get("reference"),
+            "is_realtime": True
+        }
+        for k, v in prices.items()
+    ]
+}
+with open("prices.json", "w", encoding="utf-8") as f:
+    json.dump(output, f, ensure_ascii=False, indent=2)
+print(f"\n✅ prices.json 更新完成，共 {len(prices)} 支")
 
-    time.sleep(0.3)
-
-# 寫入 prices.json
-if prices:
-    output = {
-        "prices": [
-            {
-                "id": code,
-                "price": data["price"],
-                "is_realtime": True,
-                "vol": data["volume"] // 1000,
-                "updated": data["updated"]
-            }
-            for code, data in prices.items()
-        ]
-    }
-    with open("prices.json", "w", encoding="utf-8") as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
-    print(f"✅ prices.json 更新完成，共 {len(prices)} 支")
-else:
-    print("⚠️ 無資料")
+try:
+    api.logout()
+except:
+    pass
