@@ -2,8 +2,8 @@
 fetch_pool_scores.py
 每天 17:00 由 GitHub Actions 自動執行。
 1. 讀取 history_data.csv
-2. 抓今日最新 1 天資料 append 進去（刪最舊一天維持 60 天）
-3. 計算 KDJ / MA / 均量 / 投信連買
+2. 抓今日最新 1 天資料 append 進去（刪最舊一天維持 120 天）
+3. 計算 KDJ / MA / 均量 / DIF / 投信連買
 4. 輸出 pool_scores.json 供儀表板 B 讀取
 """
 
@@ -20,7 +20,7 @@ HISTORY_FILE = "history_data.csv"
 OUTPUT_FILE  = "pool_scores.json"
 FINMIND_URL  = "https://api.finmindtrade.com/api/v4/data"
 SLEEP_SEC    = 0.8
-KEEP_DAYS    = 60
+KEEP_DAYS    = 120   # 從 60 改為 120，讓 EMA 有足夠暖機資料
 
 # ── Token ────────────────────────────────────────────────
 TOKEN = os.environ.get("FINMIND_TOKEN", "")
@@ -38,7 +38,6 @@ print(f"股票池 {len(codes)} 支，開始更新...")
 
 # ── 讀取歷史資料 ─────────────────────────────────────────
 df_hist = pd.read_csv(HISTORY_FILE, dtype=str, encoding="utf-8-sig")
-# 數值欄位轉回 float
 for col in ["open","high","low","close","volume"]:
     df_hist[col] = pd.to_numeric(df_hist[col], errors="coerce")
 print(f"歷史資料：{len(df_hist)} 筆，{df_hist['code'].nunique()} 支")
@@ -48,14 +47,13 @@ today = datetime.today().strftime("%Y-%m-%d")
 yesterday = (datetime.today() - timedelta(days=1)).strftime("%Y-%m-%d")
 
 new_records = []
-inst_data_map = {}  # 投信資料
+inst_data_map = {}
 
 for i, code in enumerate(codes):
     info = pool_map.get(code, {})
     print(f"[{i+1}/{len(codes)}] {code} {info.get('name','')}...", end=" ")
 
     try:
-        # 抓最新價格
         r = requests.get(FINMIND_URL, params={
             "dataset":    "TaiwanStockPrice",
             "data_id":    code,
@@ -82,13 +80,12 @@ for i, code in enumerate(codes):
                 "close":  float(row["close"]),
                 "volume": float(row["Trading_Volume"]) / 1000,
             })
-
         print(f"✅", end=" ")
 
     except Exception as e:
         print(f"❌ {e}", end=" ")
 
-    # 抓投信資料
+    # 抓法人資料
     try:
         start_inst = (datetime.today() - timedelta(days=20)).strftime("%Y-%m-%d")
         r2 = requests.get(FINMIND_URL, params={
@@ -100,11 +97,12 @@ for i, code in enumerate(codes):
         j2 = r2.json()
         if j2.get("status") == 200 and j2["data"]:
             inst_data_map[code] = j2["data"]
-            print("📊")
+            sample_names = list(set(r.get("name","") for r in j2["data"]))
+            print(f"📊 法人：{sample_names}")
         else:
             print("")
-    except:
-        print("")
+    except Exception as e:
+        print(f"⚠️ 法人資料失敗: {e}")
 
     time.sleep(SLEEP_SEC)
 
@@ -114,7 +112,6 @@ df_all = pd.concat([df_hist, df_new], ignore_index=True)
 df_all = df_all.drop_duplicates(subset=["code", "date"], keep="last")
 df_all = df_all.sort_values(["code", "date"])
 
-# 每支只保留最近 KEEP_DAYS 天
 def keep_latest(group):
     return group.tail(KEEP_DAYS)
 
@@ -123,12 +120,12 @@ df_all.to_csv(HISTORY_FILE, index=False, encoding="utf-8-sig")
 print(f"\n✅ history_data.csv 更新完成：{len(df_all)} 筆")
 
 # ── 計算指標 ─────────────────────────────────────────────
-def calc_kdj(prices):
+def calc_kdj(prices, p=9):
     k, d = 50.0, 50.0
-    for i in range(len(prices)):
-        window = prices[max(0, i-8): i+1]
-        hh = max(p["high"] for p in window)
-        ll = min(p["low"]  for p in window)
+    for i in range(p-1, len(prices)):
+        window = prices[i-p+1: i+1]
+        hh = max(r["high"] for r in window)
+        ll = min(r["low"]  for r in window)
         rsv = 50 if hh == ll else (prices[i]["close"] - ll) / (hh - ll) * 100
         k = k * (2/3) + rsv * (1/3)
         d = d * (2/3) + k * (1/3)
@@ -144,11 +141,51 @@ def calc_avg_vol(volumes, n):
         return None
     return round(sum(volumes[-(n+1):-1]) / n, 1)
 
-def calc_inst_buy_days(inst_rows):
-    rows = sorted(
-        [r for r in inst_rows if "Investment_Trust" in str(r.get("name", ""))],
+def calc_dif(closes):
+    """用 pandas ewm 計算 DIF = EMA12 - EMA26，120天資料讓 EMA 充分收斂"""
+    if len(closes) < 26:
+        return None
+    s = pd.Series(closes)
+    ema12 = s.ewm(span=12, adjust=False).mean()
+    ema26 = s.ewm(span=26, adjust=False).mean()
+    dif = ema12 - ema26
+    return round(float(dif.iloc[-1]), 4)
+
+def filter_inst_rows(inst_rows, keyword):
+    return sorted(
+        [r for r in inst_rows if keyword in str(r.get("name", ""))],
         key=lambda x: x["date"]
     )
+
+def calc_inst_buy_days(inst_rows):
+    rows = filter_inst_rows(inst_rows, "Investment_Trust")
+    if not rows:
+        rows = filter_inst_rows(inst_rows, "投信")
+    days = 0
+    for r in reversed(rows):
+        net = float(r.get("buy", 0)) - float(r.get("sell", 0))
+        if net > 0:
+            days += 1
+        else:
+            break
+    return days
+
+def calc_inst_net_buy_ratio(inst_rows, last_volume_shares):
+    rows = filter_inst_rows(inst_rows, "Investment_Trust")
+    if not rows:
+        rows = filter_inst_rows(inst_rows, "投信")
+    if not rows or not last_volume_shares:
+        return 0.0
+    last = rows[-1]
+    net_shares = float(last.get("buy", 0)) - float(last.get("sell", 0))
+    if net_shares <= 0:
+        return 0.0
+    return round((net_shares / last_volume_shares) * 100, 2)
+
+def calc_foreign_buy_days(inst_rows):
+    rows = filter_inst_rows(inst_rows, "Foreign_Investor")
+    if not rows:
+        rows = filter_inst_rows(inst_rows, "外資")
     days = 0
     for r in reversed(rows):
         net = float(r.get("buy", 0)) - float(r.get("sell", 0))
@@ -166,60 +203,75 @@ for code in codes:
     if len(subset) < 10:
         continue
 
-    rows = subset.to_dict("records")
-    closes  = [r["close"]  for r in rows]
-    highs   = [r["high"]   for r in rows]
-    lows    = [r["low"]    for r in rows]
-    volumes = [r["volume"] for r in rows]
+    rows     = subset.to_dict("records")
+    closes   = [r["close"]  for r in rows]
+    volumes  = [r["volume"] for r in rows]
 
     last = rows[-1]
     prev = rows[-2] if len(rows) >= 2 else last
 
-    k, d, j = calc_kdj(rows)
-    ma5  = calc_ma(closes, 5)
-    ma20 = calc_ma(closes, 20)
+    k, d, j  = calc_kdj(rows)
+    ma5      = calc_ma(closes, 5)
+    ma20     = calc_ma(closes, 20)
     avg_vol5 = calc_avg_vol(volumes, 5)
+    dif      = calc_dif(closes)   # 新增：用 120 天資料算 DIF
 
-    chg_pct = round((last["close"] - prev["close"]) / prev["close"] * 100, 2) if prev["close"] else 0
-    ma_gap  = round(abs(ma5 - ma20) / ma20 * 100, 1) if ma5 and ma20 else 999
+    price     = last["close"]
+    chg_pct   = round((price - prev["close"]) / prev["close"] * 100, 2) if prev["close"] else 0
+    ma_gap    = round(abs(ma5 - ma20) / ma20 * 100, 1) if ma5 and ma20 else 999
     vol_ratio = round(last["volume"] / avg_vol5, 2) if avg_vol5 else 0
 
-    # 投信連買天數
-    inst_rows = inst_data_map.get(code, [])
-    buy_days = calc_inst_buy_days(inst_rows)
+    inst_rows          = inst_data_map.get(code, [])
+    buy_days           = calc_inst_buy_days(inst_rows)
+    last_volume_shares = last["volume"] * 1000
+    net_buy_ratio      = calc_inst_net_buy_ratio(inst_rows, last_volume_shares)
+    foreign_buy_days   = calc_foreign_buy_days(inst_rows)
 
-    # 積分計算
-    s1 = buy_days >= 3           # 投信連買 ≥ 3天
-    s2 = buy_days > 0 and buy_days < 15  # 投信持股尚低（代理：連買天數合理）
-    s3 = k < 50                  # K < 50
-    s4 = vol_ratio >= 1.5        # 量 > 均量 1.5倍
-    s5 = ma_gap < 3              # 均線糾結
+    # ── 積分計算（5分制，合併 s3 與 s4）────────────────────
+    s1 = buy_days >= 3                          # 投信連買 ≥ 3天
+    s2 = net_buy_ratio >= 5.0                   # 投信強點火
+    
+    s3_condition = k < 70 and (dif is None or dif > 0)   # 多頭強勢震盪拉回
+    s4_condition = vol_ratio >= 1.5 and chg_pct > 0      # 帶量上漲突破
+    s_momentum = s3_condition or s4_condition            # 動能/型態：兩者符合其一即得分
+    
+    s5 = (ma_gap < 3                             # 均線糾結需股價站上 MA5
+          and ma5 is not None
+          and price > ma5)
+    s6 = foreign_buy_days >= 3                  # 外資連買 ≥ 3天
 
-    score = sum([s1, s2, s3, s4, s5])
-    info  = pool_map.get(code, {})
+    score = sum([s1, s2, s_momentum, s5, s6])
+
+    # ── 黑名單否決：跌破月線且 DIF < 0 → 最高 2 分 ────
+    if ma20 is not None and price < ma20 and dif is not None and dif < 0:
+        score = min(score, 2)
+
+    info = pool_map.get(code, {})
 
     scores.append({
-        "code":      code,
-        "name":      info.get("name", code),
-        "sector":    info.get("sector", ""),
-        "price":     last["close"],
-        "chg_pct":   chg_pct,
-        "k":         k,
-        "d":         d,
-        "j":         j,
-        "ma5":       ma5,
-        "ma20":      ma20,
-        "ma_gap":    ma_gap,
-        "volume":    round(last["volume"]),
-        "avg_vol5":  avg_vol5,
-        "vol_ratio": vol_ratio,
-        "buy_days":  buy_days,
-        "score":     score,
-        "criteria":  {"s1": s1, "s2": s2, "s3": s3, "s4": s4, "s5": s5},
-        "updated":   today,
+        "code":             code,
+        "name":             info.get("name", code),
+        "sector":           info.get("sector", ""),
+        "price":            price,
+        "chg_pct":          chg_pct,
+        "k":                k,
+        "d":                d,
+        "j":                j,
+        "ma5":              ma5,
+        "ma20":             ma20,
+        "ma_gap":           ma_gap,
+        "volume":           round(last["volume"]),
+        "avg_vol5":         avg_vol5,
+        "vol_ratio":        vol_ratio,
+        "buy_days":         buy_days,
+        "net_buy_ratio":    net_buy_ratio,
+        "foreign_buy_days": foreign_buy_days,
+        "dif":              dif,
+        "score":            score,
+        "criteria":         {"s1": s1, "s2": s2, "s3": s3_condition, "s4": s4_condition, "s5": s5, "s6": s6},
+        "updated":          today,
     })
 
-# 依積分排序
 scores.sort(key=lambda x: -x["score"])
 
 output = {
@@ -232,6 +284,7 @@ with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 
 print(f"✅ pool_scores.json 輸出完成：{len(scores)} 支")
+top6 = [s for s in scores if s["score"] == 6]
 top5 = [s for s in scores if s["score"] == 5]
 top4 = [s for s in scores if s["score"] == 4]
-print(f"   5分：{len(top5)} 支，4分：{len(top4)} 支")
+print(f"   6分：{len(top6)} 支，5分：{len(top5)} 支，4分：{len(top4)} 支")
