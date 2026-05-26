@@ -318,39 +318,48 @@ const wickPlugin={
 Chart.register(wickPlugin);
 
 // ── 十字線 Plugin（用 xScale 統一換算，所有圖對齊）──────
-let crosshairLabel = null; // 用日期標籤對齊，不用 index 或比例
+// 十字線：記錄「觸發圖的 chartArea 比例」，其他圖用自己的 chartArea 還原
+let crosshairLabel = null;
+let crosshairRatio = null; // 0~1，相對於 chartArea.left ~ chartArea.right
+
 const crosshairPlugin = {
   id: 'crosshair',
   afterDraw(chart){
-    if(!crosshairLabel) return;
-    const xScale = chart.scales.x;
+    if(crosshairRatio === null) return;
+    const ca = chart.chartArea;
     const yScale = chart.scales.y || chart.scales.yV || chart.scales.yBar || chart.scales.yCum;
-    if(!xScale || !yScale) return;
-    // 在這張圖的 labels 裡找對應日期
-    const idx = (chart.data.labels||[]).indexOf(crosshairLabel);
-    if(idx === -1) return;
-    const x = xScale.getPixelForValue(idx);
-    if(x < xScale.left || x > xScale.right) return;
+    if(!ca || !yScale) return;
+    // 用比例還原這張圖的 x 像素
+    const x = ca.left + crosshairRatio * (ca.right - ca.left);
+    if(x < ca.left || x > ca.right) return;
     const ctx = chart.ctx;
     ctx.save();
     ctx.beginPath();
     ctx.setLineDash([]);
-    ctx.strokeStyle = 'rgba(255,210,0,0.75)';
+    ctx.strokeStyle = 'rgba(255,210,0,0.8)';
     ctx.lineWidth = 1;
-    ctx.moveTo(x, yScale.top);
-    ctx.lineTo(x, yScale.bottom);
+    ctx.moveTo(x, ca.top);
+    ctx.lineTo(x, ca.bottom);
     ctx.stroke();
     ctx.restore();
   },
   afterEvent(chart, args){
     const event = args.event;
     if(event.type === 'mousemove'){
+      const ca = chart.chartArea;
+      if(!ca) return;
+      // 計算滑鼠在這張圖 chartArea 的比例
+      const ratio = (event.x - ca.left) / (ca.right - ca.left);
+      crosshairRatio = Math.max(0, Math.min(1, ratio));
+      // 同步日期標籤（for tooltip）
       const xScale = chart.scales.x;
-      if(!xScale) return;
-      const value = xScale.getValueForPixel(event.x);
-      const idx = Math.max(0, Math.min(Math.round(value), (chart.data.labels||[]).length-1));
-      crosshairLabel = (chart.data.labels||[])[idx] || null;
+      if(xScale){
+        const value = xScale.getValueForPixel(event.x);
+        const idx = Math.max(0, Math.min(Math.round(value), (chart.data.labels||[]).length-1));
+        crosshairLabel = (chart.data.labels||[])[idx] || null;
+      }
     } else if(event.type === 'mouseout'){
+      crosshairRatio = null;
       crosshairLabel = null;
     }
     Object.values(charts).forEach(c => { if(c !== chart) c.draw(); });
