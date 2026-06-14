@@ -318,20 +318,20 @@ const wickPlugin={
 Chart.register(wickPlugin);
 
 // ── 十字線 Plugin（用 xScale 統一換算，所有圖對齊）──────
-// 十字線：記錄「觸發圖的 chartArea 比例」，其他圖用自己的 chartArea 還原
+// 十字線：用日期標籤對齊（chartArea 已一致，getPixelForValue 可靠）
 let crosshairLabel = null;
-let crosshairRatio = null; // 0~1，相對於 chartArea.left ~ chartArea.right
 
 const crosshairPlugin = {
   id: 'crosshair',
   afterDraw(chart){
-    if(crosshairRatio === null) return;
+    if(!crosshairLabel) return;
+    const xScale = chart.scales.x;
     const ca = chart.chartArea;
-    const yScale = chart.scales.y || chart.scales.yV || chart.scales.yBar || chart.scales.yCum;
-    if(!ca || !yScale) return;
-    // 用比例還原這張圖的 x 像素
-    const x = ca.left + crosshairRatio * (ca.right - ca.left);
-    if(x < ca.left || x > ca.right) return;
+    if(!xScale || !ca) return;
+    const idx = (chart.data.labels||[]).indexOf(crosshairLabel);
+    if(idx === -1) return;
+    const x = xScale.getPixelForValue(idx);
+    if(x < ca.left - 1 || x > ca.right + 1) return;
     const ctx = chart.ctx;
     ctx.save();
     ctx.beginPath();
@@ -346,20 +346,12 @@ const crosshairPlugin = {
   afterEvent(chart, args){
     const event = args.event;
     if(event.type === 'mousemove'){
-      const ca = chart.chartArea;
-      if(!ca) return;
-      // 計算滑鼠在這張圖 chartArea 的比例
-      const ratio = (event.x - ca.left) / (ca.right - ca.left);
-      crosshairRatio = Math.max(0, Math.min(1, ratio));
-      // 同步日期標籤（for tooltip）
       const xScale = chart.scales.x;
-      if(xScale){
-        const value = xScale.getValueForPixel(event.x);
-        const idx = Math.max(0, Math.min(Math.round(value), (chart.data.labels||[]).length-1));
-        crosshairLabel = (chart.data.labels||[])[idx] || null;
-      }
+      if(!xScale) return;
+      const value = xScale.getValueForPixel(event.x);
+      const idx = Math.max(0, Math.min(Math.round(value), (chart.data.labels||[]).length-1));
+      crosshairLabel = (chart.data.labels||[])[idx] || null;
     } else if(event.type === 'mouseout'){
-      crosshairRatio = null;
       crosshairLabel = null;
     }
     Object.values(charts).forEach(c => { if(c !== chart) c.draw(); });
@@ -377,36 +369,30 @@ const TT={backgroundColor:'rgba(19,22,25,0.95)',borderColor:'rgba(255,255,255,0.
 const Y_RIGHT_W = 72;
 const Y_LEFT_W  = 72;
 
+// 強制軸寬固定，確保所有圖 chartArea 一致
 function fitY(axis){
-  if(axis.position==='right') axis.width = Y_RIGHT_W;
-  if(axis.position==='left')  axis.width = Y_LEFT_W;
+  if(axis.position==='right'){ axis.width = Y_RIGHT_W; }
+  if(axis.position==='left'){  axis.width = Y_LEFT_W;  }
 }
 
 // 所有圖共用的 x 軸設定
 function xScale(){
-  return {grid:GRID, ticks:{...TICK,maxTicksLimit:8,maxRotation:0},
-    offset:false, afterFit(axis){ axis.paddingLeft=0; axis.paddingRight=0; }};
+  return {grid:GRID, ticks:{...TICK,maxTicksLimit:8,maxRotation:0}, offset:false};
 }
 
-// 無左軸的圖（K線、KDJ）用這個：補一個佔位左軸
-function dummyLeft(){
-  return {position:'left', display:true,
-    grid:{display:false}, border:{display:false},
-    ticks:{display:false, maxTicksLimit:0},
-    afterFit:fitY};
-}
-
+// 無左軸的圖（K線、KDJ）：用 padding.left 補滿，等同左軸寬度
+// chartArea.left = padding.left(72) + 0 = 72
+// 有左軸的圖：padding.left=0 + 左軸(72) = 72，兩者一致
 function bOpts(hasLeft=false, extra={}){
   const scales = {
     x: xScale(),
     y: {grid:GRID, ticks:{...TICK}, position:'right', afterFit:fitY},
-    ...(hasLeft ? {} : {_pad: dummyLeft()}),
     ...extra,
   };
   Object.values(scales).forEach(s=>{ if(s.position && !s.afterFit) s.afterFit=fitY; });
   return {responsive:true, maintainAspectRatio:false, animation:false,
     interaction:{mode:'index',intersect:false},
-    layout:{padding:{left:0,right:0}},
+    layout:{padding:{left: hasLeft ? 0 : Y_LEFT_W, right:0}},
     plugins:{legend:{display:false}, tooltip:TT},
     scales};
 }
