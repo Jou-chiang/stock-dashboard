@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-17 06:00",
+  "updated": "2026-06-17 10:58",
   "prices": [
     {
       "id": "2330",
@@ -891,7 +891,7 @@
     },
     {
       "id": "4147",
-      "price": 57.1,
+      "price": 57.2,
       "reference": null,
       "is_realtime": true
     },
