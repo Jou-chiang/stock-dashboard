@@ -284,7 +284,7 @@ with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 
 print(f"✅ pool_scores.json 輸出完成：{len(scores)} 支")
-top6 = [s for s in scores if s["score"] == 6]
 top5 = [s for s in scores if s["score"] == 5]
 top4 = [s for s in scores if s["score"] == 4]
-print(f"   6分：{len(top6)} 支，5分：{len(top5)} 支，4分：{len(top4)} 支")
+top3 = [s for s in scores if s["score"] == 3]
+print(f"   5分：{len(top5)} 支，4分：{len(top4)} 支，3分：{len(top3)} 支")
