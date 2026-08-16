@@ -195,6 +195,14 @@ def calc_foreign_buy_days(inst_rows):
             break
     return days
 
+def calc_inst_net_lots(inst_rows, keyword):
+    rows = filter_inst_rows(inst_rows, keyword)
+    if not rows:
+        return 0
+    last = rows[-1]
+    net_shares = float(last.get("buy", 0)) - float(last.get("sell", 0))
+    return int(round(net_shares / 1000.0))
+
 # ── 計算積分並輸出 ────────────────────────────────────────
 scores = []
 
@@ -226,6 +234,18 @@ for code in codes:
     last_volume_shares = last["volume"] * 1000
     net_buy_ratio      = calc_inst_net_buy_ratio(inst_rows, last_volume_shares)
     foreign_buy_days   = calc_foreign_buy_days(inst_rows)
+
+    # 擴充：三大法人當日淨買超張數 (外資、投信、自營商)
+    foreign_lots = calc_inst_net_lots(inst_rows, "Foreign_Investor") or calc_inst_net_lots(inst_rows, "外資")
+    trust_lots   = calc_inst_net_lots(inst_rows, "Investment_Trust") or calc_inst_net_lots(inst_rows, "投信")
+    dealer_lots  = calc_inst_net_lots(inst_rows, "Dealer") or calc_inst_net_lots(inst_rows, "自營商")
+
+    # 風險與治理預警（供 GPT Agent 判讀與燈號參考）
+    risk_checks = {
+        "low_volume": avg_vol5 is not None and avg_vol5 < 500,  # 均量小於500張 (流動性風險)
+        "ma_divergence": ma_gap > 15,                          # 均線發散乖離過高
+        "blacklisted": price < ma20 and dif is not None and dif < 0 # 空頭排列否決黑名單
+    }
 
     # ── 積分計算（5分制，合併 s3 與 s4）────────────────────
     s1 = buy_days >= 3                          # 投信連買 ≥ 3天
@@ -266,7 +286,11 @@ for code in codes:
         "buy_days":         buy_days,
         "net_buy_ratio":    net_buy_ratio,
         "foreign_buy_days": foreign_buy_days,
+        "foreign_lots":     foreign_lots,
+        "trust_lots":       trust_lots,
+        "dealer_lots":      dealer_lots,
         "dif":              dif,
+        "risk_checks":      risk_checks,
         "score":            score,
         "criteria":         {"s1": s1, "s2": s2, "s3": s3_condition, "s4": s4_condition, "s5": s5, "s6": s6},
         "updated":          today,
