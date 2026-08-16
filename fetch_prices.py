@@ -15,16 +15,29 @@ with open("stocks.json", "r", encoding="utf-8") as f:
     stocks = json.load(f)
 print(f"股票清單：{len(stocks)} 支，開始登入...")
 
+# 登入 Shioaji（加入重試機制以提高 GitHub Actions 穩定度）
 api = sj.Shioaji()
-try:
-    api.login(
-        api_key=api_key,
-        secret_key=secret_key,
-        fetch_contract=True
-    )
-    print("✅ 登入成功！")
-except Exception as e:
-    print(f"❌ 登入失敗: {e}")
+MAX_RETRIES = 3
+login_success = False
+
+for attempt in range(1, MAX_RETRIES + 1):
+    try:
+        print(f"嘗試登入永豐金 API (第 {attempt}/{MAX_RETRIES} 次)...")
+        api.login(
+            api_key=api_key,
+            secret_key=secret_key,
+            fetch_contract=True
+        )
+        print("✅ 登入成功！")
+        login_success = True
+        break
+    except Exception as e:
+        print(f"❌ 第 {attempt} 次登入失敗: {e}")
+        if attempt < MAX_RETRIES:
+            time.sleep(5)
+
+if not login_success:
+    print("❌ 達到最大重試次數，登入失敗跳出")
     exit(1)
 
 time.sleep(3)

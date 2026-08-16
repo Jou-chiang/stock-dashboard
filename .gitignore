@@ -1,0 +1,26 @@
+# Mac 系統檔
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Log 檔
+*.log
+shioaji.log
+
+# 本機測試腳本（不需要上傳 GitHub）
+fetch_prices_test.py
+test_*.py
+
+# Python 暫存
+__pycache__/
+*.py[cod]
+*.pyo
+
+# 虛擬環境
+stock-env/
+venv/
+.env
+
+# 編輯器
+.vscode/
+.idea/
