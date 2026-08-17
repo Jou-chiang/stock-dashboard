@@ -53,11 +53,18 @@ for i, code in enumerate(codes):
     info = pool_map.get(code, {})
     print(f"[{i+1}/{len(codes)}] {code} {info.get('name','')}...", end=" ")
 
+    # 若為新加入股票（歷史資料少於 20 筆），則自動抓取 120 日歷史資料進行初始化
+    hist_count = len(df_hist[df_hist["code"] == code]) if not df_hist.empty else 0
+    if hist_count < 20:
+        start_fetch = (datetime.today() - timedelta(days=KEEP_DAYS + 25)).strftime("%Y-%m-%d")
+    else:
+        start_fetch = yesterday
+
     try:
         r = requests.get(FINMIND_URL, params={
             "dataset":    "TaiwanStockPrice",
             "data_id":    code,
-            "start_date": yesterday,
+            "start_date": start_fetch,
             "token":      TOKEN,
         }, timeout=10)
         j = r.json()
