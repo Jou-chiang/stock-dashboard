@@ -553,7 +553,7 @@
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 7,
       "foreign_lots": 1189,
-      "trust_lots": -822,
+      "trust_lots": -1655,
       "dealer_lots": 29,
       "dif": 74.4759,
       "risk_checks": {
@@ -815,11 +815,11 @@
       "volume": 53835,
       "avg_vol5": 7875.3,
       "vol_ratio": 6.84,
-      "buy_days": 0,
-      "net_buy_ratio": 0.0,
+      "buy_days": 1,
+      "net_buy_ratio": 0.09,
       "foreign_buy_days": 6,
       "foreign_lots": 20705,
-      "trust_lots": -331,
+      "trust_lots": 50,
       "dealer_lots": 208,
       "dif": 43.4043,
       "risk_checks": {
@@ -835,6 +835,44 @@
         "s4": true,
         "s5": false,
         "s6": true
+      },
+      "updated": "2026-08-17"
+    },
+    {
+      "code": "3189",
+      "name": "景碩",
+      "sector": "電子零組件",
+      "price": 905.0,
+      "chg_pct": 4.99,
+      "k": 87.1,
+      "d": 87.0,
+      "j": 87.3,
+      "ma5": 863.6,
+      "ma20": 764.95,
+      "ma_gap": 12.9,
+      "volume": 38324,
+      "avg_vol5": 3787.9,
+      "vol_ratio": 10.12,
+      "buy_days": 1,
+      "net_buy_ratio": 5.7,
+      "foreign_buy_days": 0,
+      "foreign_lots": -2096,
+      "trust_lots": 2184,
+      "dealer_lots": 26,
+      "dif": 38.6976,
+      "risk_checks": {
+        "low_volume": false,
+        "ma_divergence": false,
+        "blacklisted": false
+      },
+      "score": 2,
+      "criteria": {
+        "s1": false,
+        "s2": true,
+        "s3": false,
+        "s4": true,
+        "s5": false,
+        "s6": false
       },
       "updated": "2026-08-17"
     },
@@ -1427,7 +1465,7 @@
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 1,
       "foreign_lots": 4442,
-      "trust_lots": -2051,
+      "trust_lots": -2058,
       "dealer_lots": 193,
       "dif": 8.7487,
       "risk_checks": {
@@ -1465,7 +1503,7 @@
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
       "foreign_lots": -9037,
-      "trust_lots": -1673,
+      "trust_lots": -1681,
       "dealer_lots": 118,
       "dif": 3.6735,
       "risk_checks": {
@@ -1979,44 +2017,6 @@
       "updated": "2026-08-17"
     },
     {
-      "code": "3189",
-      "name": "景碩",
-      "sector": "電子零組件",
-      "price": 905.0,
-      "chg_pct": 4.99,
-      "k": 87.1,
-      "d": 87.0,
-      "j": 87.3,
-      "ma5": 863.6,
-      "ma20": 764.95,
-      "ma_gap": 12.9,
-      "volume": 38324,
-      "avg_vol5": 3787.9,
-      "vol_ratio": 10.12,
-      "buy_days": 1,
-      "net_buy_ratio": 2.22,
-      "foreign_buy_days": 0,
-      "foreign_lots": -2096,
-      "trust_lots": 849,
-      "dealer_lots": 26,
-      "dif": 38.6976,
-      "risk_checks": {
-        "low_volume": false,
-        "ma_divergence": false,
-        "blacklisted": false
-      },
-      "score": 1,
-      "criteria": {
-        "s1": false,
-        "s2": false,
-        "s3": false,
-        "s4": true,
-        "s5": false,
-        "s6": false
-      },
-      "updated": "2026-08-17"
-    },
-    {
       "code": "1101",
       "name": "台泥",
       "sector": "水泥",
@@ -2149,7 +2149,7 @@
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
       "foreign_lots": -212,
-      "trust_lots": -340,
+      "trust_lots": -338,
       "dealer_lots": -5,
       "dif": -17.8878,
       "risk_checks": {
@@ -2833,7 +2833,7 @@
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 5,
       "foreign_lots": 219,
-      "trust_lots": -382,
+      "trust_lots": -233,
       "dealer_lots": -37,
       "dif": 73.0119,
       "risk_checks": {
@@ -3631,7 +3631,7 @@
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 1,
       "foreign_lots": 1368,
-      "trust_lots": -801,
+      "trust_lots": -811,
       "dealer_lots": 14,
       "dif": -9.3713,
       "risk_checks": {
@@ -3669,7 +3669,7 @@
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 1,
       "foreign_lots": 13526,
-      "trust_lots": -7729,
+      "trust_lots": -10402,
       "dealer_lots": 569,
       "dif": -5.2363,
       "risk_checks": {
@@ -3742,10 +3742,10 @@
       "avg_vol5": 107931.6,
       "vol_ratio": 1.29,
       "buy_days": 1,
-      "net_buy_ratio": 1.86,
+      "net_buy_ratio": 1.84,
       "foreign_buy_days": 0,
       "foreign_lots": -7473,
-      "trust_lots": 2595,
+      "trust_lots": 2573,
       "dealer_lots": -420,
       "dif": 7.4959,
       "risk_checks": {
@@ -4657,7 +4657,7 @@
       "net_buy_ratio": 0.0,
       "foreign_buy_days": 0,
       "foreign_lots": -2334,
-      "trust_lots": -773,
+      "trust_lots": -425,
       "dealer_lots": 141,
       "dif": -43.099,
       "risk_checks": {
