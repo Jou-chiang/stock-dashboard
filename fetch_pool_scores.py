@@ -202,8 +202,10 @@ def calc_foreign_buy_days(inst_rows):
             break
     return days
 
-def calc_inst_net_lots(inst_rows, keyword):
-    rows = filter_inst_rows(inst_rows, keyword)
+def calc_inst_net_lots(inst_rows, keyword1, keyword2=""):
+    rows = filter_inst_rows(inst_rows, keyword1)
+    if not rows and keyword2:
+        rows = filter_inst_rows(inst_rows, keyword2)
     if not rows:
         return 0
     last = rows[-1]
@@ -243,9 +245,9 @@ for code in codes:
     foreign_buy_days   = calc_foreign_buy_days(inst_rows)
 
     # 擴充：三大法人當日淨買超張數 (外資、投信、自營商)
-    foreign_lots = calc_inst_net_lots(inst_rows, "Foreign_Investor") or calc_inst_net_lots(inst_rows, "外資")
-    trust_lots   = calc_inst_net_lots(inst_rows, "Investment_Trust") or calc_inst_net_lots(inst_rows, "投信")
-    dealer_lots  = calc_inst_net_lots(inst_rows, "Dealer") or calc_inst_net_lots(inst_rows, "自營商")
+    foreign_lots = calc_inst_net_lots(inst_rows, "Foreign_Investor", "外資")
+    trust_lots   = calc_inst_net_lots(inst_rows, "Investment_Trust", "投信")
+    dealer_lots  = calc_inst_net_lots(inst_rows, "Dealer", "自營商")
 
     # 風險與治理預警（供 GPT Agent 判讀與燈號參考）
     risk_checks = {
