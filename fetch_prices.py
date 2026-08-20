@@ -25,8 +25,7 @@ for attempt in range(1, MAX_RETRIES + 1):
         print(f"嘗試登入永豐金 API (第 {attempt}/{MAX_RETRIES} 次)...")
         api.login(
             api_key=api_key,
-            secret_key=secret_key,
-            fetch_contract=True
+            secret_key=secret_key
         )
         print("✅ 登入成功！")
         login_success = True
