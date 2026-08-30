@@ -1,0 +1,59 @@
+{
+  "last_updated": "2026-08-30",
+  "theses": {
+    "2330": {
+      "stock_name": "台積電",
+      "category": "A類-基本面驅動",
+      "consensus_forecast": {
+        "2026_eps_range": [52.0, 56.0],
+        "target_pe_range": [20.0, 25.0]
+      },
+      "thesis_points": {
+        "bull": "2nm 製程放量超預期，CoWoS 先進封裝產能持續吃緊至 2027",
+        "base": "全年營收維持年增 25%，毛利率穩於 53% 以上",
+        "bear": "海外建廠成本稀釋毛利率，地緣政治與關稅不確定性"
+      },
+      "catalysts": [
+        "季報公布毛利率與先進封裝產能進度",
+        "下半年先進封裝新廠投產狀況"
+      ],
+      "last_report_note": "法說會管理層重申 AI 晶片需求依然強勁，上修資本支出下限"
+    },
+    "1513": {
+      "stock_name": "中興電",
+      "category": "A類-基本面驅動",
+      "consensus_forecast": {
+        "2026_eps_range": [8.5, 10.0],
+        "target_pe_range": [18.0, 22.0]
+      },
+      "thesis_points": {
+        "bull": "強韌電網計畫與美國重電外銷訂單超預期認列",
+        "base": "在手訂單維持高檔，毛利率穩定",
+        "bear": "建廠產能開出延後，料件交期延長"
+      },
+      "catalysts": [
+        "台電強韌電網新標案認列進度",
+        "外銷高壓 GIS 設備出貨量"
+      ],
+      "last_report_note": "重電產能滿載，在手訂單能見度高"
+    },
+    "6282": {
+      "stock_name": "康舒",
+      "category": "混合型",
+      "consensus_forecast": {
+        "2026_eps_range": [2.5, 3.5],
+        "target_pe_range": [15.0, 20.0]
+      },
+      "thesis_points": {
+        "bull": "伺服器電源與 AI 高功率電源出貨大增",
+        "base": "車用與消費性電源回溫",
+        "bear": "併購磨合期費用偏高，毛利率改善慢於預期"
+      },
+      "catalysts": [
+        "高階 AI 伺服器電源客戶認證進度",
+        "單季毛利率是否重回 20% 以上"
+      ],
+      "last_report_note": "積極佈局高功率電源與伺服器電源市場"
+    }
+  }
+}
