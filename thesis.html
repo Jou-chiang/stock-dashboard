@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>研報與 Thesis 戰情室｜Dashboard D</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0e10;--bg2:#131619;--bg3:#1a1e22;--bg4:#212730;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --text:#e8eaed;--text2:#8b9099;--text3:#565c66;
+  --amber:#f0a03a;--amber2:#7a4e12;
+  --green:#3fc97c;--green-bg:rgba(63,201,124,0.08);--green-border:rgba(63,201,124,0.25);
+  --red:#f25f5f;--red-bg:rgba(242,95,95,0.08);--red-border:rgba(242,95,95,0.25);
+  --blue:#5ba3f5;--blue-bg:rgba(91,163,245,0.08);--blue-border:rgba(91,163,245,0.25);
+  --purple:#b072f2;--neon:#00e5ff;
+  --mono:'IBM Plex Mono',monospace;--sans:'Noto Sans TC',sans-serif;
+  --r:6px;--rl:10px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);pointer-events:none;z-index:999;}
+.layout{max-width:1400px;margin:0 auto;padding:0 20px 60px;}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--border);margin-bottom:20px;gap:12px;flex-wrap:wrap;}
+.brand-title{font-family:var(--mono);font-size:16px;font-weight:500;color:var(--amber);}
+.brand-sub{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.07em;margin-top:2px;}
+.badge{font-family:var(--mono);font-size:10px;background:rgba(240,160,58,.15);border:1px solid rgba(240,160,58,.3);color:var(--amber);padding:3px 8px;border-radius:20px;}
+.nav-links{display:flex;gap:8px;}
+.btn-nav{font-family:var(--mono);font-size:11px;color:var(--text3);text-decoration:none;border:1px solid var(--border2);padding:5px 10px;border-radius:var(--r);transition:all .15s;}
+.btn-nav:hover,.btn-nav.active{border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.08);}
+
+.controls{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center;}
+.search-input{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);font-family:var(--sans);font-size:13px;padding:8px 14px;width:260px;outline:none;transition:border-color .2s;}
+.search-input:focus{border-color:var(--amber);}
+.stat-pill{font-family:var(--mono);font-size:11px;color:var(--text2);background:var(--bg2);border:1px solid var(--border);padding:6px 12px;border-radius:var(--r);}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:20px;}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:20px;transition:transform .2s,border-color .2s;}
+.card:hover{border-color:var(--border2);transform:translateY(-2px);}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;border-bottom:1px solid var(--border);padding-bottom:12px;}
+.stock-code{font-family:var(--mono);font-size:13px;color:var(--amber);font-weight:500;}
+.stock-name{font-size:18px;font-weight:700;color:var(--text);margin-top:2px;}
+.cat-tag{font-size:11px;font-family:var(--mono);padding:3px 8px;border-radius:4px;background:var(--bg3);border:1px solid var(--border2);color:var(--text2);}
+
+.consensus-box{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;margin-bottom:16px;}
+.c-item{font-family:var(--mono);font-size:11px;}
+.c-label{color:var(--text3);margin-bottom:2px;}
+.c-val{color:var(--text);font-size:13px;font-weight:500;}
+
+.scenario-title{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:.05em;margin-bottom:8px;text-transform:uppercase;}
+.scenario-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.sc-item{padding:8px 12px;border-radius:var(--r);font-size:12px;line-height:1.4;display:flex;gap:8px;}
+.sc-bull{background:var(--green-bg);border:1px solid var(--green-border);color:var(--text);}
+.sc-bull .sc-icon{color:var(--green);font-weight:bold;}
+.sc-base{background:var(--blue-bg);border:1px solid var(--blue-border);color:var(--text);}
+.sc-base .sc-icon{color:var(--blue);font-weight:bold;}
+.sc-bear{background:var(--red-bg);border:1px solid var(--red-border);color:var(--text);}
+.sc-bear .sc-icon{color:var(--red);font-weight:bold;}
+
+.catalysts-wrap{margin-bottom:14px;}
+.cat-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.cat-chip{font-size:11px;padding:3px 8px;background:rgba(240,160,58,.08);border:1px solid rgba(240,160,58,.2);color:var(--amber);border-radius:4px;}
+
+.report-note{font-size:11px;color:var(--text2);background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:8px 12px;line-height:1.4;}
+.report-note::before{content:'📝 法說/研報註記：';color:var(--text3);font-family:var(--mono);display:block;margin-bottom:2px;}
+
+.loading{text-align:center;padding:80px 20px;color:var(--text3);font-family:var(--mono);font-size:13px;}
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="topbar">
+    <div>
+      <div class="brand-title">🏛️ 研報與 Thesis 戰情室</div>
+      <div class="brand-sub">DASHBOARD D · 質化投資論述 × 情境分析數據庫</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="badge">Research Thesis</span>
+      <div class="nav-links">
+        <a href="index.html" class="btn-nav">儀表板 A</a>
+        <a href="dashboard_b.html" class="btn-nav">雷達 B</a>
+        <a href="dashboard_c.html" class="btn-nav">大戶 C</a>
+        <a href="thesis.html" class="btn-nav active">戰情室 D</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <input type="text" class="search-input" id="search" placeholder="搜尋股票代號或名稱..." oninput="filterCards()" />
+    <div class="stat-pill" id="stat-info">載入資料中...</div>
+  </div>
+
+  <div id="main-content">
+    <div class="loading">載入 research_theses.json 數據庫中...</div>
+  </div>
+</div>
+
+<script>
+let thesisData = {};
+
+async function init(){
+  try{
+    const res = await fetch('research_theses.json?v=' + Date.now());
+    const data = await res.json();
+    thesisData = data.theses || {};
+    document.getElementById('stat-info').textContent = `最後更新: ${data.last_updated || '今日'} ｜ 共 ${Object.keys(thesisData).length} 檔標的`;
+    renderCards(thesisData);
+  }catch(e){
+    document.getElementById('main-content').innerHTML = `<div class="loading" style="color:var(--red)">❌ 載入失敗：${e.message}</div>`;
+  }
+}
+
+function renderCards(theses){
+  const container = document.getElementById('main-content');
+  const codes = Object.keys(theses);
+  if(!codes.length){
+    container.innerHTML = '<div class="loading">目前尚未建立任何 Thesis 紀錄</div>';
+    return;
+  }
+
+  let html = '<div class="grid">';
+  codes.forEach(code => {
+    const item = theses[code];
+    const forecast = item.consensus_forecast || {};
+    const eps = forecast['2026_eps_range'] ? `${forecast['2026_eps_range'][0]} ~ ${forecast['2026_eps_range'][1]} 元` : '未提供';
+    const pe = forecast.target_pe_range ? `${forecast.target_pe_range[0]} ~ ${forecast.target_pe_range[1]} 倍` : '未提供';
+    const points = item.thesis_points || {};
+    const catalysts = item.catalysts || [];
+
+    html += `
+      <div class="card" data-code="${code}" data-name="${item.stock_name}">
+        <div class="card-header">
+          <div>
+            <div class="stock-code">${code}</div>
+            <div class="stock-name">${item.stock_name}</div>
+          </div>
+          <span class="cat-tag">${item.category || '未分類'}</span>
+        </div>
+
+        <div class="consensus-box">
+          <div class="c-item">
+            <div class="c-label">2026 EPS 共識區間</div>
+            <div class="c-val">${eps}</div>
+          </div>
+          <div class="c-item">
+            <div class="c-label">目標 PE 本益比區間</div>
+            <div class="c-val">${pe}</div>
+          </div>
+        </div>
+
+        <div class="scenario-title">Bull / Base / Bear 三情境評估</div>
+        <div class="scenario-list">
+          ${points.bull ? `<div class="sc-item sc-bull"><span class="sc-icon">🐂 樂觀</span><div>${points.bull}</div></div>` : ''}
+          ${points.base ? `<div class="sc-item sc-base"><span class="sc-icon">⚖️ 基準</span><div>${points.base}</div></div>` : ''}
+          ${points.bear ? `<div class="sc-item sc-bear"><span class="sc-icon">🐻 悲觀</span><div>${points.bear}</div></div>` : ''}
+        </div>
+
+        ${catalysts.length ? `
+          <div class="scenario-title">核心營運催化劑</div>
+          <div class="catalysts-wrap">
+            <div class="cat-list">
+              ${catalysts.map(c => `<span class="cat-chip">🚀 ${c}</span>`).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        ${item.last_report_note ? `<div class="report-note">${item.last_report_note}</div>` : ''}
+      </div>
+    `;
+  });
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function filterCards(){
+  const query = document.getElementById('search').value.trim().toLowerCase();
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    const code = card.getAttribute('data-code').toLowerCase();
+    const name = card.getAttribute('data-name').toLowerCase();
+    if(code.includes(query) || name.includes(query)){
+      card.style.display = '';
+    }else{
+      card.style.display = 'none';
+    }
+  });
+}
+
+init();
+</script>
+</body>
+</html>
