@@ -47,6 +47,10 @@ input[type=range]{width:100%;accent-color:var(--amber);cursor:pointer;}
 .btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--text2);}
 .btn-ghost:hover{border-color:var(--text2);}
 .sector-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.preset-wrap{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.preset-btn{font-family:var(--mono);font-size:11px;padding:6px 12px;border-radius:var(--r);border:1px solid var(--border2);background:var(--bg3);color:var(--text2);cursor:pointer;transition:all .15s;}
+.preset-btn:hover{border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.08);}
+.preset-btn.active{border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.15);}
 .sector-chip{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:12px;border:1px solid var(--border2);color:var(--text3);cursor:pointer;transition:all .15s;}
 .sector-chip.active{border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.08);}
 .zone-header{display:flex;align-items:center;gap:10px;margin:24px 0 12px;}
@@ -112,7 +116,14 @@ input[type=range]{width:100%;accent-color:var(--amber);cursor:pointer;}
   </div>
   <div class="note-bar" id="note-bar" style="display:none"></div>
   <div class="filter-panel">
-    <div class="filter-title">篩選條件（滿分 5 分）</div>
+    <div class="filter-title">一鍵快捷策略選單</div>
+    <div class="preset-wrap">
+      <button class="preset-btn" onclick="applyPreset('strong',this)">🏆 策略 1：強勢發動股 (≥4分/量增)</button>
+      <button class="preset-btn" onclick="applyPreset('pullback',this)">🎯 策略 2：低檔蓄勢股 (≥3分/K<65)</button>
+      <button class="preset-btn" onclick="applyPreset('tangled',this)">⚡ 策略 3：均線糾結股 (均線差≤3%)</button>
+      <button class="preset-btn" onclick="resetFilter()">🔄 重置預設</button>
+    </div>
+    <div class="filter-title" style="margin-top:10px">自訂微調篩選器（滿分 5 分）</div>
     <div class="filter-grid">
       <div class="filter-item">
         <label>最低積分 <span class="val" id="score-val">3</span> 分</label>
@@ -206,7 +217,30 @@ function applyFilter(){
   renderResults(filtered);
 }
 
+function applyPreset(type, el){
+  document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
+  if(el) el.classList.add('active');
+  if(type==='strong'){
+    document.getElementById('f-score').value=4;document.getElementById('score-val').textContent='4';
+    document.getElementById('f-k').value=100;document.getElementById('k-val').textContent='100';
+    document.getElementById('f-vol').value=1.2;document.getElementById('vol-val').textContent='1.2';
+    document.getElementById('f-ma').value=15;document.getElementById('ma-val').textContent='15';
+  }else if(type==='pullback'){
+    document.getElementById('f-score').value=3;document.getElementById('score-val').textContent='3';
+    document.getElementById('f-k').value=65;document.getElementById('k-val').textContent='65';
+    document.getElementById('f-vol').value=0;document.getElementById('vol-val').textContent='0.0';
+    document.getElementById('f-ma').value=10;document.getElementById('ma-val').textContent='10';
+  }else if(type==='tangled'){
+    document.getElementById('f-score').value=3;document.getElementById('score-val').textContent='3';
+    document.getElementById('f-k').value=100;document.getElementById('k-val').textContent='100';
+    document.getElementById('f-vol').value=0;document.getElementById('vol-val').textContent='0.0';
+    document.getElementById('f-ma').value=3;document.getElementById('ma-val').textContent='3';
+  }
+  applyFilter();
+}
+
 function resetFilter(){
+  document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('f-score').value=3;document.getElementById('score-val').textContent='3';
   document.getElementById('f-k').value=100;document.getElementById('k-val').textContent='100';
   document.getElementById('f-vol').value=0;document.getElementById('vol-val').textContent='0.0';
