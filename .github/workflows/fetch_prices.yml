@@ -26,12 +26,14 @@ jobs:
         env:
           SHIOAJI_API_KEY: ${{ secrets.SHIOAJI_API_KEY }}
           SHIOAJI_SECRET_KEY: ${{ secrets.SHIOAJI_SECRET_KEY }}
-        run: python fetch_prices.py
-      - name: Commit and push prices.json
+        run: |
+          python fetch_prices.py
+          python export_sheets_csv.py
+      - name: Commit and push prices.json and CSV
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add prices.json
-          git diff --staged --quiet || git commit -m "auto: prices $(date +'%Y-%m-%d %H:%M')"
+          git add prices.json sheet_scores.csv sheet_theses.csv
+          git diff --staged --quiet || git commit -m "auto: prices & sheets CSV $(date +'%Y-%m-%d %H:%M')"
           git pull --rebase origin main
           git push origin main

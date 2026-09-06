@@ -22,13 +22,15 @@ jobs:
       - name: Run pool scores script
         env:
           FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
-        run: python fetch_pool_scores.py
+        run: |
+          python fetch_pool_scores.py
+          python export_sheets_csv.py
 
       - name: Commit and push
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add history_data.csv pool_scores.json
-          git diff --staged --quiet || git commit -m "Update pool scores"
+          git add history_data.csv pool_scores.json research_theses.json sheet_scores.csv sheet_theses.csv
+          git diff --staged --quiet || git commit -m "Update pool scores and sheets CSV"
           git pull --rebase origin main
           git push origin main
