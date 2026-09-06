@@ -145,31 +145,24 @@ SHEET_HISTORY_CSV = os.path.join(BASE_DIR, "sheet_history.csv")
 def export_history_csv():
     headers = ["日期", "股票代號", "股票名稱", "5星分數", "最新股價", "漲跌幅%", "建議操作", "防守價位", "歷史核心結論與評語"]
     
-    # 若檔案不存在，初始化建立帶 Header 與基礎歷史紀錄
-    existing_rows = []
-    if os.path.exists(SHEET_HISTORY_CSV):
+    # 預設僅針對核心關注/持股清單生成歷史紀錄 (如 2330, 1513, 6282, 2618, 6274, 3163 等)
+    portfolio_codes = {"2330", "1513", "6282", "2618", "6274", "3163"}
+    
+    rows = [headers]
+    if os.path.exists(POOL_SCORES_FILE):
         try:
-            with open(SHEET_HISTORY_CSV, "r", encoding="utf-8-sig") as f:
-                reader = csv.reader(f)
-                existing_rows = list(reader)
-        except Exception:
-            pass
-
-    if not existing_rows:
-        existing_rows = [headers]
-        # 從目前 pool_scores 產出第一批歷史起始樣本
-        if os.path.exists(POOL_SCORES_FILE):
-            try:
-                with open(POOL_SCORES_FILE, "r", encoding="utf-8") as f:
-                    pdata = json.load(f)
-                today = pdata.get("updated", "")
-                scores = pdata.get("scores", [])
-                for s in scores:
+            with open(POOL_SCORES_FILE, "r", encoding="utf-8") as f:
+                pdata = json.load(f)
+            today = pdata.get("updated", "")
+            scores = pdata.get("scores", [])
+            for s in scores:
+                code = str(s.get("code", ""))
+                if code in portfolio_codes:
                     sc = s.get("score", 0)
                     op = "強勢續抱" if sc >= 4 else "偏多觀察" if sc == 3 else "拉回觀望"
-                    existing_rows.append([
+                    rows.append([
                         today,
-                        str(s.get("code", "")),
+                        code,
                         s.get("name", ""),
                         sc,
                         s.get("price", 0),
@@ -178,14 +171,14 @@ def export_history_csv():
                         f"MA20: {s.get('ma20', '')}",
                         f"KDJ: {s.get('k',0)}/{s.get('d',0)}，量比: {s.get('vol_ratio',0)}"
                     ])
-            except Exception:
-                pass
+        except Exception:
+            pass
 
     with open(SHEET_HISTORY_CSV, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.writer(f)
-        writer.writerows(existing_rows)
+        writer.writerows(rows)
 
-    print(f"✅ 已成功匯出 Google Sheets 歷史對比專用格式：{SHEET_HISTORY_CSV} ({len(existing_rows)-1} 筆)")
+    print(f"✅ 已成功匯出個人持股專屬歷史紀錄：{SHEET_HISTORY_CSV} ({len(rows)-1} 筆)")
 
 if __name__ == "__main__":
     export_scores_csv()
