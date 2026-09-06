@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-30",
+  "last_updated": "2026-09-06",
   "theses": {
     "2330": {
       "stock_name": "台積電",
@@ -9,15 +9,15 @@
         "target_pe_range": [20.0, 25.0]
       },
       "thesis_points": {
-        "bull": "2nm 製程放量超預期，CoWoS 先進封裝產能持續吃緊至 2027",
+        "bull": "2nm/3nm 先進製程全產能滿載，CoWoS 先進封裝產能吃緊至 2027，AI 長線核心",
         "base": "全年營收維持年增 25%，毛利率穩於 53% 以上",
-        "bear": "海外建廠成本稀釋毛利率，地緣政治與關稅不確定性"
+        "bear": "海外建廠成本稀釋毛利率，地緣政治與關稅風險"
       },
       "catalysts": [
         "季報公布毛利率與先進封裝產能進度",
         "下半年先進封裝新廠投產狀況"
       ],
-      "last_report_note": "法說會管理層重申 AI 晶片需求依然強勁，上修資本支出下限"
+      "last_report_note": "法說會管理層重申 AI 晶片需求強勁，多頭定海神針續抱"
     },
     "1513": {
       "stock_name": "中興電",
@@ -27,15 +27,15 @@
         "target_pe_range": [18.0, 22.0]
       },
       "thesis_points": {
-        "bull": "強韌電網計畫與美國重電外銷訂單超預期認列",
-        "base": "在手訂單維持高檔，毛利率穩定",
+        "bull": "強韌電網計畫與美國重電外銷訂單超預期認列，能見度直達 2027",
+        "base": "在手訂單維持高檔，重電產能滿載",
         "bear": "建廠產能開出延後，料件交期延長"
       },
       "catalysts": [
         "台電強韌電網新標案認列進度",
         "外銷高壓 GIS 設備出貨量"
       ],
-      "last_report_note": "重電產能滿載，在手訂單能見度高"
+      "last_report_note": "重電產能滿載，160~175 元大箱型整理，基本面強勁"
     },
     "6282": {
       "stock_name": "康舒",
@@ -45,15 +45,177 @@
         "target_pe_range": [15.0, 20.0]
       },
       "thesis_points": {
-        "bull": "伺服器電源與 AI 高功率電源出貨大增",
-        "base": "車用與消費性電源回溫",
-        "bear": "併購磨合期費用偏高，毛利率改善慢於預期"
+        "bull": "併購 Omni-On 效應發揮，高階 AI 伺服器電源出貨大增",
+        "base": "車用與消費性電源回溫，毛利率待跟上",
+        "bear": "併購磨合期費用偏高，成交量萎縮低檔無量磨底"
       },
       "catalysts": [
         "高階 AI 伺服器電源客戶認證進度",
         "單季毛利率是否重回 20% 以上"
       ],
-      "last_report_note": "積極佈局高功率電源與伺服器電源市場"
+      "last_report_note": "併購 Omni-On 營收創高，守 38.8 元大底觀望，反彈 48~52 元減碼"
+    },
+    "2317": {
+      "stock_name": "鴻海",
+      "category": "A類-基本面驅動",
+      "consensus_forecast": {
+        "2026_eps_range": [14.0, 16.5],
+        "target_pe_range": [15.0, 18.0]
+      },
+      "thesis_points": {
+        "bull": "GB200 AI 機櫃垂直整合完整，美系大客戶出貨動能強勁",
+        "base": "消費性電子旺季拉回，AI 伺服器營收比重超過 40%",
+        "bear": "全球供應鏈地緣政治配置成本增加"
+      },
+      "catalysts": [
+        "GB200 NVL72 量產出貨進度",
+        "AI 伺服器營收占比提升速度"
+      ],
+      "last_report_note": "GB200 垂直整合完整，營收持續放大，長線續抱無虞"
+    },
+    "2603": {
+      "stock_name": "長榮",
+      "category": "A類-基本面驅動",
+      "consensus_forecast": {
+        "2026_eps_range": [28.0, 35.0],
+        "target_pe_range": [7.0, 9.0]
+      },
+      "thesis_points": {
+        "bull": "地緣政治紅海危機繞道支撐運價，Q3 旺季高獲利與高現金流",
+        "base": "低本益比與高殖利率提供強大保護墊",
+        "bear": "新船交付供給增加，地緣政治緩解致運價回落"
+      },
+      "catalysts": [
+        "SCFI 運價指數走勢",
+        "第三季單季獲利與現金股利指引"
+      ],
+      "last_report_note": "運價支撐與低本益比優勢，強勢多頭續抱，防守線看 230 元"
+    },
+    "2615": {
+      "stock_name": "萬海",
+      "category": "A類-基本面驅動",
+      "consensus_forecast": {
+        "2026_eps_range": [12.0, 16.0],
+        "target_pe_range": [8.0, 10.0]
+      },
+      "thesis_points": {
+        "bull": "亞洲區間運價大漲與美西線高彈性，單季獲利爆發力極強",
+        "base": "主升段動能強勁，創 52 週新高",
+        "bear": "近洋運價波動大，旺季結束後拉回整理"
+      },
+      "catalysts": [
+        "美西線與亞洲區間航線運價變化",
+        "單月營收年增率"
+      ],
+      "last_report_note": "主升段強勢攻勢，移動停利調升至 105 元，跌破收盤減碼"
+    },
+    "2618": {
+      "stock_name": "長榮航",
+      "category": "A類-基本面驅動",
+      "consensus_forecast": {
+        "2026_eps_range": [4.2, 5.0],
+        "target_pe_range": [8.5, 10.5]
+      },
+      "thesis_points": {
+        "bull": "暑期客運旺季滿載 + 高階貨運需求強勁，本益比低於 9 倍極度超低估",
+        "base": "配息穩定，高殖利率防禦強",
+        "bear": "油價飆漲增加營運成本，客運票價小幅回落"
+      },
+      "catalysts": [
+        "客運載客率與高階電商貨運運價",
+        "航空燃油價格走勢"
+      ],
+      "last_report_note": "超低估值（PE < 9倍），零股/持股抱領息，守穩 40.5 元支撐"
+    },
+    "2449": {
+      "stock_name": "京元電子",
+      "category": "A類-基本面驅動",
+      "consensus_forecast": {
+        "2026_eps_range": [8.5, 10.5],
+        "target_pe_range": [22.0, 26.0]
+      },
+      "thesis_points": {
+        "bull": "AI 晶片與 GPU 先進測試需求爆發，出售中國廠聚焦高毛利 AI 測試",
+        "base": "產能滿載，單月營收持續創高",
+        "bear": "短線獲利了結賣壓回測月線"
+      },
+      "catalysts": [
+        "美系 AI 晶片測試預約產能認列",
+        "單季毛利率突破 38%"
+      ],
+      "last_report_note": "AI 晶片測試需求爆發，守穩 220 元月線波段續抱，可分批落袋 1/3"
+    },
+    "2327": {
+      "stock_name": "國巨",
+      "category": "A類-基本面驅動",
+      "consensus_forecast": {
+        "2026_eps_range": [48.0, 55.0],
+        "target_pe_range": [12.0, 15.0]
+      },
+      "thesis_points": {
+        "bull": "車用、工控與 AI 特殊被動元件比重超過 75%，積層電容價格落底回升",
+        "base": "併購效益持續發揮，獲利穩健",
+        "bear": "消費性被動元件復甦緩慢"
+      },
+      "catalysts": [
+        "特殊品被動元件接單比重",
+        "高階 MLCC 出貨量"
+      ],
+      "last_report_note": "帶量強彈收復 550 元關卡，守穩 540 元維持偏多續抱"
+    },
+    "3037": {
+      "stock_name": "欣興",
+      "category": "A類-基本面驅動",
+      "consensus_forecast": {
+        "2026_eps_range": [10.0, 13.0],
+        "target_pe_range": [15.0, 20.0]
+      },
+      "thesis_points": {
+        "bull": "ABF 高階載板與黑神話/AI 伺服器需求回溫，26Q2 毛利回升",
+        "base": "短線遭遇司法搜尋與產地爭議，籌碼利空磨底",
+        "bear": "檢調搜索沉重拋售賣壓，融資多殺多未沈澱"
+      },
+      "catalysts": [
+        "司法檢調事件合規性澄清公告",
+        "高階 ABF 載板營收佔比"
+      ],
+      "last_report_note": "避開/持股減碼防守，嚴守 1,070 元長黑低點，破線果斷減碼"
+    },
+    "2481": {
+      "stock_name": "強茂",
+      "category": "混合型",
+      "consensus_forecast": {
+        "2026_eps_range": [3.2, 4.2],
+        "target_pe_range": [16.0, 20.0]
+      },
+      "thesis_points": {
+        "bull": "功率元件、MOSFET 轉型車用與邊緣 AI 視覺，Q2 EPS 翻倍成長",
+        "base": "7 月營收年增 31%，營運進攻前高",
+        "bear": "消費性車用成熟品競爭加劇"
+      },
+      "catalysts": [
+        "高壓 MOSFET 車用客戶認證",
+        "收盤帶量突破 139.5 元前高"
+      ],
+      "last_report_note": "高檔強勢蓄勢，帶量站上 139.5 元確認波段突破，防守調升至 130 元"
+    },
+    "2881": {
+      "stock_name": "富邦金",
+      "category": "A類-基本面驅動",
+      "consensus_forecast": {
+        "2026_eps_range": [9.5, 11.5],
+        "target_pe_range": [12.0, 14.0]
+      },
+      "thesis_points": {
+        "bull": "金控獲利王，壽險與銀行雙引擎累計 EPS 創歷史新高，降息受惠",
+        "base": "配息穩健，資產評價回升",
+        "bear": "新台幣升值致匯兌避險成本上升"
+      },
+      "catalysts": [
+        "美國聯準會降息時程與壽險避險成本",
+        "每月金控自結稅後 EPS"
+      ],
+      "last_report_note": "金控獲利王攻勢凌厲，強勢續抱，移動停利守 5MA（約 127 元）"
     }
   }
 }
