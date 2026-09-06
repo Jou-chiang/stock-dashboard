@@ -299,14 +299,16 @@ const wickPlugin={
   afterDatasetsDraw(chart){
     const ds=chart.data.datasets[0];
     if(!ds||!ds._ohlc) return;
+    const yScale = chart.scales.yRight || chart.scales.yLeft || chart.scales.y;
+    if(!yScale) return;
     const ctx=chart.ctx,meta=chart.getDatasetMeta(0);
     meta.data.forEach((bar,i)=>{
       const d=ds._ohlc[i];if(!d)return;
       const x=bar.x;
-      const yH=chart.scales.y.getPixelForValue(d.h);
-      const yL=chart.scales.y.getPixelForValue(d.l);
-      const yO=chart.scales.y.getPixelForValue(d.o);
-      const yC=chart.scales.y.getPixelForValue(d.c);
+      const yH=yScale.getPixelForValue(d.h);
+      const yL=yScale.getPixelForValue(d.l);
+      const yO=yScale.getPixelForValue(d.o);
+      const yC=yScale.getPixelForValue(d.c);
       const isUp=d.c>=d.o;
       const col=isUp?'rgba(242,95,95,0.9)':'rgba(63,201,124,0.9)';
       ctx.save();ctx.strokeStyle=col;ctx.lineWidth=1;
