@@ -651,12 +651,12 @@ async function query(sym,nameHint){
     function instOpts(){
       return {responsive:true,maintainAspectRatio:false,animation:false,
         interaction:{mode:'index',intersect:false},
-        layout:{padding:{left:8,right:8}},
+        layout:{padding:{left:0,right:0}},
         plugins:{legend:{display:false},tooltip:TT},
         scales:{
-          x:{grid:GRID,ticks:{...TICK,maxTicksLimit:8,maxRotation:0},offset:false},
+          x:xScale(),
           yBar:{grid:GRID,ticks:{...TICK},position:'left',afterFit:fitY},
-          yCum:{grid:{display:false},ticks:{...TICK},position:'right',afterFit:fitY},
+          yCum:{grid:{display:false},border:{display:false},ticks:{...TICK},position:'right',afterFit:fitY},
         }};
     }
 
