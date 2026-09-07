@@ -119,10 +119,7 @@ df_all = pd.concat([df_hist, df_new], ignore_index=True)
 df_all = df_all.drop_duplicates(subset=["code", "date"], keep="last")
 df_all = df_all.sort_values(["code", "date"])
 
-def keep_latest(group):
-    return group.tail(KEEP_DAYS)
-
-df_all = df_all.groupby("code", group_keys=False).apply(keep_latest)
+df_all = df_all.groupby("code").tail(KEEP_DAYS)
 df_all.to_csv(HISTORY_FILE, index=False, encoding="utf-8-sig")
 print(f"\n✅ history_data.csv 更新完成：{len(df_all)} 筆")
 
