@@ -37,7 +37,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add history_data.csv pool_scores.json research_theses.json sheet_scores.csv sheet_theses.csv
+          git add -A
           git diff --staged --quiet || git commit -m "Update pool scores and sheets CSV"
           git pull --rebase origin main
           git push origin main

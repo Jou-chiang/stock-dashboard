@@ -58,7 +58,7 @@ for i, code in enumerate(codes):
     if hist_count < 20:
         start_fetch = (datetime.today() - timedelta(days=KEEP_DAYS + 25)).strftime("%Y-%m-%d")
     else:
-        start_fetch = yesterday
+        start_fetch = (datetime.today() - timedelta(days=5)).strftime("%Y-%m-%d")
 
     try:
         r = requests.get(FINMIND_URL, params={
