@@ -44,11 +44,14 @@ def export_scores_csv():
         price = item.get("price", 0)
         chg_pct = item.get("chg_pct", 0)
 
-        # 若有盤中即時價格，優先覆蓋
+        # 若有盤中即時價格，且價格符合合理波動區間 (不偏離原收盤價 25%)，才覆蓋
         if code in rt_prices and "price" in rt_prices[code]:
-            price = rt_prices[code]["price"]
-            if "chg_pct" in rt_prices[code]:
-                chg_pct = rt_prices[code]["chg_pct"]
+            rt_p = rt_prices[code]["price"]
+            if isinstance(rt_p, (int, float)) and rt_p > 0:
+                if price == 0 or (0.75 * price <= rt_p <= 1.25 * price):
+                    price = rt_p
+                    if "chg_pct" in rt_prices[code]:
+                        chg_pct = rt_prices[code]["chg_pct"]
 
         rc = item.get("risk_checks", {})
 
