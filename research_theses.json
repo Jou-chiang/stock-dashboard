@@ -17,6 +17,10 @@
         "季報公布毛利率與先進封裝產能進度",
         "下半年先進封裝新廠投產狀況"
       ],
+      "broker_reports": [
+        { "broker": "摩根士丹利 (MS)", "rating": "買進", "target_price": 1280 },
+        { "broker": "高盛 (GS)", "rating": "買進", "target_price": 1250 }
+      ],
       "last_report_note": "法說會管理層重申 AI 晶片需求強勁，多頭定海神針續抱"
     },
     "1513": {

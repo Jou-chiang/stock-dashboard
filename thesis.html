@@ -165,6 +165,20 @@ function renderCards(theses){
           </div>
         ` : ''}
 
+        ${item.broker_reports && item.broker_reports.length ? `
+          <div class="scenario-title">🏛️ 外資與投信最新研報目標價</div>
+          <div class="catalysts-wrap" style="margin-bottom:14px;">
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              ${item.broker_reports.map(r => `
+                <div style="font-family:var(--mono);font-size:11px;background:var(--bg3);border:1px solid var(--border2);padding:6px 10px;border-radius:var(--r);display:flex;justify-content:space-between;align-items:center;">
+                  <span style="color:var(--amber);font-weight:500;">${r.broker || '券商'} (${r.rating || '中立'})</span>
+                  <span style="color:var(--text);font-weight:700;">目標價: ${r.target_price ? r.target_price + ' 元' : '未提供'}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+
         ${item.last_report_note ? `<div class="report-note">${item.last_report_note}</div>` : ''}
       </div>
     `;
