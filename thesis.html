@@ -330,7 +330,21 @@ async function init(){
       const parsed = JSON.parse(localSaved);
       const localTheses = parsed.theses || {};
       Object.keys(localTheses).forEach(code => {
-        thesisData[code] = localTheses[code];
+        if(!thesisData[code]){
+          // 使用者獨立自訂新增的股票
+          thesisData[code] = localTheses[code];
+        } else {
+          // 伺服器已有該股票：保留使用者自訂筆記，但強制融合伺服器最新升級的外資研報與財務預估
+          const sItem = thesisData[code];
+          const lItem = localTheses[code];
+          thesisData[code] = {
+            ...lItem,
+            ...sItem, // 優先使用伺服器最新更新
+            broker_reports: (sItem.broker_reports && sItem.broker_reports.length) ? sItem.broker_reports : (lItem.broker_reports || []),
+            consensus_forecast: sItem.consensus_forecast || lItem.consensus_forecast,
+            thesis_points: sItem.thesis_points || lItem.thesis_points
+          };
+        }
       });
     } catch(e){}
   }
@@ -349,6 +363,26 @@ function saveLocalData(){
 }
 
 async function refreshData(){
+  // 清理舊版快取中已被伺服器覆蓋的暫存，確保外資研報與最新數據能 100% 呈現
+  const localSaved = localStorage.getItem('user_research_theses');
+  if(localSaved){
+    try {
+      const parsed = JSON.parse(localSaved);
+      const res = await fetch('research_theses.json?v=' + Date.now());
+      if(res.ok){
+        const sData = await res.json();
+        const sCodes = new Set(Object.keys(sData.theses || {}));
+        let cleanTheses = {};
+        Object.keys(parsed.theses || {}).forEach(code => {
+          if(!sCodes.has(code)){
+            cleanTheses[code] = parsed.theses[code];
+          }
+        });
+        parsed.theses = cleanTheses;
+        localStorage.setItem('user_research_theses', JSON.stringify(parsed));
+      }
+    } catch(e){}
+  }
   await init();
 }
 
