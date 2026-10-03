@@ -18,30 +18,60 @@
   --mono:'IBM Plex Mono',monospace;--sans:'Noto Sans TC',sans-serif;
   --r:6px;--rl:10px;
 }
+[data-theme="light"] {
+  --bg: #f4f6f9;
+  --bg2: #ffffff;
+  --bg3: #e9ecef;
+  --bg4: #dee2e6;
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.15);
+  --text: #1e293b;
+  --text2: #475569;
+  --text3: #64748b;
+  --amber: #d97706;
+  --amber2: #b45309;
+  --green: #16a34a;
+  --green-bg: rgba(22,163,74,0.08);
+  --green-border: rgba(22,163,74,0.25);
+  --red: #dc2626;
+  --red-bg: rgba(220,38,38,0.08);
+  --red-border: rgba(220,38,38,0.25);
+  --blue: #2563eb;
+  --blue-bg: rgba(37,99,235,0.08);
+  --blue-border: rgba(37,99,235,0.25);
+  --purple: #7c3aed;
+  --neon: #0284c7;
+}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;min-height:100vh;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;min-height:100vh;transition:background .2s,color .2s;}
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);pointer-events:none;z-index:999;}
 .layout{max-width:1400px;margin:0 auto;padding:0 20px 60px;}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--border);margin-bottom:20px;gap:12px;flex-wrap:wrap;}
 .brand-title{font-family:var(--mono);font-size:16px;font-weight:500;color:var(--amber);}
 .brand-sub{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.07em;margin-top:2px;}
 .badge{font-family:var(--mono);font-size:10px;background:rgba(240,160,58,.15);border:1px solid rgba(240,160,58,.3);color:var(--amber);padding:3px 8px;border-radius:20px;}
-.nav-links{display:flex;gap:8px;}
-.btn-nav{font-family:var(--mono);font-size:11px;color:var(--text3);text-decoration:none;border:1px solid var(--border2);padding:5px 10px;border-radius:var(--r);transition:all .15s;}
+.nav-links{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.btn-nav{font-family:var(--mono);font-size:11px;color:var(--text3);text-decoration:none;border:1px solid var(--border2);padding:5px 10px;border-radius:var(--r);transition:all .15s;cursor:pointer;background:transparent;}
 .btn-nav:hover,.btn-nav.active{border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.08);}
 
-.controls{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center;}
+.controls{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center;justify-content:space-between;}
+.controls-left{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
 .search-input{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);font-family:var(--sans);font-size:13px;padding:8px 14px;width:260px;outline:none;transition:border-color .2s;}
 .search-input:focus{border-color:var(--amber);}
 .stat-pill{font-family:var(--mono);font-size:11px;color:var(--text2);background:var(--bg2);border:1px solid var(--border);padding:6px 12px;border-radius:var(--r);}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:20px;}
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:20px;transition:transform .2s,border-color .2s;}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:20px;transition:transform .2s,border-color .2s;position:relative;}
 .card:hover{border-color:var(--border2);transform:translateY(-2px);}
 .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;border-bottom:1px solid var(--border);padding-bottom:12px;}
 .stock-code{font-family:var(--mono);font-size:13px;color:var(--amber);font-weight:500;}
 .stock-name{font-size:18px;font-weight:700;color:var(--text);margin-top:2px;}
 .cat-tag{font-size:11px;font-family:var(--mono);padding:3px 8px;border-radius:4px;background:var(--bg3);border:1px solid var(--border2);color:var(--text2);}
+.card-actions{display:flex;gap:6px;align-items:center;margin-left:8px;}
+.btn-action{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);font-size:11px;padding:3px 7px;border-radius:4px;cursor:pointer;transition:all .15s;}
+.btn-action:hover{border-color:var(--amber);color:var(--amber);}
+.btn-action.btn-del:hover{border-color:var(--red);color:var(--red);}
 
 .consensus-box{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;margin-bottom:16px;}
 .c-item{font-family:var(--mono);font-size:11px;}
@@ -66,6 +96,25 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .report-note::before{content:'📝 法說/研報註記：';color:var(--text3);font-family:var(--mono);display:block;margin-bottom:2px;}
 
 .loading{text-align:center;padding:80px 20px;color:var(--text3);font-family:var(--mono);font-size:13px;}
+
+/* Modal Form Styles */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(3px);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.active{display:flex;}
+.modal-box{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);max-width:600px;width:100%;max-height:90vh;overflow-y:auto;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;border-bottom:1px solid var(--border);padding-bottom:10px;}
+.modal-title{font-size:16px;font-weight:700;color:var(--amber);font-family:var(--mono);}
+.btn-close{background:transparent;border:none;color:var(--text3);font-size:18px;cursor:pointer;}
+.btn-close:hover{color:var(--text);}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group.full{grid-column:1 / -1;}
+.form-label{font-size:11px;font-family:var(--mono);color:var(--text3);}
+.form-input,.form-textarea{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);font-family:var(--sans);font-size:13px;padding:8px 12px;outline:none;}
+.form-input:focus,.form-textarea:focus{border-color:var(--amber);}
+.form-textarea{resize:vertical;min-height:60px;}
+.modal-footer{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;border-top:1px solid var(--border);padding-top:14px;}
+.btn-submit{background:var(--amber);color:#000;border:none;padding:8px 16px;border-radius:var(--r);font-family:var(--mono);font-size:12px;font-weight:500;cursor:pointer;}
+.btn-cancel{background:transparent;border:1px solid var(--border2);color:var(--text2);padding:8px 16px;border-radius:var(--r);font-family:var(--mono);font-size:12px;cursor:pointer;}
 </style>
 </head>
 <body>
@@ -75,7 +124,8 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <div class="brand-title">🏛️ 研報與 Thesis 戰情室</div>
       <div class="brand-sub">DASHBOARD D · 質化投資論述 × 情境分析數據庫</div>
     </div>
-    <div style="display:flex;gap:8px;align-items:center;">
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+      <button class="btn-nav" id="btn-theme" onclick="toggleTheme()">☀️ 明亮模式</button>
       <span class="badge">Research Thesis</span>
       <div class="nav-links">
         <a href="index.html" class="btn-nav">儀表板 A</a>
@@ -87,8 +137,15 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   </div>
 
   <div class="controls">
-    <input type="text" class="search-input" id="search" placeholder="搜尋股票代號或名稱..." oninput="filterCards()" />
-    <div class="stat-pill" id="stat-info">載入資料中...</div>
+    <div class="controls-left">
+      <input type="text" class="search-input" id="search" placeholder="搜尋股票代號或名稱..." oninput="filterCards()" />
+      <div class="stat-pill" id="stat-info">載入資料中...</div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <button class="btn-nav" style="border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.1);" onclick="openModal()">+ 新增 Thesis 研報</button>
+      <button class="btn-nav" onclick="exportJSON()">📥 匯出 JSON</button>
+      <button class="btn-nav" style="color:var(--text3);" onclick="resetToDefaultData()">🔄 重置預設</button>
+    </div>
   </div>
 
   <div id="main-content">
@@ -96,18 +153,138 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   </div>
 </div>
 
+<!-- Modal Dialog for Adding / Editing Thesis -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">+ 新增 Thesis 研報卡片</div>
+      <button class="btn-close" onclick="closeModal()">✕</button>
+    </div>
+    <form id="thesis-form" onsubmit="handleFormSubmit(event)">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">股票代號 *</label>
+          <input type="text" id="form-code" class="form-input" placeholder="例如: 2330" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">股票名稱 *</label>
+          <input type="text" id="form-name" class="form-input" placeholder="例如: 台積電" required />
+        </div>
+        <div class="form-group full">
+          <label class="form-label">產業標的分類</label>
+          <input type="text" id="form-category" class="form-input" placeholder="例如: 晶圓代工龍頭" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">2026 EPS 最低 (元)</label>
+          <input type="number" step="0.1" id="form-eps-low" class="form-input" placeholder="例如: 55.0" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">2026 EPS 最高 (元)</label>
+          <input type="number" step="0.1" id="form-eps-high" class="form-input" placeholder="例如: 60.0" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">目標 PE 本益比最低 (倍)</label>
+          <input type="number" step="1" id="form-pe-low" class="form-input" placeholder="例如: 20" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">目標 PE 本益比最高 (倍)</label>
+          <input type="number" step="1" id="form-pe-high" class="form-input" placeholder="例如: 25" />
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Bull 樂觀情境評估</label>
+          <textarea id="form-bull" class="form-textarea" placeholder="樂觀情境論述..."></textarea>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Base 基準情境評估</label>
+          <textarea id="form-base" class="form-textarea" placeholder="基準情境論述..."></textarea>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Bear 悲觀情境評估</label>
+          <textarea id="form-bear" class="form-textarea" placeholder="悲觀情境論述..."></textarea>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">核心營運催化劑 (以逗號分隔)</label>
+          <input type="text" id="form-catalysts" class="form-input" placeholder="例如: N2製程量產, CoWoS產能倍增" />
+        </div>
+        <div class="form-group full">
+          <label class="form-label">法說 / 研報重點註記</label>
+          <textarea id="form-note" class="form-textarea" placeholder="法說會或最新研報重要記錄..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-cancel" onclick="closeModal()">取消</button>
+        <button type="submit" class="btn-submit">儲存卡片</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script>
 let thesisData = {};
+let rawFullData = {};
+let editingCode = null;
+
+// Theme Toggle
+function initTheme(){
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeBtnText(savedTheme);
+}
+
+function toggleTheme(){
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  updateThemeBtnText(next);
+}
+
+function updateThemeBtnText(theme){
+  const btn = document.getElementById('btn-theme');
+  if(btn){
+    btn.textContent = theme === 'light' ? '🌙 暗黑模式' : '☀️ 明亮模式';
+  }
+}
+
+initTheme();
 
 async function init(){
+  const localSaved = localStorage.getItem('user_research_theses');
+  if(localSaved){
+    try {
+      const parsed = JSON.parse(localSaved);
+      rawFullData = parsed;
+      thesisData = parsed.theses || {};
+      document.getElementById('stat-info').textContent = `最後更新: ${parsed.last_updated || '自訂'} ｜ 共 ${Object.keys(thesisData).length} 檔標的`;
+      renderCards(thesisData);
+      return;
+    } catch(e){}
+  }
+
   try{
     const res = await fetch('research_theses.json?v=' + Date.now());
     const data = await res.json();
+    rawFullData = data;
     thesisData = data.theses || {};
     document.getElementById('stat-info').textContent = `最後更新: ${data.last_updated || '今日'} ｜ 共 ${Object.keys(thesisData).length} 檔標的`;
     renderCards(thesisData);
   }catch(e){
     document.getElementById('main-content').innerHTML = `<div class="loading" style="color:var(--red)">❌ 載入失敗：${e.message}</div>`;
+  }
+}
+
+function saveLocalData(){
+  rawFullData.theses = thesisData;
+  rawFullData.last_updated = new Date().toISOString().split('T')[0];
+  localStorage.setItem('user_research_theses', JSON.stringify(rawFullData));
+  document.getElementById('stat-info').textContent = `最後更新: ${rawFullData.last_updated} ｜ 共 ${Object.keys(thesisData).length} 檔標的`;
+  renderCards(thesisData);
+}
+
+function resetToDefaultData(){
+  if(confirm('確定要清除自訂資料，恢復預設的 research_theses.json 嗎？')){
+    localStorage.removeItem('user_research_theses');
+    init();
   }
 }
 
@@ -132,10 +309,16 @@ function renderCards(theses){
       <div class="card" data-code="${code}" data-name="${item.stock_name}">
         <div class="card-header">
           <div>
-            <div class="stock-code">${code}</div>
-            <div class="stock-name">${item.stock_name}</div>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span class="stock-code">${code}</span>
+              <span class="stock-name">${item.stock_name}</span>
+            </div>
+            <div style="margin-top:4px;"><span class="cat-tag">${item.category || '未分類'}</span></div>
           </div>
-          <span class="cat-tag">${item.category || '未分類'}</span>
+          <div class="card-actions">
+            <button class="btn-action" onclick="editCard('${code}')" title="編輯">✏️ 編輯</button>
+            <button class="btn-action btn-del" onclick="deleteCard('${code}')" title="刪除">🗑️ 刪除</button>
+          </div>
         </div>
 
         <div class="consensus-box">
@@ -199,6 +382,111 @@ function filterCards(){
       card.style.display = 'none';
     }
   });
+}
+
+// Modal Form & Operations
+function openModal(code = null){
+  editingCode = code;
+  const overlay = document.getElementById('modal-overlay');
+  const title = document.getElementById('modal-title');
+  const form = document.getElementById('thesis-form');
+  form.reset();
+
+  if(code && thesisData[code]){
+    title.textContent = `✏️ 編輯 ${code} ${thesisData[code].stock_name} Thesis`;
+    const item = thesisData[code];
+    document.getElementById('form-code').value = code;
+    document.getElementById('form-code').readOnly = true;
+    document.getElementById('form-name').value = item.stock_name || '';
+    document.getElementById('form-category').value = item.category || '';
+    
+    const fc = item.consensus_forecast || {};
+    if(fc['2026_eps_range']){
+      document.getElementById('form-eps-low').value = fc['2026_eps_range'][0] || '';
+      document.getElementById('form-eps-high').value = fc['2026_eps_range'][1] || '';
+    }
+    if(fc['target_pe_range']){
+      document.getElementById('form-pe-low').value = fc['target_pe_range'][0] || '';
+      document.getElementById('form-pe-high').value = fc['target_pe_range'][1] || '';
+    }
+
+    const pts = item.thesis_points || {};
+    document.getElementById('form-bull').value = pts.bull || '';
+    document.getElementById('form-base').value = pts.base || '';
+    document.getElementById('form-bear').value = pts.bear || '';
+    document.getElementById('form-catalysts').value = (item.catalysts || []).join(', ');
+    document.getElementById('form-note').value = item.last_report_note || '';
+  }else{
+    title.textContent = '+ 新增 Thesis 研報卡片';
+    document.getElementById('form-code').readOnly = false;
+  }
+
+  overlay.classList.add('active');
+}
+
+function closeModal(){
+  document.getElementById('modal-overlay').classList.remove('active');
+  editingCode = null;
+}
+
+function handleFormSubmit(e){
+  e.preventDefault();
+  const code = document.getElementById('form-code').value.trim();
+  const name = document.getElementById('form-name').value.trim();
+  if(!code || !name) return;
+
+  const category = document.getElementById('form-category').value.trim();
+  const epsLow = parseFloat(document.getElementById('form-eps-low').value);
+  const epsHigh = parseFloat(document.getElementById('form-eps-high').value);
+  const peLow = parseFloat(document.getElementById('form-pe-low').value);
+  const peHigh = parseFloat(document.getElementById('form-pe-high').value);
+
+  const bull = document.getElementById('form-bull').value.trim();
+  const base = document.getElementById('form-base').value.trim();
+  const bear = document.getElementById('form-bear').value.trim();
+  const rawCat = document.getElementById('form-catalysts').value.trim();
+  const catalysts = rawCat ? rawCat.split(/[,，]/).map(s => s.trim()).filter(Boolean) : [];
+  const note = document.getElementById('form-note').value.trim();
+
+  const existingBrokerReports = (editingCode && thesisData[editingCode]) ? (thesisData[editingCode].broker_reports || []) : [];
+
+  thesisData[code] = {
+    stock_name: name,
+    category: category,
+    consensus_forecast: {
+      "2026_eps_range": (!isNaN(epsLow) && !isNaN(epsHigh)) ? [epsLow, epsHigh] : [],
+      "target_pe_range": (!isNaN(peLow) && !isNaN(peHigh)) ? [peLow, peHigh] : []
+    },
+    thesis_points: { bull, base, bear },
+    catalysts: catalysts,
+    broker_reports: existingBrokerReports,
+    last_report_note: note
+  };
+
+  saveLocalData();
+  closeModal();
+}
+
+function editCard(code){
+  openModal(code);
+}
+
+function deleteCard(code){
+  if(confirm(`確定要刪除 ${code} ${thesisData[code]?.stock_name || ''} 的 Thesis 紀錄嗎？`)){
+    delete thesisData[code];
+    saveLocalData();
+  }
+}
+
+function exportJSON(){
+  const jsonStr = JSON.stringify(rawFullData, null, 2);
+  const blob = new Blob([jsonStr], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'research_theses.json';
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 init();

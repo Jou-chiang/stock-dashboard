@@ -17,6 +17,24 @@
   --mono:'IBM Plex Mono',monospace;--sans:'Noto Sans TC',sans-serif;
   --r:6px;--rl:10px;
 }
+[data-theme="light"] {
+  --bg: #f4f6f9;
+  --bg2: #ffffff;
+  --bg3: #e9ecef;
+  --bg4: #dee2e6;
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.15);
+  --text: #1e293b;
+  --text2: #475569;
+  --text3: #64748b;
+  --amber: #d97706;
+  --amber2: #b45309;
+  --green: #16a34a;
+  --red: #dc2626;
+  --blue: #2563eb;
+  --purple: #7c3aed;
+  --neon: #0284c7;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;min-height:100vh;}
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);pointer-events:none;z-index:999;}
@@ -90,6 +108,7 @@ canvas{display:block;width:100%!important;}
       <div class="brand-sub">DASHBOARD C · 法人籌碼 × 技術指標</div>
     </div>
     <div style="display:flex;gap:8px;align-items:center;">
+      <button class="btn-nav" id="btn-theme" onclick="toggleTheme()" style="cursor:pointer;background:transparent;">☀️ 明亮模式</button>
       <span class="badge">FinMind</span>
       <div class="nav-links">
         <a href="index.html" class="btn-nav">儀表板 A</a>
@@ -141,6 +160,27 @@ canvas{display:block;width:100%!important;}
 </div>
 
 <script>
+function initTheme(){
+  const saved = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  updateThemeBtn(saved);
+}
+function toggleTheme(){
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  updateThemeBtn(next);
+  if(typeof renderCharts === 'function' && window.currentStockData){
+    renderCharts(window.currentStockData);
+  }
+}
+function updateThemeBtn(t){
+  const b = document.getElementById('btn-theme');
+  if(b) b.textContent = t === 'light' ? '🌙 暗黑模式' : '☀️ 明亮模式';
+}
+initTheme();
+
 const FM = 'https://api.finmindtrade.com/api/v4/data';
 let DAYS = 60;
 let charts = {};
@@ -361,12 +401,27 @@ const crosshairPlugin = {
 Chart.register(crosshairPlugin);
 
 // ── Chart 設定 ────────────────────────────────────────────
-const GRID={color:'rgba(255,255,255,0.04)',drawBorder:false};
-const TICK={color:'#565c66',font:{family:"'IBM Plex Mono'",size:10}};
-const TT={backgroundColor:'rgba(19,22,25,0.95)',borderColor:'rgba(255,255,255,0.1)',borderWidth:1,
-  titleColor:'#8b9099',bodyColor:'#e8eaed',
-  titleFont:{family:"'IBM Plex Mono'",size:10},bodyFont:{family:"'IBM Plex Mono'",size:11},padding:10};
-// ── 固定軸寬，確保所有圖 chartArea 完全對齊 ────────────
+function getGrid(){
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  return {color: isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.04)', drawBorder:false};
+}
+function getTick(){
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  return {color: isLight ? '#475569' : '#565c66', font:{family:"'IBM Plex Mono'",size:10}};
+}
+function getTT(){
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  return {
+    backgroundColor: isLight ? 'rgba(255,255,255,0.95)' : 'rgba(19,22,25,0.95)',
+    borderColor: isLight ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.1)',
+    borderWidth: 1,
+    titleColor: isLight ? '#475569' : '#8b9099',
+    bodyColor: isLight ? '#1e293b' : '#e8eaed',
+    titleFont:{family:"'IBM Plex Mono'",size:10},
+    bodyFont:{family:"'IBM Plex Mono'",size:11},
+    padding:10
+  };
+}
 const Y_RIGHT_W = 72;
 const Y_LEFT_W  = 72;
 
@@ -375,27 +430,25 @@ function fitY(axis){
   if(axis.position==='right') axis.width = Y_RIGHT_W;
 }
 
-// 所有圖共用的 x 軸設定
 function xScale(){
-  return {grid:GRID, ticks:{...TICK,maxTicksLimit:8,maxRotation:0},
+  return {grid:getGrid(), ticks:{...getTick(),maxTicksLimit:8,maxRotation:0},
     offset:false, afterFit(axis){ axis.paddingLeft=0; axis.paddingRight=0; }};
 }
 
-// 雙軸設定 helper：確保每張圖都同時擁有 yLeft 與 yRight 軸
 function dualAxisScales(leftExtra={}, rightExtra={}){
   return {
     x: xScale(),
     yLeft: {
       position: 'left',
-      grid: GRID,
-      ticks: { ...TICK },
+      grid: getGrid(),
+      ticks: { ...getTick() },
       afterFit: fitY,
       ...leftExtra
     },
     yRight: {
       position: 'right',
-      grid: GRID,
-      ticks: { ...TICK },
+      grid: getGrid(),
+      ticks: { ...getTick() },
       afterFit: fitY,
       ...rightExtra
     }
@@ -606,7 +659,7 @@ async function query(sym,nameHint){
       options:{responsive:true,maintainAspectRatio:false,animation:false,
         interaction:{mode:'index',intersect:false},
         layout:{padding:{left:0,right:0}},
-        plugins:{legend:{display:false},tooltip:TT},
+        plugins:{legend:{display:false},tooltip:getTT()},
         scales: dualAxisScales(
           {min:priceMin,max:priceMax,grid:{display:false},border:{display:false},ticks:{display:false}},
           {min:priceMin,max:priceMax}
@@ -626,7 +679,7 @@ async function query(sym,nameHint){
       options:{responsive:true,maintainAspectRatio:false,animation:false,
         interaction:{mode:'index',intersect:false},
         layout:{padding:{left:0,right:0}},
-        plugins:{legend:{display:false},tooltip:TT},
+        plugins:{legend:{display:false},tooltip:getTT()},
         scales: dualAxisScales(
           {grid:{display:false},border:{display:false},ticks:{...TICK,maxTicksLimit:4}},
           { }
@@ -643,7 +696,7 @@ async function query(sym,nameHint){
       options:{responsive:true,maintainAspectRatio:false,animation:false,
         interaction:{mode:'index',intersect:false},
         layout:{padding:{left:0,right:0}},
-        plugins:{legend:{display:false},tooltip:TT},
+        plugins:{legend:{display:false},tooltip:getTT()},
         scales: dualAxisScales(
           {min:-20,max:120,grid:{display:false},border:{display:false},ticks:{display:false}},
           {min:-20,max:120}
@@ -655,7 +708,7 @@ async function query(sym,nameHint){
       return {responsive:true,maintainAspectRatio:false,animation:false,
         interaction:{mode:'index',intersect:false},
         layout:{padding:{left:0,right:0}},
-        plugins:{legend:{display:false},tooltip:TT},
+        plugins:{legend:{display:false},tooltip:getTT()},
         scales: dualAxisScales(
           { },
           { grid:{display:false},border:{display:false} }

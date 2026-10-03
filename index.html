@@ -16,6 +16,25 @@
   --mono:'IBM Plex Mono',monospace;--sans:'Noto Sans TC',sans-serif;
   --r:6px;--rl:10px;
 }
+[data-theme="light"] {
+  --bg: #f4f6f9;
+  --bg2: #ffffff;
+  --bg3: #e9ecef;
+  --bg4: #dee2e6;
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.15);
+  --text: #1e293b;
+  --text2: #475569;
+  --text3: #64748b;
+  --amber: #d97706;
+  --amber2: #b45309;
+  --green: #16a34a;
+  --red: #dc2626;
+  --blue: #2563eb;
+  --purple: #7c3aed;
+  --neon: #0284c7;
+  --warn: #ea580c;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;min-height:100vh;}
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);pointer-events:none;z-index:999;}
@@ -175,6 +194,7 @@ tr:hover td{background:var(--bg3);}
   <div class="topbar-right">
     <span class="dot" id="dot"></span>
     <span class="ts" id="ts">—</span>
+    <button class="btn btn-g" id="btn-theme" onclick="toggleTheme()" style="white-space:nowrap;font-size:12px;">☀️ 明亮模式</button>
     <a href="dashboard_b.html" target="_blank" class="btn btn-p" style="text-decoration:none;font-size:12px;">📡 績優股雷達</a>
     <a href="dashboard_c.html" target="_blank" class="btn btn-p" style="text-decoration:none;font-size:12px;">🔭 大戶追蹤</a>
     <a href="thesis.html" target="_blank" class="btn btn-p" style="text-decoration:none;font-size:12px;">🏛️ 戰情室 D</a>
@@ -287,6 +307,24 @@ tr:hover td{background:var(--bg3);}
 </div>
 
 <script>
+function initTheme(){
+  const saved = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  updateThemeBtn(saved);
+}
+function toggleTheme(){
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  updateThemeBtn(next);
+}
+function updateThemeBtn(t){
+  const b = document.getElementById('btn-theme');
+  if(b) b.textContent = t === 'light' ? '🌙 暗黑模式' : '☀️ 明亮模式';
+}
+initTheme();
+
 const FM = 'https://api.finmindtrade.com/api/v4/data';
 
 function getToken(){ return localStorage.getItem('fm_token')||''; }

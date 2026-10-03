@@ -16,6 +16,23 @@
   --mono:'IBM Plex Mono',monospace;--sans:'Noto Sans TC',sans-serif;
   --r:6px;--rl:10px;
 }
+[data-theme="light"] {
+  --bg: #f4f6f9;
+  --bg2: #ffffff;
+  --bg3: #e9ecef;
+  --bg4: #dee2e6;
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.15);
+  --text: #1e293b;
+  --text2: #475569;
+  --text3: #64748b;
+  --amber: #d97706;
+  --amber2: #b45309;
+  --green: #16a34a;
+  --red: #dc2626;
+  --blue: #2563eb;
+  --purple: #7c3aed;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;min-height:100vh;}
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);pointer-events:none;z-index:999;}
@@ -105,6 +122,7 @@ input[type=range]{width:100%;accent-color:var(--amber);cursor:pointer;}
       <div class="brand-sub">DASHBOARD B · 五星積分篩選系統</div>
     </div>
     <div style="display:flex;gap:8px;align-items:center;">
+      <button class="btn-back" id="btn-theme" onclick="toggleTheme()" style="cursor:pointer;background:transparent;">☀️ 明亮模式</button>
       <span class="badge">AUTO</span>
       <a href="index.html" class="btn-back">← 儀表板 A</a>
       <a href="dashboard_c.html" class="btn-back">大戶 C</a>
@@ -154,6 +172,24 @@ input[type=range]{width:100%;accent-color:var(--amber);cursor:pointer;}
   <div id="result-area"><div class="loading"><div class="spinner"></div>載入資料中...</div></div>
 </div>
 <script>
+function initTheme(){
+  const saved = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  updateThemeBtn(saved);
+}
+function toggleTheme(){
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  updateThemeBtn(next);
+}
+function updateThemeBtn(t){
+  const b = document.getElementById('btn-theme');
+  if(b) b.textContent = t === 'light' ? '🌙 暗黑模式' : '☀️ 明亮模式';
+}
+initTheme();
+
 let allScores=[];
 let activeSectors=new Set();
 
