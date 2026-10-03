@@ -363,7 +363,10 @@ function saveLocalData(){
 }
 
 async function refreshData(){
-  // 清理舊版快取中已被伺服器覆蓋的暫存，確保外資研報與最新數據能 100% 呈現
+  const statBtn = document.getElementById('stat-info');
+  if(statBtn) statBtn.textContent = '🔄 正在從伺服器同步最新研報與價格數據...';
+  
+  // 1. 清理舊版快取中與伺服器重複的過期快取，保留使用者自訂卡片
   const localSaved = localStorage.getItem('user_research_theses');
   if(localSaved){
     try {
@@ -383,7 +386,9 @@ async function refreshData(){
       }
     } catch(e){}
   }
-  await init();
+  
+  // 2. 硬重整頁面，確保瀏覽器 DOM 100% 渲染最新伺服器研報資料
+  window.location.reload();
 }
 
 function renderCards(theses){

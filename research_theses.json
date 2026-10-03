@@ -49,7 +49,7 @@
       "stock_name": "中興電",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [8.5, 10.0],
+        "2026_eps_range": [8.5, 10.5],
         "target_pe_range": [18.0, 22.0]
       },
       "thesis_points": {
@@ -159,7 +159,7 @@
       "stock_name": "長榮航",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [4.2, 5.0],
+        "2026_eps_range": [4.2, 5.2],
         "target_pe_range": [8.5, 10.5]
       },
       "thesis_points": {
@@ -269,8 +269,8 @@
       "stock_name": "富邦金",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [9.5, 11.5],
-        "target_pe_range": [12.0, 14.0]
+        "2026_eps_range": [11.5, 13.5],
+        "target_pe_range": [12.0, 15.0]
       },
       "thesis_points": {
         "bull": "金控獲利王，壽險與銀行雙引擎累計 EPS 創歷史新高，降息受惠",
@@ -285,7 +285,7 @@
         { "broker": "凱基證券", "rating": "買進", "target_price": 160 },
         { "broker": "富邦投顧", "rating": "買進", "target_price": 145 }
       ],
-      "last_report_note": "金控獲利王攻勢凌厲，強勢續抱，凱基與富邦目標價看 145~160 元"
+      "last_report_note": "金控獲利王攻勢凌厲，現價 150.5 元，凱基與富邦目標價看 145~160 元"
     },
     "3163": {
       "stock_name": "波若威",
