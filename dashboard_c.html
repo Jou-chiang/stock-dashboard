@@ -172,15 +172,28 @@ function toggleTheme(){
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
   updateThemeBtn(next);
-  if(typeof renderCharts === 'function' && window.currentStockData){
-    renderCharts(window.currentStockData);
-  }
+  const sym = document.getElementById('sym').value.trim();
+  if(sym) query(sym);
 }
 function updateThemeBtn(t){
   const b = document.getElementById('btn-theme');
   if(b) b.textContent = t === 'light' ? '🌙 暗黑模式' : '☀️ 明亮模式';
 }
 initTheme();
+
+let tdccDataMap = {};
+async function loadTdccData(){
+  try{
+    const r = await fetch('tdcc_data.json');
+    if(r.ok){
+      const j = await r.json();
+      tdccDataMap = j.data || {};
+    }
+  }catch(e){
+    console.warn('loadTdccData error:', e);
+  }
+}
+loadTdccData();
 
 const FM = 'https://api.finmindtrade.com/api/v4/data';
 let DAYS = 60;
@@ -564,6 +577,26 @@ async function query(sym,nameHint){
 
     const priceMin=Math.min(...lows)*0.994,priceMax=Math.max(...highs)*1.008;
 
+    // 集保大戶資料 (TDCC)
+    const tdccStock = tdccDataMap[sym];
+    const tdccLatest = tdccStock ? tdccStock.latest : null;
+    let tdccSummaryHtml = '';
+    if(tdccLatest){
+      const pChg = tdccLatest.over1000_pct_chg;
+      const pChgStr = pChg > 0 ? `+${pChg}%` : `${pChg}%`;
+      const pChgCls = pChg > 0 ? 'pos' : pChg < 0 ? 'neg' : '';
+
+      const ppChg = tdccLatest.over1000_people_chg;
+      const ppChgStr = ppChg > 0 ? `+${ppChg}人` : `${ppChg}人`;
+      const ppChgCls = ppChg > 0 ? 'pos' : ppChg < 0 ? 'neg' : '';
+
+      tdccSummaryHtml = `
+        <div class="summary-item"><span class="summary-label">千張大戶持股</span><span class="summary-val">${tdccLatest.over1000_pct}%</span> <span class="summary-val ${pChgCls}" style="font-size:10px">(${pChgStr})</span></div>
+        <div class="summary-item"><span class="summary-label">千張大戶人數</span><span class="summary-val">${tdccLatest.over1000_people.toLocaleString()} 人</span> <span class="summary-val ${ppChgCls}" style="font-size:10px">(${ppChgStr})</span></div>
+        <div class="summary-item"><span class="summary-label">散戶持股(&lt;50張)</span><span class="summary-val">${tdccLatest.retail_pct}%</span></div>
+      `;
+    }
+
     // 蠟燭圖資料
     const ohlc=display.map((_,i)=>({o:opens[i],h:highs[i],l:lows[i],c:closes[i]}));
     const bodyData=ohlc.map(d=>[Math.min(d.o,d.c),Math.max(d.o,d.c)]);
@@ -582,6 +615,7 @@ async function query(sym,nameHint){
         <div class="summary-item"><span class="summary-label">自營近5日</span><span class="summary-val ${sumD>=0?'pos':'neg'}">${sumD>=0?'+':''}${Math.round(sumD).toLocaleString()} 張</span></div>
         <div class="summary-item"><span class="summary-label">三大合計</span><span class="summary-val ${sumTotal>=0?'pos':'neg'}">${sumTotal>=0?'+':''}${Math.round(sumTotal).toLocaleString()} 張</span></div>
         ${foreignVWAP ? `<div class="summary-item"><span class="summary-label">外資估算成本</span><span class="summary-val" style="color:#f0a03a">≈ ${foreignVWAP}</span></div>` : ''}
+        ${tdccSummaryHtml}
       </div>
 
       <div class="chart-block">
@@ -644,7 +678,19 @@ async function query(sym,nameHint){
           <span><span class="legend-dot" style="background:#b072f2;border-radius:2px;width:16px;height:3px;display:inline-block;margin-right:3px"></span>累計（右軸）</span>
         </div>
         <div style="height:120px"><canvas id="c-dealer"></canvas></div>
-      </div>`;
+      </div>
+
+      ${tdccStock && tdccStock.history && tdccStock.history.length > 0 ? `
+      <div class="chart-block">
+        <div class="chart-label">
+          🏰 集保大戶與散戶持股 (週走勢)
+          <span style="color:var(--text3)">(集保每週更新)</span>
+          <span><span class="legend-dot" style="background:#f0a03a"></span>千張大戶%（左軸）</span>
+          <span><span class="legend-dot" style="background:#5ba3f5"></span>大戶人數（右軸）</span>
+          <span><span class="legend-dot" style="background:#b072f2"></span>散戶持股%（左軸）</span>
+        </div>
+        <div style="height:140px"><canvas id="c-tdcc"></canvas></div>
+      </div>` : ''}`;
 
     // K線圖
     mkChart('c-candle',{
@@ -745,6 +791,69 @@ async function query(sym,nameHint){
           borderColor:'#b072f2',borderWidth:1.5,pointRadius:0,tension:0.3,fill:false,
           yAxisID:'yRight',order:1},
       ]},options:instOpts()});
+
+    if(tdccStock && tdccStock.history && tdccStock.history.length > 0){
+      const tdccHist = tdccStock.history;
+      const tdccLabels = tdccHist.map(h => {
+        const d = String(h.date);
+        return d.length === 8 ? `${d.slice(4,6)}/${d.slice(6,8)}` : d;
+      });
+      const over1000Pct = tdccHist.map(h => h.over1000_pct);
+      const retailPct   = tdccHist.map(h => h.retail_pct);
+      const over1000Ppl = tdccHist.map(h => h.over1000_people);
+
+      mkChart('c-tdcc', {
+        type: 'line',
+        data: {
+          labels: tdccLabels,
+          datasets: [
+            {
+              label: '千張大戶持股 %',
+              data: over1000Pct,
+              borderColor: '#f0a03a',
+              borderWidth: 2,
+              pointRadius: 2,
+              tension: 0.3,
+              fill: false,
+              yAxisID: 'yLeft'
+            },
+            {
+              label: '散戶持股 % (<50張)',
+              data: retailPct,
+              borderColor: '#b072f2',
+              borderDash: [3, 3],
+              borderWidth: 1.5,
+              pointRadius: 2,
+              tension: 0.3,
+              fill: false,
+              yAxisID: 'yLeft'
+            },
+            {
+              label: '千張大戶人數',
+              data: over1000Ppl,
+              type: 'bar',
+              backgroundColor: 'rgba(91,163,245,0.25)',
+              borderColor: '#5ba3f5',
+              borderWidth: 1,
+              barPercentage: 0.5,
+              yAxisID: 'yRight'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: false,
+          interaction: { mode: 'index', intersect: false },
+          layout: { padding: { left: 0, right: 0 } },
+          plugins: { legend: { display: false }, tooltip: getTT() },
+          scales: dualAxisScales(
+            { grid: getGrid(), ticks: { ...getTick() } },
+            { grid: { display: false }, border: { display: false }, ticks: { ...getTick() } }
+          )
+        }
+      });
+    }
 
   }catch(e){
     destroyCharts();

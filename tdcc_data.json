@@ -1,0 +1,4386 @@
+{
+  "last_updated": "20261002",
+  "total_stocks": 146,
+  "data": {
+    "8150": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 75,
+          "over1000_pct": 64.1,
+          "over1000_shares": 451615859,
+          "over400_pct": 73.34,
+          "retail_people": 121699,
+          "retail_pct": 24.57,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 75,
+        "over1000_pct": 64.1,
+        "over1000_shares": 451615859,
+        "over400_pct": 73.34,
+        "retail_people": 121699,
+        "retail_pct": 24.57,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2408": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 172,
+          "over1000_pct": 80.79,
+          "over1000_shares": 2787674184,
+          "over400_pct": 85.41,
+          "retail_people": 349270,
+          "retail_pct": 13.05,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 172,
+        "over1000_pct": 80.79,
+        "over1000_shares": 2787674184,
+        "over400_pct": 85.41,
+        "retail_people": 349270,
+        "retail_pct": 13.05,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2382": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 286,
+          "over1000_pct": 81.49,
+          "over1000_shares": 3347565205,
+          "over400_pct": 86.62,
+          "retail_people": 278467,
+          "retail_pct": 12.11,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 286,
+        "over1000_pct": 81.49,
+        "over1000_shares": 3347565205,
+        "over400_pct": 86.62,
+        "retail_people": 278467,
+        "retail_pct": 12.11,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3661": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 7,
+          "over1000_pct": 9.76,
+          "over1000_shares": 8436339,
+          "over400_pct": 41.88,
+          "retail_people": 106672,
+          "retail_pct": 46.92,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 7,
+        "over1000_pct": 9.76,
+        "over1000_shares": 8436339,
+        "over400_pct": 41.88,
+        "retail_people": 106672,
+        "retail_pct": 46.92,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3034": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 104,
+          "over1000_pct": 59.81,
+          "over1000_shares": 363973451,
+          "over400_pct": 78.58,
+          "retail_people": 89077,
+          "retail_pct": 17.12,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 104,
+        "over1000_pct": 59.81,
+        "over1000_shares": 363973451,
+        "over400_pct": 78.58,
+        "retail_people": 89077,
+        "retail_pct": 17.12,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2880": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 555,
+          "over1000_pct": 79.56,
+          "over1000_shares": 11183673932,
+          "over400_pct": 84.2,
+          "retail_people": 466411,
+          "retail_pct": 12.88,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 555,
+        "over1000_pct": 79.56,
+        "over1000_shares": 11183673932,
+        "over400_pct": 84.2,
+        "retail_people": 466411,
+        "retail_pct": 12.88,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2368": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 56,
+          "over1000_pct": 68.02,
+          "over1000_shares": 360914486,
+          "over400_pct": 80.61,
+          "retail_people": 118099,
+          "retail_pct": 15.88,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 56,
+        "over1000_pct": 68.02,
+        "over1000_shares": 360914486,
+        "over400_pct": 80.61,
+        "retail_people": 118099,
+        "retail_pct": 15.88,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2014": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 38,
+          "over1000_pct": 48.27,
+          "over1000_shares": 692992265,
+          "over400_pct": 53.86,
+          "retail_people": 171931,
+          "retail_pct": 41.94,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 38,
+        "over1000_pct": 48.27,
+        "over1000_shares": 692992265,
+        "over400_pct": 53.86,
+        "retail_people": 171931,
+        "retail_pct": 41.94,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2204": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 34,
+          "over1000_pct": 70.5,
+          "over1000_shares": 390349982,
+          "over400_pct": 75.42,
+          "retail_people": 42274,
+          "retail_pct": 21.88,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 34,
+        "over1000_pct": 70.5,
+        "over1000_shares": 390349982,
+        "over400_pct": 75.42,
+        "retail_people": 42274,
+        "retail_pct": 21.88,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2603": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 205,
+          "over1000_pct": 70.28,
+          "over1000_shares": 1521786668,
+          "over400_pct": 77.82,
+          "retail_people": 267374,
+          "retail_pct": 19.87,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 205,
+        "over1000_pct": 70.28,
+        "over1000_shares": 1521786668,
+        "over400_pct": 77.82,
+        "retail_people": 267374,
+        "retail_pct": 19.87,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "4749": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 8,
+          "over1000_pct": 22.79,
+          "over1000_shares": 21595054,
+          "over400_pct": 42.1,
+          "retail_people": 62198,
+          "retail_pct": 51.94,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 8,
+        "over1000_pct": 22.79,
+        "over1000_shares": 21595054,
+        "over400_pct": 42.1,
+        "retail_people": 62198,
+        "retail_pct": 51.94,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2367": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 47,
+          "over1000_pct": 25.8,
+          "over1000_shares": 182215967,
+          "over400_pct": 31.87,
+          "retail_people": 187677,
+          "retail_pct": 64.68,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 47,
+        "over1000_pct": 25.8,
+        "over1000_shares": 182215967,
+        "over400_pct": 31.87,
+        "retail_people": 187677,
+        "retail_pct": 64.68,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1504": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 126,
+          "over1000_pct": 67.73,
+          "over1000_shares": 1609662647,
+          "over400_pct": 72.63,
+          "retail_people": 200303,
+          "retail_pct": 25.21,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 126,
+        "over1000_pct": 67.73,
+        "over1000_shares": 1609662647,
+        "over400_pct": 72.63,
+        "retail_people": 200303,
+        "retail_pct": 25.21,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2105": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 158,
+          "over1000_pct": 77.48,
+          "over1000_shares": 2511546713,
+          "over400_pct": 82.46,
+          "retail_people": 80336,
+          "retail_pct": 15.17,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 158,
+        "over1000_pct": 77.48,
+        "over1000_shares": 2511546713,
+        "over400_pct": 82.46,
+        "retail_people": 80336,
+        "retail_pct": 15.17,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1476": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 43,
+          "over1000_pct": 70.47,
+          "over1000_shares": 193348649,
+          "over400_pct": 82.45,
+          "retail_people": 23375,
+          "retail_pct": 15.68,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 43,
+        "over1000_pct": 70.47,
+        "over1000_shares": 193348649,
+        "over400_pct": 82.45,
+        "retail_people": 23375,
+        "retail_pct": 15.68,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "5434": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 26,
+          "over1000_pct": 39.14,
+          "over1000_shares": 75938236,
+          "over400_pct": 62.84,
+          "retail_people": 31955,
+          "retail_pct": 30.85,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 26,
+        "over1000_pct": 39.14,
+        "over1000_shares": 75938236,
+        "over400_pct": 62.84,
+        "retail_people": 31955,
+        "retail_pct": 30.85,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2882": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 681,
+          "over1000_pct": 83.49,
+          "over1000_shares": 12247521257,
+          "over400_pct": 87.45,
+          "retail_people": 396343,
+          "retail_pct": 10.9,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 681,
+        "over1000_pct": 83.49,
+        "over1000_shares": 12247521257,
+        "over400_pct": 87.45,
+        "retail_people": 396343,
+        "retail_pct": 10.9,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6206": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 21,
+          "over1000_pct": 45.3,
+          "over1000_shares": 64813747,
+          "over400_pct": 61.65,
+          "retail_people": 15924,
+          "retail_pct": 33.82,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 21,
+        "over1000_pct": 45.3,
+        "over1000_shares": 64813747,
+        "over400_pct": 61.65,
+        "retail_people": 15924,
+        "retail_pct": 33.82,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2606": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 70,
+          "over1000_pct": 74.74,
+          "over1000_shares": 631648959,
+          "over400_pct": 81.22,
+          "retail_people": 45276,
+          "retail_pct": 16.91,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 70,
+        "over1000_pct": 74.74,
+        "over1000_shares": 631648959,
+        "over400_pct": 81.22,
+        "retail_people": 45276,
+        "retail_pct": 16.91,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1102": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 201,
+          "over1000_pct": 79.71,
+          "over1000_shares": 2827271115,
+          "over400_pct": 84.07,
+          "retail_people": 99571,
+          "retail_pct": 13.8,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 201,
+        "over1000_pct": 79.71,
+        "over1000_shares": 2827271115,
+        "over400_pct": 84.07,
+        "retail_people": 99571,
+        "retail_pct": 13.8,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "9907": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 78,
+          "over1000_pct": 70.42,
+          "over1000_shares": 1112080233,
+          "over400_pct": 78.11,
+          "retail_people": 54582,
+          "retail_pct": 18.25,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 78,
+        "over1000_pct": 70.42,
+        "over1000_shares": 1112080233,
+        "over400_pct": 78.11,
+        "retail_people": 54582,
+        "retail_pct": 18.25,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2609": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 155,
+          "over1000_pct": 60.3,
+          "over1000_shares": 2106036246,
+          "over400_pct": 64.88,
+          "retail_people": 350584,
+          "retail_pct": 33.13,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 155,
+        "over1000_pct": 60.3,
+        "over1000_shares": 2106036246,
+        "over400_pct": 64.88,
+        "retail_people": 350584,
+        "retail_pct": 33.13,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6414": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 23,
+          "over1000_pct": 47.85,
+          "over1000_shares": 75210698,
+          "over400_pct": 69.29,
+          "retail_people": 20406,
+          "retail_pct": 24.71,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 23,
+        "over1000_pct": 47.85,
+        "over1000_shares": 75210698,
+        "over400_pct": 69.29,
+        "retail_people": 20406,
+        "retail_pct": 24.71,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2312": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 104,
+          "over1000_pct": 44.14,
+          "over1000_shares": 664947720,
+          "over400_pct": 51.64,
+          "retail_people": 198453,
+          "retail_pct": 44.46,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 104,
+        "over1000_pct": 44.14,
+        "over1000_shares": 664947720,
+        "over400_pct": 51.64,
+        "retail_people": 198453,
+        "retail_pct": 44.46,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2449": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 160,
+          "over1000_pct": 57.1,
+          "over1000_shares": 733137146,
+          "over400_pct": 66.91,
+          "retail_people": 256161,
+          "retail_pct": 30.17,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 160,
+        "over1000_pct": 57.1,
+        "over1000_shares": 733137146,
+        "over400_pct": 66.91,
+        "retail_people": 256161,
+        "retail_pct": 30.17,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "5269": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 6,
+          "over1000_pct": 54.74,
+          "over1000_shares": 40599315,
+          "over400_pct": 63.51,
+          "retail_people": 32292,
+          "retail_pct": 30.74,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 6,
+        "over1000_pct": 54.74,
+        "over1000_shares": 40599315,
+        "over400_pct": 63.51,
+        "retail_people": 32292,
+        "retail_pct": 30.74,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2458": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 41,
+          "over1000_pct": 48.44,
+          "over1000_shares": 147210740,
+          "over400_pct": 61.15,
+          "retail_people": 63963,
+          "retail_pct": 34.67,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 41,
+        "over1000_pct": 48.44,
+        "over1000_shares": 147210740,
+        "over400_pct": 61.15,
+        "retail_people": 63963,
+        "retail_pct": 34.67,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1717": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 121,
+          "over1000_pct": 60.95,
+          "over1000_shares": 721882499,
+          "over400_pct": 70.1,
+          "retail_people": 99512,
+          "retail_pct": 26.62,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 121,
+        "over1000_pct": 60.95,
+        "over1000_shares": 721882499,
+        "over400_pct": 70.1,
+        "retail_people": 99512,
+        "retail_pct": 26.62,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2327": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 208,
+          "over1000_pct": 64.42,
+          "over1000_shares": 1326319241,
+          "over400_pct": 72.0,
+          "retail_people": 580604,
+          "retail_pct": 25.66,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 208,
+        "over1000_pct": 64.42,
+        "over1000_shares": 1326319241,
+        "over400_pct": 72.0,
+        "retail_people": 580604,
+        "retail_pct": 25.66,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6176": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 42,
+          "over1000_pct": 33.1,
+          "over1000_shares": 115473085,
+          "over400_pct": 48.43,
+          "retail_people": 61197,
+          "retail_pct": 45.85,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 42,
+        "over1000_pct": 33.1,
+        "over1000_shares": 115473085,
+        "over400_pct": 48.43,
+        "retail_people": 61197,
+        "retail_pct": 45.85,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3045": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 230,
+          "over1000_pct": 90.43,
+          "over1000_shares": 3368440462,
+          "over400_pct": 94.04,
+          "retail_people": 58515,
+          "retail_pct": 5.11,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 230,
+        "over1000_pct": 90.43,
+        "over1000_shares": 3368440462,
+        "over400_pct": 94.04,
+        "retail_people": 58515,
+        "retail_pct": 5.11,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2633": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 135,
+          "over1000_pct": 85.03,
+          "over1000_shares": 4786144449,
+          "over400_pct": 87.96,
+          "retail_people": 103922,
+          "retail_pct": 10.51,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 135,
+        "over1000_pct": 85.03,
+        "over1000_shares": 4786144449,
+        "over400_pct": 87.96,
+        "retail_people": 103922,
+        "retail_pct": 10.51,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1304": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 49,
+          "over1000_pct": 57.85,
+          "over1000_shares": 687780478,
+          "over400_pct": 64.0,
+          "retail_people": 98465,
+          "retail_pct": 31.89,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 49,
+        "over1000_pct": 57.85,
+        "over1000_shares": 687780478,
+        "over400_pct": 64.0,
+        "retail_people": 98465,
+        "retail_pct": 31.89,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3037": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 204,
+          "over1000_pct": 71.12,
+          "over1000_shares": 1169234359,
+          "over400_pct": 83.02,
+          "retail_people": 261161,
+          "retail_pct": 13.96,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 204,
+        "over1000_pct": 71.12,
+        "over1000_shares": 1169234359,
+        "over400_pct": 83.02,
+        "retail_people": 261161,
+        "retail_pct": 13.96,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2883": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 861,
+          "over1000_pct": 65.26,
+          "over1000_shares": 11077783085,
+          "over400_pct": 72.64,
+          "retail_people": 717663,
+          "retail_pct": 23.08,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 861,
+        "over1000_pct": 65.26,
+        "over1000_shares": 11077783085,
+        "over400_pct": 72.64,
+        "retail_people": 717663,
+        "retail_pct": 23.08,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2377": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 102,
+          "over1000_pct": 61.46,
+          "over1000_shares": 519295203,
+          "over400_pct": 71.42,
+          "retail_people": 95836,
+          "retail_pct": 26.17,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 102,
+        "over1000_pct": 61.46,
+        "over1000_shares": 519295203,
+        "over400_pct": 71.42,
+        "retail_people": 95836,
+        "retail_pct": 26.17,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1216": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 451,
+          "over1000_pct": 85.96,
+          "over1000_shares": 4884521333,
+          "over400_pct": 90.87,
+          "retail_people": 141473,
+          "retail_pct": 8.04,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 451,
+        "over1000_pct": 85.96,
+        "over1000_shares": 4884521333,
+        "over400_pct": 90.87,
+        "retail_people": 141473,
+        "retail_pct": 8.04,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3533": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 17,
+          "over1000_pct": 43.18,
+          "over1000_shares": 48600422,
+          "over400_pct": 68.51,
+          "retail_people": 36119,
+          "retail_pct": 22.93,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 17,
+        "over1000_pct": 43.18,
+        "over1000_shares": 48600422,
+        "over400_pct": 68.51,
+        "retail_people": 36119,
+        "retail_pct": 22.93,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3005": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 70,
+          "over1000_pct": 68.44,
+          "over1000_shares": 427632264,
+          "over400_pct": 77.03,
+          "retail_people": 48269,
+          "retail_pct": 19.75,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 70,
+        "over1000_pct": 68.44,
+        "over1000_shares": 427632264,
+        "over400_pct": 77.03,
+        "retail_people": 48269,
+        "retail_pct": 19.75,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6508": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 14,
+          "over1000_pct": 61.06,
+          "over1000_shares": 52847493,
+          "over400_pct": 64.66,
+          "retail_people": 14844,
+          "retail_pct": 33.34,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 14,
+        "over1000_pct": 61.06,
+        "over1000_shares": 52847493,
+        "over400_pct": 64.66,
+        "retail_people": 14844,
+        "retail_pct": 33.34,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2615": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 180,
+          "over1000_pct": 86.66,
+          "over1000_shares": 2431864554,
+          "over400_pct": 90.72,
+          "retail_people": 90924,
+          "retail_pct": 8.05,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 180,
+        "over1000_pct": 86.66,
+        "over1000_shares": 2431864554,
+        "over400_pct": 90.72,
+        "retail_people": 90924,
+        "retail_pct": 8.05,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "9939": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 47,
+          "over1000_pct": 52.18,
+          "over1000_shares": 154368187,
+          "over400_pct": 66.97,
+          "retail_people": 27658,
+          "retail_pct": 28.37,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 47,
+        "over1000_pct": 52.18,
+        "over1000_shares": 154368187,
+        "over400_pct": 66.97,
+        "retail_people": 27658,
+        "retail_pct": 28.37,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6271": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 31,
+          "over1000_pct": 39.99,
+          "over1000_shares": 83616648,
+          "over400_pct": 54.42,
+          "retail_people": 64355,
+          "retail_pct": 40.89,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 31,
+        "over1000_pct": 39.99,
+        "over1000_shares": 83616648,
+        "over400_pct": 54.42,
+        "retail_people": 64355,
+        "retail_pct": 40.89,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2884": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 963,
+          "over1000_pct": 70.27,
+          "over1000_shares": 12456048760,
+          "over400_pct": 77.53,
+          "retail_people": 616018,
+          "retail_pct": 18.9,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 963,
+        "over1000_pct": 70.27,
+        "over1000_shares": 12456048760,
+        "over400_pct": 77.53,
+        "retail_people": 616018,
+        "retail_pct": 18.9,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "8112": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 46,
+          "over1000_pct": 31.37,
+          "over1000_shares": 177527270,
+          "over400_pct": 39.41,
+          "retail_people": 117698,
+          "retail_pct": 55.77,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 46,
+        "over1000_pct": 31.37,
+        "over1000_shares": 177527270,
+        "over400_pct": 39.41,
+        "retail_people": 117698,
+        "retail_pct": 55.77,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3163": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 6,
+          "over1000_pct": 17.42,
+          "over1000_shares": 16494718,
+          "over400_pct": 33.94,
+          "retail_people": 99700,
+          "retail_pct": 61.71,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 6,
+        "over1000_pct": 17.42,
+        "over1000_shares": 16494718,
+        "over400_pct": 33.94,
+        "retail_people": 99700,
+        "retail_pct": 61.71,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6415": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 67,
+          "over1000_pct": 65.52,
+          "over1000_shares": 255796593,
+          "over400_pct": 85.99,
+          "retail_people": 26808,
+          "retail_pct": 10.36,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 67,
+        "over1000_pct": 65.52,
+        "over1000_shares": 255796593,
+        "over400_pct": 85.99,
+        "retail_people": 26808,
+        "retail_pct": 10.36,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2634": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 34,
+          "over1000_pct": 46.27,
+          "over1000_shares": 435895234,
+          "over400_pct": 50.86,
+          "retail_people": 114940,
+          "retail_pct": 44.11,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 34,
+        "over1000_pct": 46.27,
+        "over1000_shares": 435895234,
+        "over400_pct": 50.86,
+        "retail_people": 114940,
+        "retail_pct": 44.11,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2885": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 716,
+          "over1000_pct": 80.27,
+          "over1000_shares": 11129962576,
+          "over400_pct": 84.74,
+          "retail_people": 455015,
+          "retail_pct": 13.2,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 716,
+        "over1000_pct": 80.27,
+        "over1000_shares": 11129962576,
+        "over400_pct": 84.74,
+        "retail_people": 455015,
+        "retail_pct": 13.2,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2912": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 69,
+          "over1000_pct": 79.46,
+          "over1000_shares": 826105267,
+          "over400_pct": 85.91,
+          "retail_people": 74810,
+          "retail_pct": 12.51,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 69,
+        "over1000_pct": 79.46,
+        "over1000_shares": 826105267,
+        "over400_pct": 85.91,
+        "retail_people": 74810,
+        "retail_pct": 12.51,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1519": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 45,
+          "over1000_pct": 68.08,
+          "over1000_shares": 236576956,
+          "over400_pct": 77.51,
+          "retail_people": 86144,
+          "retail_pct": 20.06,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 45,
+        "over1000_pct": 68.08,
+        "over1000_shares": 236576956,
+        "over400_pct": 77.51,
+        "retail_people": 86144,
+        "retail_pct": 20.06,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "4938": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 222,
+          "over1000_pct": 75.0,
+          "over1000_shares": 2006942339,
+          "over400_pct": 81.9,
+          "retail_people": 143492,
+          "retail_pct": 16.2,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 222,
+        "over1000_pct": 75.0,
+        "over1000_shares": 2006942339,
+        "over400_pct": 81.9,
+        "retail_people": 143492,
+        "retail_pct": 16.2,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1301": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 308,
+          "over1000_pct": 72.92,
+          "over1000_shares": 4642500570,
+          "over400_pct": 77.66,
+          "retail_people": 287661,
+          "retail_pct": 19.94,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 308,
+        "over1000_pct": 72.92,
+        "over1000_shares": 4642500570,
+        "over400_pct": 77.66,
+        "retail_people": 287661,
+        "retail_pct": 19.94,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2317": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 840,
+          "over1000_pct": 66.76,
+          "over1000_shares": 9397184622,
+          "over400_pct": 71.54,
+          "retail_people": 1131264,
+          "retail_pct": 25.79,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 840,
+        "over1000_pct": 66.76,
+        "over1000_shares": 9397184622,
+        "over400_pct": 71.54,
+        "retail_people": 1131264,
+        "retail_pct": 25.79,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3702": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 204,
+          "over1000_pct": 78.19,
+          "over1000_shares": 1369461656,
+          "over400_pct": 86.23,
+          "retail_people": 94314,
+          "retail_pct": 11.76,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 204,
+        "over1000_pct": 78.19,
+        "over1000_shares": 1369461656,
+        "over400_pct": 86.23,
+        "retail_people": 94314,
+        "retail_pct": 11.76,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3596": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 31,
+          "over1000_pct": 59.39,
+          "over1000_shares": 130872510,
+          "over400_pct": 73.83,
+          "retail_people": 25051,
+          "retail_pct": 22.55,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 31,
+        "over1000_pct": 59.39,
+        "over1000_shares": 130872510,
+        "over400_pct": 73.83,
+        "retail_people": 25051,
+        "retail_pct": 22.55,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2207": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 54,
+          "over1000_pct": 83.32,
+          "over1000_shares": 464178186,
+          "over400_pct": 92.98,
+          "retail_people": 13254,
+          "retail_pct": 4.83,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 54,
+        "over1000_pct": 83.32,
+        "over1000_shares": 464178186,
+        "over400_pct": 92.98,
+        "retail_people": 13254,
+        "retail_pct": 4.83,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6443": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 15,
+          "over1000_pct": 12.15,
+          "over1000_shares": 62338811,
+          "over400_pct": 17.02,
+          "retail_people": 160203,
+          "retail_pct": 79.42,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 15,
+        "over1000_pct": 12.15,
+        "over1000_shares": 62338811,
+        "over400_pct": 17.02,
+        "retail_people": 160203,
+        "retail_pct": 79.42,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "9921": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 66,
+          "over1000_pct": 59.73,
+          "over1000_shares": 234199855,
+          "over400_pct": 73.56,
+          "retail_people": 28213,
+          "retail_pct": 22.04,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 66,
+        "over1000_pct": 59.73,
+        "over1000_shares": 234199855,
+        "over400_pct": 73.56,
+        "retail_people": 28213,
+        "retail_pct": 22.04,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "8016": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 21,
+          "over1000_pct": 29.26,
+          "over1000_shares": 35157672,
+          "over400_pct": 57.59,
+          "retail_people": 35583,
+          "retail_pct": 35.01,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 21,
+        "over1000_pct": 29.26,
+        "over1000_shares": 35157672,
+        "over400_pct": 57.59,
+        "retail_people": 35583,
+        "retail_pct": 35.01,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2027": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 206,
+          "over1000_pct": 73.7,
+          "over1000_shares": 1904699204,
+          "over400_pct": 80.74,
+          "retail_people": 103959,
+          "retail_pct": 16.54,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 206,
+        "over1000_pct": 73.7,
+        "over1000_shares": 1904699204,
+        "over400_pct": 80.74,
+        "retail_people": 103959,
+        "retail_pct": 16.54,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "8046": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 44,
+          "over1000_pct": 80.6,
+          "over1000_shares": 520826795,
+          "over400_pct": 88.83,
+          "retail_people": 88586,
+          "retail_pct": 9.33,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 44,
+        "over1000_pct": 80.6,
+        "over1000_shares": 520826795,
+        "over400_pct": 88.83,
+        "retail_people": 88586,
+        "retail_pct": 9.33,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2610": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 251,
+          "over1000_pct": 70.08,
+          "over1000_shares": 4306900625,
+          "over400_pct": 75.16,
+          "retail_people": 240297,
+          "retail_pct": 21.82,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 251,
+        "over1000_pct": 70.08,
+        "over1000_shares": 4306900625,
+        "over400_pct": 75.16,
+        "retail_people": 240297,
+        "retail_pct": 21.82,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2303": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 702,
+          "over1000_pct": 72.71,
+          "over1000_shares": 9140655970,
+          "over400_pct": 77.25,
+          "retail_people": 943807,
+          "retail_pct": 20.87,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 702,
+        "over1000_pct": 72.71,
+        "over1000_shares": 9140655970,
+        "over400_pct": 77.25,
+        "retail_people": 943807,
+        "retail_pct": 20.87,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1101": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 378,
+          "over1000_pct": 50.81,
+          "over1000_shares": 3822653148,
+          "over400_pct": 58.83,
+          "retail_people": 510421,
+          "retail_pct": 35.88,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 378,
+        "over1000_pct": 50.81,
+        "over1000_shares": 3822653148,
+        "over400_pct": 58.83,
+        "retail_people": 510421,
+        "retail_pct": 35.88,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2379": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 85,
+          "over1000_pct": 59.34,
+          "over1000_shares": 305925473,
+          "over400_pct": 81.65,
+          "retail_people": 84143,
+          "retail_pct": 13.52,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 85,
+        "over1000_pct": 59.34,
+        "over1000_shares": 305925473,
+        "over400_pct": 81.65,
+        "retail_people": 84143,
+        "retail_pct": 13.52,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2492": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 42,
+          "over1000_pct": 61.51,
+          "over1000_shares": 298486877,
+          "over400_pct": 67.75,
+          "retail_people": 115788,
+          "retail_pct": 30.56,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 42,
+        "over1000_pct": 61.51,
+        "over1000_shares": 298486877,
+        "over400_pct": 67.75,
+        "retail_people": 115788,
+        "retail_pct": 30.56,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2890": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 847,
+          "over1000_pct": 78.05,
+          "over1000_shares": 11538839951,
+          "over400_pct": 83.51,
+          "retail_people": 447218,
+          "retail_pct": 13.85,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 847,
+        "over1000_pct": 78.05,
+        "over1000_shares": 11538839951,
+        "over400_pct": 83.51,
+        "retail_people": 447218,
+        "retail_pct": 13.85,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3017": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 57,
+          "over1000_pct": 54.39,
+          "over1000_shares": 215118528,
+          "over400_pct": 76.06,
+          "retail_people": 99348,
+          "retail_pct": 18.02,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 57,
+        "over1000_pct": 54.39,
+        "over1000_shares": 215118528,
+        "over400_pct": 76.06,
+        "retail_people": 99348,
+        "retail_pct": 18.02,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2605": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 56,
+          "over1000_pct": 47.71,
+          "over1000_shares": 279297227,
+          "over400_pct": 58.16,
+          "retail_people": 105555,
+          "retail_pct": 37.61,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 56,
+        "over1000_pct": 47.71,
+        "over1000_shares": 279297227,
+        "over400_pct": 58.16,
+        "retail_people": 105555,
+        "retail_pct": 37.61,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "9904": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 211,
+          "over1000_pct": 62.72,
+          "over1000_shares": 1848266638,
+          "over400_pct": 72.38,
+          "retail_people": 104391,
+          "retail_pct": 23.15,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 211,
+        "over1000_pct": 62.72,
+        "over1000_shares": 1848266638,
+        "over400_pct": 72.38,
+        "retail_people": 104391,
+        "retail_pct": 23.15,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2357": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 105,
+          "over1000_pct": 64.75,
+          "over1000_shares": 480949421,
+          "over400_pct": 79.12,
+          "retail_people": 111178,
+          "retail_pct": 17.17,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 105,
+        "over1000_pct": 64.75,
+        "over1000_shares": 480949421,
+        "over400_pct": 79.12,
+        "retail_people": 111178,
+        "retail_pct": 17.17,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6505": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 112,
+          "over1000_pct": 95.76,
+          "over1000_shares": 9122585498,
+          "over400_pct": 96.56,
+          "retail_people": 83932,
+          "retail_pct": 3.0,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 112,
+        "over1000_pct": 95.76,
+        "over1000_shares": 9122585498,
+        "over400_pct": 96.56,
+        "retail_people": 83932,
+        "retail_pct": 3.0,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3532": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 15,
+          "over1000_pct": 88.05,
+          "over1000_shares": 341526727,
+          "over400_pct": 91.44,
+          "retail_people": 25235,
+          "retail_pct": 7.52,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 15,
+        "over1000_pct": 88.05,
+        "over1000_shares": 341526727,
+        "over400_pct": 91.44,
+        "retail_people": 25235,
+        "retail_pct": 7.52,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "4961": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 16,
+          "over1000_pct": 38.36,
+          "over1000_shares": 46515574,
+          "over400_pct": 56.08,
+          "retail_people": 39617,
+          "retail_pct": 39.84,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 16,
+        "over1000_pct": 38.36,
+        "over1000_shares": 46515574,
+        "over400_pct": 56.08,
+        "retail_people": 39617,
+        "retail_pct": 39.84,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2406": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 19,
+          "over1000_pct": 16.51,
+          "over1000_shares": 57961943,
+          "over400_pct": 27.46,
+          "retail_people": 116870,
+          "retail_pct": 67.17,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 19,
+        "over1000_pct": 16.51,
+        "over1000_shares": 57961943,
+        "over400_pct": 27.46,
+        "retail_people": 116870,
+        "retail_pct": 67.17,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2308": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 270,
+          "over1000_pct": 73.62,
+          "over1000_shares": 1912371652,
+          "over400_pct": 84.4,
+          "retail_people": 605944,
+          "retail_pct": 12.86,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 270,
+        "over1000_pct": 73.62,
+        "over1000_shares": 1912371652,
+        "over400_pct": 84.4,
+        "retail_people": 605944,
+        "retail_pct": 12.86,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "9910": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 58,
+          "over1000_pct": 86.97,
+          "over1000_shares": 858858579,
+          "over400_pct": 90.17,
+          "retail_people": 23703,
+          "retail_pct": 8.37,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 58,
+        "over1000_pct": 86.97,
+        "over1000_shares": 858858579,
+        "over400_pct": 90.17,
+        "retail_people": 23703,
+        "retail_pct": 8.37,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2324": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 336,
+          "over1000_pct": 58.72,
+          "over1000_shares": 2587910212,
+          "over400_pct": 65.35,
+          "retail_people": 322150,
+          "retail_pct": 31.55,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 336,
+        "over1000_pct": 58.72,
+        "over1000_shares": 2587910212,
+        "over400_pct": 65.35,
+        "retail_people": 322150,
+        "retail_pct": 31.55,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2313": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 114,
+          "over1000_pct": 53.64,
+          "over1000_shares": 661894001,
+          "over400_pct": 61.09,
+          "retail_people": 292218,
+          "retail_pct": 36.6,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 114,
+        "over1000_pct": 53.64,
+        "over1000_shares": 661894001,
+        "over400_pct": 61.09,
+        "retail_people": 292218,
+        "retail_pct": 36.6,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6282": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 53,
+          "over1000_pct": 36.44,
+          "over1000_shares": 312014919,
+          "over400_pct": 43.26,
+          "retail_people": 161753,
+          "retail_pct": 53.31,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 53,
+        "over1000_pct": 36.44,
+        "over1000_shares": 312014919,
+        "over400_pct": 43.26,
+        "retail_people": 161753,
+        "retail_pct": 53.31,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1402": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 255,
+          "over1000_pct": 86.99,
+          "over1000_shares": 4656595195,
+          "over400_pct": 90.5,
+          "retail_people": 86725,
+          "retail_pct": 7.92,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 255,
+        "over1000_pct": 86.99,
+        "over1000_shares": 4656595195,
+        "over400_pct": 90.5,
+        "retail_people": 86725,
+        "retail_pct": 7.92,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3481": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 419,
+          "over1000_pct": 33.08,
+          "over1000_shares": 2643117466,
+          "over400_pct": 41.88,
+          "retail_people": 979636,
+          "retail_pct": 52.42,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 419,
+        "over1000_pct": 33.08,
+        "over1000_shares": 2643117466,
+        "over400_pct": 41.88,
+        "retail_people": 979636,
+        "retail_pct": 52.42,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2356": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 205,
+          "over1000_pct": 70.25,
+          "over1000_shares": 2520335354,
+          "over400_pct": 75.28,
+          "retail_people": 246550,
+          "retail_pct": 22.83,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 205,
+        "over1000_pct": 70.25,
+        "over1000_shares": 2520335354,
+        "over400_pct": 75.28,
+        "retail_people": 246550,
+        "retail_pct": 22.83,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2353": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 153,
+          "over1000_pct": 33.72,
+          "over1000_shares": 1027820215,
+          "over400_pct": 42.19,
+          "retail_people": 386729,
+          "retail_pct": 52.41,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 153,
+        "over1000_pct": 33.72,
+        "over1000_shares": 1027820215,
+        "over400_pct": 42.19,
+        "retail_people": 386729,
+        "retail_pct": 52.41,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "5876": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 375,
+          "over1000_pct": 83.35,
+          "over1000_shares": 4092838119,
+          "over400_pct": 92.77,
+          "retail_people": 47260,
+          "retail_pct": 4.64,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 375,
+        "over1000_pct": 83.35,
+        "over1000_shares": 4092838119,
+        "over400_pct": 92.77,
+        "retail_people": 47260,
+        "retail_pct": 4.64,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "8932": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 52,
+          "over1000_pct": 74.21,
+          "over1000_shares": 265669283,
+          "over400_pct": 83.94,
+          "retail_people": 9799,
+          "retail_pct": 12.53,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 52,
+        "over1000_pct": 74.21,
+        "over1000_shares": 265669283,
+        "over400_pct": 83.94,
+        "retail_people": 9799,
+        "retail_pct": 12.53,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2376": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 79,
+          "over1000_pct": 66.06,
+          "over1000_shares": 442541133,
+          "over400_pct": 77.02,
+          "retail_people": 90610,
+          "retail_pct": 20.42,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 79,
+        "over1000_pct": 66.06,
+        "over1000_shares": 442541133,
+        "over400_pct": 77.02,
+        "retail_people": 90610,
+        "retail_pct": 20.42,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2887": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 1298,
+          "over1000_pct": 71.53,
+          "over1000_shares": 17965999552,
+          "over400_pct": 78.92,
+          "retail_people": 702363,
+          "retail_pct": 17.11,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 1298,
+        "over1000_pct": 71.53,
+        "over1000_shares": 17965999552,
+        "over400_pct": 78.92,
+        "retail_people": 702363,
+        "retail_pct": 17.11,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2344": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 286,
+          "over1000_pct": 65.01,
+          "over1000_shares": 3068906521,
+          "over400_pct": 70.88,
+          "retail_people": 561526,
+          "retail_pct": 26.87,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 286,
+        "over1000_pct": 65.01,
+        "over1000_shares": 3068906521,
+        "over400_pct": 70.88,
+        "retail_people": 561526,
+        "retail_pct": 26.87,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6412": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 23,
+          "over1000_pct": 74.26,
+          "over1000_shares": 297630717,
+          "over400_pct": 80.01,
+          "retail_people": 23703,
+          "retail_pct": 17.71,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 23,
+        "over1000_pct": 74.26,
+        "over1000_shares": 297630717,
+        "over400_pct": 80.01,
+        "retail_people": 23703,
+        "retail_pct": 17.71,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "5904": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 107,
+          "over1000_pct": 75.09,
+          "over1000_shares": 799289984,
+          "over400_pct": 81.24,
+          "retail_people": 99407,
+          "retail_pct": 17.39,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 107,
+        "over1000_pct": 75.09,
+        "over1000_shares": 799289984,
+        "over400_pct": 81.24,
+        "retail_people": 99407,
+        "retail_pct": 17.39,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "5388": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 45,
+          "over1000_pct": 34.69,
+          "over1000_shares": 105601068,
+          "over400_pct": 49.32,
+          "retail_people": 37863,
+          "retail_pct": 44.72,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 45,
+        "over1000_pct": 34.69,
+        "over1000_shares": 105601068,
+        "over400_pct": 49.32,
+        "retail_people": 37863,
+        "retail_pct": 44.72,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2891": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 960,
+          "over1000_pct": 79.02,
+          "over1000_shares": 15548406847,
+          "over400_pct": 83.86,
+          "retail_people": 573961,
+          "retail_pct": 13.8,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 960,
+        "over1000_pct": 79.02,
+        "over1000_shares": 15548406847,
+        "over400_pct": 83.86,
+        "retail_people": 573961,
+        "retail_pct": 13.8,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3189": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 58,
+          "over1000_pct": 69.38,
+          "over1000_shares": 365586301,
+          "over400_pct": 79.37,
+          "retail_people": 111449,
+          "retail_pct": 17.94,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 58,
+        "over1000_pct": 69.38,
+        "over1000_shares": 365586301,
+        "over400_pct": 79.37,
+        "retail_people": 111449,
+        "retail_pct": 17.94,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2454": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 241,
+          "over1000_pct": 63.87,
+          "over1000_shares": 1025197182,
+          "over400_pct": 79.99,
+          "retail_people": 571389,
+          "retail_pct": 15.19,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 241,
+        "over1000_pct": 63.87,
+        "over1000_shares": 1025197182,
+        "over400_pct": 79.99,
+        "retail_people": 571389,
+        "retail_pct": 15.19,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3036": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 140,
+          "over1000_pct": 78.03,
+          "over1000_shares": 1050822465,
+          "over400_pct": 85.86,
+          "retail_people": 86092,
+          "retail_pct": 12.09,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 140,
+        "over1000_pct": 78.03,
+        "over1000_shares": 1050822465,
+        "over400_pct": 85.86,
+        "retail_people": 86092,
+        "retail_pct": 12.09,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2892": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 754,
+          "over1000_pct": 68.48,
+          "over1000_shares": 9847582106,
+          "over400_pct": 75.71,
+          "retail_people": 427660,
+          "retail_pct": 19.63,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 754,
+        "over1000_pct": 68.48,
+        "over1000_shares": 9847582106,
+        "over400_pct": 75.71,
+        "retail_people": 427660,
+        "retail_pct": 19.63,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2637": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 88,
+          "over1000_pct": 78.77,
+          "over1000_shares": 587995510,
+          "over400_pct": 86.93,
+          "retail_people": 23151,
+          "retail_pct": 10.25,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 88,
+        "over1000_pct": 78.77,
+        "over1000_shares": 587995510,
+        "over400_pct": 86.93,
+        "retail_people": 23151,
+        "retail_pct": 10.25,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2201": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 45,
+          "over1000_pct": 59.87,
+          "over1000_shares": 640662608,
+          "over400_pct": 66.93,
+          "retail_people": 94528,
+          "retail_pct": 29.01,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 45,
+        "over1000_pct": 59.87,
+        "over1000_shares": 640662608,
+        "over400_pct": 66.93,
+        "retail_people": 94528,
+        "retail_pct": 29.01,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2360": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 70,
+          "over1000_pct": 52.15,
+          "over1000_shares": 221787859,
+          "over400_pct": 78.69,
+          "retail_people": 34774,
+          "retail_pct": 13.6,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 70,
+        "over1000_pct": 52.15,
+        "over1000_shares": 221787859,
+        "over400_pct": 78.69,
+        "retail_people": 34774,
+        "retail_pct": 13.6,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1303": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 396,
+          "over1000_pct": 83.76,
+          "over1000_shares": 6643399447,
+          "over400_pct": 88.13,
+          "retail_people": 279606,
+          "retail_pct": 10.3,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 396,
+        "over1000_pct": 83.76,
+        "over1000_shares": 6643399447,
+        "over400_pct": 88.13,
+        "retail_people": 279606,
+        "retail_pct": 10.3,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2404": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 30,
+          "over1000_pct": 41.77,
+          "over1000_shares": 79623581,
+          "over400_pct": 64.68,
+          "retail_people": 62492,
+          "retail_pct": 29.9,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 30,
+        "over1000_pct": 41.77,
+        "over1000_shares": 79623581,
+        "over400_pct": 64.68,
+        "retail_people": 62492,
+        "retail_pct": 29.9,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3576": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 81,
+          "over1000_pct": 36.52,
+          "over1000_shares": 594567874,
+          "over400_pct": 45.12,
+          "retail_people": 209763,
+          "retail_pct": 49.05,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 81,
+        "over1000_pct": 36.52,
+        "over1000_shares": 594567874,
+        "over400_pct": 45.12,
+        "retail_people": 209763,
+        "retail_pct": 49.05,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3443": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 11,
+          "over1000_pct": 51.29,
+          "over1000_shares": 68735346,
+          "over400_pct": 72.53,
+          "retail_people": 49269,
+          "retail_pct": 20.26,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 11,
+        "over1000_pct": 51.29,
+        "over1000_shares": 68735346,
+        "over400_pct": 72.53,
+        "retail_people": 49269,
+        "retail_pct": 20.26,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2881": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 530,
+          "over1000_pct": 84.58,
+          "over1000_shares": 11848596147,
+          "over400_pct": 88.13,
+          "retail_people": 375233,
+          "retail_pct": 10.26,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 530,
+        "over1000_pct": 84.58,
+        "over1000_shares": 11848596147,
+        "over400_pct": 88.13,
+        "retail_people": 375233,
+        "retail_pct": 10.26,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2006": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 89,
+          "over1000_pct": 74.73,
+          "over1000_shares": 545721790,
+          "over400_pct": 84.53,
+          "retail_people": 58119,
+          "retail_pct": 13.46,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 89,
+        "over1000_pct": 74.73,
+        "over1000_shares": 545721790,
+        "over400_pct": 84.53,
+        "retail_people": 58119,
+        "retail_pct": 13.46,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2707": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 4,
+          "over1000_pct": 54.7,
+          "over1000_shares": 69701979,
+          "over400_pct": 64.44,
+          "retail_people": 18043,
+          "retail_pct": 33.12,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 4,
+        "over1000_pct": 54.7,
+        "over1000_shares": 69701979,
+        "over400_pct": 64.44,
+        "retail_people": 18043,
+        "retail_pct": 33.12,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2474": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 52,
+          "over1000_pct": 68.46,
+          "over1000_shares": 368899449,
+          "over400_pct": 75.39,
+          "retail_people": 50544,
+          "retail_pct": 22.26,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 52,
+        "over1000_pct": 68.46,
+        "over1000_shares": 368899449,
+        "over400_pct": 75.39,
+        "retail_people": 50544,
+        "retail_pct": 22.26,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1513": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 43,
+          "over1000_pct": 41.22,
+          "over1000_shares": 207393602,
+          "over400_pct": 48.83,
+          "retail_people": 154510,
+          "retail_pct": 48.38,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 43,
+        "over1000_pct": 41.22,
+        "over1000_shares": 207393602,
+        "over400_pct": 48.83,
+        "retail_people": 154510,
+        "retail_pct": 48.38,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2345": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 100,
+          "over1000_pct": 57.33,
+          "over1000_shares": 321699497,
+          "over400_pct": 77.97,
+          "retail_people": 110345,
+          "retail_pct": 15.97,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 100,
+        "over1000_pct": 57.33,
+        "over1000_shares": 321699497,
+        "over400_pct": 77.97,
+        "retail_people": 110345,
+        "retail_pct": 15.97,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1503": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 44,
+          "over1000_pct": 70.84,
+          "over1000_shares": 369104291,
+          "over400_pct": 75.37,
+          "retail_people": 79741,
+          "retail_pct": 21.8,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 44,
+        "over1000_pct": 70.84,
+        "over1000_shares": 369104291,
+        "over400_pct": 75.37,
+        "retail_people": 79741,
+        "retail_pct": 21.8,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3044": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 95,
+          "over1000_pct": 69.74,
+          "over1000_shares": 366567663,
+          "over400_pct": 85.17,
+          "retail_people": 33345,
+          "retail_pct": 11.08,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 95,
+        "over1000_pct": 69.74,
+        "over1000_shares": 366567663,
+        "over400_pct": 85.17,
+        "retail_people": 33345,
+        "retail_pct": 11.08,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6669": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 21,
+          "over1000_pct": 53.08,
+          "over1000_shares": 112242374,
+          "over400_pct": 69.21,
+          "retail_people": 192525,
+          "retail_pct": 25.43,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 21,
+        "over1000_pct": 53.08,
+        "over1000_shares": 112242374,
+        "over400_pct": 69.21,
+        "retail_people": 192525,
+        "retail_pct": 25.43,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6239": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 95,
+          "over1000_pct": 56.97,
+          "over1000_shares": 432510986,
+          "over400_pct": 65.62,
+          "retail_people": 184436,
+          "retail_pct": 31.71,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 95,
+        "over1000_pct": 56.97,
+        "over1000_shares": 432510986,
+        "over400_pct": 65.62,
+        "retail_people": 184436,
+        "retail_pct": 31.71,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "8028": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 21,
+          "over1000_pct": 35.89,
+          "over1000_shares": 66361616,
+          "over400_pct": 51.42,
+          "retail_people": 74148,
+          "retail_pct": 43.64,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 21,
+        "over1000_pct": 35.89,
+        "over1000_shares": 66361616,
+        "over400_pct": 51.42,
+        "retail_people": 74148,
+        "retail_pct": 43.64,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "8464": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 48,
+          "over1000_pct": 77.84,
+          "over1000_shares": 228095263,
+          "over400_pct": 92.47,
+          "retail_people": 3615,
+          "retail_pct": 4.34,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 48,
+        "over1000_pct": 77.84,
+        "over1000_shares": 228095263,
+        "over400_pct": 92.47,
+        "retail_people": 3615,
+        "retail_pct": 4.34,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2412": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 298,
+          "over1000_pct": 78.0,
+          "over1000_shares": 6050944006,
+          "over400_pct": 80.93,
+          "retail_people": 294897,
+          "retail_pct": 17.43,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 298,
+        "over1000_pct": 78.0,
+        "over1000_shares": 6050944006,
+        "over400_pct": 80.93,
+        "retail_people": 294897,
+        "retail_pct": 17.43,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "5880": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 745,
+          "over1000_pct": 71.39,
+          "over1000_shares": 11475555738,
+          "over400_pct": 79.24,
+          "retail_people": 399742,
+          "retail_pct": 16.37,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 745,
+        "over1000_pct": 71.39,
+        "over1000_shares": 11475555738,
+        "over400_pct": 79.24,
+        "retail_people": 399742,
+        "retail_pct": 16.37,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2481": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 45,
+          "over1000_pct": 51.41,
+          "over1000_shares": 196473334,
+          "over400_pct": 61.1,
+          "retail_people": 100160,
+          "retail_pct": 36.3,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 45,
+        "over1000_pct": 51.41,
+        "over1000_shares": 196473334,
+        "over400_pct": 61.1,
+        "retail_people": 100160,
+        "retail_pct": 36.3,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "4904": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 234,
+          "over1000_pct": 90.93,
+          "over1000_shares": 3280740876,
+          "over400_pct": 94.74,
+          "retail_people": 84572,
+          "retail_pct": 4.39,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 234,
+        "over1000_pct": 90.93,
+        "over1000_shares": 3280740876,
+        "over400_pct": 94.74,
+        "retail_people": 84572,
+        "retail_pct": 4.39,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2337": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 146,
+          "over1000_pct": 35.89,
+          "over1000_shares": 712894659,
+          "over400_pct": 44.57,
+          "retail_people": 488299,
+          "retail_pct": 51.74,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 146,
+        "over1000_pct": 35.89,
+        "over1000_shares": 712894659,
+        "over400_pct": 44.57,
+        "retail_people": 488299,
+        "retail_pct": 51.74,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1326": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 276,
+          "over1000_pct": 80.23,
+          "over1000_shares": 4702745179,
+          "over400_pct": 84.65,
+          "retail_people": 183065,
+          "retail_pct": 13.41,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 276,
+        "over1000_pct": 80.23,
+        "over1000_shares": 4702745179,
+        "over400_pct": 84.65,
+        "retail_people": 183065,
+        "retail_pct": 13.41,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "9933": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 72,
+          "over1000_pct": 57.08,
+          "over1000_shares": 539133027,
+          "over400_pct": 68.43,
+          "retail_people": 49497,
+          "retail_pct": 25.45,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 72,
+        "over1000_pct": 57.08,
+        "over1000_shares": 539133027,
+        "over400_pct": 68.43,
+        "retail_people": 49497,
+        "retail_pct": 25.45,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3711": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 420,
+          "over1000_pct": 81.67,
+          "over1000_shares": 3665612289,
+          "over400_pct": 89.41,
+          "retail_people": 325216,
+          "retail_pct": 8.85,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 420,
+        "over1000_pct": 81.67,
+        "over1000_shares": 3665612289,
+        "over400_pct": 89.41,
+        "retail_people": 325216,
+        "retail_pct": 8.85,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6274": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 49,
+          "over1000_pct": 53.49,
+          "over1000_shares": 160206328,
+          "over400_pct": 68.64,
+          "retail_people": 121772,
+          "retail_pct": 27.32,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 49,
+        "over1000_pct": 53.49,
+        "over1000_shares": 160206328,
+        "over400_pct": 68.64,
+        "retail_people": 121772,
+        "retail_pct": 27.32,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2330": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 1485,
+          "over1000_pct": 84.77,
+          "over1000_shares": 21984287365,
+          "over400_pct": 88.95,
+          "retail_people": 3004913,
+          "retail_pct": 9.88,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 1485,
+        "over1000_pct": 84.77,
+        "over1000_shares": 21984287365,
+        "over400_pct": 88.95,
+        "retail_people": 3004913,
+        "retail_pct": 9.88,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "5871": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 209,
+          "over1000_pct": 63.98,
+          "over1000_shares": 1117019954,
+          "over400_pct": 73.4,
+          "retail_people": 115925,
+          "retail_pct": 23.24,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 209,
+        "over1000_pct": 63.98,
+        "over1000_shares": 1117019954,
+        "over400_pct": 73.4,
+        "retail_people": 115925,
+        "retail_pct": 23.24,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2618": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 395,
+          "over1000_pct": 79.64,
+          "over1000_shares": 4301060899,
+          "over400_pct": 84.83,
+          "retail_people": 191619,
+          "retail_pct": 13.27,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 395,
+        "over1000_pct": 79.64,
+        "over1000_shares": 4301060899,
+        "over400_pct": 84.83,
+        "retail_people": 191619,
+        "retail_pct": 13.27,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1722": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 67,
+          "over1000_pct": 57.28,
+          "over1000_shares": 561366433,
+          "over400_pct": 67.03,
+          "retail_people": 122313,
+          "retail_pct": 28.3,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 67,
+        "over1000_pct": 57.28,
+        "over1000_shares": 561366433,
+        "over400_pct": 67.03,
+        "retail_people": 122313,
+        "retail_pct": 28.3,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2886": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 470,
+          "over1000_pct": 81.85,
+          "over1000_shares": 12141167244,
+          "over400_pct": 84.54,
+          "retail_people": 455144,
+          "retail_pct": 13.74,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 470,
+        "over1000_pct": 81.85,
+        "over1000_shares": 12141167244,
+        "over400_pct": 84.54,
+        "retail_people": 455144,
+        "retail_pct": 13.74,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3035": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 21,
+          "over1000_pct": 28.79,
+          "over1000_shares": 75029590,
+          "over400_pct": 36.92,
+          "retail_people": 110273,
+          "retail_pct": 58.99,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 21,
+        "over1000_pct": 28.79,
+        "over1000_shares": 75029590,
+        "over400_pct": 36.92,
+        "retail_people": 110273,
+        "retail_pct": 58.99,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "9945": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 148,
+          "over1000_pct": 62.02,
+          "over1000_shares": 1764145124,
+          "over400_pct": 70.35,
+          "retail_people": 99371,
+          "retail_pct": 24.73,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 148,
+        "over1000_pct": 62.02,
+        "over1000_shares": 1764145124,
+        "over400_pct": 70.35,
+        "retail_people": 99371,
+        "retail_pct": 24.73,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2409": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 374,
+          "over1000_pct": 50.6,
+          "over1000_shares": 3818934286,
+          "over400_pct": 59.08,
+          "retail_people": 594712,
+          "retail_pct": 35.75,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 374,
+        "over1000_pct": 50.6,
+        "over1000_shares": 3818934286,
+        "over400_pct": 59.08,
+        "retail_people": 594712,
+        "retail_pct": 35.75,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2352": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 77,
+          "over1000_pct": 43.52,
+          "over1000_shares": 687929177,
+          "over400_pct": 52.71,
+          "retail_people": 191006,
+          "retail_pct": 42.33,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 77,
+        "over1000_pct": 43.52,
+        "over1000_shares": 687929177,
+        "over400_pct": 52.71,
+        "retail_people": 191006,
+        "retail_pct": 42.33,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2395": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 98,
+          "over1000_pct": 77.24,
+          "over1000_shares": 671484996,
+          "over400_pct": 89.27,
+          "retail_people": 34227,
+          "retail_pct": 7.3,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 98,
+        "over1000_pct": 77.24,
+        "over1000_shares": 671484996,
+        "over400_pct": 89.27,
+        "retail_people": 34227,
+        "retail_pct": 7.3,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1308": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 32,
+          "over1000_pct": 50.09,
+          "over1000_shares": 297450666,
+          "over400_pct": 57.34,
+          "retail_people": 75327,
+          "retail_pct": 38.35,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 32,
+        "over1000_pct": 50.09,
+        "over1000_shares": 297450666,
+        "over400_pct": 57.34,
+        "retail_people": 75327,
+        "retail_pct": 38.35,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6285": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 58,
+          "over1000_pct": 57.06,
+          "over1000_shares": 275856987,
+          "over400_pct": 67.07,
+          "retail_people": 89638,
+          "retail_pct": 29.37,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 58,
+        "over1000_pct": 57.06,
+        "over1000_shares": 275856987,
+        "over400_pct": 67.07,
+        "retail_people": 89638,
+        "retail_pct": 29.37,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3023": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 49,
+          "over1000_pct": 56.46,
+          "over1000_shares": 135553454,
+          "over400_pct": 77.69,
+          "retail_people": 51466,
+          "retail_pct": 16.95,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 49,
+        "over1000_pct": 56.46,
+        "over1000_shares": 135553454,
+        "over400_pct": 77.69,
+        "retail_people": 51466,
+        "retail_pct": 16.95,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3231": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 325,
+          "over1000_pct": 66.02,
+          "over1000_shares": 2264640505,
+          "over400_pct": 72.87,
+          "retail_people": 337240,
+          "retail_pct": 24.53,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 325,
+        "over1000_pct": 66.02,
+        "over1000_shares": 2264640505,
+        "over400_pct": 72.87,
+        "retail_people": 337240,
+        "retail_pct": 24.53,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "6213": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 38,
+          "over1000_pct": 58.63,
+          "over1000_shares": 213209358,
+          "over400_pct": 70.92,
+          "retail_people": 69038,
+          "retail_pct": 24.72,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 38,
+        "over1000_pct": 58.63,
+        "over1000_shares": 213209358,
+        "over400_pct": 70.92,
+        "retail_people": 69038,
+        "retail_pct": 24.72,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2002": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 480,
+          "over1000_pct": 49.36,
+          "over1000_shares": 7767133418,
+          "over400_pct": 57.63,
+          "retail_people": 1301525,
+          "retail_pct": 37.49,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 480,
+        "over1000_pct": 49.36,
+        "over1000_shares": 7767133418,
+        "over400_pct": 57.63,
+        "retail_people": 1301525,
+        "retail_pct": 37.49,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "1477": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 39,
+          "over1000_pct": 50.13,
+          "over1000_shares": 123678930,
+          "over400_pct": 64.8,
+          "retail_people": 30951,
+          "retail_pct": 30.18,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 39,
+        "over1000_pct": 50.13,
+        "over1000_shares": 123678930,
+        "over400_pct": 64.8,
+        "retail_people": 30951,
+        "retail_pct": 30.18,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2371": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 122,
+          "over1000_pct": 43.75,
+          "over1000_shares": 941160814,
+          "over400_pct": 52.35,
+          "retail_people": 267130,
+          "retail_pct": 42.61,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 122,
+        "over1000_pct": 43.75,
+        "over1000_shares": 941160814,
+        "over400_pct": 52.35,
+        "retail_people": 267130,
+        "retail_pct": 42.61,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "3008": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 15,
+          "over1000_pct": 40.87,
+          "over1000_shares": 53468680,
+          "over400_pct": 64.35,
+          "retail_people": 134411,
+          "retail_pct": 27.82,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 15,
+        "over1000_pct": 40.87,
+        "over1000_shares": 53468680,
+        "over400_pct": 64.35,
+        "retail_people": 134411,
+        "retail_pct": 27.82,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    },
+    "2301": {
+      "history": [
+        {
+          "date": "20261002",
+          "over1000_people": 277,
+          "over1000_pct": 74.7,
+          "over1000_shares": 1730306952,
+          "over400_pct": 82.98,
+          "retail_people": 192656,
+          "retail_pct": 14.99,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
+        }
+      ],
+      "latest": {
+        "date": "20261002",
+        "over1000_people": 277,
+        "over1000_pct": 74.7,
+        "over1000_shares": 1730306952,
+        "over400_pct": 82.98,
+        "retail_people": 192656,
+        "retail_pct": 14.99,
+        "over1000_pct_chg": 0.0,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.0,
+        "over400_pct_chg": 0.0
+      }
+    }
+  }
+}

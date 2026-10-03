@@ -31,6 +31,7 @@ jobs:
           FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
         run: |
           python fetch_pool_scores.py
+          python fetch_tdcc.py
           python export_sheets_csv.py
 
       - name: Commit and push
