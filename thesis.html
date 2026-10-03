@@ -514,6 +514,12 @@ function openModalWithSearch(qStr){
 function openModalWithAutoGenerate(qStr){
   openModalWithSearch(qStr);
   autoGenerateThesisInModal();
+  // 自動執行儲存，讓卡片立即在畫面上生成與展示
+  const fakeEvent = { preventDefault: () => {} };
+  handleFormSubmit(fakeEvent);
+  // 清空搜尋列並重整，確保新生成的卡片立刻顯示在畫面上
+  document.getElementById('search').value = '';
+  filterCards();
 }
 
 function autoGenerateThesisInModal(){
