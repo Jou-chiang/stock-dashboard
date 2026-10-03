@@ -622,7 +622,7 @@ async function query(sym,nameHint){
       });
     }
 
-    let lastTdccRec = null;
+    let lastTdccRec = (tdccStock && tdccStock.history && tdccStock.history.length > 0) ? tdccStock.history[0] : null;
     const tdccOver1000Pct = [];
     const tdccRetailPct   = [];
     const tdccOver1000Ppl = [];
