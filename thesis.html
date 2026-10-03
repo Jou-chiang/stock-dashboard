@@ -53,8 +53,12 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .brand-sub{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.07em;margin-top:2px;}
 .badge{font-family:var(--mono);font-size:10px;background:rgba(240,160,58,.15);border:1px solid rgba(240,160,58,.3);color:var(--amber);padding:3px 8px;border-radius:20px;}
 .nav-links{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
-.btn-nav{font-family:var(--mono);font-size:11px;color:var(--text3);text-decoration:none;border:1px solid var(--border2);padding:5px 10px;border-radius:var(--r);transition:all .15s;cursor:pointer;background:transparent;}
+.btn-nav{font-family:var(--mono);font-size:11px;color:var(--text3);text-decoration:none;border:1px solid var(--border2);padding:5px 10px;border-radius:var(--r);transition:all .15s;cursor:pointer;background:transparent;outline:none;}
 .btn-nav:hover,.btn-nav.active{border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.08);}
+.btn-nav:focus, .btn-submit:focus, .btn-ai-gen:focus, .btn-action:focus, .btn-cancel:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
 
 .controls{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center;justify-content:space-between;}
 .controls-left{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
@@ -70,7 +74,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .stock-name{font-size:18px;font-weight:700;color:var(--text);margin-top:2px;}
 .cat-tag{font-size:11px;font-family:var(--mono);padding:3px 8px;border-radius:4px;background:var(--bg3);border:1px solid var(--border2);color:var(--text2);}
 .card-actions{display:flex;gap:6px;align-items:center;margin-left:8px;}
-.btn-action{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);font-size:11px;padding:3px 7px;border-radius:4px;cursor:pointer;transition:all .15s;}
+.btn-action{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);font-size:11px;padding:3px 7px;border-radius:4px;cursor:pointer;transition:all .15s;outline:none;}
 .btn-action:hover{border-color:var(--amber);color:var(--amber);}
 .btn-action.btn-del:hover{border-color:var(--red);color:var(--red);}
 
@@ -81,13 +85,29 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 
 .scenario-title{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:.05em;margin-bottom:8px;text-transform:uppercase;}
 .scenario-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
-.sc-item{padding:8px 12px;border-radius:var(--r);font-size:12px;line-height:1.4;display:flex;gap:8px;}
+.sc-item{padding:10px 12px;border-radius:var(--r);font-size:12px;line-height:1.4;display:flex;gap:8px;align-items:center;transition:all .2s;}
 .sc-bull{background:var(--green-bg);border:1px solid var(--green-border);color:var(--text);}
 .sc-bull .sc-icon{color:var(--green);font-weight:bold;}
 .sc-base{background:var(--blue-bg);border:1px solid var(--blue-border);color:var(--text);}
 .sc-base .sc-icon{color:var(--blue);font-weight:bold;}
 .sc-bear{background:var(--red-bg);border:1px solid var(--red-border);color:var(--text);}
 .sc-bear .sc-icon{color:var(--red);font-weight:bold;}
+
+/* Active Scenario Highlight / Light Bulb Effect */
+.sc-item.active-scenario-bull {
+  background: rgba(63,201,124,0.18) !important;
+  border: 2px solid var(--green) !important;
+  box-shadow: 0 0 12px rgba(63,201,124,0.25);
+}
+.sc-item.active-scenario-bear {
+  background: rgba(242,95,95,0.18) !important;
+  border: 2px solid var(--red) !important;
+  box-shadow: 0 0 12px rgba(242,95,95,0.25);
+}
+.sc-item.active-scenario-base {
+  background: rgba(91,163,245,0.18) !important;
+  border: 2px solid var(--blue) !important;
+}
 
 .catalysts-wrap{margin-bottom:14px;}
 .cat-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
@@ -110,13 +130,13 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .form-group{display:flex;flex-direction:column;gap:6px;}
 .form-group.full{grid-column:1 / -1;}
 .form-label{font-size:11px;font-family:var(--mono);color:var(--text3);}
-.form-input,.form-textarea{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);font-family:var(--sans);font-size:13px;padding:8px 12px;outline:none;}
-.form-input:focus,.form-textarea:focus{border-color:var(--amber);}
+.form-input,.form-textarea,.form-select{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);font-family:var(--sans);font-size:13px;padding:8px 12px;outline:none;}
+.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--amber);}
 .form-textarea{resize:vertical;min-height:60px;}
 .modal-footer{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;border-top:1px solid var(--border);padding-top:14px;flex-wrap:wrap;}
-.btn-submit{background:var(--amber);color:#000;border:none;padding:8px 16px;border-radius:var(--r);font-family:var(--mono);font-size:12px;font-weight:700;cursor:pointer;}
-.btn-cancel{background:transparent;border:1px solid var(--border2);color:var(--text2);padding:8px 16px;border-radius:var(--r);font-family:var(--mono);font-size:12px;cursor:pointer;}
-.btn-ai-gen{background:linear-gradient(135deg, rgba(240,160,58,0.2), rgba(0,229,255,0.2));border:1px solid var(--amber);color:var(--amber);padding:6px 14px;border-radius:var(--r);font-family:var(--mono);font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px;}
+.btn-submit{background:var(--amber);color:#000;border:none;padding:8px 16px;border-radius:var(--r);font-family:var(--mono);font-size:12px;font-weight:700;cursor:pointer;outline:none;}
+.btn-cancel{background:transparent;border:1px solid var(--border2);color:var(--text2);padding:8px 16px;border-radius:var(--r);font-family:var(--mono);font-size:12px;cursor:pointer;outline:none;}
+.btn-ai-gen{background:linear-gradient(135deg, rgba(240,160,58,0.2), rgba(0,229,255,0.2));border:1px solid var(--amber);color:var(--amber);padding:6px 14px;border-radius:var(--r);font-family:var(--mono);font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px;outline:none;}
 .btn-ai-gen:hover{background:rgba(240,160,58,0.3);transform:scale(1.02);}
 </style>
 </head>
@@ -128,7 +148,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <div class="brand-sub">DASHBOARD D · 質化投資論述 × 情境分析數據庫</div>
     </div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-      <button class="btn-nav" id="btn-theme" onclick="toggleTheme()">☀️ 明亮模式</button>
+      <button class="btn-nav" id="btn-theme" onclick="toggleTheme(); this.blur();">☀️ 明亮模式</button>
       <span class="badge">Research Thesis</span>
       <div class="nav-links">
         <a href="index.html" class="btn-nav">儀表板 A</a>
@@ -145,9 +165,9 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <div class="stat-pill" id="stat-info">載入資料中...</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <button class="btn-nav" style="border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.1);font-weight:bold;" onclick="openModal()">+ 新增 Thesis 研報</button>
-      <button class="btn-nav" onclick="exportJSON()">📥 匯出 JSON</button>
-      <button class="btn-nav" style="color:var(--amber);border-color:var(--amber);background:rgba(240,160,58,.08);" onclick="refreshData()">🔄 同步最新資料</button>
+      <button class="btn-nav" style="border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.1);font-weight:bold;" onclick="openModal(); this.blur();">+ 新增 Thesis 研報</button>
+      <button class="btn-nav" onclick="exportJSON(); this.blur();">📥 匯出 JSON</button>
+      <button class="btn-nav" id="btn-refresh" style="color:var(--amber);border-color:var(--amber);background:rgba(240,160,58,.08);" onclick="refreshData(); this.blur();">🔄 同步最新資料</button>
     </div>
   </div>
 
@@ -162,7 +182,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     <div class="modal-header">
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
         <div class="modal-title" id="modal-title">+ 新增 Thesis 研報卡片</div>
-        <button type="button" class="btn-ai-gen" onclick="autoGenerateThesisInModal()" title="根據股票代號與產業數據自動帶入全部分析資訊">🤖 一鍵 AI / 自動生成研報</button>
+        <button type="button" class="btn-ai-gen" onclick="autoGenerateThesisInModal(); this.blur();" title="根據股票代號與產業數據自動帶入全部分析資訊">🤖 一鍵 AI / 自動生成研報</button>
       </div>
       <button class="btn-close" onclick="closeModal()">✕</button>
     </div>
@@ -176,9 +196,17 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
           <label class="form-label">股票名稱 *</label>
           <input type="text" id="form-name" class="form-input" placeholder="例如: 台積電" required />
         </div>
-        <div class="form-group full">
+        <div class="form-group">
           <label class="form-label">產業標的分類</label>
           <input type="text" id="form-category" class="form-input" placeholder="例如: 晶圓代工龍頭" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">整體基本面多空傾向 (情境高亮燈)</label>
+          <select id="form-bias" class="form-input">
+            <option value="bull">🟢 偏多優勢 (樂觀情境亮燈)</option>
+            <option value="base">🔵 中立觀望 (基準情境亮燈)</option>
+            <option value="bear">🔴 偏空劣勢 (悲觀情境亮燈)</option>
+          </select>
         </div>
         <div class="form-group">
           <label class="form-label">2026 EPS 最低 (元)</label>
@@ -223,7 +251,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       </div>
       <div class="modal-footer">
         <button type="button" class="btn-cancel" onclick="closeModal()">取消</button>
-        <button type="button" class="btn-ai-gen" style="font-size:11px;" onclick="autoGenerateThesisInModal()">⚡ 重新 AI 帶入估算</button>
+        <button type="button" class="btn-ai-gen" style="font-size:11px;" onclick="autoGenerateThesisInModal(); this.blur();">⚡ 重新 AI 帶入估算</button>
         <button type="submit" class="btn-submit">儲存卡片</button>
       </div>
     </form>
@@ -287,7 +315,6 @@ function populateStockDatalist(){
     document.body.appendChild(datalist);
   }
   let optionsHtml = '';
-  // unique by code
   const seenCodes = new Set();
   Object.values(poolScoresMap).forEach(s => {
     if(s.code && s.name && !seenCodes.has(s.code)){
@@ -331,15 +358,13 @@ async function init(){
       const localTheses = parsed.theses || {};
       Object.keys(localTheses).forEach(code => {
         if(!thesisData[code]){
-          // 使用者獨立自訂新增的股票
           thesisData[code] = localTheses[code];
         } else {
-          // 伺服器已有該股票：保留使用者自訂筆記，但強制融合伺服器最新升級的外資研報與財務預估
           const sItem = thesisData[code];
           const lItem = localTheses[code];
           thesisData[code] = {
             ...lItem,
-            ...sItem, // 優先使用伺服器最新更新
+            ...sItem,
             broker_reports: (sItem.broker_reports && sItem.broker_reports.length) ? sItem.broker_reports : (lItem.broker_reports || []),
             consensus_forecast: sItem.consensus_forecast || lItem.consensus_forecast,
             thesis_points: sItem.thesis_points || lItem.thesis_points
@@ -363,10 +388,14 @@ function saveLocalData(){
 }
 
 async function refreshData(){
+  const btn = document.getElementById('btn-refresh');
+  if(btn){
+    btn.blur();
+    btn.textContent = '🔄 同步中...';
+  }
   const statBtn = document.getElementById('stat-info');
   if(statBtn) statBtn.textContent = '🔄 正在從伺服器同步最新研報與價格數據...';
   
-  // 1. 清理舊版快取中與伺服器重複的過期快取，保留使用者自訂卡片
   const localSaved = localStorage.getItem('user_research_theses');
   if(localSaved){
     try {
@@ -387,7 +416,6 @@ async function refreshData(){
     } catch(e){}
   }
   
-  // 2. 硬重整頁面，確保瀏覽器 DOM 100% 渲染最新伺服器研報資料
   window.location.reload();
 }
 
@@ -413,11 +441,60 @@ function renderCards(theses){
     const pe = (peRange && peRange.length === 2) ? `${peRange[0]} ~ ${peRange[1]} 倍` : '未提供';
 
     let impliedTarget = '';
+    let impliedMin = 0, impliedMax = 0;
     if(epsRange && epsRange.length === 2 && peRange && peRange.length === 2){
-      const tMin = Math.round(epsRange[0] * peRange[0]);
-      const tMax = Math.round(epsRange[1] * peRange[1]);
-      impliedTarget = `${tMin} ~ ${tMax} 元`;
+      impliedMin = Math.round(epsRange[0] * peRange[0]);
+      impliedMax = Math.round(epsRange[1] * peRange[1]);
+      impliedTarget = `${impliedMin} ~ ${impliedMax} 元`;
     }
+
+    // 券商平均目標價計算
+    let brokerAvg = 0;
+    let bTargets = [];
+    if(item.broker_reports && item.broker_reports.length){
+      bTargets = item.broker_reports.map(r => r.target_price).filter(Boolean);
+      if(bTargets.length){
+        brokerAvg = Math.round(bTargets.reduce((a,b)=>a+b, 0) / bTargets.length);
+      }
+    }
+
+    // 漲幅潛力計算 (與現價比較)
+    let upsideHtml = '';
+    if(curPrice && brokerAvg){
+      const upsidePct = Math.round(((brokerAvg - curPrice) / curPrice) * 100);
+      const color = upsidePct >= 0 ? 'var(--green)' : 'var(--red)';
+      upsideHtml = `<span style="font-size:11px;padding:2px 6px;border-radius:4px;background:rgba(${upsidePct>=0?'63,201,124':'242,95,95'},0.15);color:${color};margin-left:6px;font-weight:700;">潛在漲幅 ${upsidePct>=0?'+':''}${upsidePct}%</span>`;
+    }
+
+    // 多空偏向評級 (優劣 Tag)
+    let bias = item.overall_bias || '';
+    if(!bias){
+      if(curPrice && brokerAvg && brokerAvg >= curPrice * 1.08){
+        bias = 'bull';
+      } else if(curPrice && brokerAvg && brokerAvg < curPrice * 0.95){
+        bias = 'bear';
+      } else {
+        bias = 'bull';
+      }
+    }
+
+    let biasTagHtml = '';
+    if(bias === 'bull'){
+      biasTagHtml = `<span class="cat-tag" style="background:rgba(63,201,124,0.15);border-color:var(--green);color:var(--green);font-weight:700;">🟢 偏多優勢</span>`;
+    } else if(bias === 'bear'){
+      biasTagHtml = `<span class="cat-tag" style="background:rgba(242,95,95,0.15);border-color:var(--red);color:var(--red);font-weight:700;">🔴 偏空劣勢</span>`;
+    } else {
+      biasTagHtml = `<span class="cat-tag" style="background:rgba(91,163,245,0.15);border-color:var(--blue);color:var(--blue);font-weight:700;">🔵 中立觀望</span>`;
+    }
+
+    // 情境亮燈燈號套用
+    let bullClass = 'sc-item sc-bull' + (bias === 'bull' ? ' active-scenario-bull' : '');
+    let baseClass = 'sc-item sc-base' + (bias === 'base' ? ' active-scenario-base' : '');
+    let bearClass = 'sc-item sc-bear' + (bias === 'bear' ? ' active-scenario-bear' : '');
+
+    let bullBadge = bias === 'bull' ? '<span style="font-family:var(--mono);font-size:10px;padding:2px 6px;background:var(--green);color:#000;border-radius:3px;font-weight:bold;margin-left:auto;">🔥 主流評估 (優勢)</span>' : '';
+    let baseBadge = bias === 'base' ? '<span style="font-family:var(--mono);font-size:10px;padding:2px 6px;background:var(--blue);color:#000;border-radius:3px;font-weight:bold;margin-left:auto;">⚖️ 主流評估 (中立)</span>' : '';
+    let bearBadge = bias === 'bear' ? '<span style="font-family:var(--mono);font-size:10px;padding:2px 6px;background:var(--red);color:#fff;border-radius:3px;font-weight:bold;margin-left:auto;">⚠️ 風險警示 (劣勢)</span>' : '';
 
     const points = item.thesis_points || {};
     const catalysts = item.catalysts || [];
@@ -431,11 +508,14 @@ function renderCards(theses){
               <span class="stock-name">${item.stock_name}</span>
               ${curPriceHtml}
             </div>
-            <div style="margin-top:4px;"><span class="cat-tag">${item.category || '未分類'}</span></div>
+            <div style="margin-top:6px;display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+              <span class="cat-tag">${item.category || '未分類'}</span>
+              ${biasTagHtml}
+            </div>
           </div>
           <div class="card-actions">
-            <button class="btn-action" onclick="editCard('${code}')" title="編輯">✏️ 編輯</button>
-            <button class="btn-action btn-del" onclick="deleteCard('${code}')" title="刪除">🗑️ 刪除</button>
+            <button class="btn-action" onclick="editCard('${code}'); this.blur();" title="編輯">✏️ 編輯</button>
+            <button class="btn-action btn-del" onclick="deleteCard('${code}'); this.blur();" title="刪除">🗑️ 刪除</button>
           </div>
         </div>
 
@@ -449,17 +529,25 @@ function renderCards(theses){
             <div class="c-val">${pe}</div>
           </div>
           ${impliedTarget ? `
-          <div class="c-item" style="grid-column:1 / -1;border-top:1px dashed var(--border);padding-top:8px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;">
-            <div class="c-label" style="margin:0;">🎯 共識估算目標價 (EPS × PE)</div>
-            <div class="c-val" style="color:var(--amber);font-weight:700;font-size:14px;">≈ ${impliedTarget}</div>
+          <div class="c-item" style="grid-column:1 / -1;border-top:1px dashed var(--border);padding-top:8px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">
+            <div>
+              <div class="c-label" style="margin:0;">🤖 演算法估價 (EPS × PE)</div>
+              <div class="c-val" style="color:var(--amber);font-weight:700;font-size:13px;">≈ ${impliedTarget}</div>
+            </div>
+            ${brokerAvg ? `
+            <div style="text-align:right;">
+              <div class="c-label" style="margin:0;">🏛️ 券商法人平均目標價</div>
+              <div class="c-val" style="color:var(--neon);font-weight:700;font-size:13px;">≈ ${brokerAvg} 元 ${upsideHtml}</div>
+            </div>
+            ` : ''}
           </div>` : ''}
         </div>
 
-        <div class="scenario-title">Bull / Base / Bear 三情境評估</div>
+        <div class="scenario-title">Bull / Base / Bear 三情境評估 (亮燈評估)</div>
         <div class="scenario-list">
-          ${points.bull ? `<div class="sc-item sc-bull"><span class="sc-icon">🐂 樂觀</span><div>${points.bull}</div></div>` : ''}
-          ${points.base ? `<div class="sc-item sc-base"><span class="sc-icon">⚖️ 基準</span><div>${points.base}</div></div>` : ''}
-          ${points.bear ? `<div class="sc-item sc-bear"><span class="sc-icon">🐻 悲觀</span><div>${points.bear}</div></div>` : ''}
+          ${points.bull ? `<div class="${bullClass}"><span class="sc-icon">🐂 樂觀</span><div style="flex:1;">${points.bull}</div>${bullBadge}</div>` : ''}
+          ${points.base ? `<div class="${baseClass}"><span class="sc-icon">⚖️ 基準</span><div style="flex:1;">${points.base}</div>${baseBadge}</div>` : ''}
+          ${points.bear ? `<div class="${bearClass}"><span class="sc-icon">🐻 悲觀</span><div style="flex:1;">${points.bear}</div>${bearBadge}</div>` : ''}
         </div>
 
         ${catalysts.length ? `
@@ -523,8 +611,8 @@ function filterCards(){
       <div style="font-size:15px;color:var(--text);font-weight:500;margin-bottom:6px;">找不到「<span style="color:var(--amber);">${qStr}</span>」的 Thesis 分析卡片</div>
       <div style="font-size:12px;color:var(--text3);margin-bottom:16px;">您可以一鍵讓 AI 自動產生基本面估算與研報卡片，或手動建立</div>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-        <button class="btn-submit" style="background:var(--amber);color:#000;font-weight:bold;padding:10px 20px;" onclick="openModalWithAutoGenerate('${qStr}')">🤖 一鍵 AI 自動生成 ${qStr} 研報卡片</button>
-        <button class="btn-cancel" style="padding:10px 16px;" onclick="openModalWithSearch('${qStr}')">＋ 手動建立分析卡片</button>
+        <button class="btn-submit" style="background:var(--amber);color:#000;font-weight:bold;padding:10px 20px;" onclick="openModalWithAutoGenerate('${qStr}'); this.blur();">🤖 一鍵 AI 自動生成 ${qStr} 研報卡片</button>
+        <button class="btn-cancel" style="padding:10px 16px;" onclick="openModalWithSearch('${qStr}'); this.blur();">＋ 手動建立分析卡片</button>
       </div>
     `;
     noMatchEl.style.display = 'block';
@@ -550,10 +638,8 @@ function openModalWithSearch(qStr){
 function openModalWithAutoGenerate(qStr){
   openModalWithSearch(qStr);
   autoGenerateThesisInModal();
-  // 自動執行儲存，讓卡片立即在畫面上生成與展示
   const fakeEvent = { preventDefault: () => {} };
   handleFormSubmit(fakeEvent);
-  // 清空搜尋列並重整，確保新生成的卡片立刻顯示在畫面上
   document.getElementById('search').value = '';
   filterCards();
 }
@@ -585,7 +671,6 @@ function autoGenerateThesisInModal(){
   const sector = (matched && matched.sector) ? matched.sector : '電子零組件';
   const score = matched ? (matched.score || 3) : 3;
 
-  // Sector PE Range Logic
   let peLow = 16, peHigh = 22;
   if(sector.includes('金融') || sector.includes('保險')){
     peLow = 12; peHigh = 16;
@@ -612,6 +697,7 @@ function autoGenerateThesisInModal(){
   const bearTarget = Math.round(epsLow * peLow);
 
   document.getElementById('form-category').value = `${sector} 供應鏈`;
+  document.getElementById('form-bias').value = 'bull';
   document.getElementById('form-eps-low').value = epsLow;
   document.getElementById('form-eps-high').value = epsHigh;
   document.getElementById('form-pe-low').value = peLow;
@@ -650,6 +736,7 @@ function openModal(code = null){
     document.getElementById('form-code').readOnly = true;
     document.getElementById('form-name').value = item.stock_name || '';
     document.getElementById('form-category').value = item.category || '';
+    document.getElementById('form-bias').value = item.overall_bias || 'bull';
     
     const fc = item.consensus_forecast || {};
     if(fc['2026_eps_range']){
@@ -701,6 +788,7 @@ function handleFormSubmit(e){
   if(!name) name = code;
 
   const category = (document.getElementById('form-category').value || '').trim();
+  const overallBias = document.getElementById('form-bias').value || 'bull';
   const epsLow = parseFloat(document.getElementById('form-eps-low').value);
   const epsHigh = parseFloat(document.getElementById('form-eps-high').value);
   const peLow = parseFloat(document.getElementById('form-pe-low').value);
@@ -730,6 +818,7 @@ function handleFormSubmit(e){
   thesisData[code] = {
     stock_name: name,
     category: category || '自訂研報',
+    overall_bias: overallBias,
     consensus_forecast: {
       "2026_eps_range": (!isNaN(epsLow) && !isNaN(epsHigh)) ? [epsLow, epsHigh] : [],
       "target_pe_range": (!isNaN(peLow) && !isNaN(peHigh)) ? [peLow, peHigh] : []
