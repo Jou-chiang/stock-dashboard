@@ -33,8 +33,7 @@
   --red: #dc2626;
   --blue: #2563eb;
   --purple: #7c3aed;
-  --neon: #0284c7;
-}
+[data-theme="light"] body::before{display:none;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;min-height:100vh;}
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);pointer-events:none;z-index:999;}
@@ -681,7 +680,7 @@ async function query(sym,nameHint){
         layout:{padding:{left:0,right:0}},
         plugins:{legend:{display:false},tooltip:getTT()},
         scales: dualAxisScales(
-          {grid:{display:false},border:{display:false},ticks:{...TICK,maxTicksLimit:4}},
+          {grid:{display:false},border:{display:false},ticks:{...getTick(),maxTicksLimit:4}},
           { }
         )}
     });
