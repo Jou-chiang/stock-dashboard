@@ -200,11 +200,33 @@ async function loadScores(){
     if(!r.ok) throw new Error('not found');
     const j=await r.json();
     allScores=j.scores||[];
+
+    let rtUpdated = '';
+    try {
+      const pr = await fetch('prices.json?_='+Date.now());
+      if(pr.ok){
+        const pj = await pr.json();
+        rtUpdated = pj.updated || '';
+        const pMap = {};
+        (pj.prices||[]).forEach(item => { pMap[item.id] = item; });
+        allScores.forEach(s => {
+          const pInfo = pMap[s.code];
+          if(pInfo && pInfo.price !== undefined && pInfo.price !== null){
+            s.price = pInfo.price;
+            if(pInfo.reference){
+              s.chg_pct = ((pInfo.price - pInfo.reference) / pInfo.reference) * 100;
+            }
+          }
+        });
+      }
+    } catch(e){}
+
     const z5=allScores.filter(s=>s.score===5).length;
     const z4=allScores.filter(s=>s.score===4).length;
     document.getElementById('status-bar').innerHTML=`
       <div class="status-item"><span class="dot ok"></span><span class="status-label">資料已載入</span></div>
-      <div class="status-item"><span class="status-label">更新時間</span><span class="status-val">${j.updated||'—'}</span></div>
+      <div class="status-item"><span class="status-label">評分日期</span><span class="status-val">${j.updated||'—'}</span></div>
+      ${rtUpdated ? `<div class="status-item"><span class="status-label">盤中股價</span><span class="status-val green">${rtUpdated}</span></div>` : ''}
       <div class="status-item"><span class="status-label">股票池</span><span class="status-val">${j.total} 支</span></div>
       <div class="status-item"><span class="status-label">🏆 5分</span><span class="status-val gold">${z5} 支</span></div>
       <div class="status-item"><span class="status-label">⚔️ 4分</span><span class="status-val green">${z4} 支</span></div>`;
@@ -337,6 +359,7 @@ function addToA(code,name){
 }
 
 loadScores();
+setInterval(loadScores, 60000);
 </script>
 </body>
 </html>
