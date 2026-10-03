@@ -208,6 +208,10 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
           <input type="text" id="form-catalysts" class="form-input" placeholder="例如: N2製程量產, CoWoS產能倍增" />
         </div>
         <div class="form-group full">
+          <label class="form-label">券商研報目標價 (格式: 券商,評等,目標價 ; 多筆用分號分隔)</label>
+          <input type="text" id="form-brokers" class="form-input" placeholder="例如: 摩根士丹利,買進,1280 ; 高盛,買進,1250" />
+        </div>
+        <div class="form-group full">
           <label class="form-label">法說 / 研報重點註記</label>
           <textarea id="form-note" class="form-textarea" placeholder="法說會或最新研報重要記錄..."></textarea>
         </div>
@@ -301,8 +305,19 @@ function renderCards(theses){
   codes.forEach(code => {
     const item = theses[code];
     const forecast = item.consensus_forecast || {};
-    const eps = forecast['2026_eps_range'] ? `${forecast['2026_eps_range'][0]} ~ ${forecast['2026_eps_range'][1]} 元` : '未提供';
-    const pe = forecast.target_pe_range ? `${forecast.target_pe_range[0]} ~ ${forecast.target_pe_range[1]} 倍` : '未提供';
+    const epsRange = forecast['2026_eps_range'];
+    const peRange = forecast['target_pe_range'];
+
+    const eps = (epsRange && epsRange.length === 2) ? `${epsRange[0]} ~ ${epsRange[1]} 元` : '未提供';
+    const pe = (peRange && peRange.length === 2) ? `${peRange[0]} ~ ${peRange[1]} 倍` : '未提供';
+
+    let impliedTarget = '';
+    if(epsRange && epsRange.length === 2 && peRange && peRange.length === 2){
+      const tMin = Math.round(epsRange[0] * peRange[0]);
+      const tMax = Math.round(epsRange[1] * peRange[1]);
+      impliedTarget = `${tMin} ~ ${tMax} 元`;
+    }
+
     const points = item.thesis_points || {};
     const catalysts = item.catalysts || [];
 
@@ -331,6 +346,11 @@ function renderCards(theses){
             <div class="c-label">目標 PE 本益比區間</div>
             <div class="c-val">${pe}</div>
           </div>
+          ${impliedTarget ? `
+          <div class="c-item" style="grid-column:1 / -1;border-top:1px dashed var(--border);padding-top:8px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;">
+            <div class="c-label" style="margin:0;">🎯 共識估算目標價 (EPS × PE)</div>
+            <div class="c-val" style="color:var(--amber);font-weight:700;font-size:14px;">≈ ${impliedTarget}</div>
+          </div>` : ''}
         </div>
 
         <div class="scenario-title">Bull / Base / Bear 三情境評估</div>
@@ -350,7 +370,7 @@ function renderCards(theses){
         ` : ''}
 
         ${item.broker_reports && item.broker_reports.length ? `
-          <div class="scenario-title">🏛️ 外資與投信最新研報目標價</div>
+          <div class="scenario-title">🏛️ 外資與投信研報目標價</div>
           <div class="catalysts-wrap" style="margin-bottom:14px;">
             <div style="display:flex;flex-direction:column;gap:6px;">
               ${item.broker_reports.map(r => `
@@ -416,6 +436,13 @@ function openModal(code = null){
     document.getElementById('form-base').value = pts.base || '';
     document.getElementById('form-bear').value = pts.bear || '';
     document.getElementById('form-catalysts').value = (item.catalysts || []).join(', ');
+    
+    if(item.broker_reports && item.broker_reports.length){
+      document.getElementById('form-brokers').value = item.broker_reports.map(r => `${r.broker||''},${r.rating||''},${r.target_price||''}`).join(' ; ');
+    } else {
+      document.getElementById('form-brokers').value = '';
+    }
+
     document.getElementById('form-note').value = item.last_report_note || '';
   }else{
     title.textContent = '+ 新增 Thesis 研報卡片';
@@ -447,9 +474,21 @@ function handleFormSubmit(e){
   const bear = document.getElementById('form-bear').value.trim();
   const rawCat = document.getElementById('form-catalysts').value.trim();
   const catalysts = rawCat ? rawCat.split(/[,，]/).map(s => s.trim()).filter(Boolean) : [];
-  const note = document.getElementById('form-note').value.trim();
+  
+  const rawBrokers = document.getElementById('form-brokers').value.trim();
+  let brokerReports = [];
+  if(rawBrokers){
+    brokerReports = rawBrokers.split(';').map(part => {
+      const segs = part.split(/[,，]/).map(s => s.trim());
+      return {
+        broker: segs[0] || '券商',
+        rating: segs[1] || '評等',
+        target_price: parseFloat(segs[2]) || null
+      };
+    }).filter(b => b.broker || b.target_price);
+  }
 
-  const existingBrokerReports = (editingCode && thesisData[editingCode]) ? (thesisData[editingCode].broker_reports || []) : [];
+  const note = document.getElementById('form-note').value.trim();
 
   thesisData[code] = {
     stock_name: name,
@@ -460,7 +499,7 @@ function handleFormSubmit(e){
     },
     thesis_points: { bull, base, bear },
     catalysts: catalysts,
-    broker_reports: existingBrokerReports,
+    broker_reports: brokerReports,
     last_report_note: note
   };
 
