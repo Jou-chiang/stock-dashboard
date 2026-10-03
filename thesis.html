@@ -253,7 +253,21 @@ function updateThemeBtnText(theme){
 
 initTheme();
 
+let stockPrices = {};
+async function loadStockPrices(){
+  try{
+    const r = await fetch('pool_scores.json?v=' + Date.now());
+    if(r.ok){
+      const j = await r.json();
+      (j.scores||[]).forEach(s => {
+        if(s.code && s.price) stockPrices[String(s.code)] = s.price;
+      });
+    }
+  }catch(e){}
+}
+
 async function init(){
+  await loadStockPrices();
   const localSaved = localStorage.getItem('user_research_theses');
   if(localSaved){
     try {
@@ -287,7 +301,7 @@ function saveLocalData(){
 }
 
 function resetToDefaultData(){
-  if(confirm('確定要清除自訂資料，恢復預設的 research_theses.json 嗎？')){
+  if(confirm('確定要清除自訂資料，恢復預設的 research_theses.json 自由編輯檔嗎？')){
     localStorage.removeItem('user_research_theses');
     init();
   }
@@ -304,6 +318,9 @@ function renderCards(theses){
   let html = '<div class="grid">';
   codes.forEach(code => {
     const item = theses[code];
+    const curPrice = stockPrices[code];
+    const curPriceHtml = curPrice ? `<span style="font-family:var(--mono);font-size:14px;font-weight:700;color:var(--amber);margin-left:auto;">現價 ${curPrice} 元</span>` : '';
+
     const forecast = item.consensus_forecast || {};
     const epsRange = forecast['2026_eps_range'];
     const peRange = forecast['target_pe_range'];
@@ -324,10 +341,11 @@ function renderCards(theses){
     html += `
       <div class="card" data-code="${code}" data-name="${item.stock_name}">
         <div class="card-header">
-          <div>
-            <div style="display:flex;align-items:center;gap:6px;">
+          <div style="flex:1;">
+            <div style="display:flex;align-items:center;gap:8px;">
               <span class="stock-code">${code}</span>
               <span class="stock-name">${item.stock_name}</span>
+              ${curPriceHtml}
             </div>
             <div style="margin-top:4px;"><span class="cat-tag">${item.category || '未分類'}</span></div>
           </div>
@@ -335,7 +353,7 @@ function renderCards(theses){
             <button class="btn-action" onclick="editCard('${code}')" title="編輯">✏️ 編輯</button>
             <button class="btn-action btn-del" onclick="deleteCard('${code}')" title="刪除">🗑️ 刪除</button>
           </div>
-        </div>
+        </div>`;
 
         <div class="consensus-box">
           <div class="c-item">
