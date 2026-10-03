@@ -172,8 +172,7 @@ function toggleTheme(){
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
   updateThemeBtn(next);
-  const sym = document.getElementById('sym').value.trim();
-  if(sym) query(sym);
+  if(currentStockCode) query(currentStockCode);
 }
 function updateThemeBtn(t){
   const b = document.getElementById('btn-theme');
@@ -197,6 +196,7 @@ loadTdccData();
 
 const FM = 'https://api.finmindtrade.com/api/v4/data';
 let DAYS = 60;
+let currentStockCode = '';
 let charts = {};
 let stockList = [], listLoaded = false, listLoading = false;
 let acItems = [], acSel = -1;
@@ -305,8 +305,11 @@ function startDate(days){const d=new Date();d.setDate(d.getDate()-days);return d
 function setDays(d,el){
   DAYS=d;
   document.querySelectorAll('.day-btn').forEach(b=>b.classList.toggle('active',b.dataset.d==d));
-  const sym=document.getElementById('sym').value.trim();
-  if(sym) query(sym);
+  if(currentStockCode) query(currentStockCode);
+  else {
+    const sym=document.getElementById('sym').value.trim();
+    if(sym) query(sym);
+  }
 }
 async function fmGet(dataset,id,days){
   const tok=getToken();
@@ -473,9 +476,18 @@ function mkChart(id,cfg){charts[id]=new Chart(document.getElementById(id).getCon
 
 // ── 主查詢 ────────────────────────────────────────────────
 async function query(sym,nameHint){
-  if(!sym) sym=document.getElementById('sym').value.trim().toUpperCase();
+  if(!sym) sym=currentStockCode||document.getElementById('sym').value.trim();
   if(!sym) return;
-  sym=sym.toUpperCase();
+
+  // 1. 優先從輸入文字中抓取 4-6 位數股票代號（避免輸入法帶來雜訊例如 "6282許"）
+  const numMatch = String(sym).match(/\d{4,6}/);
+  if(numMatch){
+    sym = numMatch[0];
+  } else if(stockList.length > 0){
+    const f = stockList.find(s => s.name === sym || s.name.includes(sym));
+    if(f) sym = f.id;
+  }
+  sym = sym.toUpperCase();
   if(!getToken()){showErr('請先設定 FinMind Token');return;}
   clearErr();showLoading();
 
@@ -486,6 +498,9 @@ async function query(sym,nameHint){
       fmGet('TaiwanStockInstitutionalInvestorsBuySell',sym,fetchDays),
     ]);
     if(!priceData.length) throw new Error(`找不到股票 ${sym}`);
+
+    currentStockCode = sym;
+    document.getElementById('sym').value = sym;
 
     // 中文名
     let stockName=nameHint||sym;
@@ -595,6 +610,51 @@ async function query(sym,nameHint){
         <div class="summary-item"><span class="summary-label">千張大戶人數</span><span class="summary-val">${tdccLatest.over1000_people.toLocaleString()} 人</span> <span class="summary-val ${ppChgCls}" style="font-size:10px">(${ppChgStr})</span></div>
         <div class="summary-item"><span class="summary-label">散戶持股(&lt;50張)</span><span class="summary-val">${tdccLatest.retail_pct}%</span></div>
       `;
+    }
+
+    // 將 TDCC 週資料依照日期對齊至 main labels 每日陣列
+    const tdccByDate = {};
+    if(tdccStock && tdccStock.history){
+      tdccStock.history.forEach(h => {
+        const d = String(h.date);
+        const fmt = d.length === 8 ? `${d.slice(0,4)}-${d.slice(4,6)}-${d.slice(6,8)}` : d;
+        tdccByDate[fmt] = h;
+      });
+    }
+
+    let lastTdccRec = null;
+    const tdccOver1000Pct = [];
+    const tdccRetailPct   = [];
+    const tdccOver1000Ppl = [];
+
+    display.forEach(r => {
+      if(tdccByDate[r.date]) {
+        lastTdccRec = tdccByDate[r.date];
+      }
+      if(lastTdccRec){
+        tdccOver1000Pct.push(lastTdccRec.over1000_pct);
+        tdccRetailPct.push(lastTdccRec.retail_pct);
+        tdccOver1000Ppl.push(lastTdccRec.over1000_people);
+      } else {
+        tdccOver1000Pct.push(null);
+        tdccRetailPct.push(null);
+        tdccOver1000Ppl.push(null);
+      }
+    });
+
+    const validPct = [...tdccOver1000Pct, ...tdccRetailPct].filter(v => v !== null);
+    const validPpl = tdccOver1000Ppl.filter(v => v !== null);
+
+    let tdccYLeft = {}, tdccYRight = {};
+    if(validPct.length > 0){
+      const minP = Math.min(...validPct), maxP = Math.max(...validPct);
+      const pad = Math.max(1, (maxP - minP) * 0.15);
+      tdccYLeft = { min: Math.max(0, Math.floor(minP - pad)), max: Math.min(100, Math.ceil(maxP + pad)) };
+    }
+    if(validPpl.length > 0){
+      const minP = Math.min(...validPpl), maxP = Math.max(...validPpl);
+      const pad = Math.max(2, Math.round((maxP - minP) * 0.2));
+      tdccYRight = { min: Math.max(0, minP - pad), max: maxP + pad };
     }
 
     // 蠟燭圖資料
@@ -793,49 +853,47 @@ async function query(sym,nameHint){
       ]},options:instOpts()});
 
     if(tdccStock && tdccStock.history && tdccStock.history.length > 0){
-      const tdccHist = tdccStock.history;
-      const tdccLabels = tdccHist.map(h => {
-        const d = String(h.date);
-        return d.length === 8 ? `${d.slice(4,6)}/${d.slice(6,8)}` : d;
-      });
-      const over1000Pct = tdccHist.map(h => h.over1000_pct);
-      const retailPct   = tdccHist.map(h => h.retail_pct);
-      const over1000Ppl = tdccHist.map(h => h.over1000_people);
-
       mkChart('c-tdcc', {
         type: 'line',
         data: {
-          labels: tdccLabels,
+          labels: labels,
           datasets: [
             {
               label: '千張大戶持股 %',
-              data: over1000Pct,
+              data: tdccOver1000Pct,
               borderColor: '#f0a03a',
               borderWidth: 2,
-              pointRadius: 2,
-              tension: 0.3,
+              pointRadius: 0,
+              pointHoverRadius: 4,
+              tension: 0.2,
               fill: false,
+              spanGaps: true,
               yAxisID: 'yLeft'
             },
             {
               label: '散戶持股 % (<50張)',
-              data: retailPct,
+              data: tdccRetailPct,
               borderColor: '#b072f2',
               borderDash: [3, 3],
               borderWidth: 1.5,
-              pointRadius: 2,
-              tension: 0.3,
+              pointRadius: 0,
+              pointHoverRadius: 4,
+              tension: 0.2,
               fill: false,
+              spanGaps: true,
               yAxisID: 'yLeft'
             },
             {
               label: '千張大戶人數',
-              data: over1000Ppl,
-              type: 'bar',
-              backgroundColor: 'rgba(91,163,245,0.25)',
+              data: tdccOver1000Ppl,
               borderColor: '#5ba3f5',
-              borderWidth: 1,
-              barPercentage: 0.5,
+              backgroundColor: 'rgba(91,163,245,0.12)',
+              borderWidth: 1.5,
+              pointRadius: 0,
+              pointHoverRadius: 4,
+              tension: 0.2,
+              fill: true,
+              spanGaps: true,
               yAxisID: 'yRight'
             }
           ]
@@ -848,8 +906,8 @@ async function query(sym,nameHint){
           layout: { padding: { left: 0, right: 0 } },
           plugins: { legend: { display: false }, tooltip: getTT() },
           scales: dualAxisScales(
-            { grid: getGrid(), ticks: { ...getTick() } },
-            { grid: { display: false }, border: { display: false }, ticks: { ...getTick() } }
+            { ...tdccYLeft, grid: getGrid(), ticks: { ...getTick() } },
+            { ...tdccYRight, grid: { display: false }, border: { display: false }, ticks: { ...getTick() } }
           )
         }
       });
