@@ -463,10 +463,10 @@ function renderCards(theses){
     if(curPrice && brokerAvg){
       const upsidePct = Math.round(((brokerAvg - curPrice) / curPrice) * 100);
       const color = upsidePct >= 0 ? 'var(--green)' : 'var(--red)';
-      upsideHtml = `<span style="font-size:11px;padding:2px 6px;border-radius:4px;background:rgba(${upsidePct>=0?'63,201,124':'242,95,95'},0.15);color:${color};margin-left:6px;font-weight:700;">潛在漲幅 ${upsidePct>=0?'+':''}${upsidePct}%</span>`;
+      upsideHtml = `<span style="font-size:11px;padding:2px 6px;border-radius:4px;background:rgba(${upsidePct>=0?'63,201,124':'242,95,95'},0.15);color:${color};font-weight:700;">溢價 ${upsidePct>=0?'+':''}${upsidePct}%</span>`;
     }
 
-    // 多空偏向評級 (優劣 Tag)
+    // 多空偏向評級 (樂觀/悲觀亮燈)
     let bias = item.overall_bias || '';
     if(!bias){
       if(curPrice && brokerAvg && brokerAvg >= curPrice * 1.08){
@@ -478,23 +478,14 @@ function renderCards(theses){
       }
     }
 
-    let biasTagHtml = '';
-    if(bias === 'bull'){
-      biasTagHtml = `<span class="cat-tag" style="background:rgba(63,201,124,0.15);border-color:var(--green);color:var(--green);font-weight:700;">🟢 偏多優勢</span>`;
-    } else if(bias === 'bear'){
-      biasTagHtml = `<span class="cat-tag" style="background:rgba(242,95,95,0.15);border-color:var(--red);color:var(--red);font-weight:700;">🔴 偏空劣勢</span>`;
-    } else {
-      biasTagHtml = `<span class="cat-tag" style="background:rgba(91,163,245,0.15);border-color:var(--blue);color:var(--blue);font-weight:700;">🔵 中立觀望</span>`;
-    }
-
-    // 情境亮燈燈號套用
+    // 情境亮燈與純圖示套用 (無多餘文字)
     let bullClass = 'sc-item sc-bull' + (bias === 'bull' ? ' active-scenario-bull' : '');
     let baseClass = 'sc-item sc-base' + (bias === 'base' ? ' active-scenario-base' : '');
     let bearClass = 'sc-item sc-bear' + (bias === 'bear' ? ' active-scenario-bear' : '');
 
-    let bullBadge = bias === 'bull' ? '<span style="font-family:var(--mono);font-size:10px;padding:2px 6px;background:var(--green);color:#000;border-radius:3px;font-weight:bold;margin-left:auto;">🔥 主流評估 (優勢)</span>' : '';
-    let baseBadge = bias === 'base' ? '<span style="font-family:var(--mono);font-size:10px;padding:2px 6px;background:var(--blue);color:#000;border-radius:3px;font-weight:bold;margin-left:auto;">⚖️ 主流評估 (中立)</span>' : '';
-    let bearBadge = bias === 'bear' ? '<span style="font-family:var(--mono);font-size:10px;padding:2px 6px;background:var(--red);color:#fff;border-radius:3px;font-weight:bold;margin-left:auto;">⚠️ 風險警示 (劣勢)</span>' : '';
+    let bullIcon = bias === 'bull' ? '<span style="font-size:14px;margin-left:auto;">🔥</span>' : '';
+    let baseIcon = bias === 'base' ? '<span style="font-size:14px;margin-left:auto;">⚖️</span>' : '';
+    let bearIcon = bias === 'bear' ? '<span style="font-size:14px;margin-left:auto;">⚠️</span>' : '';
 
     const points = item.thesis_points || {};
     const catalysts = item.catalysts || [];
@@ -508,13 +499,9 @@ function renderCards(theses){
               <span class="stock-name">${item.stock_name}</span>
               ${curPriceHtml}
             </div>
-            <div style="margin-top:6px;display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
-              <span class="cat-tag">${item.category || '未分類'}</span>
-              ${biasTagHtml}
-            </div>
+            <div style="margin-top:4px;"><span class="cat-tag">${item.category || '未分類'}</span></div>
           </div>
           <div class="card-actions">
-            <button class="btn-action" onclick="editCard('${code}'); this.blur();" title="編輯">✏️ 編輯</button>
             <button class="btn-action btn-del" onclick="deleteCard('${code}'); this.blur();" title="刪除">🗑️ 刪除</button>
           </div>
         </div>
@@ -529,25 +516,19 @@ function renderCards(theses){
             <div class="c-val">${pe}</div>
           </div>
           ${impliedTarget ? `
-          <div class="c-item" style="grid-column:1 / -1;border-top:1px dashed var(--border);padding-top:8px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">
-            <div>
-              <div class="c-label" style="margin:0;">🤖 演算法估價 (EPS × PE)</div>
-              <div class="c-val" style="color:var(--amber);font-weight:700;font-size:13px;">≈ ${impliedTarget}</div>
+          <div class="c-item" style="grid-column:1 / -1;border-top:1px dashed var(--border);padding-top:8px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;">
+            <div class="c-label" style="margin:0;">🤖 演算法估價 (EPS × PE)</div>
+            <div class="c-val" style="color:var(--amber);font-weight:700;font-size:13px;display:flex;align-items:center;gap:6px;">
+              ≈ ${impliedTarget} ${upsideHtml}
             </div>
-            ${brokerAvg ? `
-            <div style="text-align:right;">
-              <div class="c-label" style="margin:0;">🏛️ 券商法人平均目標價</div>
-              <div class="c-val" style="color:var(--neon);font-weight:700;font-size:13px;">≈ ${brokerAvg} 元 ${upsideHtml}</div>
-            </div>
-            ` : ''}
           </div>` : ''}
         </div>
 
-        <div class="scenario-title">Bull / Base / Bear 三情境評估 (亮燈評估)</div>
+        <div class="scenario-title">Bull / Base / Bear 三情境評估</div>
         <div class="scenario-list">
-          ${points.bull ? `<div class="${bullClass}"><span class="sc-icon">🐂 樂觀</span><div style="flex:1;">${points.bull}</div>${bullBadge}</div>` : ''}
-          ${points.base ? `<div class="${baseClass}"><span class="sc-icon">⚖️ 基準</span><div style="flex:1;">${points.base}</div>${baseBadge}</div>` : ''}
-          ${points.bear ? `<div class="${bearClass}"><span class="sc-icon">🐻 悲觀</span><div style="flex:1;">${points.bear}</div>${bearBadge}</div>` : ''}
+          ${points.bull ? `<div class="${bullClass}"><span class="sc-icon" style="font-weight:bold;color:var(--green);">樂觀</span><div style="flex:1;">${points.bull}</div>${bullIcon}</div>` : ''}
+          ${points.base ? `<div class="${baseClass}"><span class="sc-icon" style="font-weight:bold;color:var(--blue);">基準</span><div style="flex:1;">${points.base}</div>${baseIcon}</div>` : ''}
+          ${points.bear ? `<div class="${bearClass}"><span class="sc-icon" style="font-weight:bold;color:var(--red);">悲觀</span><div style="flex:1;">${points.bear}</div>${bearIcon}</div>` : ''}
         </div>
 
         ${catalysts.length ? `
