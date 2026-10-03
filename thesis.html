@@ -147,7 +147,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
       <button class="btn-nav" style="border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.1);font-weight:bold;" onclick="openModal()">+ 新增 Thesis 研報</button>
       <button class="btn-nav" onclick="exportJSON()">📥 匯出 JSON</button>
-      <button class="btn-nav" style="color:var(--text3);" onclick="resetToDefaultData()">🔄 重置預設</button>
+      <button class="btn-nav" style="color:var(--amber);border-color:var(--amber);background:rgba(240,160,58,.08);" onclick="refreshData()">🔄 同步最新資料</button>
     </div>
   </div>
 
@@ -348,11 +348,8 @@ function saveLocalData(){
   renderCards(thesisData);
 }
 
-function resetToDefaultData(){
-  if(confirm('確定要清除本機瀏覽器暫存，直接同步伺服器最新的 research_theses.json 資料嗎？')){
-    localStorage.removeItem('user_research_theses');
-    init();
-  }
+async function refreshData(){
+  await init();
 }
 
 function renderCards(theses){
