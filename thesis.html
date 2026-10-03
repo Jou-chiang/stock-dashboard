@@ -268,28 +268,34 @@ async function loadStockPrices(){
 
 async function init(){
   await loadStockPrices();
+
+  // 1. 優先從伺服器載入最新 research_theses.json
+  let serverData = { theses: {} };
+  try{
+    const res = await fetch('research_theses.json?v=' + Date.now());
+    if(res.ok){
+      serverData = await res.json();
+    }
+  }catch(e){}
+
+  rawFullData = serverData;
+  thesisData = serverData.theses || {};
+
+  // 2. 融合 localStorage 中的使用者自訂/新增卡片
   const localSaved = localStorage.getItem('user_research_theses');
   if(localSaved){
     try {
       const parsed = JSON.parse(localSaved);
-      rawFullData = parsed;
-      thesisData = parsed.theses || {};
-      document.getElementById('stat-info').textContent = `最後更新: ${parsed.last_updated || '自訂'} ｜ 共 ${Object.keys(thesisData).length} 檔標的`;
-      renderCards(thesisData);
-      return;
+      const localTheses = parsed.theses || {};
+      Object.keys(localTheses).forEach(code => {
+        thesisData[code] = localTheses[code];
+      });
     } catch(e){}
   }
 
-  try{
-    const res = await fetch('research_theses.json?v=' + Date.now());
-    const data = await res.json();
-    rawFullData = data;
-    thesisData = data.theses || {};
-    document.getElementById('stat-info').textContent = `最後更新: ${data.last_updated || '今日'} ｜ 共 ${Object.keys(thesisData).length} 檔標的`;
-    renderCards(thesisData);
-  }catch(e){
-    document.getElementById('main-content').innerHTML = `<div class="loading" style="color:var(--red)">❌ 載入失敗：${e.message}</div>`;
-  }
+  const updatedDate = serverData.last_updated || new Date().toISOString().split('T')[0];
+  document.getElementById('stat-info').textContent = `最後更新: ${updatedDate} ｜ 共 ${Object.keys(thesisData).length} 檔標的`;
+  renderCards(thesisData);
 }
 
 function saveLocalData(){
@@ -301,7 +307,7 @@ function saveLocalData(){
 }
 
 function resetToDefaultData(){
-  if(confirm('確定要清除自訂資料，恢復預設的 research_theses.json 自由編輯檔嗎？')){
+  if(confirm('確定要清除本機瀏覽器暫存，直接同步伺服器最新的 research_theses.json 資料嗎？')){
     localStorage.removeItem('user_research_theses');
     init();
   }
@@ -477,23 +483,30 @@ function closeModal(){
 
 function handleFormSubmit(e){
   e.preventDefault();
-  const code = document.getElementById('form-code').value.trim();
-  const name = document.getElementById('form-name').value.trim();
-  if(!code || !name) return;
+  const codeEl = document.getElementById('form-code');
+  const nameEl = document.getElementById('form-name');
+  let code = codeEl ? codeEl.value.trim().toUpperCase() : '';
+  let name = nameEl ? nameEl.value.trim() : '';
 
-  const category = document.getElementById('form-category').value.trim();
+  if(!code){
+    alert('請輸入股票代號');
+    return;
+  }
+  if(!name) name = code;
+
+  const category = (document.getElementById('form-category').value || '').trim();
   const epsLow = parseFloat(document.getElementById('form-eps-low').value);
   const epsHigh = parseFloat(document.getElementById('form-eps-high').value);
   const peLow = parseFloat(document.getElementById('form-pe-low').value);
   const peHigh = parseFloat(document.getElementById('form-pe-high').value);
 
-  const bull = document.getElementById('form-bull').value.trim();
-  const base = document.getElementById('form-base').value.trim();
-  const bear = document.getElementById('form-bear').value.trim();
-  const rawCat = document.getElementById('form-catalysts').value.trim();
+  const bull = (document.getElementById('form-bull').value || '').trim();
+  const base = (document.getElementById('form-base').value || '').trim();
+  const bear = (document.getElementById('form-bear').value || '').trim();
+  const rawCat = (document.getElementById('form-catalysts').value || '').trim();
   const catalysts = rawCat ? rawCat.split(/[,，]/).map(s => s.trim()).filter(Boolean) : [];
   
-  const rawBrokers = document.getElementById('form-brokers').value.trim();
+  const rawBrokers = (document.getElementById('form-brokers').value || '').trim();
   let brokerReports = [];
   if(rawBrokers){
     brokerReports = rawBrokers.split(';').map(part => {
@@ -506,11 +519,11 @@ function handleFormSubmit(e){
     }).filter(b => b.broker || b.target_price);
   }
 
-  const note = document.getElementById('form-note').value.trim();
+  const note = (document.getElementById('form-note').value || '').trim();
 
   thesisData[code] = {
     stock_name: name,
-    category: category,
+    category: category || '自訂研報',
     consensus_forecast: {
       "2026_eps_range": (!isNaN(epsLow) && !isNaN(epsHigh)) ? [epsLow, epsHigh] : [],
       "target_pe_range": (!isNaN(peLow) && !isNaN(peHigh)) ? [peLow, peHigh] : []
