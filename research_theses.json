@@ -45,6 +45,30 @@
       ],
       "last_report_note": "現價 161.5 元強勢上攻！成熟製程與特殊晶片需求爆發，大摩目標價 210 元、凱基看 185 元"
     },
+    "2374": {
+      "stock_name": "佳能",
+      "category": "A類-基本面驅動",
+      "overall_bias": "bull",
+      "consensus_forecast": {
+        "2026_eps_range": [3.2, 4.2],
+        "target_pe_range": [18.0, 24.0]
+      },
+      "thesis_points": {
+        "bull": "轉型邊緣 AI 與機器人視覺，打入輝達 NVIDIA 機器人與豐田車載光學，機器人視覺與無人機產品下半年放量，2026 營收挑戰百億衝高",
+        "base": "機器人與智慧鏡頭出貨穩健，單月營收創近 10 年新高，獲利年增逾 1.5 倍",
+        "bear": "新產品專案拉貨節奏若延後或市場風險偏好改變導致本益比修正"
+      },
+      "catalysts": [
+        "輝達 NVIDIA 機器人視覺認證與出貨進度",
+        "無人機與車載光學模組量產",
+        "單月營收年增率保持高檔"
+      ],
+      "broker_reports": [
+        { "broker": "凱基投顧", "rating": "買進", "target_price": 85 },
+        { "broker": "統一投顧", "rating": "買進", "target_price": 75 }
+      ],
+      "last_report_note": "上半年 EPS 達 1.55 元，邊緣 AI 與輝達機器人視覺產品下半年陸續放量，轉型成長動能強勁"
+    },
     "1513": {
       "stock_name": "中興電",
       "category": "A類-基本面驅動",

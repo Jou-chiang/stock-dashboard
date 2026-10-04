@@ -602,6 +602,45 @@ function filterCards(){
   }
 }
 
+const commonTWStockMap = {
+  '佳能': '2374',
+  '台積電': '2330',
+  '聯電': '2303',
+  '鴻海': '2317',
+  '廣達': '2382',
+  '緯創': '3231',
+  '緯穎': '6669',
+  '技嘉': '2376',
+  '微星': '2377',
+  '華碩': '2357',
+  '奇鋐': '3017',
+  '雙鴻': '3324',
+  '世芯': '3661',
+  '信驊': '5274',
+  '波若威': '3163',
+  '台燿': '6274',
+  '強茂': '2481',
+  '富邦金': '2881',
+  '中興電': '1513',
+  '康舒': '6282',
+  '長榮': '2603',
+  '萬海': '2615',
+  '長榮航': '2618',
+  '京元電': '2449',
+  '京元電子': '2449',
+  '國巨': '2327',
+  '欣興': '3037'
+};
+
+function onCodeInput(val){
+  const code = val.trim().toUpperCase();
+  if(poolScoresMap[code]){
+    document.getElementById('form-name').value = poolScoresMap[code].name;
+  } else if(commonTWStockMap[code]){
+    document.getElementById('form-code').value = commonTWStockMap[code];
+  }
+}
+
 function openModalWithSearch(qStr){
   openModal();
   const numMatch = qStr.match(/\d{4,6}/);
@@ -613,6 +652,7 @@ function openModalWithSearch(qStr){
   } else {
     document.getElementById('form-name').value = qStr;
     if(poolScoresMap[qStr]) document.getElementById('form-code').value = poolScoresMap[qStr].code;
+    else if(commonTWStockMap[qStr]) document.getElementById('form-code').value = commonTWStockMap[qStr];
   }
 }
 
@@ -631,10 +671,26 @@ function autoGenerateThesisInModal(){
   let code = codeInput.value.trim().toUpperCase();
   let name = nameInput.value.trim();
 
+  if(!code && name){
+    if(commonTWStockMap[name]) code = commonTWStockMap[name];
+    else if(poolScoresMap[name]) code = poolScoresMap[name].code;
+    if(code) codeInput.value = code;
+  }
+
+  if(code && !name){
+    if(poolScoresMap[code]) name = poolScoresMap[code].name;
+    else {
+      const foundName = Object.keys(commonTWStockMap).find(k => commonTWStockMap[k] === code);
+      if(foundName) name = foundName;
+      else name = code;
+    }
+    nameInput.value = name;
+  }
+
   let matched = poolScoresMap[code] || poolScoresMap[name];
 
   if(!code && !name){
-    alert('請先輸入或選擇股票代號（例如：2330 或 3163）');
+    alert('請先輸入或選擇股票代號（例如：2330 或 2374 佳能）');
     return;
   }
 
