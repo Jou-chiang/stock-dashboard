@@ -733,11 +733,17 @@ async function fetchOne(sym){
     const MA20 = closes.length>=20 ? closes.slice(-20).reduce((a,b)=>a+b)/20 : null;
     const HIGH20 = closes.length>=20 ? Math.max(...closes.slice(-20)) : null;
     const hasReliableRef = !!(bestPrice.reference);
+    // 連續幾日收盤低於「當日MA20」超過緩衝（由最新往回數）
+    let BRK_DAYS = 0;
+    for(let i=closes.length-1; i>=19; i--){
+      const ma = closes.slice(i-19,i+1).reduce((a,b)=>a+b)/20;
+      if(closes[i] < ma*(1-MA20_BUFFER)) BRK_DAYS++; else break;
+    }
 
     data[sym]={
       symbol:sym,name,price,changePercent,rtType,
       K:kdj.K,D:kdj.D,J:kdj.J,RSI,DIF,DIFprev,
-      VOL, VOL5, MA5, MA20, HIGH20,
+      VOL, VOL5, MA5, MA20, HIGH20, BRK_DAYS,
       signal:calcSignal(kdj.K,kdj.D,kdj.J,RSI,DIF,DIFprev, changePercent, VOL, VOL5, price, MA5, MA20, kdj.jArr, HIGH20, hasReliableRef)
     };
   }catch(e){
@@ -813,6 +819,35 @@ function applyCostVisibility(){
   }
 }
 
+// 跌破月線緩衝與確認參數
+const MA20_BUFFER = 0.02;   // 需低於MA20超過2%
+const MA20_CONFIRM_DAYS = 2; // 連續N日
+const MA20_MIN_VOLRATIO = 1.0; // 量比≥此值才算帶量破線
+
+// 戰情室D研報多空傾向（用來把技術破位文案降級）
+let thesisBiasMap = {};
+async function loadThesisBias(){
+  try{
+    const r = await fetch('research_theses.json?v='+Date.now(), {cache:'no-store'});
+    if(!r.ok) return;
+    const j = await r.json();
+    Object.entries(j.theses||{}).forEach(([c,t])=>{ thesisBiasMap[c]=t.overall_bias; });
+    render();
+  }catch(e){}
+}
+function thesisBias(sym){ return thesisBiasMap[String(sym)] || null; }
+
+// 回傳 'ok' | 'yellow'(月線下方未確認) | 'red'(有效跌破)
+function ma20State(sym, price, ma20){
+  if(!ma20 || price >= ma20) return 'ok';
+  const d = data[sym] || {};
+  const deep = price < ma20*(1-MA20_BUFFER);
+  const days = d.BRK_DAYS || 0;
+  const volRatio = (d.VOL!=null && d.VOL5>0) ? d.VOL/d.VOL5 : null;
+  const volOk = volRatio===null || volRatio >= MA20_MIN_VOLRATIO;
+  return (deep && days >= MA20_CONFIRM_DAYS && volOk) ? 'red' : 'yellow';
+}
+
 function fmtEntryPrice(price, ma5, signal, sym, high20, ma20){
   if(!price || isNaN(price)) return '<span class="na">—</span>';
 
@@ -821,20 +856,26 @@ function fmtEntryPrice(price, ma5, signal, sym, high20, ma20){
   const roi = hasCost ? (price - cost) / cost * 100 : 0;
   const roiStr = `${roi>=0?'+':''}${roi.toFixed(1)}%`;
 
-  // ── 最高否決權：停損條件先跑，蓋掉所有其他建議 ──────────
+  // ── 第一道硬性技術濾網（哨兵）：停損與有效跌破月線 ──────────
   if(hasCost){
-    const belowMA20 = ma20 && price < ma20;
     const stopLoss  = roi <= -8;
+    const m20 = ma20State(sym, price, ma20);
 
-    // 修正3：虧損已達停損線 → 強制清倉，不管訊號是什麼
+    // 虧損已達停損線 → 強制清倉，不管訊號是什麼
     if(stopLoss){
       return `<span class="entry-price" style="color:#ff1744;font-weight:700">🚨 停損觸發 虧${Math.abs(roi).toFixed(0)}%，清倉</span>`;
     }
-    // 修正1&2：跌破MA20 → 強制出場建議，不管KDJ多低
-    if(belowMA20){
+    // 紅燈：有效跌破月線（低於MA20超過2% + 連續2日 + 量比≥1）
+    if(m20==='red'){
+      if(thesisBias(sym)==='bull')
+        return `<span class="entry-price" style="color:#ef5350;font-weight:600">⚠ 技術破位（研報偏多），請對照研報後決定</span>`;
       if(roi >= 0)
-        return `<span class="entry-price" style="color:#ef5350;font-weight:600">⚠ 跌破月線，獲利${roi.toFixed(0)}% 建議出場</span>`;
-      return `<span class="entry-price" style="color:#ef5350;font-weight:600">⚠ 跌破月線，建議停損出場</span>`;
+        return `<span class="entry-price" style="color:#ef5350;font-weight:600">⚠ 有效跌破月線，獲利${roi.toFixed(0)}% 建議出場</span>`;
+      return `<span class="entry-price" style="color:#ef5350;font-weight:600">⚠ 有效跌破月線，建議停損出場</span>`;
+    }
+    // 黃燈：在月線下方但未確認（幅度小／天數不足／量縮）→ 只觀察，不叫賣
+    if(m20==='yellow' && signal!=='trend-collapse'){
+      return `<span class="entry-price" style="color:var(--amber);font-weight:500">⚠ 月線附近，觀察${costColsVisible?" ("+roiStr+")":""}</span>`;
     }
   }
 
@@ -975,11 +1016,14 @@ function fmtStopLine(price, ma5, ma20, sym){
     if(!price||isNaN(price)) return '<span class="na">—</span>';
     const roi = (price - cost) / cost * 100;
     // 最後防線：跌破MA20 或 虧損>=8%
-    const belowMA20 = ma20 && price < ma20;
+    const m20 = ma20State(sym, price, ma20);
     const stopLoss  = roi <= -8;
-    if(belowMA20 || stopLoss){
-      const reason = stopLoss ? `虧${Math.abs(roi).toFixed(1)}%` : '跌破MA20';
+    if(m20==='red' || stopLoss){
+      const reason = stopLoss ? `虧${Math.abs(roi).toFixed(1)}%` : '有效跌破MA20';
       return `<span class="stop-line" style="color:#ff1744;font-weight:700">🚨 停損 ${reason}</span>`;
+    }
+    if(m20==='yellow'){
+      return `<span class="stop-line" style="color:var(--amber);font-weight:500">⚠ 月線下方，觀察</span>`;
     }
     // 警示線：跌破MA5
     const belowMA5 = ma5 && price < ma5;
@@ -1079,6 +1123,7 @@ applyCostVisibility();
 applyLegendVisibility();
 render();
 loadStockList();
+loadThesisBias();
 </script>
 </body>
 </html>
