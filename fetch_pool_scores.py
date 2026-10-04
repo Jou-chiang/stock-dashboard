@@ -14,10 +14,13 @@ import requests
 import pandas as pd
 from datetime import datetime, timedelta
 
+import screener_v2
+
 # ── 設定 ────────────────────────────────────────────────
 POOL_FILE    = "pool.json"
 HISTORY_FILE = "history_data.csv"
 OUTPUT_FILE  = "pool_scores.json"
+BACKUP_FILE  = "pool_scores_v1_backup.json"
 FINMIND_URL  = "https://api.finmindtrade.com/api/v4/data"
 SLEEP_SEC    = 0.8
 KEEP_DAYS    = 120   # 從 60 改為 120，讓 EMA 有足夠暖機資料
@@ -94,7 +97,7 @@ for i, code in enumerate(codes):
 
     # 抓法人資料
     try:
-        start_inst = (datetime.today() - timedelta(days=20)).strftime("%Y-%m-%d")
+        start_inst = (datetime.today() - timedelta(days=30)).strftime("%Y-%m-%d")
         r2 = requests.get(FINMIND_URL, params={
             "dataset":    "TaiwanStockInstitutionalInvestorsBuySell",
             "data_id":    code,
@@ -253,24 +256,9 @@ for code in codes:
         "blacklisted": price < ma20 and dif is not None and dif < 0 # 空頭排列否決黑名單
     }
 
-    # ── 積分計算（5分制，合併 s3 與 s4）────────────────────
-    s1 = buy_days >= 3                          # 投信連買 ≥ 3天
-    s2 = net_buy_ratio >= 5.0                   # 投信強點火
-    
-    s3_condition = k < 70 and (dif is None or dif > 0)   # 多頭強勢震盪拉回
-    s4_condition = vol_ratio >= 1.5 and chg_pct > 0      # 帶量上漲突破
-    s_momentum = s3_condition or s4_condition            # 動能/型態：兩者符合其一即得分
-    
-    s5 = (ma_gap < 3                             # 均線糾結需股價站上 MA5
-          and ma5 is not None
-          and price > ma5)
-    s6 = foreign_buy_days >= 3                  # 外資連買 ≥ 3天
-
-    score = sum([s1, s2, s_momentum, s5, s6])
-
-    # ── 黑名單否決：跌破月線且 DIF < 0 → 最高 2 分 ────
-    if ma20 is not None and price < ma20 and dif is not None and dif < 0:
-        score = min(score, 2)
+    # ── Screener V2：硬性淘汰 → 5分 → 策略標籤 → 風險 ─────────
+    v2 = screener_v2.evaluate(rows, inst_rows)
+    score = v2["score"]
 
     info = pool_map.get(code, {})
 
@@ -298,23 +286,46 @@ for code in codes:
         "dif":              dif,
         "risk_checks":      risk_checks,
         "score":            score,
-        "criteria":         {"s1": s1, "s2": s2, "s3": s3_condition, "s4": s4_condition, "s5": s5, "s6": s6},
+        "criteria":         v2["criteria"],
+        "strategy":         v2["strategy"],
+        "strategies":       v2["strategies"],
+        "risk":             v2["risk"],
+        "risk_score":       v2["risk_score"],
+        "risk_reasons":     v2["risk_reasons"],
+        "action":           v2["action"],
+        "excluded":         v2["excluded"],
+        "exclude_reasons":  v2["exclude_reasons"],
+        "metrics":          v2["metrics"],
+        "score_version":    2,
         "updated":          today,
     })
 
-scores.sort(key=lambda x: -x["score"])
+scores.sort(key=lambda x: (-x["score"], x["risk_score"]))
 
 output = {
     "updated": today,
     "total":   len(scores),
+    "score_version": 2,
     "scores":  scores,
 }
+
+# 修改前先備份舊版（僅作 backup，前台不提供切換）；只備份 V1，避免之後被 V2 覆蓋
+if os.path.exists(OUTPUT_FILE) and not os.path.exists(BACKUP_FILE):
+    import shutil
+    try:
+        with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
+            if json.load(f).get("score_version") != 2:
+                shutil.copyfile(OUTPUT_FILE, BACKUP_FILE)
+    except Exception:
+        pass
 
 with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 
 print(f"✅ pool_scores.json 輸出完成：{len(scores)} 支")
-top5 = [s for s in scores if s["score"] == 5]
-top4 = [s for s in scores if s["score"] == 4]
-top3 = [s for s in scores if s["score"] == 3]
-print(f"   5分：{len(top5)} 支，4分：{len(top4)} 支，3分：{len(top3)} 支")
+top5 = [s for s in scores if s["score"] >= 5]
+top4 = [s for s in scores if 4 <= s["score"] < 5]
+top3 = [s for s in scores if 3 <= s["score"] < 4]
+excl = [s for s in scores if s["excluded"]]
+rev  = [s for s in scores if s["strategy"] == "reversal"]
+print(f"   5分：{len(top5)} 支，4分以上：{len(top4)} 支，3分以上：{len(top3)} 支，排除：{len(excl)} 支，低檔反轉觀察：{len(rev)} 支")

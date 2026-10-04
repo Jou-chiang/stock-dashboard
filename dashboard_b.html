@@ -103,6 +103,16 @@ input[type=range]{width:100%;accent-color:var(--amber);cursor:pointer;}
 .chip{font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:3px;border:1px solid;}
 .chip.pass{background:rgba(63,201,124,.07);border-color:rgba(63,201,124,.22);color:var(--green);}
 .chip.fail{background:rgba(255,255,255,.02);border-color:var(--border);color:var(--text3);}
+.chip.half{background:rgba(240,160,58,.08);border-color:rgba(240,160,58,.3);color:var(--amber);}
+.tag-row{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0 4px;align-items:center;}
+.tag-strategy{font-size:11px;padding:2px 8px;border-radius:999px;background:var(--bg3);border:1px solid var(--border2);color:var(--text);}
+.tag-risk{font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid;}
+.tag-risk.risk-low{color:var(--green);border-color:rgba(63,201,124,.35);}
+.tag-risk.risk-mid{color:var(--amber);border-color:rgba(240,160,58,.4);}
+.tag-risk.risk-high{color:var(--red);border-color:rgba(242,95,95,.45);}
+.tag-extra{font-size:10px;color:var(--text3);}
+.action-line{font-size:11px;color:var(--text2);margin:2px 0 6px;}
+.risk-line{font-size:10px;color:var(--text3);line-height:1.5;}
 .card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--border);}
 .card-meta{font-family:var(--mono);font-size:10px;color:var(--text3);}
 .btn-add{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:4px;border:1px solid rgba(240,160,58,.3);background:rgba(240,160,58,.07);color:var(--amber);cursor:pointer;transition:all .2s;}
@@ -137,10 +147,14 @@ input[type=range]{width:100%;accent-color:var(--amber);cursor:pointer;}
   <div class="filter-panel">
     <div class="filter-title">一鍵快捷策略選單</div>
     <div class="preset-wrap">
-      <button class="preset-btn" onclick="applyPreset('strong',this)">🏆 策略 1：強勢發動股 (≥4分/量增)</button>
-      <button class="preset-btn" onclick="applyPreset('pullback',this)">🎯 策略 2：低檔蓄勢股 (≥3分/K<65)</button>
-      <button class="preset-btn" onclick="applyPreset('tangled',this)">⚡ 策略 3：均線糾結股 (均線差≤3%)</button>
-      <button class="preset-btn" onclick="resetFilter()">🔄 重置預設</button>
+      <button class="preset-btn" onclick="applyPreset('breakout',this); this.blur();">🚀 強勢突破 (≥4分)</button>
+      <button class="preset-btn" onclick="applyPreset('pullback',this); this.blur();">🔄 多頭回檔 (≥3分)</button>
+      <button class="preset-btn" onclick="applyPreset('compression',this); this.blur();">🧨 蓄勢待發 (≥3分)</button>
+      <button class="preset-btn" onclick="applyPreset('accumulation',this); this.blur();">👀 法人建倉 (≥3分)</button>
+      <button class="preset-btn" onclick="applyPreset('hirisk',this); this.blur();">⚠️ 高分高風險</button>
+      <button class="preset-btn" onclick="applyPreset('weakening',this); this.blur();">🔴 轉弱警報</button>
+      <button class="preset-btn" onclick="applyPreset('reversal',this); this.blur();">🐟 低檔反轉觀察</button>
+      <button class="preset-btn" onclick="resetFilter(); this.blur();">🔄 重置預設</button>
     </div>
     <div class="filter-title" style="margin-top:10px">自訂微調篩選器（滿分 5 分）</div>
     <div class="filter-grid">
@@ -221,18 +235,27 @@ async function loadScores(){
       }
     } catch(e){}
 
-    const z5=allScores.filter(s=>s.score===5).length;
-    const z4=allScores.filter(s=>s.score===4).length;
+    const z5=allScores.filter(s=>s.score>=5&&!s.excluded).length;
+    const z4=allScores.filter(s=>s.score>=4&&s.score<5&&!s.excluded).length;
+    const zx=allScores.filter(s=>s.excluded).length;
+    const zr=allScores.filter(s=>s.strategy==='reversal').length;
+    const isV2=j.score_version===2;
     document.getElementById('status-bar').innerHTML=`
       <div class="status-item"><span class="dot ok"></span><span class="status-label">資料已載入</span></div>
       <div class="status-item"><span class="status-label">評分日期</span><span class="status-val">${j.updated||'—'}</span></div>
       ${rtUpdated ? `<div class="status-item"><span class="status-label">盤中股價</span><span class="status-val green">${rtUpdated}</span></div>` : ''}
       <div class="status-item"><span class="status-label">股票池</span><span class="status-val">${j.total} 支</span></div>
       <div class="status-item"><span class="status-label">🏆 5分</span><span class="status-val gold">${z5} 支</span></div>
-      <div class="status-item"><span class="status-label">⚔️ 4分</span><span class="status-val green">${z4} 支</span></div>`;
-    if(allScores[0]?.note){
+      <div class="status-item"><span class="status-label">⚔️ 4分</span><span class="status-val green">${z4} 支</span></div>
+      ${isV2?`<div class="status-item"><span class="status-label">🚫 已排除</span><span class="status-val">${zx} 支</span></div><div class="status-item"><span class="status-label">🐟 反轉觀察</span><span class="status-val">${zr} 支</span></div>`:''}`;
+    if(!isV2){
+      document.getElementById('note-bar').style.display='block';
+      document.getElementById('note-bar').textContent='⚠ 目前為舊版（V1）評分資料，尚未產生 V2 策略／風險欄位；請手動執行 GitHub Actions「fetch_pool_scores」更新。';
+    } else if(allScores[0]?.note){
       document.getElementById('note-bar').style.display='block';
       document.getElementById('note-bar').textContent='⚠ '+allScores[0].note;
+    } else {
+      document.getElementById('note-bar').style.display='none';
     }
     const sectors=[...new Set(allScores.map(s=>s.sector).filter(Boolean))].sort();
     document.getElementById('sector-wrap').innerHTML=
@@ -259,69 +282,94 @@ function toggleSector(sector,el){
   applyFilter();
 }
 
+let strategyFilter=null; // null | 'breakout' | 'pullback' | 'compression' | 'accumulation' | 'weakening' | 'reversal' | 'hirisk'
+
+const STRATEGY_META={
+  breakout:{icon:'🚀',label:'突破型'},
+  pullback:{icon:'🔄',label:'多頭回檔'},
+  compression:{icon:'🧨',label:'蓄勢待發'},
+  accumulation:{icon:'👀',label:'法人建倉'},
+  reversal:{icon:'🐟',label:'低檔反轉觀察'},
+  watch:{icon:'📋',label:'一般觀察'},
+};
+const RISK_META={low:['🟢','低'],mid:['🟡','中'],high:['🔴','高']};
+
+function matchStrategy(s){
+  if(!strategyFilter) return true;
+  const st=s.strategies||[];
+  if(strategyFilter==='hirisk') return s.score>=4 && s.risk!=='low';
+  if(strategyFilter==='reversal') return s.strategy==='reversal';
+  return st.includes(strategyFilter) || s.strategy===strategyFilter;
+}
+
 function applyFilter(){
-  const minScore=parseInt(document.getElementById('f-score').value);
+  const minScore=parseFloat(document.getElementById('f-score').value);
   const maxK=parseFloat(document.getElementById('f-k').value);
   const minVol=parseFloat(document.getElementById('f-vol').value);
   const maxMa=parseFloat(document.getElementById('f-ma').value);
   let filtered=allScores.filter(s=>{
-    if(s.score<minScore) return false;
+    const alertMode=(strategyFilter==='weakening');
+    if(s.excluded && !alertMode) return false; // 空頭／低流動性不進主選股池（低檔反轉觀察除外，後端已標為非 excluded）
+    if(s.strategy==='reversal' && strategyFilter!=='reversal') return false; // 反轉觀察只在專屬策略顯示
+    if(!alertMode && s.score<minScore) return false;
     if(s.k>maxK) return false;
     if(s.vol_ratio<minVol) return false;
     if(s.ma_gap>maxMa) return false;
     if(activeSectors.size>0&&!activeSectors.has(s.sector)) return false;
-    return true;
+    return matchStrategy(s);
   });
   document.getElementById('filter-count').textContent=`共篩出 ${filtered.length} 支`;
   renderResults(filtered);
 }
 
+function setSliders(score,k,vol,ma){
+  document.getElementById('f-score').value=score;document.getElementById('score-val').textContent=score;
+  document.getElementById('f-k').value=k;document.getElementById('k-val').textContent=k;
+  document.getElementById('f-vol').value=vol;document.getElementById('vol-val').textContent=parseFloat(vol).toFixed(1);
+  document.getElementById('f-ma').value=ma;document.getElementById('ma-val').textContent=ma;
+}
+
 function applyPreset(type, el){
   document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
   if(el) el.classList.add('active');
-  if(type==='strong'){
-    document.getElementById('f-score').value=4;document.getElementById('score-val').textContent='4';
-    document.getElementById('f-k').value=100;document.getElementById('k-val').textContent='100';
-    document.getElementById('f-vol').value=1.2;document.getElementById('vol-val').textContent='1.2';
-    document.getElementById('f-ma').value=15;document.getElementById('ma-val').textContent='15';
-  }else if(type==='pullback'){
-    document.getElementById('f-score').value=3;document.getElementById('score-val').textContent='3';
-    document.getElementById('f-k').value=65;document.getElementById('k-val').textContent='65';
-    document.getElementById('f-vol').value=0;document.getElementById('vol-val').textContent='0.0';
-    document.getElementById('f-ma').value=10;document.getElementById('ma-val').textContent='10';
-  }else if(type==='tangled'){
-    document.getElementById('f-score').value=3;document.getElementById('score-val').textContent='3';
-    document.getElementById('f-k').value=100;document.getElementById('k-val').textContent='100';
-    document.getElementById('f-vol').value=0;document.getElementById('vol-val').textContent='0.0';
-    document.getElementById('f-ma').value=3;document.getElementById('ma-val').textContent='3';
-  }
+  strategyFilter=type;
+  if(type==='breakout')          setSliders(4,100,0,20);
+  else if(type==='pullback')     setSliders(3,100,0,20);
+  else if(type==='compression')  setSliders(3,100,0,20);
+  else if(type==='accumulation') setSliders(3,100,0,20);
+  else if(type==='hirisk')       setSliders(4,100,0,20);
+  else if(type==='weakening')    setSliders(1,100,0,20);
+  else if(type==='reversal')     setSliders(1,100,0,20);
   applyFilter();
 }
 
 function resetFilter(){
   document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('f-score').value=3;document.getElementById('score-val').textContent='3';
-  document.getElementById('f-k').value=100;document.getElementById('k-val').textContent='100';
-  document.getElementById('f-vol').value=0;document.getElementById('vol-val').textContent='0.0';
-  document.getElementById('f-ma').value=20;document.getElementById('ma-val').textContent='20';
+  strategyFilter=null;
+  setSliders(3,100,0,20);
   activeSectors.clear();
   document.querySelectorAll('.sector-chip').forEach(c=>c.classList.toggle('active',c.dataset.sector==='ALL'));
   applyFilter();
 }
 
 function renderResults(data){
-  const z5=data.filter(s=>s.score===5);
-  const z4=data.filter(s=>s.score===4);
-  const z3=data.filter(s=>s.score<=3);
+  const z5=data.filter(s=>s.score>=5);
+  const z4=data.filter(s=>s.score>=4&&s.score<5);
+  const z3=data.filter(s=>s.score<4);
   let html='';
   if(!data.length){
     html=`<div class="empty"><div class="empty-icon">🔍</div>沒有符合條件的股票<br><span style="color:var(--text3)">試著放寬篩選條件</span></div>`;
   }else{
     if(z5.length) html+=`<div class="zone-header zone-5"><div class="zone-title">🏆 5分區 — Must Watch</div><div class="zone-count">共 ${z5.length} 支</div></div><div class="card-grid">${z5.map(renderCard).join('')}</div>`;
     if(z4.length) html+=`<div class="zone-header zone-4"><div class="zone-title">⚔️ 4分區 — Strong Potential</div><div class="zone-count">共 ${z4.length} 支</div></div><div class="card-grid">${z4.map(renderCard).join('')}</div>`;
-    if(z3.length) html+=`<div class="zone-header zone-3"><div class="zone-title">📋 3分以下</div><div class="zone-count">共 ${z3.length} 支</div></div><div class="card-grid">${z3.map(renderCard).join('')}</div>`;
+    if(z3.length) html+=`<div class="zone-header zone-3"><div class="zone-title">📋 4分以下</div><div class="zone-count">共 ${z3.length} 支</div></div><div class="card-grid">${z3.map(renderCard).join('')}</div>`;
   }
   document.getElementById('result-area').innerHTML=html;
+}
+
+function starsHtml(sc){
+  const full=Math.floor(sc), half=(sc-full)>=0.5?1:0;
+  return '★'.repeat(full)+(half?'½':'')+'☆'.repeat(Math.max(0,5-full-half));
 }
 
 function renderCard(s){
@@ -330,28 +378,37 @@ function renderCard(s){
   const cc=sc>=5?'score-5':sc>=4?'score-4':'score-3';
   const chgUp=s.chg_pct>0,chgFlat=s.chg_pct===0;
   const chgClass=chgFlat?'flat':chgUp?'up':'dn';
-  const fire=s.buy_days>=5?'🔥':'';
+  const m=s.metrics||{};
+  const fire=(m.trust_buy_days??s.buy_days)>=5?'🔥':'';
+  const cr=s.criteria||{};
+  const lvl=v=>v>=1?'pass':v>=0.5?'half':'fail';
   const criteria=[
-    {label:`投信連買${s.buy_days}天`,pass:s.criteria?.s1},
-    {label:`投信強點火 ${s.net_buy_ratio?.toFixed(1)||0}%`,pass:s.criteria?.s2},
-    {label:`外資連買${s.foreign_buy_days||0}天`,pass:s.criteria?.s6},
-    {label:`K=${s.k}`,pass:s.criteria?.s3},
-    {label:`量比${s.vol_ratio}倍`,pass:s.criteria?.s4},
-    {label:`均線差${s.ma_gap}%`,pass:s.criteria?.s5},
+    {label:`法人累積 投信${m.trust_buy_days??s.buy_days}日/${(m.trust_intensity??0).toFixed(1)}%`,cls:lvl(cr.s1)},
+    {label:`法人共識 外資${m.foreign_buy_days??s.foreign_buy_days??0}日`,cls:lvl(cr.s2)},
+    {label:`趨勢 MA20>MA60`,cls:lvl(cr.s3)},
+    {label:m.breakout?'觸發 突破':m.pullback?'觸發 回檔轉強':'觸發 —',cls:lvl(cr.s4)},
+    {label:`價位 距MA20 ${m.dist_ma20??'—'}%`,cls:lvl(cr.s5)},
   ];
-  const chips=criteria.map(c=>`<span class="chip ${c.pass?'pass':'fail'}">${c.label}</span>`).join('');
+  const chips=criteria.map(c=>`<span class="chip ${c.cls}">${c.label}</span>`).join('');
+  const sm=STRATEGY_META[s.strategy]||STRATEGY_META.watch;
+  const extra=(s.strategies||[]).filter(t=>t!==s.strategy&&STRATEGY_META[t]).map(t=>STRATEGY_META[t].icon+STRATEGY_META[t].label).join(' · ');
+  const rk=RISK_META[s.risk]||RISK_META.low;
+  const reasons=(s.risk_reasons||[]).map(r=>`<div class="risk-line">${r}</div>`).join('');
   const starColor=sc>=5?'#ffd700':sc>=4?'var(--green)':'var(--text3)';
+  const scoreTxt=Number.isInteger(sc)?sc:sc.toFixed(1);
   return `<div class="stock-card ${cc}">
     <div class="card-top">
       <div><div class="card-code"><a href="https://goodinfo.tw/tw/StockDetail.asp?STOCK_ID=${s.code}" target="_blank" style="color:var(--text3);text-decoration:none;" onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--text3)'">${s.code} ↗</a></div><div class="card-name">${s.name}${fire}</div><div class="card-sector">${s.sector}</div></div>
-      <div style="text-align:right"><div class="score-badge ${bc}">${sc}/5</div><div class="stars" style="color:${starColor}">${'★'.repeat(sc)+'☆'.repeat(Math.max(0, 5-sc))}</div></div>
+      <div style="text-align:right"><div class="score-badge ${bc}">${scoreTxt}/5</div><div class="stars" style="color:${starColor}">${starsHtml(sc)}</div></div>
     </div>
+    <div class="tag-row"><span class="tag-strategy">${sm.icon} ${sm.label}</span><span class="tag-risk risk-${s.risk||'low'}">${rk[0]} 風險${rk[1]}</span>${extra?`<span class="tag-extra">${extra}</span>`:''}</div>
     <div class="card-price-row"><span class="card-price">${s.price}</span><span class="card-chg ${chgClass}">${chgUp?'+':''}${s.chg_pct?.toFixed(2)}%</span></div>
     <div class="criteria-row">${chips}</div>
+    ${s.action?`<div class="action-line">👉 ${s.action}</div>`:''}
+    ${reasons}
     <div class="card-footer"><div class="card-meta">MA5 ${s.ma5||'—'} · MA20 ${s.ma20||'—'} · 量${s.volume}張</div><button class="btn-add" onclick="addToA('${s.code}','${s.name}')">+ 加入A板</button></div>
   </div>`;
 }
-
 function addToA(code,name){
   const list=JSON.parse(localStorage.getItem('watchlist_a_pending')||'[]');
   if(!list.includes(code)){list.push(code);localStorage.setItem('watchlist_a_pending',JSON.stringify(list));}
