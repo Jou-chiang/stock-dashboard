@@ -194,7 +194,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         </div>
         <div class="form-group">
           <label class="form-label">股票名稱 *</label>
-          <input type="text" id="form-name" class="form-input" placeholder="例如: 台積電" required />
+          <input type="text" id="form-name" class="form-input" placeholder="例如: 台積電或佳能" required oninput="onNameInput(this.value)" autocomplete="off" />
         </div>
         <div class="form-group">
           <label class="form-label">產業標的分類</label>
@@ -322,6 +322,14 @@ function populateStockDatalist(){
       optionsHtml += `<option value="${s.code}">${s.name} (${s.sector || '台股'}) - $${s.price || ''}</option>`;
     }
   });
+  if(typeof commonTWStockMap !== 'undefined'){
+    Object.entries(commonTWStockMap).forEach(([name, code]) => {
+      if(!seenCodes.has(code)){
+        seenCodes.add(code);
+        optionsHtml += `<option value="${code}">${name} (${code})</option>`;
+      }
+    });
+  }
   datalist.innerHTML = optionsHtml;
   
   const codeInput = document.getElementById('form-code');
@@ -633,11 +641,32 @@ const commonTWStockMap = {
 };
 
 function onCodeInput(val){
-  const code = val.trim().toUpperCase();
-  if(poolScoresMap[code]){
-    document.getElementById('form-name').value = poolScoresMap[code].name;
-  } else if(commonTWStockMap[code]){
-    document.getElementById('form-code').value = commonTWStockMap[code];
+  const key = val.trim().toUpperCase();
+  if(!key) return;
+  if(poolScoresMap[key]){
+    document.getElementById('form-name').value = poolScoresMap[key].name;
+  } else if(commonTWStockMap[key]){
+    const resolvedCode = commonTWStockMap[key];
+    document.getElementById('form-code').value = resolvedCode;
+    document.getElementById('form-name').value = key;
+  } else {
+    const foundName = Object.keys(commonTWStockMap).find(k => commonTWStockMap[k] === key);
+    if(foundName){
+      document.getElementById('form-name').value = foundName;
+    }
+  }
+}
+
+function onNameInput(val){
+  const name = val.trim();
+  if(!name) return;
+  if(commonTWStockMap[name]){
+    document.getElementById('form-code').value = commonTWStockMap[name];
+  } else if(poolScoresMap[name]){
+    document.getElementById('form-code').value = poolScoresMap[name].code;
+  } else if(rawFullData && rawFullData.theses){
+    const foundCode = Object.keys(rawFullData.theses).find(c => (rawFullData.theses[c].stock_name || '') === name);
+    if(foundCode) document.getElementById('form-code').value = foundCode;
   }
 }
 
