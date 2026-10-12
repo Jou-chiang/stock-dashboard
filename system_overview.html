@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>儀表板 A/B/C/D｜功能・架構・規則總覽</title>
+<style>
+:root{
+  --bg:#0c0e10;--bg2:#131619;--bg3:#1a1e22;--bg4:#212730;
+  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
+  --text:#e8eaed;--text2:#9aa0aa;--text3:#6b7280;
+  --amber:#f0a03a;--green:#3fc97c;--red:#f25f5f;--blue:#5ba3f5;--purple:#b072f2;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;--sans:'Noto Sans TC',-apple-system,'PingFang TC',sans-serif;
+}
+[data-theme="light"]{
+  --bg:#f8fafc;--bg2:#ffffff;--bg3:#f1f5f9;--bg4:#e2e8f0;
+  --border:#e2e8f0;--border2:#cbd5e1;
+  --text:#0f172a;--text2:#334155;--text3:#64748b;
+  --amber:#d97706;--green:#16a34a;--red:#dc2626;--blue:#2563eb;--purple:#7c3aed;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.7}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 20px 80px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+h1{font-size:22px}
+.sub{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:4px}
+button.theme{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px}
+nav{position:sticky;top:0;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;z-index:5;margin-bottom:20px}
+nav a{font-size:12px;padding:5px 12px;border-radius:999px;border:1px solid var(--border2);color:var(--text2);text-decoration:none;background:var(--bg2)}
+nav a:hover{color:var(--amber);border-color:var(--amber)}
+section{margin-bottom:36px}
+h2{font-size:18px;margin:6px 0 4px;display:flex;align-items:center;gap:8px}
+h2 .pill{font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:4px;background:var(--bg3);border:1px solid var(--border2);color:var(--amber)}
+h3{font-size:14px;margin:18px 0 8px;color:var(--amber)}
+p.lead{color:var(--text2);margin-bottom:10px}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+ul{padding-left:20px}li{margin:3px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0}
+th,td{border:1px solid var(--border);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--bg3);color:var(--text2);font-weight:500;white-space:nowrap}
+code{font-family:var(--mono);font-size:12px;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:1px 5px}
+pre{font-family:var(--mono);font-size:12px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 14px;overflow:auto;line-height:1.6;margin:8px 0}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;border:1px solid var(--border2);margin-right:4px}
+.g{color:var(--green)}.r{color:var(--red)}.a{color:var(--amber)}.b{color:var(--blue)}
+.note{border-left:3px solid var(--amber);background:var(--bg3);padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:13px;color:var(--text2)}
+.warn{border-left-color:var(--red)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1>📊 儀表板 A / B / C / D 總覽</h1>
+    <div class="sub">功能 · 程式架構 · 規則　｜　專案路徑：stock radar　｜　資料截至 2026-10-12</div>
+  </div>
+  <button class="theme" onclick="toggleTheme()" id="tbtn">☀️ 明亮模式</button>
+</header>
+
+<nav>
+  <a href="#overview">整體架構</a><a href="#A">A 即時戰情</a><a href="#B">B 績優股雷達</a><a href="#C">C 大戶追蹤器</a><a href="#D">D 研報戰情室</a><a href="#files">檔案地圖</a><a href="#limits">已知限制</a>
+</nav>
+
+<section id="overview">
+  <h2>🧭 整體架構</h2>
+  <p class="lead">四個頁面都是純前端靜態頁（HTML＋JS），部署在 GitHub Pages；資料由 GitHub Actions 定時產生成 JSON／CSV 檔，再由頁面讀取。主題（明亮／暗黑）共用 <code>localStorage.theme</code>。</p>
+  <div class="grid">
+    <div class="card"><b class="a">A｜即時戰情</b><br>持股與觀察清單的即時技術訊號、買賣建議、停損線。</div>
+    <div class="card"><b class="a">B｜績優股雷達</b><br>每天收盤後對股票池評分，找出值得研究的候選股。</div>
+    <div class="card"><b class="a">C｜大戶追蹤器</b><br>單一股票的 K 線、技術指標、三大法人與集保大戶趨勢圖。</div>
+    <div class="card"><b class="a">D｜研報戰情室</b><br>券商研報 Thesis 卡片、EPS×本益比推估與法人目標價。</div>
+  </div>
+<pre>
+ FinMind API ──┐                  永豐 Shioaji ─▶ fetch_prices.py ─▶ prices.json   (盤中每15分)
+               │
+ history_data.csv ─▶ fetch_pool_scores.py ─▶ screener_v2.py ─▶ pool_scores.json ─▶ export_sheets_csv.py ─▶ sheet_*.csv
+ pool.json  ──────┘   (平日17:00)                                      │
+ TDCC 集保 ─▶ fetch_tdcc.py ─▶ tdcc_data.json                          ▼
+ 手動維護 ─▶ research_theses.json ◀──(使用者本機新增 localStorage)    B 讀取
+
+ 頁面讀取：  A ← FinMind(60日K) + prices.json + research_theses.json(僅讀 overall_bias)
+             B ← pool_scores.json + prices.json
+             C ← FinMind(即時查詢) + tdcc_data.json
+             D ← research_theses.json + pool_scores.json(現價) + localStorage
+</pre>
+  <table>
+    <tr><th>排程</th><th>時間（台灣）</th><th>做什麼</th></tr>
+    <tr><td><code>fetch_prices.yml</code></td><td>平日 09:00–14:00 每 15 分</td><td>用永豐 Shioaji 抓即時價，寫入 <code>prices.json</code></td></tr>
+    <tr><td><code>fetch_pool_scores.yml</code></td><td>平日 17:00</td><td>更新歷史資料 → 評分 → 集保 → 匯出 CSV，commit 回 main</td></tr>
+  </table>
+</section>
+
+<section id="A">
+  <h2>A｜即時戰情 <span class="pill">index.html</span></h2>
+  <p class="lead">你自己的持股／觀察清單。輸入代號或中文名稱即可加入，顯示技術指標、訊號與「建議買點／出場」。</p>
+
+  <h3>主要功能</h3>
+  <ul>
+    <li>搜尋並加入股票（FinMind 股票清單自動完成）；清單存在 <code>localStorage.twstk10</code>。</li>
+    <li>輸入買入成本，顯示報酬率、停損線、持有者建議（戰情欄可收合）。</li>
+    <li>股價來源優先序：盤中即時（綠）／分鐘線（藍）／昨收（灰）。</li>
+    <li>自動更新、明亮／暗黑切換、與 B 的「加入 A 板」串接。</li>
+  </ul>
+
+  <h3>程式架構</h3>
+  <table>
+    <tr><th>函式</th><th>職責</th></tr>
+    <tr><td><code>fetchOne / fetchAll</code></td><td>抓 FinMind 近 60 日 K 線，計算 KDJ、RSI、DIF、MA5、MA20、前 5 日均量、20 日高點與「連續跌破月線天數」</td></tr>
+    <tr><td><code>calcSignal</code></td><td>由 RSI／K／J 計分並套用多重過濾，輸出訊號（見下表）</td></tr>
+    <tr><td><code>fmtEntryPrice</code></td><td>持有者／空手者的建議文字，含停損與月線濾網</td></tr>
+    <tr><td><code>ma20State</code></td><td>回傳 ok／yellow／red，決定月線警示等級</td></tr>
+    <tr><td><code>fmtStopLine</code></td><td>停損線欄：紅燈、黃燈、跌破 MA5、距 MA5 百分比</td></tr>
+    <tr><td><code>loadThesisBias</code></td><td>讀取 D 的 <code>overall_bias</code>，用於破位文案降級</td></tr>
+  </table>
+
+  <h3>訊號規則（calcSignal）</h3>
+  <table>
+    <tr><th>項目</th><th>規則</th></tr>
+    <tr><td>RSI 計分</td><td>&lt;25 +3，&lt;35 +2，&lt;50 +1；&gt;80 −3，&gt;70 −2，&gt;65 −1</td></tr>
+    <tr><td>K 計分</td><td>&lt;15 +3，&lt;25 +2，&lt;45 +1；&gt;85 −3，&gt;75 −2，&gt;65 −1</td></tr>
+    <tr><td>J 計分</td><td>&lt;0 +2；&gt;100 −2</td></tr>
+    <tr><td>基本訊號</td><td>分數 ≥6 強力買入；≥2 買入；≤−2 賣出（≤−6 強力賣出）；其餘觀望</td></tr>
+    <tr><td>強勢豁免</td><td>分數 ≤−2 但 DIF&gt;0 且站上 MA5：量比 ≥2.5 為爆量警示；≥2.0 為強勢但量大；分數 ≤−6 且站上 MA20 為強勢鈍化；否則強勢震盪</td></tr>
+    <tr><td>空頭排列</td><td>MA5 &lt; MA20：強力買入降為買入，買入降為弱勢反彈；高檔鈍化、噴發改為賣出</td></tr>
+    <tr><td>J 值狀態</td><td>J 連續 3 日 &lt;0 趨勢崩壞；J 連續 3 日 &gt;100 高檔鈍化（量增為正式、量不足為弱）；J 剛 &gt;100 一至兩天為初噴；鈍化結束後 J&lt;100 為鈍化結束</td></tr>
+    <tr><td>DIF</td><td>DIF&lt;0 且仍下降：強勢類改為趨勢轉弱，買入／觀望改為弱勢反彈；DIF 由負翻正且為多頭排列則為 DIF 翻正</td></tr>
+    <tr><td>帶量突破</td><td>量 &gt; 5 日均量 ×2 且上漲，且不在弱勢類訊號中，才升級為帶量突破</td></tr>
+    <tr><td>漲停鎖死</td><td>漲幅 9.5%～11% 且參考價可靠</td></tr>
+  </table>
+
+  <h3>持有者建議與停損（2026-10 調整後）</h3>
+  <div class="note">原本只要股價低於 MA20 就叫你出場，華通低於 0.36% 就被判賣出。現在改為「哨兵」概念：先觀察、確認後才亮紅燈。</div>
+  <table>
+    <tr><th>優先序</th><th>條件</th><th>顯示</th></tr>
+    <tr><td>1</td><td>虧損 ≥ 8%</td><td class="r">🚨 停損觸發，清倉</td></tr>
+    <tr><td>2 紅燈</td><td>低於 MA20 超過 <b>2%</b>、連續 <b>2 日</b>、量比 ≥ <b>1.0</b></td><td class="r">有效跌破月線，建議出場（若 D 偏多則改為「請對照研報後決定」）</td></tr>
+    <tr><td>3 黃燈</td><td>在 MA20 下方，但幅度、天數或量能未達標</td><td class="a">⚠ 月線附近，觀察</td></tr>
+    <tr><td>4</td><td>趨勢崩壞</td><td class="r">🚨 極端空頭，清倉</td></tr>
+    <tr><td>5+</td><td>其餘依訊號</td><td>破 MA5 先跑一半、獲利 ≥15% 止盈、爆量收傘、持有等噴發…</td></tr>
+  </table>
+  <p>參數常數：<code>MA20_BUFFER=0.02</code>、<code>MA20_CONFIRM_DAYS=2</code>、<code>MA20_MIN_VOLRATIO=1.0</code>。空手者的建議則是回測 MA5 或低位佈局價，不叫賣。</p>
+  <div class="note warn">限制：沒設定 FinMind Token 時，A 只讀 <code>prices.json</code>，沒有 MA20 與歷史收盤，上述月線規則不作用。</div>
+</section>
+
+<section id="B">
+  <h2>B｜績優股雷達 <span class="pill">dashboard_b.html</span></h2>
+  <p class="lead">對 <code>pool.json</code> 內的股票池每天收盤後評分。重點是「分數、策略、風險、操作建議」四件事分開，不再把 4 分直接等同於買。</p>
+
+  <h3>主要功能</h3>
+  <ul>
+    <li>策略快捷鈕：強勢突破、多頭回檔、蓄勢待發、法人建倉、高分高風險、轉弱警報、低檔反轉觀察。</li>
+    <li>自訂篩選：最低積分、K 值上限、量比下限、均線差上限、產業。</li>
+    <li>卡片顯示分數（可到 0.5 分）、策略標籤、風險標籤、操作建議、風險原因、五項評分色塊。</li>
+    <li>排除的股票預設不顯示；「加入 A 板」可把代號帶到 A。</li>
+  </ul>
+
+  <h3>程式架構</h3>
+  <table>
+    <tr><th>檔案</th><th>職責</th></tr>
+    <tr><td><code>fetch_pool_scores.py</code></td><td>讀 <code>history_data.csv</code>（每股保留 120 日）、補抓當日 K 線與近 30 個日曆天法人資料，呼叫 <code>screener_v2.evaluate()</code>，輸出 <code>pool_scores.json</code>；首次改版時備份 <code>pool_scores_v1_backup.json</code></td></tr>
+    <tr><td><code>screener_v2.py</code></td><td>純函式評分模組，無網路、無 pandas 依賴，所有門檻在檔案最上方常數</td></tr>
+    <tr><td><code>dashboard_b.html</code></td><td>讀 <code>pool_scores.json</code>＋<code>prices.json</code>，前端篩選與卡片渲染；若資料不是 V2 會顯示舊版提示</td></tr>
+  </table>
+
+  <h3>第一層：硬性淘汰（不進主選股池）</h3>
+  <table>
+    <tr><th>條件</th><th>結果</th></tr>
+    <tr><td>股價 &lt; MA20 且 DIF &lt; 0</td><td>策略 excluded，分數歸 0；若同時符合反轉觀察條件則改列「低檔反轉觀察」</td></tr>
+    <tr><td>20 日均成交金額 &lt; 2,000 萬</td><td>排除（流動性不足）</td></tr>
+  </table>
+
+  <h3>第二層：5 分（可拿 0.5 分）</h3>
+  <table>
+    <tr><th>項目</th><th>1 分</th><th>0.5 分</th></tr>
+    <tr><td>S1 法人累積</td><td>投信連買 ≥3 日 且 5 日累計買超÷20 日均量 ≥5%</td><td>5 日累計 &gt;0 且（連買 ≥2 日 或 強度 ≥5%）</td></tr>
+    <tr><td>S2 法人共識</td><td>近 3 日投信與外資累計皆買超</td><td>只有一方買超</td></tr>
+    <tr><td>S3 趨勢</td><td>收盤 &gt; MA20、MA20 &gt; MA60、MA20 比 5 日前高</td><td>—</td></tr>
+    <tr><td>S4 觸發</td><td>
+      <b>突破</b>：收盤創 20 日新高、量比 ≥1.5、站上 MA5、當日漲幅 ≤8%<br>
+      <b>回檔轉強</b>：MA20 &gt; MA60、K&lt;65、K&gt;D、DIF&gt;DEA　（二選一）</td><td>—</td></tr>
+    <tr><td>S5 價位</td><td>距 MA20 ≤8%、20 日漲幅 &lt;20%、非「爆量長上影」</td><td>—</td></tr>
+  </table>
+
+  <h3>第三層：策略標籤</h3>
+  <table>
+    <tr><th>標籤</th><th>條件</th></tr>
+    <tr><td>🚀 突破型</td><td>符合突破條件</td></tr>
+    <tr><td>🔄 多頭回檔</td><td>符合回檔轉強且 S3 成立</td></tr>
+    <tr><td>🧨 蓄勢待發</td><td>|MA5−MA20|/MA20 ≤3%、股價 &gt; MA5、MA5 ≥ MA20、MA20 向上</td></tr>
+    <tr><td>👀 法人建倉</td><td>S1 得 1 分，或 S1≥0.5 且 S2=1</td></tr>
+    <tr><td>🐟 低檔反轉觀察</td><td>空頭，且 K&lt;30、K 上穿 D、DIF 較前日回升、量比 ≥1.0、非低流動性。不進主池，只在專屬按鈕顯示</td></tr>
+    <tr><td>🔴 weakening</td><td>法人反轉達警告以上（見下）</td></tr>
+  </table>
+  <p>主策略取優先序：突破 &gt; 回檔 &gt; 蓄勢 &gt; 建倉；都沒有則為「一般觀察」。</p>
+
+  <h3>第四層：風險與操作建議</h3>
+  <table>
+    <tr><th>風險項目</th><th>加分</th></tr>
+    <tr><td>距 MA20 &gt;8% / &gt;15%</td><td>+1 / +2（二選一）</td></tr>
+    <tr><td>20 日漲幅 &gt;25%</td><td>+1</td></tr>
+    <tr><td>爆量長上影（量比 ≥2 且上影線 ≥50%）</td><td>+1</td></tr>
+    <tr><td>20 日均成交金額 &lt;5,000 萬</td><td>+1</td></tr>
+    <tr><td>法人反轉：投信連買 ≥5 日後今日轉賣</td><td>+1（注意）</td></tr>
+    <tr><td>法人反轉：連買 ≥5 日後連賣 ≥2 日</td><td>+2（警告）</td></tr>
+    <tr><td>法人反轉：投信連賣 ≥3 日＋外資近 3 日合計賣＋跌破 MA20</td><td>+3（強警報）</td></tr>
+  </table>
+  <p>法人反轉三級為 <code>elif</code> 互斥，只取最高一級。風險等級：加分 ≥3 為高，=2 為中，其餘為低。</p>
+  <table>
+    <tr><th>操作建議（依序判斷）</th></tr>
+    <tr><td>反轉觀察 → 「低檔反轉觀察，等站回月線再評估」</td></tr>
+    <tr><td>被排除 → 「不進主選股池：原因」</td></tr>
+    <tr><td>法人轉弱（警告／強警報）→ 「持有者檢查停利停損，空手勿進」</td></tr>
+    <tr><td>分數 ≥4 且風險高 → 「禁止直接追價，等回測」；風險中 → 「分批或等拉回」；風險低 → 「可列入研究進場」</td></tr>
+    <tr><td>分數 ≥3 且風險非高 → 「觀察名單」；其餘 → 「觀察」或「排除／僅追蹤」</td></tr>
+  </table>
+
+  <h3>2026-10-12 的實際結果快照</h3>
+  <p>146 支：一般觀察 59、排除 35、法人建倉 30、蓄勢待發 11、突破 6、多頭回檔 5；5 分 0 支，最高 4.5 分（神基）。</p>
+</section>
+
+<section id="C">
+  <h2>C｜大戶追蹤器 <span class="pill">dashboard_c.html</span></h2>
+  <p class="lead">單一股票的深度查看頁：輸入代號或名稱，一次畫出價量、技術指標、三大法人與集保大戶／散戶趨勢。</p>
+
+  <h3>主要功能</h3>
+  <ul>
+    <li>搜尋任一上市櫃股票（FinMind <code>TaiwanStockInfo</code>），可切換查詢天數。</li>
+    <li>摘要卡：外資、投信、自營商近 5 日買賣超（張）與三大合計。</li>
+    <li>七張圖：K 線＋MA5／MA20／MA60、成交量＋MACD（DIF／DEA）、KDJ、外資每日＋累計、投信每日＋累計、自營每日＋累計、集保大戶／散戶。</li>
+    <li>紅漲綠跌配色（台股慣例），法人買超為紅、賣超為綠。</li>
+  </ul>
+
+  <h3>程式架構</h3>
+  <table>
+    <tr><th>元件</th><th>職責</th></tr>
+    <tr><td><code>query(sym)</code></td><td>呼叫 FinMind 取得價量、法人資料，計算 MA、KDJ、MACD、累計買賣超後渲染圖表（Chart.js）</td></tr>
+    <tr><td><code>fmGet(dataset,id,days)</code></td><td>FinMind 通用請求；Token 存在 <code>localStorage.fm_token</code></td></tr>
+    <tr><td><code>loadTdccData()</code></td><td>讀取 <code>tdcc_data.json</code>，畫集保大戶持股比例與人數</td></tr>
+    <tr><td><code>fetch_tdcc.py</code></td><td>每日排程抓集保戶股權分散表，算出大戶指標並輸出 JSON</td></tr>
+  </table>
+
+  <h3>集保大戶規則（fetch_tdcc.py）</h3>
+  <table>
+    <tr><th>指標</th><th>定義</th></tr>
+    <tr><td>大戶（≥1000 張）</td><td>持股級距第 15 級：人數、持股比例、股數</td></tr>
+    <tr><td>≥400 張持股比例</td><td>級距 12～15 的持股比例加總</td></tr>
+    <tr><td>散戶（&lt;50 張）</td><td>用於比對大戶與散戶的消長</td></tr>
+    <tr><td>週變化</td><td>與前一期相減：<code>over1000_pct_chg</code>、<code>over1000_people_chg</code>、<code>over400_pct_chg</code></td></tr>
+  </table>
+  <div class="note">C 沒有買賣訊號與評分，是純觀察工具；判讀大戶增加、散戶減少時，通常需搭配 A 的價位與 B 的法人結果。</div>
+</section>
+
+<section id="D">
+  <h2>D｜研報戰情室 <span class="pill">thesis.html</span></h2>
+  <p class="lead">把券商研報與法人目標價整理成卡片，作為「基本面與預估價」的參考，不做技術指標判斷。</p>
+
+  <h3>主要功能</h3>
+  <ul>
+    <li>每檔股票一張卡：2026 EPS 共識區間、目標本益比、推估目標價、券商目標價與平均、現價與「目標漲幅」。</li>
+    <li>樂觀／基準／悲觀三情境，依 <code>overall_bias</code> 亮燈（🔥／⚖️／⚠️）；另列催化劑與研報摘要。</li>
+    <li>搜尋、新增（可輸入代號或中文名，雙向自動補全；內建常用台股名稱對照）、一鍵自動生成、刪除；<b>不再提供編輯</b>。</li>
+    <li>「同步最新資料」重新載入伺服器資料，並保留你在本機新增的卡片。</li>
+    <li>匯出 JSON、明亮／暗黑切換。</li>
+  </ul>
+
+  <h3>程式架構</h3>
+  <table>
+    <tr><th>元件</th><th>職責</th></tr>
+    <tr><td><code>research_theses.json</code></td><td>伺服器端主資料（由你維護／我協助更新），每次載入帶時間戳避免快取</td></tr>
+    <tr><td><code>localStorage.user_research_theses</code></td><td>你在頁面新增的卡片；與伺服器資料合併，不會被同步覆蓋</td></tr>
+    <tr><td><code>loadStockPrices</code></td><td>讀 <code>pool_scores.json</code> 取得現價，供漲幅計算與代號補全</td></tr>
+    <tr><td><code>renderCards</code></td><td>算推估目標價、券商平均、目標漲幅、多空亮燈並輸出卡片</td></tr>
+    <tr><td><code>onCodeInput / onNameInput</code></td><td>代號與名稱雙向對應（<code>commonTWStockMap</code> + pool_scores）</td></tr>
+    <tr><td><code>refreshData</code></td><td>同步最新資料後重新整理頁面，並保留本機新增卡片</td></tr>
+  </table>
+
+  <h3>計算規則</h3>
+  <table>
+    <tr><th>項目</th><th>公式</th></tr>
+    <tr><td>推估目標價區間</td><td>低 = EPS 最低 × PE 最低；高 = EPS 最高 × PE 最高（四捨五入）</td></tr>
+    <tr><td>券商平均目標價</td><td>所有有填目標價的券商取算術平均</td></tr>
+    <tr><td>目標漲幅</td><td>(券商平均 − 現價) ÷ 現價（需現價與券商平均皆有）</td></tr>
+    <tr><td>多空亮燈</td><td>以卡片的 <code>overall_bias</code> 為準；若未填：券商平均 ≥ 現價×1.08 為 bull；&lt; 現價×0.95 為 bear；其餘預設 bull</td></tr>
+  </table>
+  <div class="note">資料原則：卡片中的現價必須與 <code>pool_scores.json</code> 同步；EPS 與目標價來自你提供的法人報告，不得用舊資料推估。新增卡片後需跑 <code>export_sheets_csv.py</code> 並 push。</div>
+
+  <h3>與其他頁面的關係</h3>
+  <ul>
+    <li>A 讀取 D 的 <code>overall_bias</code>：A 紅燈破位時若 D 偏多，文案降級為「請對照研報後決定」。</li>
+    <li>D 的現價來自 B 的資料檔 <code>pool_scores.json</code>。</li>
+  </ul>
+</section>
+
+<section id="files">
+  <h2>🗂 檔案地圖</h2>
+  <table>
+    <tr><th>檔案</th><th>角色</th></tr>
+    <tr><td><code>index.html</code></td><td>儀表板 A</td></tr>
+    <tr><td><code>dashboard_b.html</code></td><td>儀表板 B</td></tr>
+    <tr><td><code>dashboard_c.html</code></td><td>儀表板 C</td></tr>
+    <tr><td><code>thesis.html</code></td><td>儀表板 D</td></tr>
+    <tr><td><code>screener_v2.py</code></td><td>B 評分核心</td></tr>
+    <tr><td><code>fetch_pool_scores.py</code></td><td>B 每日資料與輸出</td></tr>
+    <tr><td><code>fetch_prices.py</code></td><td>永豐即時價 → <code>prices.json</code></td></tr>
+    <tr><td><code>fetch_tdcc.py</code></td><td>集保大戶 → <code>tdcc_data.json</code></td></tr>
+    <tr><td><code>export_sheets_csv.py</code></td><td>輸出 <code>sheet_scores.csv</code>、<code>sheet_theses.csv</code>、<code>sheet_history.csv</code></td></tr>
+    <tr><td><code>pool.json</code> / <code>history_data.csv</code></td><td>股票池與 120 日歷史 K 線</td></tr>
+    <tr><td><code>pool_scores.json</code> / <code>pool_scores_v1_backup.json</code></td><td>B 輸出與舊版備份</td></tr>
+    <tr><td><code>research_theses.json</code></td><td>D 研報資料</td></tr>
+    <tr><td><code>.github/workflows/*.yml</code></td><td>兩個排程</td></tr>
+  </table>
+</section>
+
+<section id="limits">
+  <h2>⚠️ 已知限制與待辦</h2>
+  <table>
+    <tr><th>項目</th><th>說明</th></tr>
+    <tr><td>B 的 V2.1（黃金右下角）</td><td>目前 B 偏向抓「已確認」的強勢股；尚未新增「起飛前」的獨立池（趨勢轉折、PRE-BREAKOUT、量縮與低點墊高、60 日位置、吸籌效率），風險分數也尚未改成同類取最高級。這是下一個要做的項目</td></tr>
+    <tr><td>成交量單位</td><td>已核對：<code>history_data.csv</code> 的 volume 是「張」，成交金額換算正確（例：台積電 20 日均額約 558 億），沒有差 1,000 倍的問題</td></tr>
+    <tr><td>除權息未還原</td><td><code>history_data.csv</code> 是原始股價，並非還原權值價；除權息日可能被誤判成下跌，影響 MA、乖離與 20 日漲幅。尚未處理，建議之後引入除權息資料或改用還原價</td></tr>
+    <tr><td>法人資料時效</td><td>17:00 抓到的是初步公布值，FinMind 可能在 1～2 個營業日補計；法人日期也尚未與股價最後交易日對齊檢查</td></tr>
+    <tr><td>A 的月線規則</td><td>需 FinMind Token；沒有 Token 時只顯示 <code>prices.json</code> 的價格</td></tr>
+    <tr><td>B 缺回測</td><td>歷史只有 120 日，無法回測；建議每天保存 <code>pool_scores.json</code> 快照，日後驗證 5／10／20 日報酬</td></tr>
+    <tr><td>法人資料缺漏</td><td>FinMind 沒回法人資料時，B 的法人兩項會是 0 分，與「真的沒買」無法區分</td></tr>
+  </table>
+</section>
+</div>
+
+<script>
+function initTheme(){
+  const t=localStorage.getItem('theme')||'dark';
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('tbtn').textContent=t==='light'?'🌙 暗黑模式':'☀️ 明亮模式';
+}
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme')||'dark';
+  const next=cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.getElementById('tbtn').textContent=next==='light'?'🌙 暗黑模式':'☀️ 明亮模式';
+  document.getElementById('tbtn').blur();
+}
+initTheme();
+</script>
+</body>
+</html>
