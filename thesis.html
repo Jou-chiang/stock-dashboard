@@ -167,7 +167,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
       <button class="btn-nav" style="border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.1);font-weight:bold;" onclick="openModal(); this.blur();">+ 新增 Thesis 研報</button>
       <button class="btn-nav" onclick="exportJSON(); this.blur();">📥 匯出 JSON</button>
-      <button class="btn-nav" id="btn-refresh" style="color:var(--amber);border-color:var(--amber);background:rgba(240,160,58,.08);" onclick="refreshData(); this.blur();">🔄 同步最新資料</button>
+      <button class="btn-nav" id="btn-refresh" style="color:var(--amber);border-color:var(--amber);background:rgba(240,160,58,.08);" onclick="refreshData(); this.blur();">🔄 重新載入伺服器資料</button>
     </div>
   </div>
 
@@ -182,7 +182,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     <div class="modal-header">
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
         <div class="modal-title" id="modal-title">+ 新增 Thesis 研報卡片</div>
-        <button type="button" class="btn-ai-gen" onclick="autoGenerateThesisInModal(); this.blur();" title="根據股票代號與產業數據自動帶入全部分析資訊">🤖 一鍵 AI / 自動生成研報</button>
+        <button type="button" class="btn-ai-gen" onclick="autoGenerateThesisInModal(); this.blur();" title="只產生可編輯的估值假設草稿，不會查詢 AI 或真實研報">產生估值情境草稿</button>
       </div>
       <button class="btn-close" onclick="closeModal()">✕</button>
     </div>
@@ -201,20 +201,36 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
           <input type="text" id="form-category" class="form-input" placeholder="例如: 晶圓代工龍頭" />
         </div>
         <div class="form-group">
-          <label class="form-label">整體基本面多空傾向 (情境高亮燈)</label>
+          <label class="form-label">研究判斷傾向（無足夠依據時選未知）</label>
           <select id="form-bias" class="form-input">
+            <option value="unknown" selected>⚪ 未知／資料不足（不亮燈）</option>
             <option value="bull">🟢 偏多優勢 (樂觀情境亮燈)</option>
             <option value="base">🔵 中立觀望 (基準情境亮燈)</option>
             <option value="bear">🔴 偏空劣勢 (悲觀情境亮燈)</option>
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label">2026 EPS 最低 (元)</label>
+          <label class="form-label">2026 EPS 區間下限（需有來源）(元)</label>
           <input type="number" step="0.1" id="form-eps-low" class="form-input" placeholder="例如: 55.0" />
         </div>
         <div class="form-group">
-          <label class="form-label">2026 EPS 最高 (元)</label>
+          <label class="form-label">2026 EPS 區間上限（需有來源）(元)</label>
           <input type="number" step="0.1" id="form-eps-high" class="form-input" placeholder="例如: 60.0" />
+        </div>
+        <div class="form-group full">
+          <label class="form-label">EPS 來源網址（有來源且日期確認後，才可標記已核實）</label>
+          <input type="url" id="form-eps-source" class="form-input" placeholder="https://..." />
+        </div>
+        <div class="form-group">
+          <label class="form-label">EPS 資料日期</label>
+          <input type="date" id="form-eps-date" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">EPS 來源狀態</label>
+          <select id="form-eps-status" class="form-input">
+            <option value="unverified" selected>待核實</option>
+            <option value="verified">已人工核實</option>
+          </select>
         </div>
         <div class="form-group">
           <label class="form-label">目標 PE 本益比最低 (倍)</label>
@@ -241,8 +257,8 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
           <input type="text" id="form-catalysts" class="form-input" placeholder="例如: N2製程量產, CoWoS產能倍增" />
         </div>
         <div class="form-group full">
-          <label class="form-label">券商研報目標價 (格式: 券商,評等,目標價 ; 多筆用分號分隔)</label>
-          <input type="text" id="form-brokers" class="form-input" placeholder="例如: 摩根士丹利,買進,1280 ; 高盛,買進,1250" />
+          <label class="form-label">券商研報（券商,評等,目標價,日期,來源網址,verified；多筆用分號分隔）</label>
+          <input type="text" id="form-brokers" class="form-input" placeholder="例如: 券商名稱,買進,1280,2026-10-01,https://...,verified" />
         </div>
         <div class="form-group full">
           <label class="form-label">法說 / 研報重點註記</label>
@@ -251,7 +267,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       </div>
       <div class="modal-footer">
         <button type="button" class="btn-cancel" onclick="closeModal()">取消</button>
-        <button type="button" class="btn-ai-gen" style="font-size:11px;" onclick="autoGenerateThesisInModal(); this.blur();">⚡ 重新 AI 帶入估算</button>
+        <button type="button" class="btn-ai-gen" style="font-size:11px;" onclick="autoGenerateThesisInModal(); this.blur();">重新產生估值草稿</button>
         <button type="submit" class="btn-submit">儲存卡片</button>
       </div>
     </form>
@@ -259,669 +275,421 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 </div>
 
 <script>
+const LOCAL_KEY = 'user_research_theses_v2';
 let thesisData = {};
-let rawFullData = {};
+let serverData = { theses: {} };
+let localOverrides = {};
+let deletedCodes = new Set();
 let editingCode = null;
-let stockPrices = {};
 let poolScoresMap = {};
+let priceInfo = {};
 
-// Theme Toggle
-function initTheme(){
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeBtnText(savedTheme);
+const commonTWStockMap = {
+  '佳能':'2374','台積電':'2330','聯電':'2303','鴻海':'2317','廣達':'2382','緯創':'3231',
+  '緯穎':'6669','技嘉':'2376','微星':'2377','華碩':'2357','奇鋐':'3017','雙鴻':'3324',
+  '世芯':'3661','信驊':'5274','波若威':'3163','台燿':'6274','強茂':'2481','富邦金':'2881',
+  '中興電':'1513','康舒':'6282','長榮':'2603','萬海':'2615','長榮航':'2618','京元電':'2449',
+  '京元電子':'2449','國巨':'2327','欣興':'3037'
+};
+
+function esc(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+function validPrice(value) {
+  const n = Number(value);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+function parseDate(value) {
+  if (!value) return null;
+  const d = new Date(String(value).replace(' ', 'T'));
+  return Number.isNaN(d.getTime()) ? null : d;
+}
+function ageHours(value) {
+  const d = parseDate(value);
+  return d ? (Date.now() - d.getTime()) / 3600000 : Infinity;
+}
+function ageDays(value) { return ageHours(value) / 24; }
+function dateLabel(value) { return value ? esc(String(value).replace('T',' ')) : '時間未提供'; }
+function safeHttpUrl(value) {
+  try { const u = new URL(String(value || '')); return ['http:','https:'].includes(u.protocol) ? u.href : ''; }
+  catch { return ''; }
 }
 
-function toggleTheme(){
-  const current = document.documentElement.getAttribute('data-theme') || 'dark';
-  const next = current === 'dark' ? 'light' : 'dark';
+function initTheme() {
+  const theme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  updateThemeBtnText(theme);
+}
+function toggleTheme() {
+  const next = (document.documentElement.getAttribute('data-theme') || 'dark') === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
   updateThemeBtnText(next);
 }
-
-function updateThemeBtnText(theme){
+function updateThemeBtnText(theme) {
   const btn = document.getElementById('btn-theme');
-  if(btn){
-    btn.textContent = theme === 'light' ? '🌙 暗黑模式' : '☀️ 明亮模式';
-  }
+  if (btn) btn.textContent = theme === 'light' ? '🌙 暗黑模式' : '☀️ 明亮模式';
 }
 
-initTheme();
-
-async function loadStockPrices(){
-  try{
-    const r = await fetch('pool_scores.json?v=' + Date.now());
-    if(r.ok){
-      const j = await r.json();
-      (j.scores||[]).forEach(s => {
-        if(s.code){
-          const codeStr = String(s.code);
-          stockPrices[codeStr] = s.price;
-          poolScoresMap[codeStr] = s;
-          if(s.name) poolScoresMap[s.name] = s;
-        }
-      });
-      populateStockDatalist();
-    }
-  }catch(e){}
+async function fetchJSON(path) {
+  const res = await fetch(`${path}?v=${Date.now()}`, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`${path}: HTTP ${res.status}`);
+  return res.json();
 }
 
-function populateStockDatalist(){
-  let datalist = document.getElementById('stock-pool-list');
-  if(!datalist){
-    datalist = document.createElement('datalist');
-    datalist.id = 'stock-pool-list';
-    document.body.appendChild(datalist);
-  }
-  let optionsHtml = '';
-  const seenCodes = new Set();
-  Object.values(poolScoresMap).forEach(s => {
-    if(s.code && s.name && !seenCodes.has(s.code)){
-      seenCodes.add(s.code);
-      optionsHtml += `<option value="${s.code}">${s.name} (${s.sector || '台股'}) - $${s.price || ''}</option>`;
-    }
+async function loadMarketData() {
+  poolScoresMap = {};
+  priceInfo = {};
+  let pricesFile = null, poolFile = null;
+  try { pricesFile = await fetchJSON('prices.json'); } catch (e) { console.warn('prices.json 載入失敗', e); }
+  try { poolFile = await fetchJSON('pool_scores.json'); } catch (e) { console.warn('pool_scores.json 載入失敗', e); }
+
+  (poolFile?.scores || []).forEach(s => {
+    if (!s.code) return;
+    const code = String(s.code).trim();
+    poolScoresMap[code] = s;
+    if (s.name) poolScoresMap[String(s.name)] = s;
   });
-  if(typeof commonTWStockMap !== 'undefined'){
-    Object.entries(commonTWStockMap).forEach(([name, code]) => {
-      if(!seenCodes.has(code)){
-        seenCodes.add(code);
-        optionsHtml += `<option value="${code}">${name} (${code})</option>`;
-      }
-    });
-  }
-  datalist.innerHTML = optionsHtml;
-  
-  const codeInput = document.getElementById('form-code');
-  if(codeInput) codeInput.setAttribute('list', 'stock-pool-list');
+
+  const priceRows = Array.isArray(pricesFile?.prices) ? pricesFile.prices : [];
+  priceRows.forEach(row => {
+    const code = String(row.id || row.code || '').trim();
+    const price = validPrice(row.price);
+    if (!code || !price) return;
+    const stamp = pricesFile.updated || row.updated_at || null;
+    const fresh = ageHours(stamp) >= 0 && ageHours(stamp) <= 24;
+    priceInfo[code] = {
+      price, fresh, updated: stamp, type: '快照報價',
+      source: 'Shioaji / prices.json',
+      note: fresh ? '檔案更新時間在 24 小時內；來源未提供逐檔成交時間，不能視為已驗證即時成交價。' : '行情檔案超過 24 小時，僅供參考。'
+    };
+  });
+
+  Object.entries(poolScoresMap).forEach(([key, s]) => {
+    if (!/^\d{4,6}$/.test(key)) return;
+    const current = priceInfo[key];
+    if (current?.fresh) return;
+    const price = validPrice(s.price);
+    if (!price) return;
+    const stamp = s.updated || poolFile?.updated || null;
+    const fresh = ageDays(stamp) >= 0 && ageDays(stamp) <= 5;
+    const fallback = { price, fresh, updated: stamp, type: '選股資料價格', source: 'pool_scores.json', note: fresh ? '依選股資料日期作參考，非即時報價。' : '選股資料已超過 5 個日曆日，價格視為過期參考值。' };
+    if (!current || (!current.fresh && fresh) || (!current.fresh && !fresh && ageHours(current.updated) < ageHours(stamp))) priceInfo[key] = fallback;
+  });
+  populateStockDatalist();
 }
 
-function onCodeInput(val){
-  const code = val.trim().toUpperCase();
-  if(poolScoresMap[code]){
-    document.getElementById('form-name').value = poolScoresMap[code].name;
-  }
+function populateStockDatalist() {
+  let list = document.getElementById('stock-pool-list');
+  if (!list) { list = document.createElement('datalist'); list.id = 'stock-pool-list'; document.body.appendChild(list); }
+  list.replaceChildren();
+  const seen = new Set();
+  Object.values(poolScoresMap).forEach(s => {
+    const code = String(s.code || '');
+    if (!code || seen.has(code) || !s.name) return;
+    seen.add(code);
+    const option = document.createElement('option');
+    option.value = code;
+    option.label = `${s.name} (${s.sector || '台股'})`;
+    list.appendChild(option);
+  });
+  Object.entries(commonTWStockMap).forEach(([name, code]) => {
+    if (seen.has(code)) return;
+    seen.add(code);
+    const option = document.createElement('option'); option.value = code; option.label = name; list.appendChild(option);
+  });
+  document.getElementById('form-code')?.setAttribute('list', 'stock-pool-list');
 }
 
-async function init(){
-  await loadStockPrices();
+async function loadTheses() {
+  try { serverData = await fetchJSON('research_theses.json'); }
+  catch (e) { serverData = { theses: {} }; console.warn('research_theses.json 載入失敗', e); }
+  if (!serverData.theses || typeof serverData.theses !== 'object') serverData.theses = {};
+  localOverrides = {};
+  deletedCodes = new Set();
 
-  // 1. 優先從伺服器載入最新 research_theses.json
-  let serverData = { theses: {} };
-  try{
-    const res = await fetch('research_theses.json?v=' + Date.now());
-    if(res.ok){
-      serverData = await res.json();
-    }
-  }catch(e){}
-
-  rawFullData = serverData;
-  thesisData = serverData.theses || {};
-
-  // 2. 融合 localStorage 中的使用者自訂/新增卡片
-  const localSaved = localStorage.getItem('user_research_theses');
-  if(localSaved){
-    try {
-      const parsed = JSON.parse(localSaved);
-      const localTheses = parsed.theses || {};
-      Object.keys(localTheses).forEach(code => {
-        if(!thesisData[code]){
-          thesisData[code] = localTheses[code];
-        } else {
-          const sItem = thesisData[code];
-          const lItem = localTheses[code];
-          thesisData[code] = {
-            ...lItem,
-            ...sItem,
-            broker_reports: (sItem.broker_reports && sItem.broker_reports.length) ? sItem.broker_reports : (lItem.broker_reports || []),
-            consensus_forecast: sItem.consensus_forecast || lItem.consensus_forecast,
-            thesis_points: sItem.thesis_points || lItem.thesis_points
-          };
-        }
+  try {
+    const saved = JSON.parse(localStorage.getItem(LOCAL_KEY) || 'null');
+    if (saved) {
+      localOverrides = saved.overrides || {};
+      deletedCodes = new Set(saved.deleted_codes || []);
+    } else {
+      // 舊版 localStorage 可能存了整份合併資料；只自動保留伺服器尚不存在的卡片。
+      const legacy = JSON.parse(localStorage.getItem('user_research_theses') || 'null');
+      const oldTheses = legacy?.theses || {};
+      Object.keys(oldTheses).forEach(code => {
+        const oldItem = oldTheses[code];
+        if (!serverData.theses[code] || JSON.stringify(oldItem) !== JSON.stringify(serverData.theses[code])) localOverrides[code] = oldItem;
       });
-    } catch(e){}
-  }
+      if (legacy?.deleted_codes) deletedCodes = new Set(legacy.deleted_codes);
+      persistLocalState();
+    }
+  } catch (e) { console.warn('本機研究資料讀取失敗', e); }
 
-  const updatedDate = serverData.last_updated || new Date().toISOString().split('T')[0];
-  document.getElementById('stat-info').textContent = `最後更新: ${updatedDate} ｜ 共 ${Object.keys(thesisData).length} 檔標的`;
+  thesisData = { ...serverData.theses, ...localOverrides };
+  deletedCodes.forEach(code => delete thesisData[code]);
+  rawFullData = { ...serverData, theses: thesisData };
+  updateStatus();
   renderCards(thesisData);
 }
 
-function saveLocalData(){
-  rawFullData.theses = thesisData;
-  rawFullData.last_updated = new Date().toISOString().split('T')[0];
-  localStorage.setItem('user_research_theses', JSON.stringify(rawFullData));
-  document.getElementById('stat-info').textContent = `最後更新: ${rawFullData.last_updated} ｜ 共 ${Object.keys(thesisData).length} 檔標的`;
+function persistLocalState() {
+  localStorage.setItem(LOCAL_KEY, JSON.stringify({ overrides: localOverrides, deleted_codes: [...deletedCodes] }));
+}
+function updateStatus(message = '') {
+  const count = Object.keys(thesisData).length;
+  const serverDate = serverData.last_updated || '日期未提供';
+  document.getElementById('stat-info').textContent = message || `伺服器資料：${serverDate}｜${count} 檔；本機變更 ${Object.keys(localOverrides).length} 筆`;
+}
+function saveLocalData(code) {
+  if (code) localOverrides[code] = thesisData[code];
+  persistLocalState();
+  rawFullData = { ...serverData, theses: thesisData };
+  updateStatus('已儲存至本機；尚未更新 GitHub 上的 JSON');
   renderCards(thesisData);
 }
 
-async function refreshData(){
+async function init() {
+  initTheme();
+  await Promise.all([loadMarketData(), loadTheses()]);
+}
+async function refreshData() {
   const btn = document.getElementById('btn-refresh');
-  if(btn){
-    btn.blur();
-    btn.textContent = '🔄 同步中...';
-  }
-  const statBtn = document.getElementById('stat-info');
-  if(statBtn) statBtn.textContent = '🔄 正在從伺服器同步最新研報與價格數據...';
-  
-  const localSaved = localStorage.getItem('user_research_theses');
-  if(localSaved){
-    try {
-      const parsed = JSON.parse(localSaved);
-      const res = await fetch('research_theses.json?v=' + Date.now());
-      if(res.ok){
-        const sData = await res.json();
-        const sCodes = new Set(Object.keys(sData.theses || {}));
-        let cleanTheses = {};
-        Object.keys(parsed.theses || {}).forEach(code => {
-          if(!sCodes.has(code)){
-            cleanTheses[code] = parsed.theses[code];
-          }
-        });
-        parsed.theses = cleanTheses;
-        localStorage.setItem('user_research_theses', JSON.stringify(parsed));
-      }
-    } catch(e){}
-  }
-  
-  window.location.reload();
+  if (btn) btn.textContent = '重新載入中…';
+  await Promise.all([loadMarketData(), loadTheses()]);
+  if (btn) btn.textContent = '🔄 重新載入伺服器資料';
 }
 
-function renderCards(theses){
+function getVerifiedBrokerReports(item) {
+  return (item.broker_reports || []).filter(r => {
+    return r.verification_status === 'verified' && r.report_date && safeHttpUrl(r.source_url) && validPrice(r.target_price);
+  });
+}
+function getBias(item) {
+  const bias = String(item.overall_bias || 'unknown').toLowerCase();
+  return ['bull','base','bear'].includes(bias) ? bias : 'unknown';
+}
+function renderCards(theses) {
   const container = document.getElementById('main-content');
+  container.replaceChildren();
   const codes = Object.keys(theses);
-  if(!codes.length){
-    container.innerHTML = '<div class="loading">目前尚未建立任何 Thesis 紀錄</div>';
-    return;
+  if (!codes.length) {
+    const empty = document.createElement('div'); empty.className = 'loading'; empty.textContent = '目前尚未建立任何 Thesis 紀錄'; container.appendChild(empty); return;
   }
 
-  let html = '<div class="grid">';
-  codes.forEach(code => {
-    const item = theses[code];
-    const curPrice = stockPrices[code];
-    const curPriceHtml = curPrice ? `<span style="font-family:var(--mono);font-size:14px;font-weight:700;color:var(--amber);margin-left:auto;">現價 ${curPrice} 元</span>` : '';
-
+  const grid = document.createElement('div'); grid.className = 'grid';
+  codes.sort().forEach(code => {
+    const item = theses[code] || {};
+    const quote = priceInfo[code];
+    const priceText = quote?.price ? `參考價 ${quote.price} 元｜${quote.type}｜資料時間 ${quote.updated || '未提供'}${quote.fresh ? '' : '（過期）'}` : '價格未取得';
     const forecast = item.consensus_forecast || {};
     const epsRange = forecast['2026_eps_range'];
     const peRange = forecast['target_pe_range'];
-
-    const eps = (epsRange && epsRange.length === 2) ? `${epsRange[0]} ~ ${epsRange[1]} 元` : '未提供';
-    const pe = (peRange && peRange.length === 2) ? `${peRange[0]} ~ ${peRange[1]} 倍` : '未提供';
-
+    const goodRange = arr => Array.isArray(arr) && arr.length === 2 && arr.every(v => Number.isFinite(Number(v))) && Number(arr[0]) <= Number(arr[1]);
+    const eps = goodRange(epsRange) ? `${epsRange[0]} ~ ${epsRange[1]} 元` : '未提供';
+    const pe = goodRange(peRange) ? `${peRange[0]} ~ ${peRange[1]} 倍` : '未提供';
+    const forecastVerified = forecast.verification_status === 'verified' && forecast.as_of && (safeHttpUrl(forecast.source_url) || forecast.source);
     let impliedTarget = '';
-    let impliedMin = 0, impliedMax = 0;
-    if(epsRange && epsRange.length === 2 && peRange && peRange.length === 2){
-      impliedMin = Math.round(epsRange[0] * peRange[0]);
-      impliedMax = Math.round(epsRange[1] * peRange[1]);
-      impliedTarget = `${impliedMin} ~ ${impliedMax} 元`;
+    if (goodRange(epsRange) && goodRange(peRange) && Number(epsRange[0]) > 0 && Number(peRange[0]) > 0) {
+      impliedTarget = `${Math.round(Number(epsRange[0]) * Number(peRange[0]))} ~ ${Math.round(Number(epsRange[1]) * Number(peRange[1]))} 元`;
     }
-
-    // 券商平均目標價計算
-    let brokerAvg = 0;
-    let bTargets = [];
-    if(item.broker_reports && item.broker_reports.length){
-      bTargets = item.broker_reports.map(r => r.target_price).filter(Boolean);
-      if(bTargets.length){
-        brokerAvg = Math.round(bTargets.reduce((a,b)=>a+b, 0) / bTargets.length);
-      }
+    const verifiedReports = getVerifiedBrokerReports(item);
+    const brokerAvg = verifiedReports.length ? Math.round(verifiedReports.reduce((sum, r) => sum + Number(r.target_price), 0) / verifiedReports.length) : null;
+    let upside = '';
+    if (quote?.fresh && brokerAvg && quote.price) {
+      const pct = Math.round((brokerAvg - quote.price) / quote.price * 100);
+      upside = `<span style="color:${pct >= 0 ? 'var(--green)' : 'var(--red)'};font-weight:700;">目標價均值差 ${pct >= 0 ? '+' : ''}${pct}%</span>`;
     }
-
-    // 漲幅潛力計算 (與現價比較)
-    let upsideHtml = '';
-    if(curPrice && brokerAvg){
-      const upsidePct = Math.round(((brokerAvg - curPrice) / curPrice) * 100);
-      const color = upsidePct >= 0 ? 'var(--green)' : 'var(--red)';
-      upsideHtml = `<span style="font-size:11px;padding:2px 6px;border-radius:4px;background:rgba(${upsidePct>=0?'63,201,124':'242,95,95'},0.15);color:${color};font-weight:700;">目標漲幅 ${upsidePct>=0?'+':''}${upsidePct}%</span>`;
-    }
-
-    // 多空偏向評級 (樂觀/悲觀亮燈)
-    let bias = item.overall_bias || '';
-    if(!bias){
-      if(curPrice && brokerAvg && brokerAvg >= curPrice * 1.08){
-        bias = 'bull';
-      } else if(curPrice && brokerAvg && brokerAvg < curPrice * 0.95){
-        bias = 'bear';
-      } else {
-        bias = 'bull';
-      }
-    }
-
-    // 情境亮燈與純圖示套用 (無多餘文字)
-    let bullClass = 'sc-item sc-bull' + (bias === 'bull' ? ' active-scenario-bull' : '');
-    let baseClass = 'sc-item sc-base' + (bias === 'base' ? ' active-scenario-base' : '');
-    let bearClass = 'sc-item sc-bear' + (bias === 'bear' ? ' active-scenario-bear' : '');
-
-    let bullIcon = bias === 'bull' ? '<span style="font-size:14px;margin-left:auto;">🔥</span>' : '';
-    let baseIcon = bias === 'base' ? '<span style="font-size:14px;margin-left:auto;">⚖️</span>' : '';
-    let bearIcon = bias === 'bear' ? '<span style="font-size:14px;margin-left:auto;">⚠️</span>' : '';
-
-    const points = item.thesis_points || {};
-    const catalysts = item.catalysts || [];
-
-    html += `
-      <div class="card" data-code="${code}" data-name="${item.stock_name}">
-        <div class="card-header">
-          <div style="flex:1;">
-            <div style="display:flex;align-items:center;gap:8px;">
-              <span class="stock-code">${code}</span>
-              <span class="stock-name">${item.stock_name}</span>
-              ${curPriceHtml}
-            </div>
-            <div style="margin-top:4px;"><span class="cat-tag">${item.category || '未分類'}</span></div>
-          </div>
-          <div class="card-actions">
-            <button class="btn-action btn-del" onclick="deleteCard('${code}'); this.blur();" title="刪除">🗑️ 刪除</button>
-          </div>
-        </div>
-
-        <div class="consensus-box">
-          <div class="c-item">
-            <div class="c-label">2026 EPS 共識區間</div>
-            <div class="c-val">${eps}</div>
-          </div>
-          <div class="c-item">
-            <div class="c-label">目標 PE 本益比區間</div>
-            <div class="c-val">${pe}</div>
-          </div>
-          ${impliedTarget ? `
-          <div class="c-item" style="grid-column:1 / -1;border-top:1px dashed var(--border);padding-top:8px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;">
-            <div class="c-label" style="margin:0;">🤖 演算法估價 (EPS × PE)</div>
-            <div class="c-val" style="color:var(--amber);font-weight:700;font-size:13px;display:flex;align-items:center;gap:6px;">
-              ≈ ${impliedTarget} ${upsideHtml}
-            </div>
-          </div>` : ''}
-        </div>
-
-        <div class="scenario-title">Bull / Base / Bear 三情境評估</div>
-        <div class="scenario-list">
-          ${points.bull ? `<div class="${bullClass}"><span class="sc-icon" style="font-weight:bold;color:var(--green);">樂觀</span><div style="flex:1;">${points.bull}</div>${bullIcon}</div>` : ''}
-          ${points.base ? `<div class="${baseClass}"><span class="sc-icon" style="font-weight:bold;color:var(--blue);">基準</span><div style="flex:1;">${points.base}</div>${baseIcon}</div>` : ''}
-          ${points.bear ? `<div class="${bearClass}"><span class="sc-icon" style="font-weight:bold;color:var(--red);">悲觀</span><div style="flex:1;">${points.bear}</div>${bearIcon}</div>` : ''}
-        </div>
-
-        ${catalysts.length ? `
-          <div class="scenario-title">核心營運催化劑</div>
-          <div class="catalysts-wrap">
-            <div class="cat-list">
-              ${catalysts.map(c => `<span class="cat-chip">🚀 ${c}</span>`).join('')}
-            </div>
-          </div>
-        ` : ''}
-
-        ${item.broker_reports && item.broker_reports.length ? `
-          <div class="scenario-title">🏛️ 外資與投信研報目標價</div>
-          <div class="catalysts-wrap" style="margin-bottom:14px;">
-            <div style="display:flex;flex-direction:column;gap:6px;">
-              ${item.broker_reports.map(r => `
-                <div style="font-family:var(--mono);font-size:11px;background:var(--bg3);border:1px solid var(--border2);padding:6px 10px;border-radius:var(--r);display:flex;justify-content:space-between;align-items:center;">
-                  <span style="color:var(--amber);font-weight:500;">${r.broker || '券商'} (${r.rating || '中立'})</span>
-                  <span style="color:var(--text);font-weight:700;">目標價: ${r.target_price ? r.target_price + ' 元' : '未提供'}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        ` : ''}
-
-        ${item.last_report_note ? `<div class="report-note">${item.last_report_note}</div>` : ''}
-      </div>
-    `;
+    const bias = getBias(item);
+    const scenario = (key, label, text, cls, icon) => text ? `<div class="sc-item sc-${cls}${bias === key ? ` active-scenario-${cls}` : ''}"><span class="sc-icon">${label}</span><div style="flex:1;white-space:pre-wrap;">${esc(text)}</div>${bias === key ? `<span style="margin-left:auto;">${icon}</span>` : ''}</div>` : '';
+    const brokersHtml = (item.broker_reports || []).map(r => {
+      const verified = getVerifiedBrokerReports({broker_reports:[r]}).length > 0;
+      const url = safeHttpUrl(r.source_url);
+      const source = url ? `｜<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">來源</a>` : '';
+      return `<div style="font-size:11px;background:var(--bg3);border:1px solid var(--border2);padding:7px 10px;border-radius:var(--r);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;"><span style="color:var(--amber);">${esc(r.broker || '券商')}（${esc(r.rating || '未提供評等')}）｜${esc(r.report_date || '日期未提供')}${source}</span><span>目標價：${validPrice(r.target_price) || '未提供'} 元｜${verified ? '已標記核實' : '未核實，不計入均值'}</span></div>`;
+    }).join('');
+    const catalysts = Array.isArray(item.catalysts) ? item.catalysts : [];
+    const card = document.createElement('article'); card.className = 'card'; card.dataset.code = code; card.dataset.name = item.stock_name || '';
+    card.innerHTML = `
+      <div class="card-header"><div style="flex:1;"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><span class="stock-code">${esc(code)}</span><span class="stock-name">${esc(item.stock_name || code)}</span></div><div style="margin-top:6px;"><span class="cat-tag">${esc(item.category || '未分類')}</span></div><div style="font-size:11px;color:var(--text2);margin-top:6px;">${esc(priceText)}</div>${quote?.note ? `<div style="font-size:10px;color:var(--text3);margin-top:3px;">${esc(quote.note)}</div>` : ''}</div><div class="card-actions"><button class="btn-action" data-action="edit" data-code="${esc(code)}">編輯</button><button class="btn-action btn-del" data-action="delete" data-code="${esc(code)}">刪除</button></div></div>
+      <div class="consensus-box"><div class="c-item"><div class="c-label">2026 EPS 區間${forecastVerified ? '（已標示來源）' : '（來源待核實）'}</div><div class="c-val">${esc(eps)}</div>${forecast.source_url && safeHttpUrl(forecast.source_url) ? `<div style="margin-top:3px;font-size:10px;"><a href="${esc(safeHttpUrl(forecast.source_url))}" target="_blank" rel="noopener noreferrer">來源</a>｜${esc(forecast.as_of || '')}</div>` : ''}</div><div class="c-item"><div class="c-label">估值假設 PE</div><div class="c-val">${esc(pe)}</div></div>${impliedTarget ? `<div class="c-item" style="grid-column:1/-1;border-top:1px dashed var(--border);padding-top:8px;margin-top:4px;"><div class="c-label">情境估值（EPS × PE；非券商目標價）</div><div class="c-val" style="color:var(--amber);">${esc(impliedTarget)} ${upside}</div></div>` : ''}</div>
+      <div class="scenario-title">Bull / Base / Bear 情境｜${bias === 'unknown' ? '傾向未知，不亮燈' : ({bull:'偏多',base:'中立',bear:'偏空'}[bias])}</div><div class="scenario-list">${scenario('bull','樂觀',item.thesis_points?.bull,'bull','🔥')}${scenario('base','基準',item.thesis_points?.base,'base','⚖️')}${scenario('bear','悲觀',item.thesis_points?.bear,'bear','⚠️')}${bias === 'unknown' ? '<div style="font-size:11px;color:var(--text3);">未設定明確研究傾向；不會依目標價自動推定多空。</div>' : ''}</div>
+      ${catalysts.length ? `<div class="scenario-title">已輸入的催化劑（未自動驗證）</div><div class="catalysts-wrap"><div class="cat-list">${catalysts.map(c => `<span class="cat-chip">${esc(c)}</span>`).join('')}</div></div>` : ''}
+      ${brokersHtml ? `<div class="scenario-title">券商目標價與來源狀態</div><div class="catalysts-wrap" style="display:flex;flex-direction:column;gap:6px;">${brokersHtml}</div>` : ''}
+      ${item.last_report_note ? `<div class="report-note" style="white-space:pre-wrap;">${esc(item.last_report_note)}</div>` : ''}`;
+    grid.appendChild(card);
   });
-  html += '</div>';
-  container.innerHTML = html;
-}
-
-function filterCards(){
-  const query = document.getElementById('search').value.trim().toLowerCase();
-  const cards = document.querySelectorAll('.card');
-  let matchCount = 0;
-
-  cards.forEach(card => {
-    const code = (card.getAttribute('data-code') || '').toLowerCase();
-    const name = (card.getAttribute('data-name') || '').toLowerCase();
-    if(code.includes(query) || name.includes(query)){
-      card.style.display = '';
-      matchCount++;
-    }else{
-      card.style.display = 'none';
-    }
-  });
-
-  let noMatchEl = document.getElementById('no-match-box');
-  if(matchCount === 0 && query){
-    if(!noMatchEl){
-      noMatchEl = document.createElement('div');
-      noMatchEl.id = 'no-match-box';
-      noMatchEl.style.cssText = 'text-align:center;padding:50px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);margin-top:20px;';
-      document.getElementById('main-content').appendChild(noMatchEl);
-    }
-    const qStr = document.getElementById('search').value.trim();
-    noMatchEl.innerHTML = `
-      <div style="font-size:32px;margin-bottom:10px;">🔍</div>
-      <div style="font-size:15px;color:var(--text);font-weight:500;margin-bottom:6px;">找不到「<span style="color:var(--amber);">${qStr}</span>」的 Thesis 分析卡片</div>
-      <div style="font-size:12px;color:var(--text3);margin-bottom:16px;">您可以一鍵讓 AI 自動產生基本面估算與研報卡片，或手動建立</div>
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-        <button class="btn-submit" style="background:var(--amber);color:#000;font-weight:bold;padding:10px 20px;" onclick="openModalWithAutoGenerate('${qStr}'); this.blur();">🤖 一鍵 AI 自動生成 ${qStr} 研報卡片</button>
-        <button class="btn-cancel" style="padding:10px 16px;" onclick="openModalWithSearch('${qStr}'); this.blur();">＋ 手動建立分析卡片</button>
-      </div>
-    `;
-    noMatchEl.style.display = 'block';
-  } else if(noMatchEl) {
-    noMatchEl.style.display = 'none';
-  }
-}
-
-const commonTWStockMap = {
-  '佳能': '2374',
-  '台積電': '2330',
-  '聯電': '2303',
-  '鴻海': '2317',
-  '廣達': '2382',
-  '緯創': '3231',
-  '緯穎': '6669',
-  '技嘉': '2376',
-  '微星': '2377',
-  '華碩': '2357',
-  '奇鋐': '3017',
-  '雙鴻': '3324',
-  '世芯': '3661',
-  '信驊': '5274',
-  '波若威': '3163',
-  '台燿': '6274',
-  '強茂': '2481',
-  '富邦金': '2881',
-  '中興電': '1513',
-  '康舒': '6282',
-  '長榮': '2603',
-  '萬海': '2615',
-  '長榮航': '2618',
-  '京元電': '2449',
-  '京元電子': '2449',
-  '國巨': '2327',
-  '欣興': '3037'
-};
-
-function onCodeInput(val){
-  const key = val.trim().toUpperCase();
-  if(!key) return;
-  if(poolScoresMap[key]){
-    document.getElementById('form-name').value = poolScoresMap[key].name;
-  } else if(commonTWStockMap[key]){
-    const resolvedCode = commonTWStockMap[key];
-    document.getElementById('form-code').value = resolvedCode;
-    document.getElementById('form-name').value = key;
-  } else {
-    const foundName = Object.keys(commonTWStockMap).find(k => commonTWStockMap[k] === key);
-    if(foundName){
-      document.getElementById('form-name').value = foundName;
-    }
-  }
-}
-
-function onNameInput(val){
-  const name = val.trim();
-  if(!name) return;
-  if(commonTWStockMap[name]){
-    document.getElementById('form-code').value = commonTWStockMap[name];
-  } else if(poolScoresMap[name]){
-    document.getElementById('form-code').value = poolScoresMap[name].code;
-  } else if(rawFullData && rawFullData.theses){
-    const foundCode = Object.keys(rawFullData.theses).find(c => (rawFullData.theses[c].stock_name || '') === name);
-    if(foundCode) document.getElementById('form-code').value = foundCode;
-  }
-}
-
-function openModalWithSearch(qStr){
-  openModal();
-  const numMatch = qStr.match(/\d{4,6}/);
-  if(numMatch){
-    document.getElementById('form-code').value = numMatch[0];
-    const restName = qStr.replace(numMatch[0], '').trim();
-    if(restName) document.getElementById('form-name').value = restName;
-    else if(poolScoresMap[numMatch[0]]) document.getElementById('form-name').value = poolScoresMap[numMatch[0]].name;
-  } else {
-    document.getElementById('form-name').value = qStr;
-    if(poolScoresMap[qStr]) document.getElementById('form-code').value = poolScoresMap[qStr].code;
-    else if(commonTWStockMap[qStr]) document.getElementById('form-code').value = commonTWStockMap[qStr];
-  }
-}
-
-function openModalWithAutoGenerate(qStr){
-  openModalWithSearch(qStr);
-  autoGenerateThesisInModal();
-  const fakeEvent = { preventDefault: () => {} };
-  handleFormSubmit(fakeEvent);
-  document.getElementById('search').value = '';
+  container.appendChild(grid);
   filterCards();
 }
 
-function autoGenerateThesisInModal(){
-  let codeInput = document.getElementById('form-code');
-  let nameInput = document.getElementById('form-name');
+function filterCards() {
+  const query = document.getElementById('search').value.trim().toLowerCase();
+  let count = 0;
+  document.querySelectorAll('.card').forEach(card => {
+    const match = (card.dataset.code || '').toLowerCase().includes(query) || (card.dataset.name || '').toLowerCase().includes(query);
+    card.style.display = match ? '' : 'none'; if (match) count++;
+  });
+  const container = document.getElementById('main-content');
+  let box = document.getElementById('no-match-box');
+  if (query && count === 0) {
+    if (!box) { box = document.createElement('div'); box.id = 'no-match-box'; box.style.cssText = 'text-align:center;padding:36px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);margin-top:20px;'; container.appendChild(box); }
+    box.replaceChildren();
+    const title = document.createElement('div'); title.style.marginBottom = '8px'; title.textContent = `找不到「${document.getElementById('search').value.trim()}」的 Thesis 卡片`;
+    const hint = document.createElement('div'); hint.style.cssText = 'font-size:12px;color:var(--text3);margin-bottom:14px;'; hint.textContent = '可以建立一張空白研究卡，或產生待驗證的估值情境草稿。';
+    const manual = document.createElement('button'); manual.className = 'btn-cancel'; manual.textContent = '＋ 手動建立'; manual.onclick = () => openModalWithSearch(document.getElementById('search').value.trim());
+    const draft = document.createElement('button'); draft.className = 'btn-submit'; draft.style.marginLeft = '8px'; draft.textContent = '產生估值草稿'; draft.onclick = () => { openModalWithSearch(document.getElementById('search').value.trim()); autoGenerateThesisInModal(); };
+    box.append(title, hint, manual, draft); box.style.display = 'block';
+  } else if (box) box.remove();
+}
+
+function onCodeInput(value) {
+  const key = value.trim().toUpperCase();
+  if (poolScoresMap[key]) document.getElementById('form-name').value = poolScoresMap[key].name || '';
+  else if (commonTWStockMap[key]) { document.getElementById('form-code').value = commonTWStockMap[key]; document.getElementById('form-name').value = key; }
+  else { const name = Object.keys(commonTWStockMap).find(k => commonTWStockMap[k] === key); if (name) document.getElementById('form-name').value = name; }
+}
+function onNameInput(value) {
+  const name = value.trim();
+  if (commonTWStockMap[name]) document.getElementById('form-code').value = commonTWStockMap[name];
+  else if (poolScoresMap[name]) document.getElementById('form-code').value = poolScoresMap[name].code;
+  else { const found = Object.keys(thesisData).find(code => thesisData[code].stock_name === name); if (found) document.getElementById('form-code').value = found; }
+}
+function openModalWithSearch(query) {
+  openModal();
+  const value = String(query || '').trim();
+  const match = value.match(/\d{4,6}/);
+  if (match) {
+    document.getElementById('form-code').value = match[0];
+    const rest = value.replace(match[0], '').trim();
+    document.getElementById('form-name').value = rest || poolScoresMap[match[0]]?.name || match[0];
+  } else {
+    document.getElementById('form-name').value = value;
+    document.getElementById('form-code').value = poolScoresMap[value]?.code || commonTWStockMap[value] || '';
+  }
+}
+function openModalWithAutoGenerate(query) { openModalWithSearch(query); autoGenerateThesisInModal(); }
+
+function autoGenerateThesisInModal() {
+  const codeInput = document.getElementById('form-code');
+  const nameInput = document.getElementById('form-name');
   let code = codeInput.value.trim().toUpperCase();
   let name = nameInput.value.trim();
-
-  if(!code && name){
-    if(commonTWStockMap[name]) code = commonTWStockMap[name];
-    else if(poolScoresMap[name]) code = poolScoresMap[name].code;
-    if(code) codeInput.value = code;
-  }
-
-  if(code && !name){
-    if(poolScoresMap[code]) name = poolScoresMap[code].name;
-    else {
-      const foundName = Object.keys(commonTWStockMap).find(k => commonTWStockMap[k] === code);
-      if(foundName) name = foundName;
-      else name = code;
-    }
-    nameInput.value = name;
-  }
-
-  let matched = poolScoresMap[code] || poolScoresMap[name];
-
-  if(!code && !name){
-    alert('請先輸入或選擇股票代號（例如：2330 或 2374 佳能）');
-    return;
-  }
-
-  if(matched){
-    code = String(matched.code);
-    name = matched.name;
-    codeInput.value = code;
-    nameInput.value = name;
-  } else if(!name){
-    name = code;
-    nameInput.value = name;
-  }
-
-  const price = matched ? matched.price : 0;
-  const sector = (matched && matched.sector) ? matched.sector : '電子零組件';
-  const score = matched ? (matched.score || 3) : 3;
-
+  if (!code && commonTWStockMap[name]) code = commonTWStockMap[name];
+  if (!code && poolScoresMap[name]) code = String(poolScoresMap[name].code);
+  if (code && !name) name = poolScoresMap[code]?.name || Object.keys(commonTWStockMap).find(k => commonTWStockMap[k] === code) || code;
+  if (!code && !name) { alert('請先輸入股票代號或名稱'); return; }
+  codeInput.value = code; nameInput.value = name || code;
+  const matched = poolScoresMap[code] || poolScoresMap[name] || {};
+  const sector = matched.sector || '產業待確認';
   let peLow = 16, peHigh = 22;
-  if(sector.includes('金融') || sector.includes('保險')){
-    peLow = 12; peHigh = 16;
-  } else if(sector.includes('半導體') || sector.includes('晶圓') || sector.includes('IC')){
-    peLow = 20; peHigh = 26;
-  } else if(sector.includes('電腦') || sector.includes('伺服器') || sector.includes('電子') || sector.includes('網通') || sector.includes('通信')){
-    peLow = 16; peHigh = 22;
-  } else if(sector.includes('光電') || sector.includes('零組件')){
-    peLow = 15; peHigh = 20;
-  } else if(sector.includes('航運') || sector.includes('鋼鐵')){
-    peLow = 8; peHigh = 14;
-  }
-
-  let epsLow = 3.5, epsHigh = 5.0;
-  if(price > 0){
-    epsLow = Math.round((price / peHigh) * 10) / 10;
-    epsHigh = Math.round((price / peLow * 1.12) * 10) / 10;
-    if(epsLow <= 0) epsLow = 1.0;
-    if(epsHigh <= epsLow) epsHigh = Math.round((epsLow * 1.25) * 10) / 10;
-  }
-
-  const bullTarget = Math.round(epsHigh * peHigh);
-  const baseTarget = Math.round(((epsLow + epsHigh) / 2) * ((peLow + peHigh) / 2));
-  const bearTarget = Math.round(epsLow * peLow);
-
-  document.getElementById('form-category').value = `${sector} 供應鏈`;
-  document.getElementById('form-bias').value = 'bull';
-  document.getElementById('form-eps-low').value = epsLow;
-  document.getElementById('form-eps-high').value = epsHigh;
+  if (/金融|保險/.test(sector)) { peLow = 12; peHigh = 16; }
+  else if (/半導體|晶圓|IC/.test(sector)) { peLow = 20; peHigh = 26; }
+  else if (/光電|零組件/.test(sector)) { peLow = 15; peHigh = 20; }
+  else if (/航運|鋼鐵/.test(sector)) { peLow = 8; peHigh = 14; }
+  document.getElementById('form-category').value = sector === '產業待確認' ? '' : sector;
+  document.getElementById('form-bias').value = 'unknown';
+  document.getElementById('form-eps-low').value = '';
+  document.getElementById('form-eps-high').value = '';
   document.getElementById('form-pe-low').value = peLow;
   document.getElementById('form-pe-high').value = peHigh;
-
-  document.getElementById('form-bull').value = `🐂 樂觀情境：${name}(${code}) 受益於 ${sector} 需求擴增與新產能放量，高毛利產品比重提升，預估 2026 年 EPS 可達 ${epsHigh} 元，目標價上看 ${bullTarget} 元。`;
-  document.getElementById('form-base').value = `⚖️ 基準情境：主營業務需求穩健，產能利用率維持高檔，客戶訂單節奏符合預期，預估 2026 年 EPS 落在 ${epsLow} ~ ${epsHigh} 元區間，估算合理目標價約 ${baseTarget} 元。`;
-  document.getElementById('form-bear').value = `🐻 悲觀情境：產業終端庫存去化延後或降價競爭，毛利率受侵蝕，獲利探底至 EPS ${epsLow} 元，目標價下修至 ${bearTarget} 元。`;
-
-  let catList = [`${sector}規格升級`, '新產能擴充放量', '法人籌碼持續集中', '法說會展望樂觀'];
-  if(sector.includes('半導體') || sector.includes('晶圓')) catList = ['AI/高階製程需求', '先進封裝產能放量', '外資投信聯手加碼', '單月營收創歷史新高'];
-  else if(sector.includes('金融')) catList = ['降息循環利差回升', '股利發放率優異', '資產品質穩健', '法人長線買超'];
-  else if(sector.includes('通信') || sector.includes('網通')) catList = ['800G / 光通訊升級波段', '美系大廠直接下單', '大戶持股比例創新高', '毛利率明顯上升'];
-  document.getElementById('form-catalysts').value = catList.join(', ');
-
-  const b1Price = Math.round(bullTarget * 0.96);
-  const b2Price = Math.round(baseTarget * 1.03);
-  document.getElementById('form-brokers').value = `美系外資,買進,${b1Price} ; 國內大型金控投顧,增加持股,${b2Price}`;
-
-  const currentPriceText = price ? `當前股價約 ${price} 元，` : '';
-  document.getElementById('form-note').value = `${currentPriceText}根據 ${sector} 產業最新展望與籌碼指標（綜合評分 ${score}/5），基本面與技術面均維持良好走勢，主力與外資法人持股穩定，建議逢拉回分批佈局。`;
+  document.getElementById('form-bull').value = '假設：營收、毛利率或產品組合優於基準預期。請補入可查證的數據與失效條件。';
+  document.getElementById('form-base').value = '假設：營運大致符合公司指引與市場預期。請補入 EPS 來源、年度與主要假設。';
+  document.getElementById('form-bear').value = '假設：需求、毛利率或競爭狀況惡化。請補入可驗證的風險指標與失效條件。';
+  document.getElementById('form-catalysts').value = '';
+  document.getElementById('form-brokers').value = '';
+  document.getElementById('form-note').value = '此為程式產生的估值情境草稿，非 AI 生成或已查證研報。EPS、催化劑、券商目標價及來源均需自行核實後填入。';
 }
 
-// Modal Form & Operations
-function openModal(code = null){
+function openModal(code = null) {
   editingCode = code;
-  const overlay = document.getElementById('modal-overlay');
+  document.getElementById('thesis-form').reset();
+  document.getElementById('form-code').readOnly = false;
+  document.getElementById('form-bias').value = 'unknown';
   const title = document.getElementById('modal-title');
-  const form = document.getElementById('thesis-form');
-  form.reset();
-
-  if(code && thesisData[code]){
-    title.textContent = `✏️ 編輯 ${code} ${thesisData[code].stock_name} Thesis`;
-    const item = thesisData[code];
-    document.getElementById('form-code').value = code;
-    document.getElementById('form-code').readOnly = true;
+  if (code && thesisData[code]) {
+    const item = thesisData[code]; title.textContent = `編輯 ${code} ${item.stock_name || ''} Thesis`;
+    document.getElementById('form-code').value = code; document.getElementById('form-code').readOnly = true;
     document.getElementById('form-name').value = item.stock_name || '';
     document.getElementById('form-category').value = item.category || '';
-    document.getElementById('form-bias').value = item.overall_bias || 'bull';
-    
+    document.getElementById('form-bias').value = getBias(item);
     const fc = item.consensus_forecast || {};
-    if(fc['2026_eps_range']){
-      document.getElementById('form-eps-low').value = fc['2026_eps_range'][0] || '';
-      document.getElementById('form-eps-high').value = fc['2026_eps_range'][1] || '';
-    }
-    if(fc['target_pe_range']){
-      document.getElementById('form-pe-low').value = fc['target_pe_range'][0] || '';
-      document.getElementById('form-pe-high').value = fc['target_pe_range'][1] || '';
-    }
-
-    const pts = item.thesis_points || {};
-    document.getElementById('form-bull').value = pts.bull || '';
-    document.getElementById('form-base').value = pts.base || '';
-    document.getElementById('form-bear').value = pts.bear || '';
+    if (Array.isArray(fc['2026_eps_range'])) { document.getElementById('form-eps-low').value = fc['2026_eps_range'][0] ?? ''; document.getElementById('form-eps-high').value = fc['2026_eps_range'][1] ?? ''; }
+    if (Array.isArray(fc.target_pe_range)) { document.getElementById('form-pe-low').value = fc.target_pe_range[0] ?? ''; document.getElementById('form-pe-high').value = fc.target_pe_range[1] ?? ''; }
+    document.getElementById('form-eps-source').value = fc.source_url || '';
+    document.getElementById('form-eps-date').value = fc.as_of || '';
+    document.getElementById('form-eps-status').value = fc.verification_status === 'verified' ? 'verified' : 'unverified';
+    document.getElementById('form-bull').value = item.thesis_points?.bull || '';
+    document.getElementById('form-base').value = item.thesis_points?.base || '';
+    document.getElementById('form-bear').value = item.thesis_points?.bear || '';
     document.getElementById('form-catalysts').value = (item.catalysts || []).join(', ');
-    
-    if(item.broker_reports && item.broker_reports.length){
-      document.getElementById('form-brokers').value = item.broker_reports.map(r => `${r.broker||''},${r.rating||''},${r.target_price||''}`).join(' ; ');
-    } else {
-      document.getElementById('form-brokers').value = '';
-    }
-
+    document.getElementById('form-brokers').value = (item.broker_reports || []).map(r => [r.broker || '', r.rating || '', r.target_price ?? '', r.report_date || '', r.source_url || '', r.verification_status || 'unverified'].join(',')).join(' ; ');
     document.getElementById('form-note').value = item.last_report_note || '';
-  }else{
-    title.textContent = '+ 新增 Thesis 研報卡片';
-    document.getElementById('form-code').readOnly = false;
-  }
-
-  overlay.classList.add('active');
+  } else title.textContent = '+ 新增 Thesis 研究卡片';
+  document.getElementById('modal-overlay').classList.add('active');
 }
+function closeModal() { document.getElementById('modal-overlay').classList.remove('active'); editingCode = null; }
 
-function closeModal(){
-  document.getElementById('modal-overlay').classList.remove('active');
-  editingCode = null;
-}
-
-function handleFormSubmit(e){
-  e.preventDefault();
-  const codeEl = document.getElementById('form-code');
-  const nameEl = document.getElementById('form-name');
-  let code = codeEl ? codeEl.value.trim().toUpperCase() : '';
-  let name = nameEl ? nameEl.value.trim() : '';
-
-  if(!code){
-    alert('請輸入股票代號');
-    return;
-  }
-  if(!name) name = code;
-
-  const category = (document.getElementById('form-category').value || '').trim();
-  const overallBias = document.getElementById('form-bias').value || 'bull';
-  const epsLow = parseFloat(document.getElementById('form-eps-low').value);
-  const epsHigh = parseFloat(document.getElementById('form-eps-high').value);
-  const peLow = parseFloat(document.getElementById('form-pe-low').value);
-  const peHigh = parseFloat(document.getElementById('form-pe-high').value);
-
-  const bull = (document.getElementById('form-bull').value || '').trim();
-  const base = (document.getElementById('form-base').value || '').trim();
-  const bear = (document.getElementById('form-bear').value || '').trim();
-  const rawCat = (document.getElementById('form-catalysts').value || '').trim();
-  const catalysts = rawCat ? rawCat.split(/[,，]/).map(s => s.trim()).filter(Boolean) : [];
-  
-  const rawBrokers = (document.getElementById('form-brokers').value || '').trim();
-  let brokerReports = [];
-  if(rawBrokers){
-    brokerReports = rawBrokers.split(';').map(part => {
-      const segs = part.split(/[,，]/).map(s => s.trim());
-      return {
-        broker: segs[0] || '券商',
-        rating: segs[1] || '評等',
-        target_price: parseFloat(segs[2]) || null
-      };
-    }).filter(b => b.broker || b.target_price);
-  }
-
-  const note = (document.getElementById('form-note').value || '').trim();
-
+function handleFormSubmit(event) {
+  event.preventDefault();
+  const code = document.getElementById('form-code').value.trim().toUpperCase();
+  const name = document.getElementById('form-name').value.trim() || code;
+  if (!/^\d{4,6}[A-Z]?$/.test(code)) { alert('股票代號格式不正確，請輸入 4–6 位數字（或合法代碼）'); return; }
+  const readNumber = id => { const value = document.getElementById(id).value.trim(); return value === '' ? null : Number(value); };
+  const epsLow = readNumber('form-eps-low'), epsHigh = readNumber('form-eps-high');
+  const peLow = readNumber('form-pe-low'), peHigh = readNumber('form-pe-high');
+  if ((epsLow !== null && epsHigh !== null && epsLow > epsHigh) || (peLow !== null && peHigh !== null && peLow > peHigh)) { alert('區間下限不可大於上限'); return; }
+  const rawBrokers = document.getElementById('form-brokers').value.trim();
+  const brokerReports = rawBrokers ? rawBrokers.split(';').map(part => {
+    const [broker='', rating='', target='', report_date='', source_url='', status='unverified'] = part.split(/[,，]/).map(s => s.trim());
+    return { broker, rating, target_price: validPrice(target), report_date, source_url, verification_status: status.toLowerCase() === 'verified' ? 'verified' : 'unverified' };
+  }).filter(r => r.broker || r.target_price) : [];
+  const existing = thesisData[code] || {};
+  const forecast = { ...(existing.consensus_forecast || {}) };
+  forecast['2026_eps_range'] = epsLow !== null && epsHigh !== null ? [epsLow, epsHigh] : [];
+  forecast.target_pe_range = peLow !== null && peHigh !== null ? [peLow, peHigh] : [];
+  forecast.source_url = document.getElementById('form-eps-source').value.trim();
+  forecast.as_of = document.getElementById('form-eps-date').value;
+  forecast.verification_status = document.getElementById('form-eps-status').value || 'unverified';
+  if (forecast.verification_status === 'verified' && (!forecast.as_of || !safeHttpUrl(forecast.source_url) || epsLow === null || epsHigh === null)) { alert('EPS 標記已核實前，請填入有效來源網址、資料日期及 EPS 區間。'); return; }
   thesisData[code] = {
-    stock_name: name,
-    category: category || '自訂研報',
-    overall_bias: overallBias,
-    consensus_forecast: {
-      "2026_eps_range": (!isNaN(epsLow) && !isNaN(epsHigh)) ? [epsLow, epsHigh] : [],
-      "target_pe_range": (!isNaN(peLow) && !isNaN(peHigh)) ? [peLow, peHigh] : []
-    },
-    thesis_points: { bull, base, bear },
-    catalysts: catalysts,
+    ...existing, stock_name: name,
+    category: document.getElementById('form-category').value.trim() || '自訂研究',
+    overall_bias: document.getElementById('form-bias').value || 'unknown',
+    consensus_forecast: forecast,
+    thesis_points: { bull: document.getElementById('form-bull').value.trim(), base: document.getElementById('form-base').value.trim(), bear: document.getElementById('form-bear').value.trim() },
+    catalysts: document.getElementById('form-catalysts').value.split(/[,，]/).map(s => s.trim()).filter(Boolean),
     broker_reports: brokerReports,
-    last_report_note: note
+    last_report_note: document.getElementById('form-note').value.trim(),
+    locally_edited_at: new Date().toISOString()
   };
-
-  saveLocalData();
+  deletedCodes.delete(code);
+  saveLocalData(code);
   closeModal();
 }
 
-function editCard(code){
-  openModal(code);
+function editCard(code) { openModal(code); }
+function deleteCard(code) {
+  if (!confirm(`確定刪除 ${code} ${thesisData[code]?.stock_name || ''}？此刪除會保存在本機，避免重新載入後復活。`)) return;
+  delete thesisData[code]; delete localOverrides[code]; deletedCodes.add(code); persistLocalState();
+  rawFullData = { ...serverData, theses: thesisData }; updateStatus('已在本機隱藏此卡片；尚未刪除 GitHub 上的原始 JSON'); renderCards(thesisData);
+}
+function exportJSON() {
+  const output = { ...serverData, theses: { ...thesisData }, last_updated: new Date().toISOString().slice(0,10) };
+  const blob = new Blob([JSON.stringify(output, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob); const a = document.createElement('a');
+  a.href = url; a.download = 'research_theses.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
 }
 
-function deleteCard(code){
-  if(confirm(`確定要刪除 ${code} ${thesisData[code]?.stock_name || ''} 的 Thesis 紀錄嗎？`)){
-    delete thesisData[code];
-    saveLocalData();
-  }
-}
+document.getElementById('main-content').addEventListener('click', event => {
+  const button = event.target.closest('button[data-action]');
+  if (!button) return;
+  const code = button.dataset.code;
+  if (button.dataset.action === 'edit') editCard(code);
+  if (button.dataset.action === 'delete') deleteCard(code);
+});
 
-function exportJSON(){
-  const jsonStr = JSON.stringify(rawFullData, null, 2);
-  const blob = new Blob([jsonStr], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'research_theses.json';
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-init();
+init().catch(error => { console.error(error); updateStatus('載入失敗，請檢查 JSON 與網路連線'); });
 </script>
 </body>
 </html>
