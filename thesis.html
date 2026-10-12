@@ -285,7 +285,7 @@ let poolScoresMap = {};
 let priceInfo = {};
 
 const commonTWStockMap = {
-  '佳能':'2374','台積電':'2330','聯電':'2303','鴻海':'2317','廣達':'2382','緯創':'3231',
+  '光罩':'2338','佳能':'2374','台積電':'2330','聯電':'2303','鴻海':'2317','廣達':'2382','緯創':'3231',
   '緯穎':'6669','技嘉':'2376','微星':'2377','華碩':'2357','奇鋐':'3017','雙鴻':'3324',
   '世芯':'3661','信驊':'5274','波若威':'3163','台燿':'6274','強茂':'2481','富邦金':'2881',
   '中興電':'1513','康舒':'6282','長榮':'2603','萬海':'2615','長榮航':'2618','京元電':'2449',
@@ -399,6 +399,19 @@ function populateStockDatalist() {
     const option = document.createElement('option'); option.value = code; option.label = name; list.appendChild(option);
   });
   document.getElementById('form-code')?.setAttribute('list', 'stock-pool-list');
+  let names = document.getElementById('stock-name-list');
+  if (!names) { names = document.createElement('datalist'); names.id = 'stock-name-list'; document.body.appendChild(names); }
+  names.replaceChildren();
+  const nameSeen = new Set();
+  Object.entries(commonTWStockMap).forEach(([name, code]) => {
+    if (nameSeen.has(name)) return; nameSeen.add(name);
+    const option = document.createElement('option'); option.value = name; option.label = code; names.appendChild(option);
+  });
+  Object.values(poolScoresMap).forEach(stock => {
+    if (!stock.name || nameSeen.has(stock.name)) return; nameSeen.add(stock.name);
+    const option = document.createElement('option'); option.value = stock.name; option.label = String(stock.code || ''); names.appendChild(option);
+  });
+  document.getElementById('form-name')?.setAttribute('list', 'stock-name-list');
 }
 
 async function loadTheses() {
@@ -536,7 +549,7 @@ function filterCards() {
     if (!box) { box = document.createElement('div'); box.id = 'no-match-box'; box.style.cssText = 'text-align:center;padding:36px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);margin-top:20px;'; container.appendChild(box); }
     box.replaceChildren();
     const title = document.createElement('div'); title.style.marginBottom = '8px'; title.textContent = `找不到「${document.getElementById('search').value.trim()}」的 Thesis 卡片`;
-    const hint = document.createElement('div'); hint.style.cssText = 'font-size:12px;color:var(--text3);margin-bottom:14px;'; hint.textContent = '可以建立一張空白研究卡，或產生待驗證的估值情境草稿。';
+    const hint = document.createElement('div'); hint.style.cssText = 'font-size:12px;color:var(--text3);margin-bottom:14px;'; hint.textContent = '這裡只搜尋已建立的研究卡，不是完整股票清單。你仍可用股票代號或名稱建立新卡；未核實的 EPS、券商報告與目標價不會自動補入。';
     const manual = document.createElement('button'); manual.className = 'btn-cancel'; manual.textContent = '＋ 手動建立'; manual.onclick = () => openModalWithSearch(document.getElementById('search').value.trim());
     const draft = document.createElement('button'); draft.className = 'btn-submit'; draft.style.marginLeft = '8px'; draft.textContent = '產生估值草稿'; draft.onclick = () => { openModalWithSearch(document.getElementById('search').value.trim()); autoGenerateThesisInModal(); };
     box.append(title, hint, manual, draft); box.style.display = 'block';
@@ -547,13 +560,14 @@ function onCodeInput(value) {
   const key = value.trim().toUpperCase();
   if (poolScoresMap[key]) document.getElementById('form-name').value = poolScoresMap[key].name || '';
   else if (commonTWStockMap[key]) { document.getElementById('form-code').value = commonTWStockMap[key]; document.getElementById('form-name').value = key; }
+  else if (/^\d{4,6}$/.test(key)) { const knownName = Object.keys(commonTWStockMap).find(name => commonTWStockMap[name] === key); if (knownName) document.getElementById('form-name').value = knownName; }
   else { const name = Object.keys(commonTWStockMap).find(k => commonTWStockMap[k] === key); if (name) document.getElementById('form-name').value = name; }
 }
 function onNameInput(value) {
   const name = value.trim();
   if (commonTWStockMap[name]) document.getElementById('form-code').value = commonTWStockMap[name];
   else if (poolScoresMap[name]) document.getElementById('form-code').value = poolScoresMap[name].code;
-  else { const found = Object.keys(thesisData).find(code => thesisData[code].stock_name === name); if (found) document.getElementById('form-code').value = found; }
+  else { const stock = Object.values(poolScoresMap).find(item => item.name === name); if (stock) document.getElementById('form-code').value = stock.code; else { const found = Object.keys(thesisData).find(code => thesisData[code].stock_name === name); if (found) document.getElementById('form-code').value = found; } }
 }
 function openModalWithSearch(query) {
   openModal();
@@ -562,10 +576,11 @@ function openModalWithSearch(query) {
   if (match) {
     document.getElementById('form-code').value = match[0];
     const rest = value.replace(match[0], '').trim();
-    document.getElementById('form-name').value = rest || poolScoresMap[match[0]]?.name || match[0];
+    document.getElementById('form-name').value = rest || poolScoresMap[match[0]]?.name || Object.keys(commonTWStockMap).find(name => commonTWStockMap[name] === match[0]) || match[0];
   } else {
     document.getElementById('form-name').value = value;
-    document.getElementById('form-code').value = poolScoresMap[value]?.code || commonTWStockMap[value] || '';
+    document.getElementById('form-code').value = poolScoresMap[value]?.code || commonTWStockMap[value] || Object.values(poolScoresMap).find(item => item.name === value)?.code || '';
+    if (!document.getElementById('form-code').value) document.getElementById('form-code').value = Object.keys(commonTWStockMap).find(name => name === value) ? commonTWStockMap[value] : '';
   }
 }
 function openModalWithAutoGenerate(query) { openModalWithSearch(query); autoGenerateThesisInModal(); }
