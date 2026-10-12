@@ -1,6 +1,6 @@
 {
   "last_updated": "20261008",
-  "total_stocks": 146,
+  "total_stocks": 144,
   "data": {
     "2330": {
       "latest": {
@@ -200,6 +200,32 @@
           "over400_pct_chg": 0.03
         },
         {
+          "date": "20260626",
+          "over1000_people": 1482,
+          "over1000_pct": 85.11,
+          "over1000_shares": 22072875533,
+          "over400_pct": 87.83,
+          "retail_people": 2869953,
+          "retail_pct": 8.5,
+          "over1000_pct_chg": -0.11,
+          "over1000_people_chg": -2,
+          "retail_pct_chg": 0.07,
+          "over400_pct_chg": -0.09
+        },
+        {
+          "date": "20260703",
+          "over1000_people": 1481,
+          "over1000_pct": 85.09,
+          "over1000_shares": 22066084295,
+          "over400_pct": 87.81,
+          "retail_people": 2888009,
+          "retail_pct": 8.51,
+          "over1000_pct_chg": -0.02,
+          "over1000_people_chg": -1,
+          "retail_pct_chg": 0.01,
+          "over400_pct_chg": -0.02
+        },
+        {
           "date": "20260709",
           "over1000_people": 1478,
           "over1000_pct": 85.01,
@@ -207,10 +233,10 @@
           "over400_pct": 87.74,
           "retail_people": 2902489,
           "retail_pct": 8.56,
-          "over1000_pct_chg": -0.21,
-          "over1000_people_chg": -6,
-          "retail_pct_chg": 0.13,
-          "over400_pct_chg": -0.18
+          "over1000_pct_chg": -0.08,
+          "over1000_people_chg": -3,
+          "retail_pct_chg": 0.05,
+          "over400_pct_chg": -0.07
         },
         {
           "date": "20260717",
@@ -393,9 +419,9 @@
         "retail_people": 1133423,
         "retail_pct": 22.76,
         "over1000_pct_chg": -0.22,
-        "over1000_people_chg": 0,
-        "retail_pct_chg": 0.18,
-        "over400_pct_chg": -0.21
+        "over1000_people_chg": 8,
+        "retail_pct_chg": 0.15,
+        "over400_pct_chg": -0.19
       },
       "history": [
         {
@@ -581,6 +607,32 @@
           "over400_pct_chg": -0.05
         },
         {
+          "date": "20260626",
+          "over1000_people": 827,
+          "over1000_pct": 67.22,
+          "over1000_shares": 9461116355,
+          "over400_pct": 69.93,
+          "retail_people": 1138902,
+          "retail_pct": 22.45,
+          "over1000_pct_chg": -0.6,
+          "over1000_people_chg": -7,
+          "retail_pct_chg": 0.5,
+          "over400_pct_chg": -0.54
+        },
+        {
+          "date": "20260703",
+          "over1000_people": 819,
+          "over1000_pct": 66.38,
+          "over1000_shares": 9342220044,
+          "over400_pct": 69.05,
+          "retail_people": 1163465,
+          "retail_pct": 23.13,
+          "over1000_pct_chg": -0.84,
+          "over1000_people_chg": -8,
+          "retail_pct_chg": 0.68,
+          "over400_pct_chg": -0.88
+        },
+        {
           "date": "20260709",
           "over1000_people": 821,
           "over1000_pct": 66.11,
@@ -588,10 +640,10 @@
           "over400_pct": 68.81,
           "retail_people": 1171929,
           "retail_pct": 23.34,
-          "over1000_pct_chg": -1.71,
-          "over1000_people_chg": -13,
-          "retail_pct_chg": 1.39,
-          "over400_pct_chg": -1.66
+          "over1000_pct_chg": -0.27,
+          "over1000_people_chg": 2,
+          "retail_pct_chg": 0.21,
+          "over400_pct_chg": -0.24
         },
         {
           "date": "20260717",
@@ -724,32 +776,6 @@
           "over400_pct_chg": -0.02
         },
         {
-          "date": "20260924",
-          "over1000_people": 838,
-          "over1000_pct": 66.85,
-          "over1000_shares": 9410778745,
-          "over400_pct": 69.52,
-          "retail_people": 1123382,
-          "retail_pct": 22.53,
-          "over1000_pct_chg": 0.09,
-          "over1000_people_chg": 6,
-          "retail_pct_chg": -0.08,
-          "over400_pct_chg": 0.08
-        },
-        {
-          "date": "20261002",
-          "over1000_people": 840,
-          "over1000_pct": 66.76,
-          "over1000_shares": 9397184622,
-          "over400_pct": 69.46,
-          "retail_people": 1124763,
-          "retail_pct": 22.58,
-          "over1000_pct_chg": -0.09,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": 0.05,
-          "over400_pct_chg": -0.06
-        },
-        {
           "date": "20261008",
           "over1000_people": 840,
           "over1000_pct": 66.54,
@@ -758,9 +784,9 @@
           "retail_people": 1133423,
           "retail_pct": 22.76,
           "over1000_pct_chg": -0.22,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.18,
-          "over400_pct_chg": -0.21
+          "over1000_people_chg": 8,
+          "retail_pct_chg": 0.15,
+          "over400_pct_chg": -0.19
         }
       ]
     },
@@ -1304,32 +1330,6 @@
           "over400_pct_chg": -0.29
         },
         {
-          "date": "20260522",
-          "over1000_people": 289,
-          "over1000_pct": 76.46,
-          "over1000_shares": 1986271723,
-          "over400_pct": 83.31,
-          "retail_people": 384545,
-          "retail_pct": 8.13,
-          "over1000_pct_chg": -0.21,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": 0.32,
-          "over400_pct_chg": -0.35
-        },
-        {
-          "date": "20260529",
-          "over1000_people": 291,
-          "over1000_pct": 76.47,
-          "over1000_shares": 1986416562,
-          "over400_pct": 83.51,
-          "retail_people": 374395,
-          "retail_pct": 7.8,
-          "over1000_pct_chg": 0.01,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": -0.33,
-          "over400_pct_chg": 0.2
-        },
-        {
           "date": "20260605",
           "over1000_people": 289,
           "over1000_pct": 76.2,
@@ -1337,10 +1337,10 @@
           "over400_pct": 83.4,
           "retail_people": 388373,
           "retail_pct": 7.88,
-          "over1000_pct_chg": -0.27,
+          "over1000_pct_chg": -0.47,
           "over1000_people_chg": -2,
-          "retail_pct_chg": 0.08,
-          "over400_pct_chg": -0.11
+          "retail_pct_chg": 0.07,
+          "over400_pct_chg": -0.26
         },
         {
           "date": "20260612",
@@ -1460,32 +1460,6 @@
           "over400_pct_chg": -0.12
         },
         {
-          "date": "20260814",
-          "over1000_people": 285,
-          "over1000_pct": 74.33,
-          "over1000_shares": 1930807183,
-          "over400_pct": 80.9,
-          "retail_people": 585094,
-          "retail_pct": 10.52,
-          "over1000_pct_chg": -0.04,
-          "over1000_people_chg": -4,
-          "retail_pct_chg": -0.11,
-          "over400_pct_chg": -0.01
-        },
-        {
-          "date": "20260821",
-          "over1000_people": 281,
-          "over1000_pct": 74.03,
-          "over1000_shares": 1923057799,
-          "over400_pct": 80.74,
-          "retail_people": 593956,
-          "retail_pct": 10.69,
-          "over1000_pct_chg": -0.3,
-          "over1000_people_chg": -4,
-          "retail_pct_chg": 0.17,
-          "over400_pct_chg": -0.16
-        },
-        {
           "date": "20260828",
           "over1000_people": 277,
           "over1000_pct": 73.84,
@@ -1493,10 +1467,10 @@
           "over400_pct": 80.73,
           "retail_people": 598801,
           "retail_pct": 10.78,
-          "over1000_pct_chg": -0.19,
-          "over1000_people_chg": -4,
-          "retail_pct_chg": 0.09,
-          "over400_pct_chg": -0.01
+          "over1000_pct_chg": -0.53,
+          "over1000_people_chg": -12,
+          "retail_pct_chg": 0.15,
+          "over400_pct_chg": -0.18
         },
         {
           "date": "20260904",
@@ -1594,32 +1568,6 @@
       },
       "history": [
         {
-          "date": "20260320",
-          "over1000_people": 619,
-          "over1000_pct": 71.96,
-          "over1000_shares": 9052613297,
-          "over400_pct": 74.49,
-          "retail_people": 784957,
-          "retail_pct": 19.5,
-          "over1000_pct_chg": 0.0,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.0,
-          "over400_pct_chg": 0.0
-        },
-        {
-          "date": "20260327",
-          "over1000_people": 618,
-          "over1000_pct": 72.08,
-          "over1000_shares": 9067784692,
-          "over400_pct": 74.53,
-          "retail_people": 795627,
-          "retail_pct": 19.46,
-          "over1000_pct_chg": 0.12,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.04,
-          "over400_pct_chg": 0.04
-        },
-        {
           "date": "20260402",
           "over1000_people": 626,
           "over1000_pct": 72.16,
@@ -1627,10 +1575,10 @@
           "over400_pct": 74.62,
           "retail_people": 792604,
           "retail_pct": 19.4,
-          "over1000_pct_chg": 0.08,
-          "over1000_people_chg": 8,
-          "retail_pct_chg": -0.06,
-          "over400_pct_chg": 0.09
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
         },
         {
           "date": "20260410",
@@ -1737,32 +1685,6 @@
           "over400_pct_chg": -0.01
         },
         {
-          "date": "20260605",
-          "over1000_people": 651,
-          "over1000_pct": 74.6,
-          "over1000_shares": 9383512805,
-          "over400_pct": 77.15,
-          "retail_people": 847352,
-          "retail_pct": 17.56,
-          "over1000_pct_chg": -1.63,
-          "over1000_people_chg": -23,
-          "retail_pct_chg": 1.45,
-          "over400_pct_chg": -1.55
-        },
-        {
-          "date": "20260612",
-          "over1000_people": 668,
-          "over1000_pct": 73.97,
-          "over1000_shares": 9304117549,
-          "over400_pct": 76.52,
-          "retail_people": 880449,
-          "retail_pct": 18.06,
-          "over1000_pct_chg": -0.63,
-          "over1000_people_chg": 17,
-          "retail_pct_chg": 0.5,
-          "over400_pct_chg": -0.63
-        },
-        {
           "date": "20260618",
           "over1000_people": 677,
           "over1000_pct": 74.45,
@@ -1770,10 +1692,10 @@
           "over400_pct": 77.08,
           "retail_people": 866008,
           "retail_pct": 17.55,
-          "over1000_pct_chg": 0.48,
-          "over1000_people_chg": 9,
-          "retail_pct_chg": -0.51,
-          "over400_pct_chg": 0.56
+          "over1000_pct_chg": -1.78,
+          "over1000_people_chg": 3,
+          "retail_pct_chg": 1.44,
+          "over400_pct_chg": -1.62
         },
         {
           "date": "20260626",
@@ -1906,32 +1828,6 @@
           "over400_pct_chg": -0.29
         },
         {
-          "date": "20260904",
-          "over1000_people": 656,
-          "over1000_pct": 70.92,
-          "over1000_shares": 8915681538,
-          "over400_pct": 73.62,
-          "retail_people": 1019094,
-          "retail_pct": 20.49,
-          "over1000_pct_chg": 0.71,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.69,
-          "over400_pct_chg": 0.78
-        },
-        {
-          "date": "20260911",
-          "over1000_people": 674,
-          "over1000_pct": 71.57,
-          "over1000_shares": 8996929161,
-          "over400_pct": 74.37,
-          "retail_people": 991232,
-          "retail_pct": 19.77,
-          "over1000_pct_chg": 0.65,
-          "over1000_people_chg": 18,
-          "retail_pct_chg": -0.72,
-          "over400_pct_chg": 0.75
-        },
-        {
           "date": "20260918",
           "over1000_people": 688,
           "over1000_pct": 72.08,
@@ -1939,10 +1835,10 @@
           "over400_pct": 74.87,
           "retail_people": 963921,
           "retail_pct": 19.29,
-          "over1000_pct_chg": 0.51,
-          "over1000_people_chg": 14,
-          "retail_pct_chg": -0.48,
-          "over400_pct_chg": 0.5
+          "over1000_pct_chg": 1.87,
+          "over1000_people_chg": 32,
+          "retail_pct_chg": -1.89,
+          "over400_pct_chg": 2.03
         },
         {
           "date": "20260924",
@@ -2603,6 +2499,32 @@
           "over400_pct_chg": 0.01
         },
         {
+          "date": "20260703",
+          "over1000_people": 669,
+          "over1000_pct": 83.21,
+          "over1000_shares": 12206653116,
+          "over400_pct": 85.57,
+          "retail_people": 403871,
+          "retail_pct": 9.5,
+          "over1000_pct_chg": -0.34,
+          "over1000_people_chg": -10,
+          "retail_pct_chg": 0.23,
+          "over400_pct_chg": -0.3
+        },
+        {
+          "date": "20260709",
+          "over1000_people": 664,
+          "over1000_pct": 83.19,
+          "over1000_shares": 12204719644,
+          "over400_pct": 85.54,
+          "retail_people": 404636,
+          "retail_pct": 9.49,
+          "over1000_pct_chg": -0.02,
+          "over1000_people_chg": -5,
+          "retail_pct_chg": -0.01,
+          "over400_pct_chg": -0.03
+        },
+        {
           "date": "20260717",
           "over1000_people": 668,
           "over1000_pct": 83.14,
@@ -2610,36 +2532,10 @@
           "over400_pct": 85.54,
           "retail_people": 403952,
           "retail_pct": 9.48,
-          "over1000_pct_chg": -0.41,
-          "over1000_people_chg": -11,
-          "retail_pct_chg": 0.21,
-          "over400_pct_chg": -0.33
-        },
-        {
-          "date": "20260724",
-          "over1000_people": 668,
-          "over1000_pct": 83.13,
-          "over1000_shares": 12195118602,
-          "over400_pct": 85.56,
-          "retail_people": 402744,
-          "retail_pct": 9.46,
-          "over1000_pct_chg": -0.01,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.02,
-          "over400_pct_chg": 0.02
-        },
-        {
-          "date": "20260731",
-          "over1000_people": 670,
-          "over1000_pct": 83.13,
-          "over1000_shares": 12194921814,
-          "over400_pct": 85.57,
-          "retail_people": 402213,
-          "retail_pct": 9.45,
-          "over1000_pct_chg": 0.0,
-          "over1000_people_chg": 2,
+          "over1000_pct_chg": -0.05,
+          "over1000_people_chg": 4,
           "retail_pct_chg": -0.01,
-          "over400_pct_chg": 0.01
+          "over400_pct_chg": 0.0
         },
         {
           "date": "20260807",
@@ -2649,10 +2545,10 @@
           "over400_pct": 85.65,
           "retail_people": 399726,
           "retail_pct": 9.38,
-          "over1000_pct_chg": 0.1,
-          "over1000_people_chg": 5,
-          "retail_pct_chg": -0.07,
-          "over400_pct_chg": 0.08
+          "over1000_pct_chg": 0.09,
+          "over1000_people_chg": 7,
+          "retail_pct_chg": -0.1,
+          "over400_pct_chg": 0.11
         },
         {
           "date": "20260814",
@@ -2958,6 +2854,32 @@
           "over400_pct_chg": 0.19
         },
         {
+          "date": "20260618",
+          "over1000_people": 300,
+          "over1000_pct": 78.15,
+          "over1000_shares": 6062647459,
+          "over400_pct": 79.96,
+          "retail_people": 288710,
+          "retail_pct": 13.98,
+          "over1000_pct_chg": 0.05,
+          "over1000_people_chg": 1,
+          "retail_pct_chg": -0.04,
+          "over400_pct_chg": 0.05
+        },
+        {
+          "date": "20260626",
+          "over1000_people": 296,
+          "over1000_pct": 78.15,
+          "over1000_shares": 6062897393,
+          "over400_pct": 79.94,
+          "retail_people": 289050,
+          "retail_pct": 14.01,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": -4,
+          "retail_pct_chg": 0.03,
+          "over400_pct_chg": -0.02
+        },
+        {
           "date": "20260703",
           "over1000_people": 293,
           "over1000_pct": 78.03,
@@ -2965,10 +2887,10 @@
           "over400_pct": 79.85,
           "retail_people": 291350,
           "retail_pct": 14.1,
-          "over1000_pct_chg": -0.07,
-          "over1000_people_chg": -6,
-          "retail_pct_chg": 0.08,
-          "over400_pct_chg": -0.06
+          "over1000_pct_chg": -0.12,
+          "over1000_people_chg": -3,
+          "retail_pct_chg": 0.09,
+          "over400_pct_chg": -0.09
         },
         {
           "date": "20260709",
@@ -4495,32 +4417,6 @@
           "over400_pct_chg": -0.04
         },
         {
-          "date": "20260515",
-          "over1000_people": 465,
-          "over1000_pct": 80.16,
-          "over1000_shares": 11891017589,
-          "over400_pct": 81.72,
-          "retail_people": 477900,
-          "retail_pct": 12.81,
-          "over1000_pct_chg": 0.05,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.05,
-          "over400_pct_chg": 0.04
-        },
-        {
-          "date": "20260522",
-          "over1000_people": 466,
-          "over1000_pct": 80.39,
-          "over1000_shares": 11925945480,
-          "over400_pct": 81.92,
-          "retail_people": 474114,
-          "retail_pct": 12.66,
-          "over1000_pct_chg": 0.23,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.15,
-          "over400_pct_chg": 0.2
-        },
-        {
           "date": "20260529",
           "over1000_people": 469,
           "over1000_pct": 80.41,
@@ -4528,10 +4424,10 @@
           "over400_pct": 81.91,
           "retail_people": 473275,
           "retail_pct": 12.67,
-          "over1000_pct_chg": 0.02,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": 0.01,
-          "over400_pct_chg": -0.01
+          "over1000_pct_chg": 0.3,
+          "over1000_people_chg": 4,
+          "retail_pct_chg": -0.19,
+          "over400_pct_chg": 0.23
         },
         {
           "date": "20260605",
@@ -4677,32 +4573,6 @@
           "over400_pct_chg": -0.27
         },
         {
-          "date": "20260821",
-          "over1000_people": 466,
-          "over1000_pct": 81.76,
-          "over1000_shares": 12128767859,
-          "over400_pct": 83.25,
-          "retail_people": 452917,
-          "retail_pct": 11.76,
-          "over1000_pct_chg": -0.04,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.06,
-          "over400_pct_chg": -0.04
-        },
-        {
-          "date": "20260828",
-          "over1000_people": 462,
-          "over1000_pct": 81.66,
-          "over1000_shares": 12113956754,
-          "over400_pct": 83.17,
-          "retail_people": 454148,
-          "retail_pct": 11.79,
-          "over1000_pct_chg": -0.1,
-          "over1000_people_chg": -4,
-          "retail_pct_chg": 0.03,
-          "over400_pct_chg": -0.08
-        },
-        {
           "date": "20260904",
           "over1000_people": 455,
           "over1000_pct": 81.86,
@@ -4710,10 +4580,10 @@
           "over400_pct": 83.38,
           "retail_people": 450238,
           "retail_pct": 11.65,
-          "over1000_pct_chg": 0.2,
-          "over1000_people_chg": -7,
-          "retail_pct_chg": -0.14,
-          "over400_pct_chg": 0.21
+          "over1000_pct_chg": 0.06,
+          "over1000_people_chg": -10,
+          "retail_pct_chg": -0.05,
+          "over400_pct_chg": 0.09
         },
         {
           "date": "20260911",
@@ -4889,32 +4759,6 @@
           "over400_pct_chg": -0.24
         },
         {
-          "date": "20260508",
-          "over1000_people": 434,
-          "over1000_pct": 82.98,
-          "over1000_shares": 3709931142,
-          "over400_pct": 88.29,
-          "retail_people": 243465,
-          "retail_pct": 6.9,
-          "over1000_pct_chg": -0.27,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.09,
-          "over400_pct_chg": -0.08
-        },
-        {
-          "date": "20260515",
-          "over1000_people": 431,
-          "over1000_pct": 82.84,
-          "over1000_shares": 3703544170,
-          "over400_pct": 88.17,
-          "retail_people": 255332,
-          "retail_pct": 7.02,
-          "over1000_pct_chg": -0.14,
-          "over1000_people_chg": -3,
-          "retail_pct_chg": 0.12,
-          "over400_pct_chg": -0.12
-        },
-        {
           "date": "20260522",
           "over1000_people": 424,
           "over1000_pct": 82.56,
@@ -4922,10 +4766,10 @@
           "over400_pct": 87.9,
           "retail_people": 271643,
           "retail_pct": 7.3,
-          "over1000_pct_chg": -0.28,
-          "over1000_people_chg": -7,
-          "retail_pct_chg": 0.28,
-          "over400_pct_chg": -0.27
+          "over1000_pct_chg": -0.69,
+          "over1000_people_chg": -9,
+          "retail_pct_chg": 0.49,
+          "over400_pct_chg": -0.47
         },
         {
           "date": "20260529",
@@ -5045,32 +4889,6 @@
           "over400_pct_chg": -0.16
         },
         {
-          "date": "20260731",
-          "over1000_people": 419,
-          "over1000_pct": 81.33,
-          "over1000_shares": 3644024289,
-          "over400_pct": 86.65,
-          "retail_people": 355109,
-          "retail_pct": 8.27,
-          "over1000_pct_chg": -0.22,
-          "over1000_people_chg": -7,
-          "retail_pct_chg": 0.26,
-          "over400_pct_chg": -0.27
-        },
-        {
-          "date": "20260807",
-          "over1000_people": 423,
-          "over1000_pct": 81.09,
-          "over1000_shares": 3634784001,
-          "over400_pct": 86.5,
-          "retail_people": 362820,
-          "retail_pct": 8.39,
-          "over1000_pct_chg": -0.24,
-          "over1000_people_chg": 4,
-          "retail_pct_chg": 0.12,
-          "over400_pct_chg": -0.15
-        },
-        {
           "date": "20260814",
           "over1000_people": 425,
           "over1000_pct": 81.09,
@@ -5078,10 +4896,10 @@
           "over400_pct": 86.49,
           "retail_people": 359085,
           "retail_pct": 8.28,
-          "over1000_pct_chg": 0.0,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": -0.11,
-          "over400_pct_chg": -0.01
+          "over1000_pct_chg": -0.46,
+          "over1000_people_chg": -1,
+          "retail_pct_chg": 0.27,
+          "over400_pct_chg": -0.43
         },
         {
           "date": "20260821",
@@ -5716,32 +5534,6 @@
           "over400_pct_chg": -0.05
         },
         {
-          "date": "20260515",
-          "over1000_people": 732,
-          "over1000_pct": 68.6,
-          "over1000_shares": 10757821784,
-          "over400_pct": 72.73,
-          "retail_people": 407386,
-          "retail_pct": 14.01,
-          "over1000_pct_chg": -0.23,
-          "over1000_people_chg": 6,
-          "retail_pct_chg": 0.05,
-          "over400_pct_chg": -0.16
-        },
-        {
-          "date": "20260522",
-          "over1000_people": 730,
-          "over1000_pct": 68.48,
-          "over1000_shares": 10738392333,
-          "over400_pct": 72.59,
-          "retail_people": 408125,
-          "retail_pct": 14.09,
-          "over1000_pct_chg": -0.12,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": 0.08,
-          "over400_pct_chg": -0.14
-        },
-        {
           "date": "20260529",
           "over1000_people": 735,
           "over1000_pct": 68.4,
@@ -5749,10 +5541,10 @@
           "over400_pct": 72.51,
           "retail_people": 408248,
           "retail_pct": 14.1,
-          "over1000_pct_chg": -0.08,
-          "over1000_people_chg": 5,
-          "retail_pct_chg": 0.01,
-          "over400_pct_chg": -0.08
+          "over1000_pct_chg": -0.43,
+          "over1000_people_chg": 9,
+          "retail_pct_chg": 0.14,
+          "over400_pct_chg": -0.38
         },
         {
           "date": "20260605",
@@ -6045,32 +5837,6 @@
           "over400_pct_chg": 0.05
         },
         {
-          "date": "20260402",
-          "over1000_people": 97,
-          "over1000_pct": 62.33,
-          "over1000_shares": 462997332,
-          "over400_pct": 71.02,
-          "retail_people": 129284,
-          "retail_pct": 18.56,
-          "over1000_pct_chg": -0.18,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.01,
-          "over400_pct_chg": -0.01
-        },
-        {
-          "date": "20260410",
-          "over1000_people": 98,
-          "over1000_pct": 62.35,
-          "over1000_shares": 463126967,
-          "over400_pct": 71.04,
-          "retail_people": 129120,
-          "retail_pct": 18.53,
-          "over1000_pct_chg": 0.02,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.03,
-          "over400_pct_chg": 0.02
-        },
-        {
           "date": "20260417",
           "over1000_people": 93,
           "over1000_pct": 62.08,
@@ -6078,10 +5844,10 @@
           "over400_pct": 71.03,
           "retail_people": 127713,
           "retail_pct": 18.39,
-          "over1000_pct_chg": -0.27,
+          "over1000_pct_chg": -0.43,
           "over1000_people_chg": -5,
-          "retail_pct_chg": -0.14,
-          "over400_pct_chg": -0.01
+          "retail_pct_chg": -0.16,
+          "over400_pct_chg": 0.0
         },
         {
           "date": "20260424",
@@ -6439,32 +6205,6 @@
           "over400_pct_chg": 0.0
         },
         {
-          "date": "20260327",
-          "over1000_people": 288,
-          "over1000_pct": 69.5,
-          "over1000_shares": 4424270218,
-          "over400_pct": 72.13,
-          "retail_people": 327423,
-          "retail_pct": 19.92,
-          "over1000_pct_chg": -0.16,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": 0.14,
-          "over400_pct_chg": -0.23
-        },
-        {
-          "date": "20260402",
-          "over1000_people": 292,
-          "over1000_pct": 69.27,
-          "over1000_shares": 4409752044,
-          "over400_pct": 71.91,
-          "retail_people": 330342,
-          "retail_pct": 20.1,
-          "over1000_pct_chg": -0.23,
-          "over1000_people_chg": 4,
-          "retail_pct_chg": 0.18,
-          "over400_pct_chg": -0.22
-        },
-        {
           "date": "20260410",
           "over1000_people": 288,
           "over1000_pct": 69.3,
@@ -6472,10 +6212,10 @@
           "over400_pct": 72.04,
           "retail_people": 328208,
           "retail_pct": 19.98,
-          "over1000_pct_chg": 0.03,
-          "over1000_people_chg": -4,
-          "retail_pct_chg": -0.12,
-          "over400_pct_chg": 0.13
+          "over1000_pct_chg": -0.36,
+          "over1000_people_chg": 3,
+          "retail_pct_chg": 0.2,
+          "over400_pct_chg": -0.32
         },
         {
           "date": "20260417",
@@ -6595,32 +6335,6 @@
           "over400_pct_chg": -0.79
         },
         {
-          "date": "20260618",
-          "over1000_people": 291,
-          "over1000_pct": 70.18,
-          "over1000_shares": 4467805501,
-          "over400_pct": 72.83,
-          "retail_people": 304224,
-          "retail_pct": 19.11,
-          "over1000_pct_chg": 0.37,
-          "over1000_people_chg": 4,
-          "retail_pct_chg": -0.19,
-          "over400_pct_chg": 0.26
-        },
-        {
-          "date": "20260626",
-          "over1000_people": 294,
-          "over1000_pct": 71.92,
-          "over1000_shares": 4578669098,
-          "over400_pct": 74.55,
-          "retail_people": 292324,
-          "retail_pct": 17.94,
-          "over1000_pct_chg": 1.74,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": -1.17,
-          "over400_pct_chg": 1.72
-        },
-        {
           "date": "20260703",
           "over1000_people": 297,
           "over1000_pct": 72.19,
@@ -6628,10 +6342,10 @@
           "over400_pct": 74.8,
           "retail_people": 290287,
           "retail_pct": 17.73,
-          "over1000_pct_chg": 0.27,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": -0.21,
-          "over400_pct_chg": 0.25
+          "over1000_pct_chg": 2.38,
+          "over1000_people_chg": 10,
+          "retail_pct_chg": -1.57,
+          "over400_pct_chg": 2.23
         },
         {
           "date": "20260709",
@@ -7422,32 +7136,6 @@
           "over400_pct_chg": 0.2
         },
         {
-          "date": "20260626",
-          "over1000_people": 440,
-          "over1000_pct": 85.45,
-          "over1000_shares": 4855775890,
-          "over400_pct": 89.03,
-          "retail_people": 146817,
-          "retail_pct": 7.29,
-          "over1000_pct_chg": 0.03,
-          "over1000_people_chg": -4,
-          "retail_pct_chg": -0.03,
-          "over400_pct_chg": 0.06
-        },
-        {
-          "date": "20260703",
-          "over1000_people": 444,
-          "over1000_pct": 85.53,
-          "over1000_shares": 4860390731,
-          "over400_pct": 89.0,
-          "retail_people": 146998,
-          "retail_pct": 7.31,
-          "over1000_pct_chg": 0.08,
-          "over1000_people_chg": 4,
-          "retail_pct_chg": 0.02,
-          "over400_pct_chg": -0.03
-        },
-        {
           "date": "20260709",
           "over1000_people": 447,
           "over1000_pct": 85.82,
@@ -7455,10 +7143,10 @@
           "over400_pct": 89.39,
           "retail_people": 143659,
           "retail_pct": 7.05,
-          "over1000_pct_chg": 0.29,
+          "over1000_pct_chg": 0.4,
           "over1000_people_chg": 3,
-          "retail_pct_chg": -0.26,
-          "over400_pct_chg": 0.39
+          "retail_pct_chg": -0.27,
+          "over400_pct_chg": 0.42
         },
         {
           "date": "20260717",
@@ -7500,32 +7188,6 @@
           "over400_pct_chg": 0.09
         },
         {
-          "date": "20260807",
-          "over1000_people": 452,
-          "over1000_pct": 86.0,
-          "over1000_shares": 4886908353,
-          "over400_pct": 89.54,
-          "retail_people": 142470,
-          "retail_pct": 6.89,
-          "over1000_pct_chg": -0.25,
-          "over1000_people_chg": 7,
-          "retail_pct_chg": 0.19,
-          "over400_pct_chg": -0.3
-        },
-        {
-          "date": "20260814",
-          "over1000_people": 452,
-          "over1000_pct": 86.15,
-          "over1000_shares": 4895223182,
-          "over400_pct": 89.71,
-          "retail_people": 140584,
-          "retail_pct": 6.77,
-          "over1000_pct_chg": 0.15,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.12,
-          "over400_pct_chg": 0.17
-        },
-        {
           "date": "20260821",
           "over1000_people": 454,
           "over1000_pct": 86.28,
@@ -7533,10 +7195,10 @@
           "over400_pct": 89.8,
           "retail_people": 138643,
           "retail_pct": 6.68,
-          "over1000_pct_chg": 0.13,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": -0.09,
-          "over400_pct_chg": 0.09
+          "over1000_pct_chg": 0.03,
+          "over1000_people_chg": 9,
+          "retail_pct_chg": -0.02,
+          "over400_pct_chg": -0.04
         },
         {
           "date": "20260828",
@@ -8132,32 +7794,6 @@
           "over400_pct_chg": 0.09
         },
         {
-          "date": "20260430",
-          "over1000_people": 565,
-          "over1000_pct": 78.44,
-          "over1000_shares": 10917060033,
-          "over400_pct": 80.95,
-          "retail_people": 481804,
-          "retail_pct": 10.69,
-          "over1000_pct_chg": -0.16,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.14,
-          "over400_pct_chg": -0.17
-        },
-        {
-          "date": "20260508",
-          "over1000_people": 568,
-          "over1000_pct": 78.36,
-          "over1000_shares": 10905767954,
-          "over400_pct": 80.86,
-          "retail_people": 481607,
-          "retail_pct": 10.72,
-          "over1000_pct_chg": -0.08,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": 0.03,
-          "over400_pct_chg": -0.09
-        },
-        {
           "date": "20260515",
           "over1000_people": 566,
           "over1000_pct": 78.36,
@@ -8165,10 +7801,10 @@
           "over400_pct": 80.84,
           "retail_people": 481586,
           "retail_pct": 10.74,
-          "over1000_pct_chg": 0.0,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": 0.02,
-          "over400_pct_chg": -0.02
+          "over1000_pct_chg": -0.24,
+          "over1000_people_chg": 1,
+          "retail_pct_chg": 0.19,
+          "over400_pct_chg": -0.28
         },
         {
           "date": "20260522",
@@ -8708,58 +8344,6 @@
           "over400_pct_chg": 0.95
         },
         {
-          "date": "20260731",
-          "over1000_people": 323,
-          "over1000_pct": 59.8,
-          "over1000_shares": 2635546557,
-          "over400_pct": 63.42,
-          "retail_people": 327357,
-          "retail_pct": 27.88,
-          "over1000_pct_chg": -0.31,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.14,
-          "over400_pct_chg": -0.28
-        },
-        {
-          "date": "20260807",
-          "over1000_people": 324,
-          "over1000_pct": 60.64,
-          "over1000_shares": 2672663722,
-          "over400_pct": 64.35,
-          "retail_people": 319653,
-          "retail_pct": 27.14,
-          "over1000_pct_chg": 0.84,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.74,
-          "over400_pct_chg": 0.93
-        },
-        {
-          "date": "20260814",
-          "over1000_people": 325,
-          "over1000_pct": 62.0,
-          "over1000_shares": 2732597990,
-          "over400_pct": 65.75,
-          "retail_people": 309284,
-          "retail_pct": 25.9,
-          "over1000_pct_chg": 1.36,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -1.24,
-          "over400_pct_chg": 1.4
-        },
-        {
-          "date": "20260821",
-          "over1000_people": 325,
-          "over1000_pct": 62.42,
-          "over1000_shares": 2751111015,
-          "over400_pct": 66.4,
-          "retail_people": 305529,
-          "retail_pct": 25.27,
-          "over1000_pct_chg": 0.42,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.63,
-          "over400_pct_chg": 0.65
-        },
-        {
           "date": "20260828",
           "over1000_people": 322,
           "over1000_pct": 61.91,
@@ -8767,10 +8351,10 @@
           "over400_pct": 65.98,
           "retail_people": 307413,
           "retail_pct": 25.48,
-          "over1000_pct_chg": -0.51,
-          "over1000_people_chg": -3,
-          "retail_pct_chg": 0.21,
-          "over400_pct_chg": -0.42
+          "over1000_pct_chg": 1.8,
+          "over1000_people_chg": -1,
+          "retail_pct_chg": -2.26,
+          "over400_pct_chg": 2.28
         },
         {
           "date": "20260904",
@@ -8868,32 +8452,6 @@
       },
       "history": [
         {
-          "date": "20260320",
-          "over1000_people": 17,
-          "over1000_pct": 46.61,
-          "over1000_shares": 62218388,
-          "over400_pct": 60.95,
-          "retail_people": 75699,
-          "retail_pct": 20.64,
-          "over1000_pct_chg": 0.0,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.0,
-          "over400_pct_chg": 0.0
-        },
-        {
-          "date": "20260327",
-          "over1000_people": 16,
-          "over1000_pct": 45.84,
-          "over1000_shares": 61189797,
-          "over400_pct": 61.07,
-          "retail_people": 77163,
-          "retail_pct": 20.95,
-          "over1000_pct_chg": -0.77,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.31,
-          "over400_pct_chg": 0.12
-        },
-        {
           "date": "20260402",
           "over1000_people": 16,
           "over1000_pct": 45.93,
@@ -8901,10 +8459,10 @@
           "over400_pct": 61.05,
           "retail_people": 77569,
           "retail_pct": 21.02,
-          "over1000_pct_chg": 0.09,
+          "over1000_pct_chg": 0.0,
           "over1000_people_chg": 0,
-          "retail_pct_chg": 0.07,
-          "over400_pct_chg": -0.02
+          "retail_pct_chg": 0.0,
+          "over400_pct_chg": 0.0
         },
         {
           "date": "20260410",
@@ -9167,32 +8725,6 @@
           "over400_pct_chg": -0.16
         },
         {
-          "date": "20260828",
-          "over1000_people": 12,
-          "over1000_pct": 39.08,
-          "over1000_shares": 51120069,
-          "over400_pct": 54.8,
-          "retail_people": 89240,
-          "retail_pct": 21.53,
-          "over1000_pct_chg": 2.46,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": -0.56,
-          "over400_pct_chg": 0.56
-        },
-        {
-          "date": "20260904",
-          "over1000_people": 11,
-          "over1000_pct": 37.91,
-          "over1000_shares": 49593335,
-          "over400_pct": 57.12,
-          "retail_people": 97039,
-          "retail_pct": 20.81,
-          "over1000_pct_chg": -1.17,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.72,
-          "over400_pct_chg": 2.32
-        },
-        {
           "date": "20260911",
           "over1000_people": 11,
           "over1000_pct": 37.78,
@@ -9200,10 +8732,10 @@
           "over400_pct": 57.91,
           "retail_people": 110518,
           "retail_pct": 21.24,
-          "over1000_pct_chg": -0.13,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.43,
-          "over400_pct_chg": 0.79
+          "over1000_pct_chg": 1.16,
+          "over1000_people_chg": 2,
+          "retail_pct_chg": -0.85,
+          "over400_pct_chg": 3.67
         },
         {
           "date": "20260918",
@@ -9470,58 +9002,6 @@
           "over400_pct_chg": -1.21
         },
         {
-          "date": "20260703",
-          "over1000_people": 179,
-          "over1000_pct": 64.53,
-          "over1000_shares": 1397303938,
-          "over400_pct": 69.42,
-          "retail_people": 323898,
-          "retail_pct": 23.41,
-          "over1000_pct_chg": -0.68,
-          "over1000_people_chg": -4,
-          "retail_pct_chg": 0.51,
-          "over400_pct_chg": -0.53
-        },
-        {
-          "date": "20260709",
-          "over1000_people": 182,
-          "over1000_pct": 65.26,
-          "over1000_shares": 1413057090,
-          "over400_pct": 70.17,
-          "retail_people": 318104,
-          "retail_pct": 22.71,
-          "over1000_pct_chg": 0.73,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": -0.7,
-          "over400_pct_chg": 0.75
-        },
-        {
-          "date": "20260717",
-          "over1000_people": 188,
-          "over1000_pct": 65.94,
-          "over1000_shares": 1427703912,
-          "over400_pct": 70.59,
-          "retail_people": 312275,
-          "retail_pct": 22.25,
-          "over1000_pct_chg": 0.68,
-          "over1000_people_chg": 6,
-          "retail_pct_chg": -0.46,
-          "over400_pct_chg": 0.42
-        },
-        {
-          "date": "20260724",
-          "over1000_people": 189,
-          "over1000_pct": 66.55,
-          "over1000_shares": 1440940315,
-          "over400_pct": 71.42,
-          "retail_people": 304933,
-          "retail_pct": 21.44,
-          "over1000_pct_chg": 0.61,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.81,
-          "over400_pct_chg": 0.83
-        },
-        {
           "date": "20260731",
           "over1000_people": 185,
           "over1000_pct": 66.94,
@@ -9529,10 +9009,10 @@
           "over400_pct": 71.9,
           "retail_people": 301770,
           "retail_pct": 21.06,
-          "over1000_pct_chg": 0.39,
-          "over1000_people_chg": -4,
-          "retail_pct_chg": -0.38,
-          "over400_pct_chg": 0.48
+          "over1000_pct_chg": 1.73,
+          "over1000_people_chg": 2,
+          "retail_pct_chg": -1.84,
+          "over400_pct_chg": 1.95
         },
         {
           "date": "20260807",
@@ -9903,32 +9383,6 @@
           "over400_pct_chg": 0.38
         },
         {
-          "date": "20260717",
-          "over1000_people": 155,
-          "over1000_pct": 52.81,
-          "over1000_shares": 1844429459,
-          "over400_pct": 55.55,
-          "retail_people": 390845,
-          "retail_pct": 36.51,
-          "over1000_pct_chg": 0.02,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.13,
-          "over400_pct_chg": -0.12
-        },
-        {
-          "date": "20260724",
-          "over1000_people": 156,
-          "over1000_pct": 53.48,
-          "over1000_shares": 1867891336,
-          "over400_pct": 56.39,
-          "retail_people": 386398,
-          "retail_pct": 35.88,
-          "over1000_pct_chg": 0.67,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.63,
-          "over400_pct_chg": 0.84
-        },
-        {
           "date": "20260731",
           "over1000_people": 161,
           "over1000_pct": 54.34,
@@ -9936,10 +9390,10 @@
           "over400_pct": 57.28,
           "retail_people": 381808,
           "retail_pct": 35.2,
-          "over1000_pct_chg": 0.86,
+          "over1000_pct_chg": 1.55,
           "over1000_people_chg": 5,
-          "retail_pct_chg": -0.68,
-          "over400_pct_chg": 0.89
+          "retail_pct_chg": -1.18,
+          "over400_pct_chg": 1.61
         },
         {
           "date": "20260807",
@@ -11703,16 +11157,16 @@
     },
     "2337": {
       "latest": {
-        "date": "20261008",
-        "over1000_people": 144,
-        "over1000_pct": 35.86,
-        "over1000_shares": 712319877,
-        "over400_pct": 40.61,
-        "retail_people": 486064,
-        "retail_pct": 47.68,
-        "over1000_pct_chg": -0.03,
-        "over1000_people_chg": -2,
-        "retail_pct_chg": 0.01,
+        "date": "20260924",
+        "over1000_people": 146,
+        "over1000_pct": 35.74,
+        "over1000_shares": 709895242,
+        "over400_pct": 40.42,
+        "retail_people": 490227,
+        "retail_pct": 47.84,
+        "over1000_pct_chg": -0.13,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": -0.17,
         "over400_pct_chg": -0.07
       },
       "history": [
@@ -11756,32 +11210,6 @@
           "over400_pct_chg": 0.51
         },
         {
-          "date": "20260410",
-          "over1000_people": 149,
-          "over1000_pct": 50.78,
-          "over1000_shares": 1006210557,
-          "over400_pct": 55.27,
-          "retail_people": 384087,
-          "retail_pct": 34.58,
-          "over1000_pct_chg": -1.55,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 1.43,
-          "over400_pct_chg": -1.52
-        },
-        {
-          "date": "20260417",
-          "over1000_people": 153,
-          "over1000_pct": 48.57,
-          "over1000_shares": 962462045,
-          "over400_pct": 52.93,
-          "retail_people": 404346,
-          "retail_pct": 36.87,
-          "over1000_pct_chg": -2.21,
-          "over1000_people_chg": 4,
-          "retail_pct_chg": 2.29,
-          "over400_pct_chg": -2.34
-        },
-        {
           "date": "20260424",
           "over1000_people": 157,
           "over1000_pct": 46.35,
@@ -11789,10 +11217,10 @@
           "over400_pct": 50.43,
           "retail_people": 420061,
           "retail_pct": 39.34,
-          "over1000_pct_chg": -2.22,
-          "over1000_people_chg": 4,
-          "retail_pct_chg": 2.47,
-          "over400_pct_chg": -2.5
+          "over1000_pct_chg": -5.98,
+          "over1000_people_chg": 7,
+          "retail_pct_chg": 6.19,
+          "over400_pct_chg": -6.36
         },
         {
           "date": "20260430",
@@ -12079,32 +11507,6 @@
           "over1000_people_chg": 0,
           "retail_pct_chg": -0.17,
           "over400_pct_chg": -0.07
-        },
-        {
-          "date": "20261002",
-          "over1000_people": 146,
-          "over1000_pct": 35.89,
-          "over1000_shares": 712894659,
-          "over400_pct": 40.68,
-          "retail_people": 487160,
-          "retail_pct": 47.67,
-          "over1000_pct_chg": 0.15,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.17,
-          "over400_pct_chg": 0.26
-        },
-        {
-          "date": "20261008",
-          "over1000_people": 144,
-          "over1000_pct": 35.86,
-          "over1000_shares": 712319877,
-          "over400_pct": 40.61,
-          "retail_people": 486064,
-          "retail_pct": 47.68,
-          "over1000_pct_chg": -0.03,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": 0.01,
-          "over400_pct_chg": -0.07
         }
       ]
     },
@@ -12215,32 +11617,6 @@
           "over400_pct_chg": 0.88
         },
         {
-          "date": "20260508",
-          "over1000_people": 218,
-          "over1000_pct": 65.61,
-          "over1000_shares": 2952787402,
-          "over400_pct": 68.33,
-          "retail_people": 450919,
-          "retail_pct": 24.83,
-          "over1000_pct_chg": 3.14,
-          "over1000_people_chg": 13,
-          "retail_pct_chg": -2.69,
-          "over400_pct_chg": 3.05
-        },
-        {
-          "date": "20260515",
-          "over1000_people": 238,
-          "over1000_pct": 69.42,
-          "over1000_shares": 3124077614,
-          "over400_pct": 72.17,
-          "retail_people": 397066,
-          "retail_pct": 21.19,
-          "over1000_pct_chg": 3.81,
-          "over1000_people_chg": 20,
-          "retail_pct_chg": -3.64,
-          "over400_pct_chg": 3.84
-        },
-        {
           "date": "20260522",
           "over1000_people": 243,
           "over1000_pct": 66.86,
@@ -12248,10 +11624,10 @@
           "over400_pct": 69.61,
           "retail_people": 439595,
           "retail_pct": 23.5,
-          "over1000_pct_chg": -2.56,
-          "over1000_people_chg": 5,
-          "retail_pct_chg": 2.31,
-          "over400_pct_chg": -2.56
+          "over1000_pct_chg": 4.39,
+          "over1000_people_chg": 38,
+          "retail_pct_chg": -4.02,
+          "over400_pct_chg": 4.33
         },
         {
           "date": "20260529",
@@ -12371,32 +11747,6 @@
           "over400_pct_chg": -0.42
         },
         {
-          "date": "20260731",
-          "over1000_people": 248,
-          "over1000_pct": 65.63,
-          "over1000_shares": 3068669187,
-          "over400_pct": 68.57,
-          "retail_people": 561942,
-          "retail_pct": 25.0,
-          "over1000_pct_chg": -0.76,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": 0.79,
-          "over400_pct_chg": -0.82
-        },
-        {
-          "date": "20260807",
-          "over1000_people": 253,
-          "over1000_pct": 67.16,
-          "over1000_shares": 3170620197,
-          "over400_pct": 69.96,
-          "retail_people": 552305,
-          "retail_pct": 23.86,
-          "over1000_pct_chg": 1.53,
-          "over1000_people_chg": 5,
-          "retail_pct_chg": -1.14,
-          "over400_pct_chg": 1.39
-        },
-        {
           "date": "20260814",
           "over1000_people": 243,
           "over1000_pct": 66.07,
@@ -12404,10 +11754,10 @@
           "over400_pct": 68.96,
           "retail_people": 564907,
           "retail_pct": 24.6,
-          "over1000_pct_chg": -1.09,
-          "over1000_people_chg": -10,
-          "retail_pct_chg": 0.74,
-          "over400_pct_chg": -1.0
+          "over1000_pct_chg": -0.32,
+          "over1000_people_chg": -7,
+          "retail_pct_chg": 0.39,
+          "over400_pct_chg": -0.43
         },
         {
           "date": "20260821",
@@ -13778,32 +13128,6 @@
           "over400_pct_chg": 0.05
         },
         {
-          "date": "20260402",
-          "over1000_people": 92,
-          "over1000_pct": 78.69,
-          "over1000_shares": 683254742,
-          "over400_pct": 85.35,
-          "retail_people": 33785,
-          "retail_pct": 6.31,
-          "over1000_pct_chg": 0.16,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": -0.01,
-          "over400_pct_chg": -0.04
-        },
-        {
-          "date": "20260410",
-          "over1000_people": 95,
-          "over1000_pct": 79.08,
-          "over1000_shares": 686685522,
-          "over400_pct": 85.49,
-          "retail_people": 32991,
-          "retail_pct": 6.2,
-          "over1000_pct_chg": 0.39,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": -0.11,
-          "over400_pct_chg": 0.14
-        },
-        {
           "date": "20260417",
           "over1000_people": 92,
           "over1000_pct": 78.75,
@@ -13811,10 +13135,10 @@
           "over400_pct": 85.46,
           "retail_people": 32569,
           "retail_pct": 6.17,
-          "over1000_pct_chg": -0.33,
-          "over1000_people_chg": -3,
-          "retail_pct_chg": -0.03,
-          "over400_pct_chg": -0.03
+          "over1000_pct_chg": 0.22,
+          "over1000_people_chg": 3,
+          "retail_pct_chg": -0.15,
+          "over400_pct_chg": 0.07
         },
         {
           "date": "20260424",
@@ -14393,32 +13717,6 @@
           "over400_pct_chg": -0.54
         },
         {
-          "date": "20260724",
-          "over1000_people": 78,
-          "over1000_pct": 43.8,
-          "over1000_shares": 692390642,
-          "over400_pct": 48.71,
-          "retail_people": 192085,
-          "retail_pct": 35.97,
-          "over1000_pct_chg": -0.18,
-          "over1000_people_chg": -7,
-          "retail_pct_chg": 0.01,
-          "over400_pct_chg": -0.05
-        },
-        {
-          "date": "20260731",
-          "over1000_people": 79,
-          "over1000_pct": 43.33,
-          "over1000_shares": 684979101,
-          "over400_pct": 48.4,
-          "retail_people": 191786,
-          "retail_pct": 36.12,
-          "over1000_pct_chg": -0.47,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.15,
-          "over400_pct_chg": -0.31
-        },
-        {
           "date": "20260807",
           "over1000_people": 77,
           "over1000_pct": 43.45,
@@ -14426,10 +13724,10 @@
           "over400_pct": 48.46,
           "retail_people": 191315,
           "retail_pct": 36.02,
-          "over1000_pct_chg": 0.12,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": -0.1,
-          "over400_pct_chg": 0.06
+          "over1000_pct_chg": -0.53,
+          "over1000_people_chg": -8,
+          "retail_pct_chg": 0.06,
+          "over400_pct_chg": -0.3
         },
         {
           "date": "20260814",
@@ -14800,32 +14098,6 @@
           "over400_pct_chg": -0.85
         },
         {
-          "date": "20260724",
-          "over1000_people": 55,
-          "over1000_pct": 58.24,
-          "over1000_shares": 222576245,
-          "over400_pct": 63.12,
-          "retail_people": 91708,
-          "retail_pct": 29.8,
-          "over1000_pct_chg": -1.93,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 2.82,
-          "over400_pct_chg": -3.25
-        },
-        {
-          "date": "20260731",
-          "over1000_people": 54,
-          "over1000_pct": 58.47,
-          "over1000_shares": 223427903,
-          "over400_pct": 63.11,
-          "retail_people": 91668,
-          "retail_pct": 30.47,
-          "over1000_pct_chg": 0.23,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.67,
-          "over400_pct_chg": -0.01
-        },
-        {
           "date": "20260807",
           "over1000_people": 51,
           "over1000_pct": 57.55,
@@ -14833,10 +14105,10 @@
           "over400_pct": 61.96,
           "retail_people": 94269,
           "retail_pct": 31.54,
-          "over1000_pct_chg": -0.92,
-          "over1000_people_chg": -3,
-          "retail_pct_chg": 1.07,
-          "over400_pct_chg": -1.15
+          "over1000_pct_chg": -2.62,
+          "over1000_people_chg": -5,
+          "retail_pct_chg": 4.56,
+          "over400_pct_chg": -4.41
         },
         {
           "date": "20260814",
@@ -15038,32 +14310,6 @@
           "over400_pct_chg": 0.26
         },
         {
-          "date": "20260424",
-          "over1000_people": 88,
-          "over1000_pct": 58.2,
-          "over1000_shares": 354193280,
-          "over400_pct": 68.73,
-          "retail_people": 111301,
-          "retail_pct": 20.0,
-          "over1000_pct_chg": 0.72,
-          "over1000_people_chg": 5,
-          "retail_pct_chg": -0.11,
-          "over400_pct_chg": 0.26
-        },
-        {
-          "date": "20260430",
-          "over1000_people": 90,
-          "over1000_pct": 58.42,
-          "over1000_shares": 355499061,
-          "over400_pct": 68.83,
-          "retail_people": 111031,
-          "retail_pct": 19.96,
-          "over1000_pct_chg": 0.22,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": -0.04,
-          "over400_pct_chg": 0.1
-        },
-        {
           "date": "20260508",
           "over1000_people": 89,
           "over1000_pct": 58.71,
@@ -15071,10 +14317,10 @@
           "over400_pct": 69.4,
           "retail_people": 109234,
           "retail_pct": 19.27,
-          "over1000_pct_chg": 0.29,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.69,
-          "over400_pct_chg": 0.57
+          "over1000_pct_chg": 1.23,
+          "over1000_people_chg": 6,
+          "retail_pct_chg": -0.84,
+          "over400_pct_chg": 0.93
         },
         {
           "date": "20260515",
@@ -15575,32 +14821,6 @@
           "over400_pct_chg": 0.36
         },
         {
-          "date": "20260703",
-          "over1000_people": 184,
-          "over1000_pct": 68.11,
-          "over1000_shares": 1084007619,
-          "over400_pct": 75.61,
-          "retail_people": 340467,
-          "retail_pct": 15.47,
-          "over1000_pct_chg": -0.34,
-          "over1000_people_chg": -5,
-          "retail_pct_chg": 0.58,
-          "over400_pct_chg": -0.47
-        },
-        {
-          "date": "20260709",
-          "over1000_people": 183,
-          "over1000_pct": 67.08,
-          "over1000_shares": 1067536914,
-          "over400_pct": 74.34,
-          "retail_people": 380544,
-          "retail_pct": 16.75,
-          "over1000_pct_chg": -1.03,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 1.28,
-          "over400_pct_chg": -1.27
-        },
-        {
           "date": "20260717",
           "over1000_people": 185,
           "over1000_pct": 67.5,
@@ -15608,10 +14828,10 @@
           "over400_pct": 74.71,
           "retail_people": 386824,
           "retail_pct": 16.53,
-          "over1000_pct_chg": 0.42,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": -0.22,
-          "over400_pct_chg": 0.37
+          "over1000_pct_chg": -0.95,
+          "over1000_people_chg": -4,
+          "retail_pct_chg": 1.64,
+          "over400_pct_chg": -1.37
         },
         {
           "date": "20260724",
@@ -15800,32 +15020,6 @@
           "over400_pct_chg": 0.0
         },
         {
-          "date": "20260327",
-          "over1000_people": 36,
-          "over1000_pct": 81.1,
-          "over1000_shares": 524096011,
-          "over400_pct": 85.48,
-          "retail_people": 58229,
-          "retail_pct": 9.74,
-          "over1000_pct_chg": -0.21,
-          "over1000_people_chg": -4,
-          "retail_pct_chg": -0.32,
-          "over400_pct_chg": 0.47
-        },
-        {
-          "date": "20260402",
-          "over1000_people": 36,
-          "over1000_pct": 80.88,
-          "over1000_shares": 522633164,
-          "over400_pct": 85.39,
-          "retail_people": 57617,
-          "retail_pct": 9.75,
-          "over1000_pct_chg": -0.22,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.01,
-          "over400_pct_chg": -0.09
-        },
-        {
           "date": "20260410",
           "over1000_people": 39,
           "over1000_pct": 82.0,
@@ -15833,10 +15027,10 @@
           "over400_pct": 86.26,
           "retail_people": 53063,
           "retail_pct": 8.58,
-          "over1000_pct_chg": 1.12,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": -1.17,
-          "over400_pct_chg": 0.87
+          "over1000_pct_chg": 0.69,
+          "over1000_people_chg": -1,
+          "retail_pct_chg": -1.48,
+          "over400_pct_chg": 1.25
         },
         {
           "date": "20260417",
@@ -16480,32 +15674,6 @@
           "over400_pct_chg": 0.05
         },
         {
-          "date": "20260821",
-          "over1000_people": 59,
-          "over1000_pct": 68.17,
-          "over1000_shares": 359215225,
-          "over400_pct": 73.44,
-          "retail_people": 126199,
-          "retail_pct": 18.27,
-          "over1000_pct_chg": -0.32,
-          "over1000_people_chg": 5,
-          "retail_pct_chg": 0.48,
-          "over400_pct_chg": -0.82
-        },
-        {
-          "date": "20260828",
-          "over1000_people": 58,
-          "over1000_pct": 68.61,
-          "over1000_shares": 361545115,
-          "over400_pct": 73.93,
-          "retail_people": 121492,
-          "retail_pct": 17.53,
-          "over1000_pct_chg": 0.44,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.74,
-          "over400_pct_chg": 0.49
-        },
-        {
           "date": "20260904",
           "over1000_people": 54,
           "over1000_pct": 65.91,
@@ -16513,10 +15681,10 @@
           "over400_pct": 71.44,
           "retail_people": 144464,
           "retail_pct": 19.93,
-          "over1000_pct_chg": -2.7,
-          "over1000_people_chg": -4,
-          "retail_pct_chg": 2.4,
-          "over400_pct_chg": -2.49
+          "over1000_pct_chg": -2.58,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 2.14,
+          "over400_pct_chg": -2.82
         },
         {
           "date": "20260911",
@@ -17138,32 +16306,6 @@
           "over400_pct_chg": 0.08
         },
         {
-          "date": "20260529",
-          "over1000_people": 253,
-          "over1000_pct": 64.07,
-          "over1000_shares": 3937477696,
-          "over400_pct": 67.62,
-          "retail_people": 266329,
-          "retail_pct": 21.58,
-          "over1000_pct_chg": -0.37,
-          "over1000_people_chg": -9,
-          "retail_pct_chg": 0.08,
-          "over400_pct_chg": -0.23
-        },
-        {
-          "date": "20260605",
-          "over1000_people": 220,
-          "over1000_pct": 64.75,
-          "over1000_shares": 3979474839,
-          "over400_pct": 68.08,
-          "retail_people": 264826,
-          "retail_pct": 21.36,
-          "over1000_pct_chg": 0.68,
-          "over1000_people_chg": -33,
-          "retail_pct_chg": -0.22,
-          "over400_pct_chg": 0.46
-        },
-        {
           "date": "20260612",
           "over1000_people": 230,
           "over1000_pct": 65.07,
@@ -17171,10 +16313,10 @@
           "over400_pct": 68.39,
           "retail_people": 262375,
           "retail_pct": 21.12,
-          "over1000_pct_chg": 0.32,
-          "over1000_people_chg": 10,
-          "retail_pct_chg": -0.24,
-          "over400_pct_chg": 0.31
+          "over1000_pct_chg": 0.63,
+          "over1000_people_chg": -32,
+          "retail_pct_chg": -0.38,
+          "over400_pct_chg": 0.54
         },
         {
           "date": "20260618",
@@ -17268,32 +16410,6 @@
           "over400_pct_chg": 1.07
         },
         {
-          "date": "20260807",
-          "over1000_people": 258,
-          "over1000_pct": 71.57,
-          "over1000_shares": 4398570347,
-          "over400_pct": 74.32,
-          "retail_people": 233012,
-          "retail_pct": 17.48,
-          "over1000_pct_chg": 0.9,
-          "over1000_people_chg": 9,
-          "retail_pct_chg": -0.56,
-          "over400_pct_chg": 0.85
-        },
-        {
-          "date": "20260814",
-          "over1000_people": 260,
-          "over1000_pct": 69.81,
-          "over1000_shares": 4290117231,
-          "over400_pct": 72.72,
-          "retail_people": 242354,
-          "retail_pct": 18.47,
-          "over1000_pct_chg": -1.76,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": 0.99,
-          "over400_pct_chg": -1.6
-        },
-        {
           "date": "20260821",
           "over1000_people": 256,
           "over1000_pct": 69.47,
@@ -17301,10 +16417,10 @@
           "over400_pct": 72.39,
           "retail_people": 243645,
           "retail_pct": 18.66,
-          "over1000_pct_chg": -0.34,
-          "over1000_people_chg": -4,
-          "retail_pct_chg": 0.19,
-          "over400_pct_chg": -0.33
+          "over1000_pct_chg": -1.2,
+          "over1000_people_chg": 7,
+          "retail_pct_chg": 0.62,
+          "over400_pct_chg": -1.08
         },
         {
           "date": "20260828",
@@ -17519,32 +16635,6 @@
           "over400_pct_chg": 0.37
         },
         {
-          "date": "20260515",
-          "over1000_people": 867,
-          "over1000_pct": 62.69,
-          "over1000_shares": 10643069750,
-          "over400_pct": 66.62,
-          "retail_people": 717721,
-          "retail_pct": 19.38,
-          "over1000_pct_chg": 0.08,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.03,
-          "over400_pct_chg": 0.04
-        },
-        {
-          "date": "20260522",
-          "over1000_people": 864,
-          "over1000_pct": 62.55,
-          "over1000_shares": 10619383003,
-          "over400_pct": 66.49,
-          "retail_people": 718694,
-          "retail_pct": 19.47,
-          "over1000_pct_chg": -0.14,
-          "over1000_people_chg": -3,
-          "retail_pct_chg": 0.09,
-          "over400_pct_chg": -0.13
-        },
-        {
           "date": "20260529",
           "over1000_people": 860,
           "over1000_pct": 62.65,
@@ -17552,10 +16642,10 @@
           "over400_pct": 66.61,
           "retail_people": 716244,
           "retail_pct": 19.38,
-          "over1000_pct_chg": 0.1,
-          "over1000_people_chg": -4,
-          "retail_pct_chg": -0.09,
-          "over400_pct_chg": 0.12
+          "over1000_pct_chg": 0.04,
+          "over1000_people_chg": -8,
+          "retail_pct_chg": -0.03,
+          "over400_pct_chg": 0.03
         },
         {
           "date": "20260605",
@@ -18043,32 +17133,6 @@
           "over400_pct_chg": 0.15
         },
         {
-          "date": "20260717",
-          "over1000_people": 677,
-          "over1000_pct": 80.4,
-          "over1000_shares": 10719506872,
-          "over400_pct": 82.97,
-          "retail_people": 443410,
-          "retail_pct": 11.05,
-          "over1000_pct_chg": -0.16,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.1,
-          "over400_pct_chg": -0.15
-        },
-        {
-          "date": "20260724",
-          "over1000_people": 677,
-          "over1000_pct": 80.23,
-          "over1000_shares": 10695868165,
-          "over400_pct": 82.83,
-          "retail_people": 445629,
-          "retail_pct": 11.14,
-          "over1000_pct_chg": -0.17,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.09,
-          "over400_pct_chg": -0.14
-        },
-        {
           "date": "20260731",
           "over1000_people": 690,
           "over1000_pct": 80.28,
@@ -18076,10 +17140,10 @@
           "over400_pct": 82.92,
           "retail_people": 444512,
           "retail_pct": 11.08,
-          "over1000_pct_chg": 0.05,
-          "over1000_people_chg": 13,
-          "retail_pct_chg": -0.06,
-          "over400_pct_chg": 0.09
+          "over1000_pct_chg": -0.28,
+          "over1000_people_chg": 12,
+          "retail_pct_chg": 0.13,
+          "over400_pct_chg": -0.2
         },
         {
           "date": "20260807",
@@ -18636,32 +17700,6 @@
       },
       "history": [
         {
-          "date": "20260320",
-          "over1000_people": 785,
-          "over1000_pct": 77.27,
-          "over1000_shares": 11198903162,
-          "over400_pct": 80.52,
-          "retail_people": 433899,
-          "retail_pct": 11.56,
-          "over1000_pct_chg": 0.0,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.0,
-          "over400_pct_chg": 0.0
-        },
-        {
-          "date": "20260327",
-          "over1000_people": 779,
-          "over1000_pct": 77.24,
-          "over1000_shares": 11194602161,
-          "over400_pct": 80.49,
-          "retail_people": 447469,
-          "retail_pct": 11.6,
-          "over1000_pct_chg": -0.03,
-          "over1000_people_chg": -6,
-          "retail_pct_chg": 0.04,
-          "over400_pct_chg": -0.03
-        },
-        {
           "date": "20260402",
           "over1000_people": 786,
           "over1000_pct": 77.26,
@@ -18669,10 +17707,10 @@
           "over400_pct": 80.5,
           "retail_people": 447641,
           "retail_pct": 11.6,
-          "over1000_pct_chg": 0.02,
-          "over1000_people_chg": 7,
+          "over1000_pct_chg": 0.0,
+          "over1000_people_chg": 0,
           "retail_pct_chg": 0.0,
-          "over400_pct_chg": 0.01
+          "over400_pct_chg": 0.0
         },
         {
           "date": "20260410",
@@ -19147,45 +18185,6 @@
           "over400_pct_chg": -0.16
         },
         {
-          "date": "20260515",
-          "over1000_people": 191,
-          "over1000_pct": 61.7,
-          "over1000_shares": 1056101053,
-          "over400_pct": 67.57,
-          "retail_people": 117545,
-          "retail_pct": 21.13,
-          "over1000_pct_chg": -0.62,
-          "over1000_people_chg": -5,
-          "retail_pct_chg": 0.32,
-          "over400_pct_chg": -0.58
-        },
-        {
-          "date": "20260522",
-          "over1000_people": 195,
-          "over1000_pct": 61.9,
-          "over1000_shares": 1059520621,
-          "over400_pct": 67.57,
-          "retail_people": 116942,
-          "retail_pct": 21.03,
-          "over1000_pct_chg": 0.2,
-          "over1000_people_chg": 4,
-          "retail_pct_chg": -0.1,
-          "over400_pct_chg": 0.0
-        },
-        {
-          "date": "20260529",
-          "over1000_people": 196,
-          "over1000_pct": 61.81,
-          "over1000_shares": 1057948070,
-          "over400_pct": 67.49,
-          "retail_people": 117219,
-          "retail_pct": 21.11,
-          "over1000_pct_chg": -0.09,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.08,
-          "over400_pct_chg": -0.08
-        },
-        {
           "date": "20260605",
           "over1000_people": 189,
           "over1000_pct": 62.26,
@@ -19193,10 +18192,10 @@
           "over400_pct": 68.35,
           "retail_people": 115347,
           "retail_pct": 20.54,
-          "over1000_pct_chg": 0.45,
+          "over1000_pct_chg": -0.06,
           "over1000_people_chg": -7,
-          "retail_pct_chg": -0.57,
-          "over400_pct_chg": 0.86
+          "retail_pct_chg": -0.27,
+          "over400_pct_chg": 0.2
         },
         {
           "date": "20260612",
@@ -19381,32 +18380,6 @@
           "over400_pct_chg": 0.08
         },
         {
-          "date": "20260918",
-          "over1000_people": 210,
-          "over1000_pct": 64.84,
-          "over1000_shares": 1131935768,
-          "over400_pct": 70.56,
-          "retail_people": 112634,
-          "retail_pct": 19.1,
-          "over1000_pct_chg": 0.21,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": -0.02,
-          "over400_pct_chg": 0.08
-        },
-        {
-          "date": "20260924",
-          "over1000_people": 210,
-          "over1000_pct": 64.22,
-          "over1000_shares": 1121161869,
-          "over400_pct": 69.9,
-          "retail_people": 114470,
-          "retail_pct": 19.59,
-          "over1000_pct_chg": -0.62,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.49,
-          "over400_pct_chg": -0.66
-        },
-        {
           "date": "20261002",
           "over1000_people": 209,
           "over1000_pct": 63.98,
@@ -19414,10 +18387,10 @@
           "over400_pct": 69.56,
           "retail_people": 115051,
           "retail_pct": 19.85,
-          "over1000_pct_chg": -0.24,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.26,
-          "over400_pct_chg": -0.34
+          "over1000_pct_chg": -0.65,
+          "over1000_people_chg": 2,
+          "retail_pct_chg": 0.73,
+          "over400_pct_chg": -0.92
         },
         {
           "date": "20261008",
@@ -19974,32 +18947,6 @@
           "over400_pct_chg": 0.04
         },
         {
-          "date": "20260522",
-          "over1000_people": 413,
-          "over1000_pct": 50.41,
-          "over1000_shares": 3792986477,
-          "over400_pct": 54.71,
-          "retail_people": 514579,
-          "retail_pct": 30.15,
-          "over1000_pct_chg": -0.22,
-          "over1000_people_chg": -5,
-          "retail_pct_chg": 0.07,
-          "over400_pct_chg": -0.13
-        },
-        {
-          "date": "20260529",
-          "over1000_people": 417,
-          "over1000_pct": 50.56,
-          "over1000_shares": 3803899620,
-          "over400_pct": 54.77,
-          "retail_people": 512608,
-          "retail_pct": 30.02,
-          "over1000_pct_chg": 0.15,
-          "over1000_people_chg": 4,
-          "retail_pct_chg": -0.13,
-          "over400_pct_chg": 0.06
-        },
-        {
           "date": "20260605",
           "over1000_people": 412,
           "over1000_pct": 51.05,
@@ -20007,10 +18954,10 @@
           "over400_pct": 55.22,
           "retail_people": 507937,
           "retail_pct": 29.68,
-          "over1000_pct_chg": 0.49,
-          "over1000_people_chg": -5,
-          "retail_pct_chg": -0.34,
-          "over400_pct_chg": 0.45
+          "over1000_pct_chg": 0.42,
+          "over1000_people_chg": -6,
+          "retail_pct_chg": -0.4,
+          "over400_pct_chg": 0.38
         },
         {
           "date": "20260612",
@@ -23506,17 +22453,17 @@
     },
     "5904": {
       "latest": {
-        "date": "20261008",
-        "over1000_people": 110,
-        "over1000_pct": 75.56,
-        "over1000_shares": 804326189,
-        "over400_pct": 78.94,
-        "retail_people": 98329,
-        "retail_pct": 16.14,
-        "over1000_pct_chg": 0.47,
-        "over1000_people_chg": 3,
-        "retail_pct_chg": -0.1,
-        "over400_pct_chg": 0.1
+        "date": "20260924",
+        "over1000_people": 108,
+        "over1000_pct": 75.45,
+        "over1000_shares": 803156602,
+        "over400_pct": 79.4,
+        "retail_people": 98014,
+        "retail_pct": 15.7,
+        "over1000_pct_chg": 0.01,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": 0.23,
+        "over400_pct_chg": -0.38
       },
       "history": [
         {
@@ -23882,32 +22829,6 @@
           "over1000_people_chg": 0,
           "retail_pct_chg": 0.23,
           "over400_pct_chg": -0.38
-        },
-        {
-          "date": "20261002",
-          "over1000_people": 107,
-          "over1000_pct": 75.09,
-          "over1000_shares": 799289984,
-          "over400_pct": 78.84,
-          "retail_people": 99231,
-          "retail_pct": 16.24,
-          "over1000_pct_chg": -0.36,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.54,
-          "over400_pct_chg": -0.56
-        },
-        {
-          "date": "20261008",
-          "over1000_people": 110,
-          "over1000_pct": 75.56,
-          "over1000_shares": 804326189,
-          "over400_pct": 78.94,
-          "retail_people": 98329,
-          "retail_pct": 16.14,
-          "over1000_pct_chg": 0.47,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": -0.1,
-          "over400_pct_chg": 0.1
         }
       ]
     },
@@ -26079,32 +25000,6 @@
           "over400_pct_chg": 0.37
         },
         {
-          "date": "20260522",
-          "over1000_people": 62,
-          "over1000_pct": 48.61,
-          "over1000_shares": 226069197,
-          "over400_pct": 58.03,
-          "retail_people": 68125,
-          "retail_pct": 31.71,
-          "over1000_pct_chg": -0.04,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": -0.75,
-          "over400_pct_chg": 1.09
-        },
-        {
-          "date": "20260529",
-          "over1000_people": 63,
-          "over1000_pct": 49.93,
-          "over1000_shares": 232215207,
-          "over400_pct": 58.58,
-          "retail_people": 67007,
-          "retail_pct": 31.26,
-          "over1000_pct_chg": 1.32,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.45,
-          "over400_pct_chg": 0.55
-        },
-        {
           "date": "20260605",
           "over1000_people": 70,
           "over1000_pct": 49.43,
@@ -26112,10 +25007,10 @@
           "over400_pct": 57.88,
           "retail_people": 67204,
           "retail_pct": 31.82,
-          "over1000_pct_chg": -0.5,
-          "over1000_people_chg": 7,
-          "retail_pct_chg": 0.56,
-          "over400_pct_chg": -0.7
+          "over1000_pct_chg": 0.78,
+          "over1000_people_chg": 6,
+          "retail_pct_chg": -0.64,
+          "over400_pct_chg": 0.94
         },
         {
           "date": "20260612",
@@ -30556,32 +29451,6 @@
           "over400_pct_chg": -0.3
         },
         {
-          "date": "20260522",
-          "over1000_people": 46,
-          "over1000_pct": 71.96,
-          "over1000_shares": 374929402,
-          "over400_pct": 74.27,
-          "retail_people": 71734,
-          "retail_pct": 18.34,
-          "over1000_pct_chg": 0.05,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.62,
-          "over400_pct_chg": -0.67
-        },
-        {
-          "date": "20260529",
-          "over1000_people": 45,
-          "over1000_pct": 71.66,
-          "over1000_shares": 373329920,
-          "over400_pct": 73.94,
-          "retail_people": 75343,
-          "retail_pct": 18.55,
-          "over1000_pct_chg": -0.3,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.21,
-          "over400_pct_chg": -0.33
-        },
-        {
           "date": "20260605",
           "over1000_people": 48,
           "over1000_pct": 73.43,
@@ -30589,10 +29458,10 @@
           "over400_pct": 75.52,
           "retail_people": 72037,
           "retail_pct": 17.19,
-          "over1000_pct_chg": 1.77,
+          "over1000_pct_chg": 1.52,
           "over1000_people_chg": 3,
-          "retail_pct_chg": -1.36,
-          "over400_pct_chg": 1.58
+          "retail_pct_chg": -0.53,
+          "over400_pct_chg": 0.58
         },
         {
           "date": "20260612",
@@ -30608,32 +29477,6 @@
           "over400_pct_chg": -1.64
         },
         {
-          "date": "20260618",
-          "over1000_people": 44,
-          "over1000_pct": 71.1,
-          "over1000_shares": 370422355,
-          "over400_pct": 73.68,
-          "retail_people": 80052,
-          "retail_pct": 18.97,
-          "over1000_pct_chg": -0.47,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": 0.08,
-          "over400_pct_chg": -0.2
-        },
-        {
-          "date": "20260626",
-          "over1000_people": 44,
-          "over1000_pct": 71.18,
-          "over1000_shares": 370871192,
-          "over400_pct": 73.31,
-          "retail_people": 80670,
-          "retail_pct": 19.01,
-          "over1000_pct_chg": 0.08,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.04,
-          "over400_pct_chg": -0.37
-        },
-        {
           "date": "20260703",
           "over1000_people": 44,
           "over1000_pct": 71.12,
@@ -30641,10 +29484,10 @@
           "over400_pct": 73.32,
           "retail_people": 80556,
           "retail_pct": 19.1,
-          "over1000_pct_chg": -0.06,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.09,
-          "over400_pct_chg": 0.01
+          "over1000_pct_chg": -0.45,
+          "over1000_people_chg": -2,
+          "retail_pct_chg": 0.21,
+          "over400_pct_chg": -0.56
         },
         {
           "date": "20260709",
@@ -30963,32 +29806,6 @@
           "over400_pct_chg": -0.42
         },
         {
-          "date": "20260522",
-          "over1000_people": 148,
-          "over1000_pct": 70.2,
-          "over1000_shares": 1668412583,
-          "over400_pct": 73.5,
-          "retail_people": 182143,
-          "retail_pct": 19.82,
-          "over1000_pct_chg": 0.09,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.09,
-          "over400_pct_chg": -0.05
-        },
-        {
-          "date": "20260529",
-          "over1000_people": 149,
-          "over1000_pct": 70.11,
-          "over1000_shares": 1666247683,
-          "over400_pct": 73.5,
-          "retail_people": 181695,
-          "retail_pct": 19.83,
-          "over1000_pct_chg": -0.09,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.01,
-          "over400_pct_chg": 0.0
-        },
-        {
           "date": "20260605",
           "over1000_people": 135,
           "over1000_pct": 70.94,
@@ -30997,9 +29814,9 @@
           "retail_people": 198121,
           "retail_pct": 20.46,
           "over1000_pct_chg": 0.83,
-          "over1000_people_chg": -14,
-          "retail_pct_chg": 0.63,
-          "over400_pct_chg": -0.22
+          "over1000_people_chg": -12,
+          "retail_pct_chg": 0.73,
+          "over400_pct_chg": -0.27
         },
         {
           "date": "20260612",
@@ -33353,32 +32170,6 @@
           "over400_pct_chg": -0.69
         },
         {
-          "date": "20260424",
-          "over1000_people": 185,
-          "over1000_pct": 62.65,
-          "over1000_shares": 1619150401,
-          "over400_pct": 66.72,
-          "retail_people": 149717,
-          "retail_pct": 22.25,
-          "over1000_pct_chg": -0.67,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": 0.32,
-          "over400_pct_chg": -0.73
-        },
-        {
-          "date": "20260430",
-          "over1000_people": 188,
-          "over1000_pct": 63.96,
-          "over1000_shares": 1653049725,
-          "over400_pct": 67.94,
-          "retail_people": 145572,
-          "retail_pct": 21.33,
-          "over1000_pct_chg": 1.31,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": -0.92,
-          "over400_pct_chg": 1.22
-        },
-        {
           "date": "20260508",
           "over1000_people": 186,
           "over1000_pct": 65.04,
@@ -33386,10 +32177,10 @@
           "over400_pct": 69.1,
           "retail_people": 140867,
           "retail_pct": 20.45,
-          "over1000_pct_chg": 1.08,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": -0.88,
-          "over400_pct_chg": 1.16
+          "over1000_pct_chg": 1.72,
+          "over1000_people_chg": 4,
+          "retail_pct_chg": -1.48,
+          "over400_pct_chg": 1.65
         },
         {
           "date": "20260515",
@@ -37462,32 +36253,6 @@
           "over400_pct_chg": 1.38
         },
         {
-          "date": "20260515",
-          "over1000_people": 223,
-          "over1000_pct": 68.63,
-          "over1000_shares": 1421770649,
-          "over400_pct": 73.78,
-          "retail_people": 221412,
-          "retail_pct": 18.0,
-          "over1000_pct_chg": 0.3,
-          "over1000_people_chg": 5,
-          "retail_pct_chg": -0.54,
-          "over400_pct_chg": 0.23
-        },
-        {
-          "date": "20260522",
-          "over1000_people": 231,
-          "over1000_pct": 69.94,
-          "over1000_shares": 1448975310,
-          "over400_pct": 75.13,
-          "retail_people": 224175,
-          "retail_pct": 16.94,
-          "over1000_pct_chg": 1.31,
-          "over1000_people_chg": 8,
-          "retail_pct_chg": -1.06,
-          "over400_pct_chg": 1.35
-        },
-        {
           "date": "20260529",
           "over1000_people": 219,
           "over1000_pct": 69.6,
@@ -37495,10 +36260,10 @@
           "over400_pct": 74.78,
           "retail_people": 262888,
           "retail_pct": 17.18,
-          "over1000_pct_chg": -0.34,
-          "over1000_people_chg": -12,
-          "retail_pct_chg": 0.24,
-          "over400_pct_chg": -0.35
+          "over1000_pct_chg": 1.27,
+          "over1000_people_chg": 1,
+          "retail_pct_chg": -1.36,
+          "over400_pct_chg": 1.23
         },
         {
           "date": "20260605",
@@ -37751,17 +36516,17 @@
     },
     "2492": {
       "latest": {
-        "date": "20261008",
-        "over1000_people": 44,
-        "over1000_pct": 64.39,
-        "over1000_shares": 312466785,
-        "over400_pct": 67.92,
-        "retail_people": 111466,
-        "retail_pct": 25.99,
-        "over1000_pct_chg": 2.88,
-        "over1000_people_chg": 2,
-        "retail_pct_chg": -2.62,
-        "over400_pct_chg": 2.49
+        "date": "20260918",
+        "over1000_people": 38,
+        "over1000_pct": 59.31,
+        "over1000_shares": 287776815,
+        "over400_pct": 63.21,
+        "retail_people": 123141,
+        "retail_pct": 30.95,
+        "over1000_pct_chg": -3.39,
+        "over1000_people_chg": -6,
+        "retail_pct_chg": 3.24,
+        "over400_pct_chg": -2.9
       },
       "history": [
         {
@@ -38114,45 +36879,6 @@
           "over1000_people_chg": -6,
           "retail_pct_chg": 3.24,
           "over400_pct_chg": -2.9
-        },
-        {
-          "date": "20260924",
-          "over1000_people": 36,
-          "over1000_pct": 58.83,
-          "over1000_shares": 285492160,
-          "over400_pct": 63.1,
-          "retail_people": 122529,
-          "retail_pct": 30.92,
-          "over1000_pct_chg": -0.48,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": -0.03,
-          "over400_pct_chg": -0.11
-        },
-        {
-          "date": "20261002",
-          "over1000_people": 42,
-          "over1000_pct": 61.51,
-          "over1000_shares": 298486877,
-          "over400_pct": 65.43,
-          "retail_people": 115655,
-          "retail_pct": 28.61,
-          "over1000_pct_chg": 2.68,
-          "over1000_people_chg": 6,
-          "retail_pct_chg": -2.31,
-          "over400_pct_chg": 2.33
-        },
-        {
-          "date": "20261008",
-          "over1000_people": 44,
-          "over1000_pct": 64.39,
-          "over1000_shares": 312466785,
-          "over400_pct": 67.92,
-          "retail_people": 111466,
-          "retail_pct": 25.99,
-          "over1000_pct_chg": 2.88,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": -2.62,
-          "over400_pct_chg": 2.49
         }
       ]
     },
@@ -38497,32 +37223,6 @@
           "over400_pct_chg": 0.68
         },
         {
-          "date": "20260911",
-          "over1000_people": 49,
-          "over1000_pct": 56.39,
-          "over1000_shares": 135388667,
-          "over400_pct": 69.61,
-          "retail_people": 51049,
-          "retail_pct": 13.05,
-          "over1000_pct_chg": 0.22,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.12,
-          "over400_pct_chg": 0.19
-        },
-        {
-          "date": "20260918",
-          "over1000_people": 49,
-          "over1000_pct": 56.27,
-          "over1000_shares": 135087067,
-          "over400_pct": 69.57,
-          "retail_people": 51085,
-          "retail_pct": 13.06,
-          "over1000_pct_chg": -0.12,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.01,
-          "over400_pct_chg": -0.04
-        },
-        {
           "date": "20260924",
           "over1000_people": 50,
           "over1000_pct": 56.74,
@@ -38530,10 +37230,10 @@
           "over400_pct": 70.11,
           "retail_people": 51112,
           "retail_pct": 13.09,
-          "over1000_pct_chg": 0.47,
+          "over1000_pct_chg": 0.57,
           "over1000_people_chg": 1,
-          "retail_pct_chg": 0.03,
-          "over400_pct_chg": 0.54
+          "retail_pct_chg": -0.08,
+          "over400_pct_chg": 0.69
         },
         {
           "date": "20261002",
@@ -38826,32 +37526,6 @@
           "over400_pct_chg": -1.21
         },
         {
-          "date": "20260731",
-          "over1000_people": 10,
-          "over1000_pct": 15.77,
-          "over1000_shares": 13612316,
-          "over400_pct": 35.42,
-          "retail_people": 89945,
-          "retail_pct": 35.36,
-          "over1000_pct_chg": -1.42,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 1.47,
-          "over400_pct_chg": -0.78
-        },
-        {
-          "date": "20260807",
-          "over1000_people": 10,
-          "over1000_pct": 16.31,
-          "over1000_shares": 14075802,
-          "over400_pct": 36.31,
-          "retail_people": 87764,
-          "retail_pct": 35.16,
-          "over1000_pct_chg": 0.54,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.2,
-          "over400_pct_chg": 0.89
-        },
-        {
           "date": "20260814",
           "over1000_people": 8,
           "over1000_pct": 13.62,
@@ -38859,10 +37533,10 @@
           "over400_pct": 36.61,
           "retail_people": 81261,
           "retail_pct": 33.61,
-          "over1000_pct_chg": -2.69,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": -1.55,
-          "over400_pct_chg": 0.3
+          "over1000_pct_chg": -3.57,
+          "over1000_people_chg": -3,
+          "retail_pct_chg": -0.28,
+          "over400_pct_chg": 0.41
         },
         {
           "date": "20260821",
@@ -39324,32 +37998,6 @@
           "over400_pct_chg": -0.14
         },
         {
-          "date": "20260918",
-          "over1000_people": 12,
-          "over1000_pct": 51.95,
-          "over1000_shares": 69629148,
-          "over400_pct": 64.51,
-          "retail_people": 46331,
-          "retail_pct": 15.99,
-          "over1000_pct_chg": 0.17,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.08,
-          "over400_pct_chg": 0.17
-        },
-        {
-          "date": "20260924",
-          "over1000_people": 11,
-          "over1000_pct": 51.28,
-          "over1000_shares": 68731834,
-          "over400_pct": 64.79,
-          "retail_people": 45039,
-          "retail_pct": 15.58,
-          "over1000_pct_chg": -0.67,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.41,
-          "over400_pct_chg": 0.28
-        },
-        {
           "date": "20261002",
           "over1000_people": 11,
           "over1000_pct": 51.29,
@@ -39357,10 +38005,10 @@
           "over400_pct": 65.24,
           "retail_people": 49183,
           "retail_pct": 15.62,
-          "over1000_pct_chg": 0.01,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.04,
-          "over400_pct_chg": 0.45
+          "over1000_pct_chg": -0.49,
+          "over1000_people_chg": -1,
+          "retail_pct_chg": -0.45,
+          "over400_pct_chg": 0.9
         },
         {
           "date": "20261008",
@@ -39653,32 +38301,6 @@
           "over400_pct_chg": 0.06
         },
         {
-          "date": "20260807",
-          "over1000_people": 6,
-          "over1000_pct": 54.54,
-          "over1000_shares": 40446315,
-          "over400_pct": 59.42,
-          "retail_people": 35333,
-          "retail_pct": 29.16,
-          "over1000_pct_chg": 0.03,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.36,
-          "over400_pct_chg": 0.09
-        },
-        {
-          "date": "20260814",
-          "over1000_people": 6,
-          "over1000_pct": 54.54,
-          "over1000_shares": 40446315,
-          "over400_pct": 59.42,
-          "retail_people": 34829,
-          "retail_pct": 28.68,
-          "over1000_pct_chg": 0.0,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.48,
-          "over400_pct_chg": 0.0
-        },
-        {
           "date": "20260821",
           "over1000_people": 6,
           "over1000_pct": 54.56,
@@ -39686,10 +38308,10 @@
           "over400_pct": 59.99,
           "retail_people": 34418,
           "retail_pct": 28.3,
-          "over1000_pct_chg": 0.02,
+          "over1000_pct_chg": 0.05,
           "over1000_people_chg": 0,
-          "retail_pct_chg": -0.38,
-          "over400_pct_chg": 0.57
+          "retail_pct_chg": -1.22,
+          "over400_pct_chg": 0.66
         },
         {
           "date": "20260828",
@@ -40047,32 +38669,6 @@
           "over400_pct_chg": 0.86
         },
         {
-          "date": "20260731",
-          "over1000_people": 66,
-          "over1000_pct": 65.98,
-          "over1000_shares": 257224909,
-          "over400_pct": 79.97,
-          "retail_people": 25285,
-          "retail_pct": 7.54,
-          "over1000_pct_chg": 0.03,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.03,
-          "over400_pct_chg": 0.33
-        },
-        {
-          "date": "20260807",
-          "over1000_people": 67,
-          "over1000_pct": 65.99,
-          "over1000_shares": 257269873,
-          "over400_pct": 79.5,
-          "retail_people": 25170,
-          "retail_pct": 7.55,
-          "over1000_pct_chg": 0.01,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.01,
-          "over400_pct_chg": -0.47
-        },
-        {
           "date": "20260814",
           "over1000_people": 66,
           "over1000_pct": 65.7,
@@ -40080,10 +38676,10 @@
           "over400_pct": 79.41,
           "retail_people": 25420,
           "retail_pct": 7.64,
-          "over1000_pct_chg": -0.29,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.09,
-          "over400_pct_chg": -0.09
+          "over1000_pct_chg": -0.25,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.07,
+          "over400_pct_chg": -0.23
         },
         {
           "date": "20260821",
@@ -40246,45 +38842,6 @@
           "over400_pct_chg": 0.07
         },
         {
-          "date": "20260410",
-          "over1000_people": 10,
-          "over1000_pct": 86.93,
-          "over1000_shares": 337183972,
-          "over400_pct": 88.5,
-          "retail_people": 15901,
-          "retail_pct": 8.08,
-          "over1000_pct_chg": 0.3,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.29,
-          "over400_pct_chg": 0.38
-        },
-        {
-          "date": "20260417",
-          "over1000_people": 15,
-          "over1000_pct": 88.66,
-          "over1000_shares": 343879416,
-          "over400_pct": 90.44,
-          "retail_people": 13825,
-          "retail_pct": 6.49,
-          "over1000_pct_chg": 1.73,
-          "over1000_people_chg": 5,
-          "retail_pct_chg": -1.59,
-          "over400_pct_chg": 1.94
-        },
-        {
-          "date": "20260424",
-          "over1000_people": 13,
-          "over1000_pct": 87.81,
-          "over1000_shares": 340596804,
-          "over400_pct": 89.76,
-          "retail_people": 14553,
-          "retail_pct": 7.16,
-          "over1000_pct_chg": -0.85,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": 0.67,
-          "over400_pct_chg": -0.68
-        },
-        {
           "date": "20260430",
           "over1000_people": 12,
           "over1000_pct": 87.45,
@@ -40292,10 +38849,10 @@
           "over400_pct": 89.61,
           "retail_people": 14474,
           "retail_pct": 7.01,
-          "over1000_pct_chg": -0.36,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.15,
-          "over400_pct_chg": -0.15
+          "over1000_pct_chg": 0.82,
+          "over1000_people_chg": 2,
+          "retail_pct_chg": -1.36,
+          "over400_pct_chg": 1.49
         },
         {
           "date": "20260508",
@@ -40692,32 +39249,6 @@
           "over400_pct_chg": -1.04
         },
         {
-          "date": "20260430",
-          "over1000_people": 94,
-          "over1000_pct": 65.62,
-          "over1000_shares": 498174918,
-          "over400_pct": 73.12,
-          "retail_people": 110846,
-          "retail_pct": 18.67,
-          "over1000_pct_chg": -1.46,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 1.53,
-          "over400_pct_chg": -2.0
-        },
-        {
-          "date": "20260508",
-          "over1000_people": 95,
-          "over1000_pct": 66.35,
-          "over1000_shares": 503752751,
-          "over400_pct": 73.32,
-          "retail_people": 114226,
-          "retail_pct": 18.57,
-          "over1000_pct_chg": 0.73,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.1,
-          "over400_pct_chg": 0.2
-        },
-        {
           "date": "20260515",
           "over1000_people": 90,
           "over1000_pct": 65.13,
@@ -40725,10 +39256,10 @@
           "over400_pct": 72.61,
           "retail_people": 115661,
           "retail_pct": 19.14,
-          "over1000_pct_chg": -1.22,
+          "over1000_pct_chg": -1.95,
           "over1000_people_chg": -5,
-          "retail_pct_chg": 0.57,
-          "over400_pct_chg": -0.71
+          "retail_pct_chg": 2.0,
+          "over400_pct_chg": -2.51
         },
         {
           "date": "20260522",
@@ -41409,413 +39940,6 @@
           "over1000_people_chg": 0,
           "retail_pct_chg": 0.32,
           "over400_pct_chg": 0.34
-        }
-      ]
-    },
-    "6206": {
-      "latest": {
-        "date": "20261008",
-        "over1000_people": 21,
-        "over1000_pct": 45.21,
-        "over1000_shares": 64683747,
-        "over400_pct": 54.51,
-        "retail_people": 15858,
-        "retail_pct": 29.84,
-        "over1000_pct_chg": -0.09,
-        "over1000_people_chg": 0,
-        "retail_pct_chg": 0.27,
-        "over400_pct_chg": -0.18
-      },
-      "history": [
-        {
-          "date": "20260320",
-          "over1000_people": 17,
-          "over1000_pct": 39.92,
-          "over1000_shares": 57120623,
-          "over400_pct": 48.49,
-          "retail_people": 19655,
-          "retail_pct": 37.6,
-          "over1000_pct_chg": 0.0,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.0,
-          "over400_pct_chg": 0.0
-        },
-        {
-          "date": "20260327",
-          "over1000_people": 17,
-          "over1000_pct": 39.95,
-          "over1000_shares": 57162203,
-          "over400_pct": 49.06,
-          "retail_people": 19640,
-          "retail_pct": 37.6,
-          "over1000_pct_chg": 0.03,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.0,
-          "over400_pct_chg": 0.57
-        },
-        {
-          "date": "20260402",
-          "over1000_people": 17,
-          "over1000_pct": 39.89,
-          "over1000_shares": 57073618,
-          "over400_pct": 48.26,
-          "retail_people": 19560,
-          "retail_pct": 37.69,
-          "over1000_pct_chg": -0.06,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.09,
-          "over400_pct_chg": -0.8
-        },
-        {
-          "date": "20260410",
-          "over1000_people": 17,
-          "over1000_pct": 40.14,
-          "over1000_shares": 57432834,
-          "over400_pct": 49.1,
-          "retail_people": 19302,
-          "retail_pct": 37.09,
-          "over1000_pct_chg": 0.25,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.6,
-          "over400_pct_chg": 0.84
-        },
-        {
-          "date": "20260417",
-          "over1000_people": 17,
-          "over1000_pct": 40.17,
-          "over1000_shares": 57470166,
-          "over400_pct": 48.81,
-          "retail_people": 19228,
-          "retail_pct": 37.03,
-          "over1000_pct_chg": 0.03,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.06,
-          "over400_pct_chg": -0.29
-        },
-        {
-          "date": "20260424",
-          "over1000_people": 17,
-          "over1000_pct": 40.3,
-          "over1000_shares": 57657375,
-          "over400_pct": 48.99,
-          "retail_people": 18700,
-          "retail_pct": 36.29,
-          "over1000_pct_chg": 0.13,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.74,
-          "over400_pct_chg": 0.18
-        },
-        {
-          "date": "20260430",
-          "over1000_people": 17,
-          "over1000_pct": 40.14,
-          "over1000_shares": 57426654,
-          "over400_pct": 48.7,
-          "retail_people": 18611,
-          "retail_pct": 36.33,
-          "over1000_pct_chg": -0.16,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.04,
-          "over400_pct_chg": -0.29
-        },
-        {
-          "date": "20260508",
-          "over1000_people": 17,
-          "over1000_pct": 40.26,
-          "over1000_shares": 57606691,
-          "over400_pct": 48.99,
-          "retail_people": 18174,
-          "retail_pct": 35.48,
-          "over1000_pct_chg": 0.12,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.85,
-          "over400_pct_chg": 0.29
-        },
-        {
-          "date": "20260515",
-          "over1000_people": 20,
-          "over1000_pct": 42.71,
-          "over1000_shares": 61116058,
-          "over400_pct": 52.41,
-          "retail_people": 17936,
-          "retail_pct": 33.22,
-          "over1000_pct_chg": 2.45,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": -2.26,
-          "over400_pct_chg": 3.42
-        },
-        {
-          "date": "20260522",
-          "over1000_people": 19,
-          "over1000_pct": 41.63,
-          "over1000_shares": 59563201,
-          "over400_pct": 52.04,
-          "retail_people": 18249,
-          "retail_pct": 33.56,
-          "over1000_pct_chg": -1.08,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.34,
-          "over400_pct_chg": -0.37
-        },
-        {
-          "date": "20260529",
-          "over1000_people": 19,
-          "over1000_pct": 41.96,
-          "over1000_shares": 60029443,
-          "over400_pct": 54.68,
-          "retail_people": 17280,
-          "retail_pct": 32.28,
-          "over1000_pct_chg": 0.33,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -1.28,
-          "over400_pct_chg": 2.64
-        },
-        {
-          "date": "20260605",
-          "over1000_people": 18,
-          "over1000_pct": 41.16,
-          "over1000_shares": 58896245,
-          "over400_pct": 53.58,
-          "retail_people": 17238,
-          "retail_pct": 32.28,
-          "over1000_pct_chg": -0.8,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.0,
-          "over400_pct_chg": -1.1
-        },
-        {
-          "date": "20260612",
-          "over1000_people": 19,
-          "over1000_pct": 41.98,
-          "over1000_shares": 60057798,
-          "over400_pct": 53.13,
-          "retail_people": 16979,
-          "retail_pct": 32.15,
-          "over1000_pct_chg": 0.82,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.13,
-          "over400_pct_chg": -0.45
-        },
-        {
-          "date": "20260618",
-          "over1000_people": 18,
-          "over1000_pct": 41.04,
-          "over1000_shares": 58713245,
-          "over400_pct": 52.47,
-          "retail_people": 16997,
-          "retail_pct": 32.49,
-          "over1000_pct_chg": -0.94,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.34,
-          "over400_pct_chg": -0.66
-        },
-        {
-          "date": "20260626",
-          "over1000_people": 19,
-          "over1000_pct": 41.92,
-          "over1000_shares": 59974798,
-          "over400_pct": 52.5,
-          "retail_people": 16852,
-          "retail_pct": 32.37,
-          "over1000_pct_chg": 0.88,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.12,
-          "over400_pct_chg": 0.03
-        },
-        {
-          "date": "20260703",
-          "over1000_people": 20,
-          "over1000_pct": 43.1,
-          "over1000_shares": 61666048,
-          "over400_pct": 52.58,
-          "retail_people": 16776,
-          "retail_pct": 32.31,
-          "over1000_pct_chg": 1.18,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.06,
-          "over400_pct_chg": 0.08
-        },
-        {
-          "date": "20260709",
-          "over1000_people": 20,
-          "over1000_pct": 43.21,
-          "over1000_shares": 61828798,
-          "over400_pct": 52.58,
-          "retail_people": 16646,
-          "retail_pct": 32.14,
-          "over1000_pct_chg": 0.11,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.17,
-          "over400_pct_chg": 0.0
-        },
-        {
-          "date": "20260717",
-          "over1000_people": 20,
-          "over1000_pct": 42.93,
-          "over1000_shares": 61425147,
-          "over400_pct": 51.98,
-          "retail_people": 16678,
-          "retail_pct": 32.6,
-          "over1000_pct_chg": -0.28,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.46,
-          "over400_pct_chg": -0.6
-        },
-        {
-          "date": "20260724",
-          "over1000_people": 21,
-          "over1000_pct": 43.95,
-          "over1000_shares": 62888147,
-          "over400_pct": 52.41,
-          "retail_people": 16865,
-          "retail_pct": 32.92,
-          "over1000_pct_chg": 1.02,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.32,
-          "over400_pct_chg": 0.43
-        },
-        {
-          "date": "20260731",
-          "over1000_people": 20,
-          "over1000_pct": 43.33,
-          "over1000_shares": 61995147,
-          "over400_pct": 52.96,
-          "retail_people": 16911,
-          "retail_pct": 32.66,
-          "over1000_pct_chg": -0.62,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.26,
-          "over400_pct_chg": 0.55
-        },
-        {
-          "date": "20260807",
-          "over1000_people": 24,
-          "over1000_pct": 47.92,
-          "over1000_shares": 68560378,
-          "over400_pct": 55.8,
-          "retail_people": 15965,
-          "retail_pct": 29.91,
-          "over1000_pct_chg": 4.59,
-          "over1000_people_chg": 4,
-          "retail_pct_chg": -2.75,
-          "over400_pct_chg": 2.84
-        },
-        {
-          "date": "20260814",
-          "over1000_people": 24,
-          "over1000_pct": 47.83,
-          "over1000_shares": 68433643,
-          "over400_pct": 56.6,
-          "retail_people": 15463,
-          "retail_pct": 28.56,
-          "over1000_pct_chg": -0.09,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -1.35,
-          "over400_pct_chg": 0.8
-        },
-        {
-          "date": "20260821",
-          "over1000_people": 24,
-          "over1000_pct": 47.32,
-          "over1000_shares": 67702671,
-          "over400_pct": 55.33,
-          "retail_people": 15910,
-          "retail_pct": 29.39,
-          "over1000_pct_chg": -0.51,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.83,
-          "over400_pct_chg": -1.27
-        },
-        {
-          "date": "20260828",
-          "over1000_people": 22,
-          "over1000_pct": 45.71,
-          "over1000_shares": 65396659,
-          "over400_pct": 55.06,
-          "retail_people": 16437,
-          "retail_pct": 30.03,
-          "over1000_pct_chg": -1.61,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": 0.64,
-          "over400_pct_chg": -0.27
-        },
-        {
-          "date": "20260904",
-          "over1000_people": 22,
-          "over1000_pct": 45.17,
-          "over1000_shares": 64626333,
-          "over400_pct": 54.69,
-          "retail_people": 16345,
-          "retail_pct": 30.03,
-          "over1000_pct_chg": -0.54,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.0,
-          "over400_pct_chg": -0.37
-        },
-        {
-          "date": "20260911",
-          "over1000_people": 22,
-          "over1000_pct": 45.42,
-          "over1000_shares": 64992333,
-          "over400_pct": 54.7,
-          "retail_people": 16167,
-          "retail_pct": 29.95,
-          "over1000_pct_chg": 0.25,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.08,
-          "over400_pct_chg": 0.01
-        },
-        {
-          "date": "20260918",
-          "over1000_people": 22,
-          "over1000_pct": 45.46,
-          "over1000_shares": 65048431,
-          "over400_pct": 54.87,
-          "retail_people": 15871,
-          "retail_pct": 29.57,
-          "over1000_pct_chg": 0.04,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.38,
-          "over400_pct_chg": 0.17
-        },
-        {
-          "date": "20260924",
-          "over1000_people": 21,
-          "over1000_pct": 45.4,
-          "over1000_shares": 64956431,
-          "over400_pct": 54.88,
-          "retail_people": 15813,
-          "retail_pct": 29.53,
-          "over1000_pct_chg": -0.06,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.04,
-          "over400_pct_chg": 0.01
-        },
-        {
-          "date": "20261002",
-          "over1000_people": 21,
-          "over1000_pct": 45.3,
-          "over1000_shares": 64813747,
-          "over400_pct": 54.69,
-          "retail_people": 15842,
-          "retail_pct": 29.57,
-          "over1000_pct_chg": -0.1,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.04,
-          "over400_pct_chg": -0.19
-        },
-        {
-          "date": "20261008",
-          "over1000_people": 21,
-          "over1000_pct": 45.21,
-          "over1000_shares": 64683747,
-          "over400_pct": 54.51,
-          "retail_people": 15858,
-          "retail_pct": 29.84,
-          "over1000_pct_chg": -0.09,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.27,
-          "over400_pct_chg": -0.18
         }
       ]
     },
@@ -43037,413 +41161,6 @@
           "over1000_people_chg": 0,
           "retail_pct_chg": 0.11,
           "over400_pct_chg": -0.09
-        }
-      ]
-    },
-    "4961": {
-      "latest": {
-        "date": "20261008",
-        "over1000_people": 14,
-        "over1000_pct": 37.89,
-        "over1000_shares": 45944955,
-        "over400_pct": 49.08,
-        "retail_people": 39744,
-        "retail_pct": 35.97,
-        "over1000_pct_chg": -0.47,
-        "over1000_people_chg": -2,
-        "retail_pct_chg": 0.66,
-        "over400_pct_chg": -0.42
-      },
-      "history": [
-        {
-          "date": "20260320",
-          "over1000_people": 10,
-          "over1000_pct": 29.46,
-          "over1000_shares": 35728057,
-          "over400_pct": 41.31,
-          "retail_people": 40632,
-          "retail_pct": 43.29,
-          "over1000_pct_chg": 0.0,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.0,
-          "over400_pct_chg": 0.0
-        },
-        {
-          "date": "20260327",
-          "over1000_people": 13,
-          "over1000_pct": 32.47,
-          "over1000_shares": 39381769,
-          "over400_pct": 41.39,
-          "retail_people": 44266,
-          "retail_pct": 42.99,
-          "over1000_pct_chg": 3.01,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": -0.3,
-          "over400_pct_chg": 0.08
-        },
-        {
-          "date": "20260402",
-          "over1000_people": 12,
-          "over1000_pct": 32.34,
-          "over1000_shares": 39216530,
-          "over400_pct": 42.04,
-          "retail_people": 42295,
-          "retail_pct": 42.15,
-          "over1000_pct_chg": -0.13,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.84,
-          "over400_pct_chg": 0.65
-        },
-        {
-          "date": "20260410",
-          "over1000_people": 11,
-          "over1000_pct": 31.46,
-          "over1000_shares": 38150680,
-          "over400_pct": 41.41,
-          "retail_people": 42563,
-          "retail_pct": 42.65,
-          "over1000_pct_chg": -0.88,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.5,
-          "over400_pct_chg": -0.63
-        },
-        {
-          "date": "20260417",
-          "over1000_people": 11,
-          "over1000_pct": 31.46,
-          "over1000_shares": 38153680,
-          "over400_pct": 41.03,
-          "retail_people": 42712,
-          "retail_pct": 42.87,
-          "over1000_pct_chg": 0.0,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.22,
-          "over400_pct_chg": -0.38
-        },
-        {
-          "date": "20260424",
-          "over1000_people": 11,
-          "over1000_pct": 31.62,
-          "over1000_shares": 38350857,
-          "over400_pct": 42.0,
-          "retail_people": 42982,
-          "retail_pct": 42.98,
-          "over1000_pct_chg": 0.16,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.11,
-          "over400_pct_chg": 0.97
-        },
-        {
-          "date": "20260430",
-          "over1000_people": 12,
-          "over1000_pct": 32.46,
-          "over1000_shares": 39365213,
-          "over400_pct": 41.64,
-          "retail_people": 43243,
-          "retail_pct": 43.06,
-          "over1000_pct_chg": 0.84,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.08,
-          "over400_pct_chg": -0.36
-        },
-        {
-          "date": "20260508",
-          "over1000_people": 12,
-          "over1000_pct": 32.25,
-          "over1000_shares": 39106036,
-          "over400_pct": 41.93,
-          "retail_people": 42991,
-          "retail_pct": 42.77,
-          "over1000_pct_chg": -0.21,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.29,
-          "over400_pct_chg": 0.29
-        },
-        {
-          "date": "20260515",
-          "over1000_people": 12,
-          "over1000_pct": 32.68,
-          "over1000_shares": 39635455,
-          "over400_pct": 42.45,
-          "retail_people": 42906,
-          "retail_pct": 41.87,
-          "over1000_pct_chg": 0.43,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.9,
-          "over400_pct_chg": 0.52
-        },
-        {
-          "date": "20260522",
-          "over1000_people": 13,
-          "over1000_pct": 33.39,
-          "over1000_shares": 40487676,
-          "over400_pct": 43.63,
-          "retail_people": 42141,
-          "retail_pct": 40.69,
-          "over1000_pct_chg": 0.71,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -1.18,
-          "over400_pct_chg": 1.18
-        },
-        {
-          "date": "20260529",
-          "over1000_people": 13,
-          "over1000_pct": 33.43,
-          "over1000_shares": 40546640,
-          "over400_pct": 43.23,
-          "retail_people": 42658,
-          "retail_pct": 41.76,
-          "over1000_pct_chg": 0.04,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 1.07,
-          "over400_pct_chg": -0.4
-        },
-        {
-          "date": "20260605",
-          "over1000_people": 12,
-          "over1000_pct": 32.69,
-          "over1000_shares": 39638336,
-          "over400_pct": 42.3,
-          "retail_people": 42753,
-          "retail_pct": 42.12,
-          "over1000_pct_chg": -0.74,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.36,
-          "over400_pct_chg": -0.93
-        },
-        {
-          "date": "20260612",
-          "over1000_people": 12,
-          "over1000_pct": 32.87,
-          "over1000_shares": 39862759,
-          "over400_pct": 42.41,
-          "retail_people": 42603,
-          "retail_pct": 41.92,
-          "over1000_pct_chg": 0.18,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.2,
-          "over400_pct_chg": 0.11
-        },
-        {
-          "date": "20260618",
-          "over1000_people": 12,
-          "over1000_pct": 32.99,
-          "over1000_shares": 40003806,
-          "over400_pct": 42.47,
-          "retail_people": 42293,
-          "retail_pct": 41.67,
-          "over1000_pct_chg": 0.12,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.25,
-          "over400_pct_chg": 0.06
-        },
-        {
-          "date": "20260626",
-          "over1000_people": 13,
-          "over1000_pct": 33.91,
-          "over1000_shares": 41121469,
-          "over400_pct": 42.93,
-          "retail_people": 42107,
-          "retail_pct": 41.08,
-          "over1000_pct_chg": 0.92,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.59,
-          "over400_pct_chg": 0.46
-        },
-        {
-          "date": "20260703",
-          "over1000_people": 12,
-          "over1000_pct": 33.23,
-          "over1000_shares": 40294373,
-          "over400_pct": 42.81,
-          "retail_people": 42339,
-          "retail_pct": 41.9,
-          "over1000_pct_chg": -0.68,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.82,
-          "over400_pct_chg": -0.12
-        },
-        {
-          "date": "20260709",
-          "over1000_people": 12,
-          "over1000_pct": 33.41,
-          "over1000_shares": 40522373,
-          "over400_pct": 44.57,
-          "retail_people": 41827,
-          "retail_pct": 40.64,
-          "over1000_pct_chg": 0.18,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -1.26,
-          "over400_pct_chg": 1.76
-        },
-        {
-          "date": "20260717",
-          "over1000_people": 12,
-          "over1000_pct": 35.06,
-          "over1000_shares": 42512450,
-          "over400_pct": 44.63,
-          "retail_people": 41842,
-          "retail_pct": 40.48,
-          "over1000_pct_chg": 1.65,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.16,
-          "over400_pct_chg": 0.06
-        },
-        {
-          "date": "20260724",
-          "over1000_people": 12,
-          "over1000_pct": 35.08,
-          "over1000_shares": 42545450,
-          "over400_pct": 44.6,
-          "retail_people": 41752,
-          "retail_pct": 40.31,
-          "over1000_pct_chg": 0.02,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.17,
-          "over400_pct_chg": -0.03
-        },
-        {
-          "date": "20260731",
-          "over1000_people": 12,
-          "over1000_pct": 35.09,
-          "over1000_shares": 42552122,
-          "over400_pct": 43.69,
-          "retail_people": 41714,
-          "retail_pct": 40.32,
-          "over1000_pct_chg": 0.01,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.01,
-          "over400_pct_chg": -0.91
-        },
-        {
-          "date": "20260807",
-          "over1000_people": 12,
-          "over1000_pct": 34.93,
-          "over1000_shares": 42362122,
-          "over400_pct": 44.47,
-          "retail_people": 41455,
-          "retail_pct": 39.84,
-          "over1000_pct_chg": -0.16,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.48,
-          "over400_pct_chg": 0.78
-        },
-        {
-          "date": "20260814",
-          "over1000_people": 13,
-          "over1000_pct": 35.81,
-          "over1000_shares": 43429374,
-          "over400_pct": 46.51,
-          "retail_people": 40969,
-          "retail_pct": 38.81,
-          "over1000_pct_chg": 0.88,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -1.03,
-          "over400_pct_chg": 2.04
-        },
-        {
-          "date": "20260821",
-          "over1000_people": 13,
-          "over1000_pct": 35.91,
-          "over1000_shares": 43552916,
-          "over400_pct": 46.16,
-          "retail_people": 40996,
-          "retail_pct": 38.74,
-          "over1000_pct_chg": 0.1,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.07,
-          "over400_pct_chg": -0.35
-        },
-        {
-          "date": "20260828",
-          "over1000_people": 13,
-          "over1000_pct": 35.89,
-          "over1000_shares": 43519377,
-          "over400_pct": 45.97,
-          "retail_people": 41000,
-          "retail_pct": 38.76,
-          "over1000_pct_chg": -0.02,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.02,
-          "over400_pct_chg": -0.19
-        },
-        {
-          "date": "20260904",
-          "over1000_people": 12,
-          "over1000_pct": 34.66,
-          "over1000_shares": 42035215,
-          "over400_pct": 45.81,
-          "retail_people": 41375,
-          "retail_pct": 38.94,
-          "over1000_pct_chg": -1.23,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.18,
-          "over400_pct_chg": -0.16
-        },
-        {
-          "date": "20260911",
-          "over1000_people": 14,
-          "over1000_pct": 36.7,
-          "over1000_shares": 44509128,
-          "over400_pct": 46.74,
-          "retail_people": 40979,
-          "retail_pct": 37.86,
-          "over1000_pct_chg": 2.04,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": -1.08,
-          "over400_pct_chg": 0.93
-        },
-        {
-          "date": "20260918",
-          "over1000_people": 14,
-          "over1000_pct": 36.73,
-          "over1000_shares": 44545853,
-          "over400_pct": 48.38,
-          "retail_people": 40103,
-          "retail_pct": 36.09,
-          "over1000_pct_chg": 0.03,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -1.77,
-          "over400_pct_chg": 1.64
-        },
-        {
-          "date": "20260924",
-          "over1000_people": 16,
-          "over1000_pct": 38.44,
-          "over1000_shares": 46619974,
-          "over400_pct": 48.76,
-          "retail_people": 39732,
-          "retail_pct": 35.84,
-          "over1000_pct_chg": 1.71,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": -0.25,
-          "over400_pct_chg": 0.38
-        },
-        {
-          "date": "20261002",
-          "over1000_people": 16,
-          "over1000_pct": 38.36,
-          "over1000_shares": 46515574,
-          "over400_pct": 49.5,
-          "retail_people": 39539,
-          "retail_pct": 35.31,
-          "over1000_pct_chg": -0.08,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.53,
-          "over400_pct_chg": 0.74
-        },
-        {
-          "date": "20261008",
-          "over1000_people": 14,
-          "over1000_pct": 37.89,
-          "over1000_shares": 45944955,
-          "over400_pct": 49.08,
-          "retail_people": 39744,
-          "retail_pct": 35.97,
-          "over1000_pct_chg": -0.47,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": 0.66,
-          "over400_pct_chg": -0.42
         }
       ]
     },
@@ -44827,6 +42544,19 @@
           "over400_pct_chg": 0.36
         },
         {
+          "date": "20260605",
+          "over1000_people": 232,
+          "over1000_pct": 74.28,
+          "over1000_shares": 1992480006,
+          "over400_pct": 78.67,
+          "retail_people": 152455,
+          "retail_pct": 15.42,
+          "over1000_pct_chg": 0.71,
+          "over1000_people_chg": -4,
+          "retail_pct_chg": -0.51,
+          "over400_pct_chg": 0.57
+        },
+        {
           "date": "20260612",
           "over1000_people": 220,
           "over1000_pct": 75.22,
@@ -44834,10 +42564,10 @@
           "over400_pct": 79.47,
           "retail_people": 149014,
           "retail_pct": 14.85,
-          "over1000_pct_chg": 1.65,
-          "over1000_people_chg": -16,
-          "retail_pct_chg": -1.08,
-          "over400_pct_chg": 1.37
+          "over1000_pct_chg": 0.94,
+          "over1000_people_chg": -12,
+          "retail_pct_chg": -0.57,
+          "over400_pct_chg": 0.8
         },
         {
           "date": "20260618",
@@ -45299,32 +43029,6 @@
           "over400_pct_chg": -0.23
         },
         {
-          "date": "20260717",
-          "over1000_people": 203,
-          "over1000_pct": 79.03,
-          "over1000_shares": 1381380206,
-          "over400_pct": 84.1,
-          "retail_people": 91813,
-          "retail_pct": 9.46,
-          "over1000_pct_chg": 0.07,
-          "over1000_people_chg": 5,
-          "retail_pct_chg": -0.08,
-          "over400_pct_chg": 0.11
-        },
-        {
-          "date": "20260724",
-          "over1000_people": 202,
-          "over1000_pct": 79.34,
-          "over1000_shares": 1389176681,
-          "over400_pct": 84.53,
-          "retail_people": 89945,
-          "retail_pct": 9.14,
-          "over1000_pct_chg": 0.31,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.32,
-          "over400_pct_chg": 0.43
-        },
-        {
           "date": "20260731",
           "over1000_people": 205,
           "over1000_pct": 79.45,
@@ -45332,10 +43036,10 @@
           "over400_pct": 84.57,
           "retail_people": 90308,
           "retail_pct": 9.21,
-          "over1000_pct_chg": 0.11,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": 0.07,
-          "over400_pct_chg": 0.04
+          "over1000_pct_chg": 0.49,
+          "over1000_people_chg": 7,
+          "retail_pct_chg": -0.33,
+          "over400_pct_chg": 0.58
         },
         {
           "date": "20260807",
@@ -45351,32 +43055,6 @@
           "over400_pct_chg": 0.48
         },
         {
-          "date": "20260814",
-          "over1000_people": 208,
-          "over1000_pct": 79.83,
-          "over1000_shares": 1398213289,
-          "over400_pct": 84.82,
-          "retail_people": 88448,
-          "retail_pct": 8.91,
-          "over1000_pct_chg": -0.23,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.1,
-          "over400_pct_chg": -0.23
-        },
-        {
-          "date": "20260821",
-          "over1000_people": 208,
-          "over1000_pct": 78.76,
-          "over1000_shares": 1379450612,
-          "over400_pct": 83.66,
-          "retail_people": 92967,
-          "retail_pct": 9.78,
-          "over1000_pct_chg": -1.07,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.87,
-          "over400_pct_chg": -1.16
-        },
-        {
           "date": "20260828",
           "over1000_people": 197,
           "over1000_pct": 77.75,
@@ -45384,10 +43062,10 @@
           "over400_pct": 83.0,
           "retail_people": 96442,
           "retail_pct": 10.39,
-          "over1000_pct_chg": -1.01,
-          "over1000_people_chg": -11,
-          "retail_pct_chg": 0.61,
-          "over400_pct_chg": -0.66
+          "over1000_pct_chg": -2.31,
+          "over1000_people_chg": -10,
+          "retail_pct_chg": 1.58,
+          "over400_pct_chg": -2.05
         },
         {
           "date": "20260904",
@@ -45885,10 +43563,10 @@
         "over400_pct": 59.89,
         "retail_people": 35663,
         "retail_pct": 17.86,
-        "over1000_pct_chg": 1.23,
-        "over1000_people_chg": 1,
-        "retail_pct_chg": -0.29,
-        "over400_pct_chg": -0.31
+        "over1000_pct_chg": 0.62,
+        "over1000_people_chg": 0,
+        "retail_pct_chg": -0.82,
+        "over400_pct_chg": -1.34
       },
       "history": [
         {
@@ -46035,32 +43713,6 @@
           "over400_pct_chg": -0.74
         },
         {
-          "date": "20260605",
-          "over1000_people": 18,
-          "over1000_pct": 45.37,
-          "over1000_shares": 51067968,
-          "over400_pct": 62.4,
-          "retail_people": 19882,
-          "retail_pct": 13.39,
-          "over1000_pct_chg": -0.39,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.08,
-          "over400_pct_chg": 1.06
-        },
-        {
-          "date": "20260612",
-          "over1000_people": 18,
-          "over1000_pct": 45.2,
-          "over1000_shares": 50875152,
-          "over400_pct": 63.06,
-          "retail_people": 19874,
-          "retail_pct": 12.78,
-          "over1000_pct_chg": -0.17,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.61,
-          "over400_pct_chg": 0.66
-        },
-        {
           "date": "20260618",
           "over1000_people": 18,
           "over1000_pct": 43.97,
@@ -46068,10 +43720,10 @@
           "over400_pct": 63.08,
           "retail_people": 19748,
           "retail_pct": 12.96,
-          "over1000_pct_chg": -1.23,
+          "over1000_pct_chg": -1.79,
           "over1000_people_chg": 0,
-          "retail_pct_chg": 0.18,
-          "over400_pct_chg": 0.02
+          "retail_pct_chg": -0.51,
+          "over400_pct_chg": 1.74
         },
         {
           "date": "20260626",
@@ -46113,32 +43765,6 @@
           "over400_pct_chg": -0.04
         },
         {
-          "date": "20260717",
-          "over1000_people": 20,
-          "over1000_pct": 45.43,
-          "over1000_shares": 51135073,
-          "over400_pct": 63.92,
-          "retail_people": 20158,
-          "retail_pct": 12.97,
-          "over1000_pct_chg": -1.21,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.2,
-          "over400_pct_chg": -0.24
-        },
-        {
-          "date": "20260724",
-          "over1000_people": 20,
-          "over1000_pct": 44.99,
-          "over1000_shares": 50637619,
-          "over400_pct": 63.94,
-          "retail_people": 20185,
-          "retail_pct": 12.9,
-          "over1000_pct_chg": -0.44,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.07,
-          "over400_pct_chg": 0.02
-        },
-        {
           "date": "20260731",
           "over1000_people": 20,
           "over1000_pct": 45.11,
@@ -46146,10 +43772,10 @@
           "over400_pct": 64.66,
           "retail_people": 20155,
           "retail_pct": 12.79,
-          "over1000_pct_chg": 0.12,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.11,
-          "over400_pct_chg": 0.72
+          "over1000_pct_chg": -1.53,
+          "over1000_people_chg": -1,
+          "retail_pct_chg": -0.38,
+          "over400_pct_chg": 0.5
         },
         {
           "date": "20260807",
@@ -46243,32 +43869,6 @@
           "over400_pct_chg": 0.43
         },
         {
-          "date": "20260924",
-          "over1000_people": 18,
-          "over1000_pct": 44.16,
-          "over1000_shares": 49703390,
-          "over400_pct": 61.18,
-          "retail_people": 36929,
-          "retail_pct": 18.51,
-          "over1000_pct_chg": 0.37,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.17,
-          "over400_pct_chg": -0.05
-        },
-        {
-          "date": "20261002",
-          "over1000_people": 17,
-          "over1000_pct": 43.18,
-          "over1000_shares": 48600422,
-          "over400_pct": 60.2,
-          "retail_people": 36043,
-          "retail_pct": 18.15,
-          "over1000_pct_chg": -0.98,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.36,
-          "over400_pct_chg": -0.98
-        },
-        {
           "date": "20261008",
           "over1000_people": 18,
           "over1000_pct": 44.41,
@@ -46276,10 +43876,10 @@
           "over400_pct": 59.89,
           "retail_people": 35663,
           "retail_pct": 17.86,
-          "over1000_pct_chg": 1.23,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.29,
-          "over400_pct_chg": -0.31
+          "over1000_pct_chg": 0.62,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": -0.82,
+          "over400_pct_chg": -1.34
         }
       ]
     },
@@ -46377,32 +43977,6 @@
           "over400_pct_chg": 0.99
         },
         {
-          "date": "20260430",
-          "over1000_people": 69,
-          "over1000_pct": 72.13,
-          "over1000_shares": 404939539,
-          "over400_pct": 79.0,
-          "retail_people": 31177,
-          "retail_pct": 12.58,
-          "over1000_pct_chg": -0.07,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.21,
-          "over400_pct_chg": -0.02
-        },
-        {
-          "date": "20260508",
-          "over1000_people": 68,
-          "over1000_pct": 72.19,
-          "over1000_shares": 405257280,
-          "over400_pct": 78.46,
-          "retail_people": 32429,
-          "retail_pct": 13.05,
-          "over1000_pct_chg": 0.06,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.47,
-          "over400_pct_chg": -0.54
-        },
-        {
           "date": "20260515",
           "over1000_people": 69,
           "over1000_pct": 71.57,
@@ -46410,10 +43984,10 @@
           "over400_pct": 77.36,
           "retail_people": 34966,
           "retail_pct": 13.97,
-          "over1000_pct_chg": -0.62,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.92,
-          "over400_pct_chg": -1.1
+          "over1000_pct_chg": -0.63,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 1.6,
+          "over400_pct_chg": -1.66
         },
         {
           "date": "20260522",
@@ -46442,32 +44016,6 @@
           "over400_pct_chg": -2.02
         },
         {
-          "date": "20260605",
-          "over1000_people": 65,
-          "over1000_pct": 70.14,
-          "over1000_shares": 393748012,
-          "over400_pct": 75.15,
-          "retail_people": 50343,
-          "retail_pct": 18.01,
-          "over1000_pct_chg": 2.51,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": 0.84,
-          "over400_pct_chg": 0.72
-        },
-        {
-          "date": "20260612",
-          "over1000_people": 65,
-          "over1000_pct": 68.61,
-          "over1000_shares": 385167885,
-          "over400_pct": 72.98,
-          "retail_people": 54331,
-          "retail_pct": 19.63,
-          "over1000_pct_chg": -1.53,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 1.62,
-          "over400_pct_chg": -2.17
-        },
-        {
           "date": "20260618",
           "over1000_people": 67,
           "over1000_pct": 67.88,
@@ -46475,10 +44023,10 @@
           "over400_pct": 72.32,
           "retail_people": 55371,
           "retail_pct": 20.38,
-          "over1000_pct_chg": -0.73,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": 0.75,
-          "over400_pct_chg": -0.66
+          "over1000_pct_chg": 0.25,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 3.21,
+          "over400_pct_chg": -2.11
         },
         {
           "date": "20260626",
@@ -47099,17 +44647,17 @@
     },
     "5434": {
       "latest": {
-        "date": "20261008",
-        "over1000_people": 25,
-        "over1000_pct": 38.53,
-        "over1000_shares": 74761256,
-        "over400_pct": 56.14,
-        "retail_people": 31880,
-        "retail_pct": 25.41,
-        "over1000_pct_chg": -0.61,
+        "date": "20260924",
+        "over1000_people": 26,
+        "over1000_pct": 38.4,
+        "over1000_shares": 74512570,
+        "over400_pct": 55.37,
+        "retail_people": 31864,
+        "retail_pct": 25.59,
+        "over1000_pct_chg": -0.57,
         "over1000_people_chg": -1,
-        "retail_pct_chg": -0.15,
-        "over400_pct_chg": 0.77
+        "retail_pct_chg": -0.11,
+        "over400_pct_chg": -0.01
       },
       "history": [
         {
@@ -47475,32 +45023,6 @@
           "over1000_people_chg": -1,
           "retail_pct_chg": -0.11,
           "over400_pct_chg": -0.01
-        },
-        {
-          "date": "20261002",
-          "over1000_people": 26,
-          "over1000_pct": 39.14,
-          "over1000_shares": 75938236,
-          "over400_pct": 55.37,
-          "retail_people": 31808,
-          "retail_pct": 25.56,
-          "over1000_pct_chg": 0.74,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.03,
-          "over400_pct_chg": 0.0
-        },
-        {
-          "date": "20261008",
-          "over1000_people": 25,
-          "over1000_pct": 38.53,
-          "over1000_shares": 74761256,
-          "over400_pct": 56.14,
-          "retail_people": 31880,
-          "retail_pct": 25.41,
-          "over1000_pct_chg": -0.61,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.15,
-          "over400_pct_chg": 0.77
         }
       ]
     },
@@ -48200,32 +45722,6 @@
           "over400_pct_chg": 0.0
         },
         {
-          "date": "20260814",
-          "over1000_people": 138,
-          "over1000_pct": 84.98,
-          "over1000_shares": 4783037491,
-          "over400_pct": 86.74,
-          "retail_people": 103037,
-          "retail_pct": 8.78,
-          "over1000_pct_chg": 0.0,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": -0.02,
-          "over400_pct_chg": 0.03
-        },
-        {
-          "date": "20260821",
-          "over1000_people": 139,
-          "over1000_pct": 85.05,
-          "over1000_shares": 4787098716,
-          "over400_pct": 86.79,
-          "retail_people": 102766,
-          "retail_pct": 8.75,
-          "over1000_pct_chg": 0.07,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.03,
-          "over400_pct_chg": 0.05
-        },
-        {
           "date": "20260828",
           "over1000_people": 139,
           "over1000_pct": 85.13,
@@ -48233,10 +45729,10 @@
           "over400_pct": 86.88,
           "retail_people": 102304,
           "retail_pct": 8.68,
-          "over1000_pct_chg": 0.08,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.07,
-          "over400_pct_chg": 0.09
+          "over1000_pct_chg": 0.15,
+          "over1000_people_chg": -1,
+          "retail_pct_chg": -0.12,
+          "over400_pct_chg": 0.17
         },
         {
           "date": "20260904",
@@ -48386,32 +45882,6 @@
           "over400_pct_chg": 0.45
         },
         {
-          "date": "20260417",
-          "over1000_people": 63,
-          "over1000_pct": 70.45,
-          "over1000_shares": 595346139,
-          "over400_pct": 73.28,
-          "retail_people": 57791,
-          "retail_pct": 19.86,
-          "over1000_pct_chg": 0.41,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.53,
-          "over400_pct_chg": 0.56
-        },
-        {
-          "date": "20260424",
-          "over1000_people": 65,
-          "over1000_pct": 70.82,
-          "over1000_shares": 598544645,
-          "over400_pct": 73.67,
-          "retail_people": 56684,
-          "retail_pct": 19.44,
-          "over1000_pct_chg": 0.37,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": -0.42,
-          "over400_pct_chg": 0.39
-        },
-        {
           "date": "20260430",
           "over1000_people": 64,
           "over1000_pct": 70.65,
@@ -48419,10 +45889,10 @@
           "over400_pct": 73.5,
           "retail_people": 56763,
           "retail_pct": 19.61,
-          "over1000_pct_chg": -0.17,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.17,
-          "over400_pct_chg": -0.17
+          "over1000_pct_chg": 0.61,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": -0.78,
+          "over400_pct_chg": 0.78
         },
         {
           "date": "20260508",
@@ -49330,32 +46800,6 @@
           "over400_pct_chg": 0.53
         },
         {
-          "date": "20260626",
-          "over1000_people": 32,
-          "over1000_pct": 47.26,
-          "over1000_shares": 445206071,
-          "over400_pct": 49.4,
-          "retail_people": 103222,
-          "retail_pct": 37.37,
-          "over1000_pct_chg": 0.47,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": -0.1,
-          "over400_pct_chg": 0.4
-        },
-        {
-          "date": "20260703",
-          "over1000_people": 35,
-          "over1000_pct": 48.72,
-          "over1000_shares": 458917981,
-          "over400_pct": 51.27,
-          "retail_people": 102790,
-          "retail_pct": 36.09,
-          "over1000_pct_chg": 1.46,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": -1.28,
-          "over400_pct_chg": 1.87
-        },
-        {
           "date": "20260709",
           "over1000_people": 36,
           "over1000_pct": 48.96,
@@ -49363,10 +46807,10 @@
           "over400_pct": 51.22,
           "retail_people": 105082,
           "retail_pct": 35.76,
-          "over1000_pct_chg": 0.24,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.33,
-          "over400_pct_chg": -0.05
+          "over1000_pct_chg": 2.17,
+          "over1000_people_chg": 6,
+          "retail_pct_chg": -1.71,
+          "over400_pct_chg": 2.22
         },
         {
           "date": "20260717",
@@ -50222,32 +47666,6 @@
           "over400_pct_chg": -0.24
         },
         {
-          "date": "20260807",
-          "over1000_people": 69,
-          "over1000_pct": 55.64,
-          "over1000_shares": 525489627,
-          "over400_pct": 61.87,
-          "retail_people": 50991,
-          "retail_pct": 21.73,
-          "over1000_pct_chg": 0.14,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": 0.12,
-          "over400_pct_chg": -0.12
-        },
-        {
-          "date": "20260814",
-          "over1000_people": 70,
-          "over1000_pct": 56.28,
-          "over1000_shares": 531603879,
-          "over400_pct": 62.52,
-          "retail_people": 50197,
-          "retail_pct": 21.17,
-          "over1000_pct_chg": 0.64,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.56,
-          "over400_pct_chg": 0.65
-        },
-        {
           "date": "20260821",
           "over1000_people": 72,
           "over1000_pct": 56.81,
@@ -50255,10 +47673,10 @@
           "over400_pct": 62.87,
           "retail_people": 49638,
           "retail_pct": 20.9,
-          "over1000_pct_chg": 0.53,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": -0.27,
-          "over400_pct_chg": 0.35
+          "over1000_pct_chg": 1.31,
+          "over1000_people_chg": 5,
+          "retail_pct_chg": -0.71,
+          "over400_pct_chg": 0.88
         },
         {
           "date": "20260828",
@@ -50512,6 +47930,19 @@
           "over400_pct_chg": 0.06
         },
         {
+          "date": "20260605",
+          "over1000_people": 47,
+          "over1000_pct": 49.96,
+          "over1000_shares": 147798573,
+          "over400_pct": 59.76,
+          "retail_people": 30478,
+          "retail_pct": 26.63,
+          "over1000_pct_chg": 0.27,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": -0.05,
+          "over400_pct_chg": -0.09
+        },
+        {
           "date": "20260612",
           "over1000_people": 47,
           "over1000_pct": 50.12,
@@ -50519,10 +47950,10 @@
           "over400_pct": 60.78,
           "retail_people": 30070,
           "retail_pct": 26.04,
-          "over1000_pct_chg": 0.43,
+          "over1000_pct_chg": 0.16,
           "over1000_people_chg": 0,
-          "retail_pct_chg": -0.64,
-          "over400_pct_chg": 0.93
+          "retail_pct_chg": -0.59,
+          "over400_pct_chg": 1.02
         },
         {
           "date": "20260618",
@@ -51655,32 +49086,6 @@
           "over400_pct_chg": -4.4
         },
         {
-          "date": "20260430",
-          "over1000_people": 57,
-          "over1000_pct": 57.48,
-          "over1000_shares": 278055303,
-          "over400_pct": 64.21,
-          "retail_people": 83481,
-          "retail_pct": 26.76,
-          "over1000_pct_chg": 0.49,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": 0.4,
-          "over400_pct_chg": -0.37
-        },
-        {
-          "date": "20260508",
-          "over1000_people": 61,
-          "over1000_pct": 60.23,
-          "over1000_shares": 291340446,
-          "over400_pct": 66.88,
-          "retail_people": 79402,
-          "retail_pct": 24.16,
-          "over1000_pct_chg": 2.75,
-          "over1000_people_chg": 4,
-          "retail_pct_chg": -2.6,
-          "over400_pct_chg": 2.67
-        },
-        {
           "date": "20260515",
           "over1000_people": 61,
           "over1000_pct": 60.52,
@@ -51688,10 +49093,10 @@
           "over400_pct": 68.21,
           "retail_people": 76814,
           "retail_pct": 22.9,
-          "over1000_pct_chg": 0.29,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -1.26,
-          "over400_pct_chg": 1.33
+          "over1000_pct_chg": 3.53,
+          "over1000_people_chg": 6,
+          "retail_pct_chg": -3.46,
+          "over400_pct_chg": 3.63
         },
         {
           "date": "20260522",
@@ -52534,32 +49939,6 @@
           "over400_pct_chg": 0.81
         },
         {
-          "date": "20260605",
-          "over1000_people": 34,
-          "over1000_pct": 62.28,
-          "over1000_shares": 137249382,
-          "over400_pct": 74.0,
-          "retail_people": 21811,
-          "retail_pct": 14.78,
-          "over1000_pct_chg": -1.15,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": -0.07,
-          "over400_pct_chg": -0.09
-        },
-        {
-          "date": "20260612",
-          "over1000_people": 33,
-          "over1000_pct": 62.07,
-          "over1000_shares": 136791856,
-          "over400_pct": 73.51,
-          "retail_people": 21602,
-          "retail_pct": 14.69,
-          "over1000_pct_chg": -0.21,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.09,
-          "over400_pct_chg": -0.49
-        },
-        {
           "date": "20260618",
           "over1000_people": 31,
           "over1000_pct": 60.85,
@@ -52567,10 +49946,10 @@
           "over400_pct": 73.67,
           "retail_people": 21361,
           "retail_pct": 14.4,
-          "over1000_pct_chg": -1.22,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": -0.29,
-          "over400_pct_chg": 0.16
+          "over1000_pct_chg": -2.58,
+          "over1000_people_chg": -5,
+          "retail_pct_chg": -0.45,
+          "over400_pct_chg": -0.42
         },
         {
           "date": "20260626",
@@ -53084,32 +50463,6 @@
           "over400_pct_chg": -0.74
         },
         {
-          "date": "20260821",
-          "over1000_people": 144,
-          "over1000_pct": 54.04,
-          "over1000_shares": 693815160,
-          "over400_pct": 59.94,
-          "retail_people": 267812,
-          "retail_pct": 30.62,
-          "over1000_pct_chg": -0.79,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": 0.69,
-          "over400_pct_chg": -1.06
-        },
-        {
-          "date": "20260828",
-          "over1000_people": 145,
-          "over1000_pct": 54.7,
-          "over1000_shares": 702333531,
-          "over400_pct": 60.19,
-          "retail_people": 265274,
-          "retail_pct": 30.49,
-          "over1000_pct_chg": 0.66,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.13,
-          "over400_pct_chg": 0.25
-        },
-        {
           "date": "20260904",
           "over1000_people": 148,
           "over1000_pct": 54.97,
@@ -53117,10 +50470,10 @@
           "over400_pct": 60.77,
           "retail_people": 269782,
           "retail_pct": 30.22,
-          "over1000_pct_chg": 0.27,
-          "over1000_people_chg": 3,
-          "retail_pct_chg": -0.27,
-          "over400_pct_chg": 0.58
+          "over1000_pct_chg": 0.14,
+          "over1000_people_chg": 6,
+          "retail_pct_chg": 0.29,
+          "over400_pct_chg": -0.23
         },
         {
           "date": "20260911",
@@ -54543,32 +51896,6 @@
           "over400_pct_chg": -0.54
         },
         {
-          "date": "20260522",
-          "over1000_people": 33,
-          "over1000_pct": 30.03,
-          "over1000_shares": 105381483,
-          "over400_pct": 36.4,
-          "retail_people": 104878,
-          "retail_pct": 47.72,
-          "over1000_pct_chg": -1.34,
-          "over1000_people_chg": -3,
-          "retail_pct_chg": 0.85,
-          "over400_pct_chg": -0.74
-        },
-        {
-          "date": "20260529",
-          "over1000_people": 32,
-          "over1000_pct": 31.03,
-          "over1000_shares": 108894671,
-          "over400_pct": 37.1,
-          "retail_people": 104926,
-          "retail_pct": 47.12,
-          "over1000_pct_chg": 1.0,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": -0.6,
-          "over400_pct_chg": 0.7
-        },
-        {
           "date": "20260605",
           "over1000_people": 37,
           "over1000_pct": 35.16,
@@ -54576,10 +51903,10 @@
           "over400_pct": 41.17,
           "retail_people": 102970,
           "retail_pct": 44.22,
-          "over1000_pct_chg": 4.13,
-          "over1000_people_chg": 5,
-          "retail_pct_chg": -2.9,
-          "over400_pct_chg": 4.07
+          "over1000_pct_chg": 3.79,
+          "over1000_people_chg": 1,
+          "retail_pct_chg": -2.65,
+          "over400_pct_chg": 4.03
         },
         {
           "date": "20260612",
@@ -55266,32 +52593,6 @@
           "over400_pct_chg": -0.17
         },
         {
-          "date": "20260402",
-          "over1000_people": 27,
-          "over1000_pct": 78.81,
-          "over1000_shares": 315878681,
-          "over400_pct": 81.98,
-          "retail_people": 17951,
-          "retail_pct": 12.14,
-          "over1000_pct_chg": -0.13,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.09,
-          "over400_pct_chg": -0.04
-        },
-        {
-          "date": "20260410",
-          "over1000_people": 27,
-          "over1000_pct": 78.68,
-          "over1000_shares": 315351471,
-          "over400_pct": 82.15,
-          "retail_people": 17807,
-          "retail_pct": 11.97,
-          "over1000_pct_chg": -0.13,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.17,
-          "over400_pct_chg": 0.17
-        },
-        {
           "date": "20260417",
           "over1000_people": 26,
           "over1000_pct": 78.39,
@@ -55299,10 +52600,10 @@
           "over400_pct": 81.96,
           "retail_people": 17741,
           "retail_pct": 12.09,
-          "over1000_pct_chg": -0.29,
+          "over1000_pct_chg": -0.55,
           "over1000_people_chg": -1,
-          "retail_pct_chg": 0.12,
-          "over400_pct_chg": -0.19
+          "retail_pct_chg": 0.04,
+          "over400_pct_chg": -0.06
         },
         {
           "date": "20260424",
@@ -55500,32 +52801,6 @@
           "over400_pct_chg": -0.15
         },
         {
-          "date": "20260807",
-          "over1000_people": 24,
-          "over1000_pct": 74.81,
-          "over1000_shares": 299838917,
-          "over400_pct": 78.64,
-          "retail_people": 23657,
-          "retail_pct": 14.89,
-          "over1000_pct_chg": -0.46,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.42,
-          "over400_pct_chg": -0.5
-        },
-        {
-          "date": "20260814",
-          "over1000_people": 25,
-          "over1000_pct": 75.04,
-          "over1000_shares": 300765378,
-          "over400_pct": 78.88,
-          "retail_people": 23418,
-          "retail_pct": 14.83,
-          "over1000_pct_chg": 0.23,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": -0.06,
-          "over400_pct_chg": 0.24
-        },
-        {
           "date": "20260821",
           "over1000_people": 24,
           "over1000_pct": 74.73,
@@ -55533,10 +52808,10 @@
           "over400_pct": 78.5,
           "retail_people": 23517,
           "retail_pct": 15.04,
-          "over1000_pct_chg": -0.31,
+          "over1000_pct_chg": -0.54,
           "over1000_people_chg": -1,
-          "retail_pct_chg": 0.21,
-          "over400_pct_chg": -0.38
+          "retail_pct_chg": 0.57,
+          "over400_pct_chg": -0.64
         },
         {
           "date": "20260828",
@@ -56080,45 +53355,6 @@
           "over400_pct_chg": -2.14
         },
         {
-          "date": "20260402",
-          "over1000_people": 63,
-          "over1000_pct": 46.29,
-          "over1000_shares": 243166465,
-          "over400_pct": 50.36,
-          "retail_people": 94061,
-          "retail_pct": 37.52,
-          "over1000_pct_chg": -0.77,
-          "over1000_people_chg": -2,
-          "retail_pct_chg": 0.59,
-          "over400_pct_chg": -0.83
-        },
-        {
-          "date": "20260410",
-          "over1000_people": 63,
-          "over1000_pct": 45.95,
-          "over1000_shares": 241373406,
-          "over400_pct": 50.35,
-          "retail_people": 93430,
-          "retail_pct": 37.45,
-          "over1000_pct_chg": -0.34,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": -0.07,
-          "over400_pct_chg": -0.01
-        },
-        {
-          "date": "20260417",
-          "over1000_people": 65,
-          "over1000_pct": 45.33,
-          "over1000_shares": 238139635,
-          "over400_pct": 49.76,
-          "retail_people": 94458,
-          "retail_pct": 37.91,
-          "over1000_pct_chg": -0.62,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": 0.46,
-          "over400_pct_chg": -0.59
-        },
-        {
           "date": "20260424",
           "over1000_people": 63,
           "over1000_pct": 43.46,
@@ -56126,10 +53362,10 @@
           "over400_pct": 47.26,
           "retail_people": 97843,
           "retail_pct": 39.98,
-          "over1000_pct_chg": -1.87,
+          "over1000_pct_chg": -3.6,
           "over1000_people_chg": -2,
-          "retail_pct_chg": 2.07,
-          "over400_pct_chg": -2.5
+          "retail_pct_chg": 3.05,
+          "over400_pct_chg": -3.93
         },
         {
           "date": "20260430",
@@ -56747,32 +53983,6 @@
           "over400_pct_chg": -0.45
         },
         {
-          "date": "20260821",
-          "over1000_people": 46,
-          "over1000_pct": 73.43,
-          "over1000_shares": 201471796,
-          "over400_pct": 80.2,
-          "retail_people": 19920,
-          "retail_pct": 10.75,
-          "over1000_pct_chg": -0.69,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.94,
-          "over400_pct_chg": -0.9
-        },
-        {
-          "date": "20260828",
-          "over1000_people": 47,
-          "over1000_pct": 74.18,
-          "over1000_shares": 203548897,
-          "over400_pct": 80.04,
-          "retail_people": 20268,
-          "retail_pct": 10.89,
-          "over1000_pct_chg": 0.75,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.14,
-          "over400_pct_chg": -0.16
-        },
-        {
           "date": "20260904",
           "over1000_people": 45,
           "over1000_pct": 72.77,
@@ -56780,10 +53990,10 @@
           "over400_pct": 80.29,
           "retail_people": 20472,
           "retail_pct": 11.13,
-          "over1000_pct_chg": -1.41,
+          "over1000_pct_chg": -1.35,
           "over1000_people_chg": -2,
-          "retail_pct_chg": 0.24,
-          "over400_pct_chg": 0.25
+          "retail_pct_chg": 1.32,
+          "over400_pct_chg": -0.81
         },
         {
           "date": "20260911",
@@ -57206,32 +54416,6 @@
           "over400_pct_chg": 0.43
         },
         {
-          "date": "20260918",
-          "over1000_people": 40,
-          "over1000_pct": 50.64,
-          "over1000_shares": 124932409,
-          "over400_pct": 59.68,
-          "retail_people": 30541,
-          "retail_pct": 25.47,
-          "over1000_pct_chg": 0.52,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.18,
-          "over400_pct_chg": 0.05
-        },
-        {
-          "date": "20260924",
-          "over1000_people": 40,
-          "over1000_pct": 50.58,
-          "over1000_shares": 124781940,
-          "over400_pct": 59.16,
-          "retail_people": 30695,
-          "retail_pct": 25.92,
-          "over1000_pct_chg": -0.06,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.45,
-          "over400_pct_chg": -0.52
-        },
-        {
           "date": "20261002",
           "over1000_people": 39,
           "over1000_pct": 50.13,
@@ -57239,10 +54423,10 @@
           "over400_pct": 58.94,
           "retail_people": 30809,
           "retail_pct": 26.18,
-          "over1000_pct_chg": -0.45,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.26,
-          "over400_pct_chg": -0.22
+          "over1000_pct_chg": 0.01,
+          "over1000_people_chg": 0,
+          "retail_pct_chg": 0.89,
+          "over400_pct_chg": -0.69
         },
         {
           "date": "20261008",
@@ -57261,17 +54445,17 @@
     },
     "9907": {
       "latest": {
-        "date": "20261008",
+        "date": "20260924",
         "over1000_people": 77,
-        "over1000_pct": 70.29,
-        "over1000_shares": 1110096676,
-        "over400_pct": 74.53,
-        "retail_people": 53745,
-        "retail_pct": 14.72,
-        "over1000_pct_chg": -0.13,
+        "over1000_pct": 70.46,
+        "over1000_shares": 1112683577,
+        "over400_pct": 74.63,
+        "retail_people": 53842,
+        "retail_pct": 14.7,
+        "over1000_pct_chg": -0.1,
         "over1000_people_chg": -1,
-        "retail_pct_chg": 0.02,
-        "over400_pct_chg": -0.06
+        "retail_pct_chg": 0.01,
+        "over400_pct_chg": -0.02
       },
       "history": [
         {
@@ -57353,32 +54537,6 @@
           "over400_pct_chg": -0.69
         },
         {
-          "date": "20260430",
-          "over1000_people": 81,
-          "over1000_pct": 74.14,
-          "over1000_shares": 1170797551,
-          "over400_pct": 78.49,
-          "retail_people": 51157,
-          "retail_pct": 12.27,
-          "over1000_pct_chg": -0.26,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.15,
-          "over400_pct_chg": -0.31
-        },
-        {
-          "date": "20260508",
-          "over1000_people": 80,
-          "over1000_pct": 73.72,
-          "over1000_shares": 1164172929,
-          "over400_pct": 78.0,
-          "retail_people": 51529,
-          "retail_pct": 12.58,
-          "over1000_pct_chg": -0.42,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.31,
-          "over400_pct_chg": -0.49
-        },
-        {
           "date": "20260515",
           "over1000_people": 77,
           "over1000_pct": 72.92,
@@ -57386,10 +54544,10 @@
           "over400_pct": 77.22,
           "retail_people": 52098,
           "retail_pct": 13.05,
-          "over1000_pct_chg": -0.8,
+          "over1000_pct_chg": -1.48,
           "over1000_people_chg": -3,
-          "retail_pct_chg": 0.47,
-          "over400_pct_chg": -0.78
+          "retail_pct_chg": 0.93,
+          "over400_pct_chg": -1.58
         },
         {
           "date": "20260522",
@@ -57637,32 +54795,6 @@
           "over1000_people_chg": -1,
           "retail_pct_chg": 0.01,
           "over400_pct_chg": -0.02
-        },
-        {
-          "date": "20261002",
-          "over1000_people": 78,
-          "over1000_pct": 70.42,
-          "over1000_shares": 1112080233,
-          "over400_pct": 74.59,
-          "retail_people": 53818,
-          "retail_pct": 14.7,
-          "over1000_pct_chg": -0.04,
-          "over1000_people_chg": 1,
-          "retail_pct_chg": 0.0,
-          "over400_pct_chg": -0.04
-        },
-        {
-          "date": "20261008",
-          "over1000_people": 77,
-          "over1000_pct": 70.29,
-          "over1000_shares": 1110096676,
-          "over400_pct": 74.53,
-          "retail_people": 53745,
-          "retail_pct": 14.72,
-          "over1000_pct_chg": -0.13,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 0.02,
-          "over400_pct_chg": -0.06
         }
       ]
     },
@@ -57877,32 +55009,6 @@
           "over400_pct_chg": -0.19
         },
         {
-          "date": "20260703",
-          "over1000_people": 9,
-          "over1000_pct": 23.89,
-          "over1000_shares": 22157610,
-          "over400_pct": 35.64,
-          "retail_people": 57752,
-          "retail_pct": 44.17,
-          "over1000_pct_chg": -1.6,
-          "over1000_people_chg": -1,
-          "retail_pct_chg": 1.12,
-          "over400_pct_chg": -0.8
-        },
-        {
-          "date": "20260709",
-          "over1000_people": 9,
-          "over1000_pct": 23.92,
-          "over1000_shares": 22187720,
-          "over400_pct": 35.55,
-          "retail_people": 58382,
-          "retail_pct": 44.58,
-          "over1000_pct_chg": 0.03,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.41,
-          "over400_pct_chg": -0.09
-        },
-        {
           "date": "20260717",
           "over1000_people": 9,
           "over1000_pct": 23.8,
@@ -57910,10 +55016,10 @@
           "over400_pct": 34.71,
           "retail_people": 58766,
           "retail_pct": 45.2,
-          "over1000_pct_chg": -0.12,
-          "over1000_people_chg": 0,
-          "retail_pct_chg": 0.62,
-          "over400_pct_chg": -0.84
+          "over1000_pct_chg": -1.69,
+          "over1000_people_chg": -1,
+          "retail_pct_chg": 2.15,
+          "over400_pct_chg": -1.73
         },
         {
           "date": "20260724",
@@ -58232,32 +55338,6 @@
           "over400_pct_chg": 3.13
         },
         {
-          "date": "20260605",
-          "over1000_people": 73,
-          "over1000_pct": 52.31,
-          "over1000_shares": 447898153,
-          "over400_pct": 56.08,
-          "retail_people": 132540,
-          "retail_pct": 34.16,
-          "over1000_pct_chg": 4.59,
-          "over1000_people_chg": 5,
-          "retail_pct_chg": -4.72,
-          "over400_pct_chg": 5.2
-        },
-        {
-          "date": "20260612",
-          "over1000_people": 62,
-          "over1000_pct": 44.6,
-          "over1000_shares": 381889238,
-          "over400_pct": 48.57,
-          "retail_people": 155376,
-          "retail_pct": 40.8,
-          "over1000_pct_chg": -7.71,
-          "over1000_people_chg": -11,
-          "retail_pct_chg": 6.64,
-          "over400_pct_chg": -7.51
-        },
-        {
           "date": "20260618",
           "over1000_people": 64,
           "over1000_pct": 44.13,
@@ -58265,10 +55345,10 @@
           "over400_pct": 48.05,
           "retail_people": 156582,
           "retail_pct": 41.42,
-          "over1000_pct_chg": -0.47,
-          "over1000_people_chg": 2,
-          "retail_pct_chg": 0.62,
-          "over400_pct_chg": -0.52
+          "over1000_pct_chg": -3.59,
+          "over1000_people_chg": -4,
+          "retail_pct_chg": 2.54,
+          "over400_pct_chg": -2.83
         },
         {
           "date": "20260626",
