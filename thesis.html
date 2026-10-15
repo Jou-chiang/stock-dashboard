@@ -149,7 +149,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     </div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
       <button class="btn-nav" id="btn-theme" onclick="toggleTheme(); this.blur();">☀️ 明亮模式</button>
-      <span class="badge">Research Thesis</span>
+      <span class="badge" title="Research Thesis 是每檔股票的研究論點紀錄">研究論點資料庫</span>
       <div class="nav-links">
         <a href="index.html" class="btn-nav">儀表板 A</a>
         <a href="dashboard_b.html" class="btn-nav">雷達 B</a>
@@ -165,7 +165,8 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <div class="stat-pill" id="stat-info">載入資料中...</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <button class="btn-nav" style="border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.1);font-weight:bold;" onclick="openModal(); this.blur();">+ 新增 Thesis 研報</button>
+      <button class="btn-nav" style="border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.1);font-weight:bold;" onclick="openModal(); this.blur();">＋ 手動新增研究卡</button>
+      <button class="btn-nav" onclick="openImportModal(); this.blur();">📤 匯入 GPT 報告</button>
       <button class="btn-nav" onclick="exportJSON(); this.blur();">📥 匯出 JSON</button>
       <button class="btn-nav" id="btn-refresh" style="color:var(--amber);border-color:var(--amber);background:rgba(240,160,58,.08);" onclick="refreshData(); this.blur();">🔄 重新載入伺服器資料</button>
     </div>
@@ -181,11 +182,11 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   <div class="modal-box">
     <div class="modal-header">
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-        <div class="modal-title" id="modal-title">+ 新增 Thesis 研報卡片</div>
-        <button type="button" class="btn-ai-gen" onclick="autoGenerateThesisInModal(); this.blur();" title="只產生可編輯的估值假設草稿，不會查詢 AI 或真實研報">產生估值情境草稿</button>
+        <div class="modal-title" id="modal-title">＋ 手動新增研究卡</div>
       </div>
       <button class="btn-close" onclick="closeModal()">✕</button>
     </div>
+    <div style="font-size:12px;color:var(--text2);line-height:1.6;margin:0 0 12px;">此表單用於手動新增或修正單一股票研究卡。若要匯入 GPT 已整理的完整報告，請關閉此視窗並使用上方「匯入 GPT 報告」。</div>
     <form id="thesis-form" onsubmit="handleFormSubmit(event)">
       <div class="form-grid">
         <div class="form-group">
@@ -265,12 +266,33 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
           <textarea id="form-note" class="form-textarea" placeholder="法說會或最新研報重要記錄..."></textarea>
         </div>
       </div>
+      <div id="ai-research-status" class="form-group full" style="display:none;border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:12px;white-space:pre-wrap;"></div>
       <div class="modal-footer">
         <button type="button" class="btn-cancel" onclick="closeModal()">取消</button>
-        <button type="button" class="btn-ai-gen" style="font-size:11px;" onclick="autoGenerateThesisInModal(); this.blur();">重新產生估值草稿</button>
+        
         <button type="submit" class="btn-submit">儲存卡片</button>
       </div>
     </form>
+  </div>
+</div>
+
+<!-- GPT Research Import Modal -->
+<div class="modal-overlay" id="import-overlay">
+  <div class="modal-box" style="max-width:820px;">
+    <div class="modal-header">
+      <div class="modal-title">📤 匯入 GPT 研究報告（建立／更新研究卡）</div>
+      <button class="btn-close" type="button" onclick="closeImportModal()">✕</button>
+    </div>
+    <div style="font-size:12px;color:var(--text2);line-height:1.65;margin-bottom:12px;">
+      <b>主要使用方式：</b>先請 GPT 查找公開資訊並依下方格式產出 <b>純 JSON</b>，再貼在這裡一次建立或更新研究卡，不必逐欄手動輸入。手動新增只用於少量補充或修正。必須至少提供一個有效的來源網址才可匯入；本頁不會自動驗證網址內容是否支持報告結論，EPS 與券商報告預設為「待核實」。
+    </div>
+    <textarea id="gpt-import-json" class="form-textarea" style="width:100%;min-height:260px;font-family:var(--mono);font-size:12px;" placeholder='貼上 GPT 產出的 JSON……'></textarea>
+    <div id="import-status" style="font-size:12px;white-space:pre-wrap;margin-top:8px;color:var(--text2);"></div>
+    <div class="modal-footer">
+      <button type="button" class="btn-cancel" onclick="copyGPTFormatPrompt()">複製 GPT 格式指令</button>
+      <button type="button" class="btn-cancel" onclick="closeImportModal()">取消</button>
+      <button type="button" class="btn-submit" onclick="importGPTReport()">檢查來源並匯入</button>
+    </div>
   </div>
 </div>
 
@@ -529,7 +551,7 @@ function renderCards(theses) {
       <div class="scenario-title">Bull / Base / Bear 情境｜${bias === 'unknown' ? '傾向未知，不亮燈' : ({bull:'偏多',base:'中立',bear:'偏空'}[bias])}</div><div class="scenario-list">${scenario('bull','樂觀',item.thesis_points?.bull,'bull','🔥')}${scenario('base','基準',item.thesis_points?.base,'base','⚖️')}${scenario('bear','悲觀',item.thesis_points?.bear,'bear','⚠️')}${bias === 'unknown' ? '<div style="font-size:11px;color:var(--text3);">未設定明確研究傾向；不會依目標價自動推定多空。</div>' : ''}</div>
       ${catalysts.length ? `<div class="scenario-title">已輸入的催化劑（未自動驗證）</div><div class="catalysts-wrap"><div class="cat-list">${catalysts.map(c => `<span class="cat-chip">${esc(c)}</span>`).join('')}</div></div>` : ''}
       ${brokersHtml ? `<div class="scenario-title">券商目標價與來源狀態</div><div class="catalysts-wrap" style="display:flex;flex-direction:column;gap:6px;">${brokersHtml}</div>` : ''}
-      ${item.last_report_note ? `<div class="report-note" style="white-space:pre-wrap;">${esc(item.last_report_note)}</div>` : ''}`;
+      ${item.last_report_note ? `<div class="report-note" style="white-space:pre-wrap;">${esc(item.last_report_note)}</div>` : ''}${Array.isArray(item.sources) && item.sources.length ? `<div class="scenario-title">公開資訊來源（匯入時提供，請點擊核對）</div><div style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px;">${item.sources.map(src => { const u = safeHttpUrl(src.url); return u ? `<div style="font-size:11px;"><a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(src.title || u)}</a>${src.date ? `｜${esc(src.date)}` : ''}</div>` : ''; }).join('')}</div>` : ''}`;
     grid.appendChild(card);
   });
   container.appendChild(grid);
@@ -551,8 +573,7 @@ function filterCards() {
     const title = document.createElement('div'); title.style.marginBottom = '8px'; title.textContent = `找不到「${document.getElementById('search').value.trim()}」的 Thesis 卡片`;
     const hint = document.createElement('div'); hint.style.cssText = 'font-size:12px;color:var(--text3);margin-bottom:14px;'; hint.textContent = '這裡只搜尋已建立的研究卡，不是完整股票清單。你仍可用股票代號或名稱建立新卡；未核實的 EPS、券商報告與目標價不會自動補入。';
     const manual = document.createElement('button'); manual.className = 'btn-cancel'; manual.textContent = '＋ 手動建立'; manual.onclick = () => openModalWithSearch(document.getElementById('search').value.trim());
-    const draft = document.createElement('button'); draft.className = 'btn-submit'; draft.style.marginLeft = '8px'; draft.textContent = '產生估值草稿'; draft.onclick = () => { openModalWithSearch(document.getElementById('search').value.trim()); autoGenerateThesisInModal(); };
-    box.append(title, hint, manual, draft); box.style.display = 'block';
+    box.append(title, hint, manual); box.style.display = 'block';
   } else if (box) box.remove();
 }
 
@@ -635,11 +656,8 @@ function autoGenerateThesisInModal() {
   codeInput.value = code; nameInput.value = name || code;
   const matched = poolScoresMap[code] || poolScoresMap[name] || {};
   const sector = matched.sector || '產業待確認';
-  let peLow = 16, peHigh = 22;
-  if (/金融|保險/.test(sector)) { peLow = 12; peHigh = 16; }
-  else if (/半導體|晶圓|IC/.test(sector)) { peLow = 20; peHigh = 26; }
-  else if (/光電|零組件/.test(sector)) { peLow = 15; peHigh = 20; }
-  else if (/航運|鋼鐵/.test(sector)) { peLow = 8; peHigh = 14; }
+  // 不自動填入產業 PE 區間，避免把未查證的估值假設誤認為公開資訊。
+  const peLow = '', peHigh = '';
   document.getElementById('form-category').value = sector === '產業待確認' ? '' : sector;
   document.getElementById('form-bias').value = 'unknown';
   document.getElementById('form-eps-low').value = '';
@@ -678,7 +696,7 @@ function openModal(code = null) {
     document.getElementById('form-catalysts').value = (item.catalysts || []).join(', ');
     document.getElementById('form-brokers').value = (item.broker_reports || []).map(r => [r.broker || '', r.rating || '', r.target_price ?? '', r.report_date || '', r.source_url || '', r.verification_status || 'unverified'].join(',')).join(' ; ');
     document.getElementById('form-note').value = item.last_report_note || '';
-  } else title.textContent = '+ 新增 Thesis 研究卡片';
+  } else title.textContent = '＋ 手動新增研究卡';
   document.getElementById('modal-overlay').classList.add('active');
 }
 function closeModal() { document.getElementById('modal-overlay').classList.remove('active'); editingCode = null; }
@@ -731,6 +749,65 @@ function handleFormSubmit(event) {
   closeModal();
   document.getElementById('search').value = '';
   filterCards();
+}
+
+const GPT_REPORT_FORMAT = `請研究台灣上市櫃股票，先查找並閱讀可公開存取的資料，再只輸出純 JSON（不要 Markdown code fence）。不得捏造數字、券商名稱、目標價或來源。每項關鍵事實都要能追溯到公開來源；查不到就留空或標示「未查得」，不要猜測。EPS 與券商報告一律先設為 unverified。格式：
+{
+  "code": "2338",
+  "stock_name": "光罩",
+  "category": "半導體／光罩（需來源支持）",
+  "overall_bias": "unknown",
+  "consensus_forecast": {"2026_eps_range": [], "target_pe_range": [], "source_url": "", "as_of": "YYYY-MM-DD", "verification_status": "unverified"},
+  "thesis_points": {"bull": "有來源支持的樂觀情境；附日期/數字/來源線索", "base": "有來源支持的基準情境", "bear": "有來源支持的風險與失效條件"},
+  "catalysts": [],
+  "broker_reports": [],
+  "last_report_note": "摘要、公開資訊事實、推論與風險，明確區分事實和推論。",
+  "sources": [{"title": "來源標題", "url": "https://...", "date": "YYYY-MM-DD", "publisher": "發布機構"}]
+}
+來源優先順序：公開資訊觀測站、證交所/櫃買中心、公司官網公告/年報/法說資料；媒體可作補充。只把實際查到且能提供網址的來源放入 sources。若無法取得有效公開來源，回覆無法產出可匯入報告。`;
+function openImportModal() {
+  document.getElementById('import-status').textContent = '';
+  document.getElementById('import-overlay').classList.add('active');
+}
+function closeImportModal() { document.getElementById('import-overlay').classList.remove('active'); }
+async function copyGPTFormatPrompt() {
+  try { await navigator.clipboard.writeText(GPT_REPORT_FORMAT); document.getElementById('import-status').textContent = 'GPT 格式指令已複製。請貼到 GPT 研究對話中，要求先查公開來源再輸出 JSON。'; }
+  catch (e) { document.getElementById('gpt-import-json').value = GPT_REPORT_FORMAT; document.getElementById('import-status').textContent = '無法直接複製，已將格式指令放入文字框；請先複製指令，使用後再清空並貼入報告 JSON。'; }
+}
+function importGPTReport() {
+  const status = document.getElementById('import-status');
+  let parsed;
+  try { parsed = JSON.parse(document.getElementById('gpt-import-json').value.trim()); }
+  catch (e) { status.textContent = 'JSON 格式錯誤：' + e.message + '\n請要求 GPT 僅輸出純 JSON，不要加 Markdown 標記。'; return; }
+  let entries = [];
+  if (parsed && parsed.theses && typeof parsed.theses === 'object') entries = Object.entries(parsed.theses).map(([code, item]) => ({code, ...item}));
+  else if (Array.isArray(parsed.reports)) entries = parsed.reports;
+  else if (parsed && typeof parsed === 'object') entries = [parsed];
+  if (!entries.length) { status.textContent = '沒有找到可匯入的股票研究資料。'; return; }
+  const normalized = [];
+  for (const entry of entries) {
+    const code = String(entry.code || entry.stock_code || '').trim().toUpperCase();
+    const name = String(entry.stock_name || entry.name || '').trim();
+    const sources = Array.isArray(entry.sources) ? entry.sources.filter(src => src && safeHttpUrl(src.url)).map(src => ({title:String(src.title || src.publisher || src.url),url:safeHttpUrl(src.url),date:String(src.date || src.published_at || ''),publisher:String(src.publisher || '')})) : [];
+    if (!/^\d{4,6}[A-Z]?$/.test(code)) { status.textContent = `股票代號格式不正確：${code || '未提供'}。請確認 JSON 的 code 欄位。`; return; }
+    if (!name) { status.textContent = `股票 ${code} 缺少 stock_name，未匯入。`; return; }
+    if (!sources.length) { status.textContent = `股票 ${code} ${name} 沒有提供有效的公開來源網址，因此未匯入。請先讓 GPT 查找並附上來源。`; return; }
+    const cf = entry.consensus_forecast || {};
+    const epsRange = Array.isArray(cf['2026_eps_range']) && cf['2026_eps_range'].length === 2 ? cf['2026_eps_range'].map(Number) : [];
+    const peRange = Array.isArray(cf.target_pe_range) && cf.target_pe_range.length === 2 ? cf.target_pe_range.map(Number) : [];
+    const validRange = arr => arr.length === 2 && arr.every(Number.isFinite) && arr[0] <= arr[1];
+    const sourceUrl = safeHttpUrl(cf.source_url) || '';
+    const forecast = { ...cf, '2026_eps_range': validRange(epsRange) ? epsRange : [], target_pe_range: validRange(peRange) ? peRange : [], source_url:sourceUrl, as_of:String(cf.as_of || ''), verification_status:'unverified' };
+    const brokerReports = (Array.isArray(entry.broker_reports) ? entry.broker_reports : []).map(r => ({broker:String(r.broker || ''),rating:String(r.rating || ''),target_price:validPrice(r.target_price),report_date:String(r.report_date || ''),source_url:safeHttpUrl(r.source_url) || '',verification_status:'unverified'}));
+    normalized.push({code,name,item:{stock_name:name,category:String(entry.category || '待分類'),overall_bias:['bull','base','bear'].includes(entry.overall_bias) ? entry.overall_bias : 'unknown',consensus_forecast:forecast,thesis_points:{bull:String(entry.thesis_points?.bull || ''),base:String(entry.thesis_points?.base || ''),bear:String(entry.thesis_points?.bear || '')},catalysts:Array.isArray(entry.catalysts) ? entry.catalysts.map(String) : [],broker_reports:brokerReports,last_report_note:String(entry.last_report_note || ''),sources,imported_at:new Date().toISOString()}});
+  }
+  const duplicates = normalized.filter(x => thesisData[x.code]).map(x => `${x.code} ${x.name}`);
+  const message = `將匯入 ${normalized.length} 檔研究資料。${duplicates.length ? '\n以下股票已存在，匯入會更新該卡片：' + duplicates.join('、') : ''}\nEPS 與券商報告將維持待核實；本功能只檢查來源網址格式，不代表已自動確認來源內容。\n確定繼續？`;
+  if (!confirm(message)) return;
+  normalized.forEach(({code,item}) => { thesisData[code] = {...(thesisData[code] || {}),...item}; delete item.imported_at; localOverrides[code] = thesisData[code]; deletedCodes.delete(code); });
+  persistLocalState(); rawFullData = {...serverData,theses:thesisData}; updateStatus(`已匯入 ${normalized.length} 檔 GPT 研究報告並儲存至本機；請匯出 JSON 後手動更新 GitHub`); renderCards(thesisData);
+  document.getElementById('search').value = ''; filterCards();
+  status.textContent = `匯入完成：${normalized.length} 檔。資料已儲存在此瀏覽器；請按「匯出 JSON」備份，再手動更新 GitHub 的 research_theses.json。`;
 }
 
 function editCard(code) { openModal(code); }
