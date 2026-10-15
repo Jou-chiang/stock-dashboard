@@ -190,11 +190,11 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <div class="form-grid">
         <div class="form-group">
           <label class="form-label">股票代號 * (輸入代號或由選單選擇)</label>
-          <input type="text" id="form-code" class="form-input" placeholder="例如: 2330 或 3163" required oninput="onCodeInput(this.value)" autocomplete="off" />
+          <input type="text" id="form-code" class="form-input" placeholder="輸入代號，例如 2338；輸入名稱後也會自動帶入" required oninput="onCodeInput(this.value)" onblur="resolveStockFields()" autocomplete="off" />
         </div>
         <div class="form-group">
           <label class="form-label">股票名稱 *</label>
-          <input type="text" id="form-name" class="form-input" placeholder="例如: 台積電或佳能" required oninput="onNameInput(this.value)" autocomplete="off" />
+          <input type="text" id="form-name" class="form-input" placeholder="輸入股票名稱，例如：光罩" required oninput="onNameInput(this.value)" onblur="resolveStockFields()" autocomplete="off" />
         </div>
         <div class="form-group">
           <label class="form-label">產業標的分類</label>
@@ -556,19 +556,57 @@ function filterCards() {
   } else if (box) box.remove();
 }
 
+function findKnownCodeByName(name) {
+  const value = String(name || '').trim();
+  if (!value) return '';
+  if (commonTWStockMap[value]) return commonTWStockMap[value];
+  const poolMatch = Object.values(poolScoresMap).find(item => String(item.name || '').trim() === value);
+  if (poolMatch?.code) return String(poolMatch.code);
+  const thesisMatch = Object.keys(thesisData).find(code => String(thesisData[code]?.stock_name || '').trim() === value);
+  return thesisMatch || '';
+}
+
+function findKnownNameByCode(code) {
+  const value = String(code || '').trim().toUpperCase();
+  if (!value) return '';
+  if (poolScoresMap[value]?.name) return poolScoresMap[value].name;
+  return Object.keys(commonTWStockMap).find(name => commonTWStockMap[name] === value) || thesisData[value]?.stock_name || '';
+}
+
 function onCodeInput(value) {
-  const key = value.trim().toUpperCase();
-  if (poolScoresMap[key]) document.getElementById('form-name').value = poolScoresMap[key].name || '';
-  else if (commonTWStockMap[key]) { document.getElementById('form-code').value = commonTWStockMap[key]; document.getElementById('form-name').value = key; }
-  else if (/^\d{4,6}$/.test(key)) { const knownName = Object.keys(commonTWStockMap).find(name => commonTWStockMap[name] === key); if (knownName) document.getElementById('form-name').value = knownName; }
-  else { const name = Object.keys(commonTWStockMap).find(k => commonTWStockMap[k] === key); if (name) document.getElementById('form-name').value = name; }
+  const key = String(value || '').trim().toUpperCase();
+  const codeField = document.getElementById('form-code');
+  const nameField = document.getElementById('form-name');
+  if (poolScoresMap[key]?.name) nameField.value = poolScoresMap[key].name;
+  else {
+    const knownName = findKnownNameByCode(key);
+    if (knownName) nameField.value = knownName;
+    else if (commonTWStockMap[key]) {
+      codeField.value = commonTWStockMap[key];
+      nameField.value = key;
+    }
+  }
 }
+
 function onNameInput(value) {
-  const name = value.trim();
-  if (commonTWStockMap[name]) document.getElementById('form-code').value = commonTWStockMap[name];
-  else if (poolScoresMap[name]) document.getElementById('form-code').value = poolScoresMap[name].code;
-  else { const stock = Object.values(poolScoresMap).find(item => item.name === name); if (stock) document.getElementById('form-code').value = stock.code; else { const found = Object.keys(thesisData).find(code => thesisData[code].stock_name === name); if (found) document.getElementById('form-code').value = found; } }
+  const name = String(value || '').trim();
+  const code = findKnownCodeByName(name);
+  if (code) document.getElementById('form-code').value = code;
 }
+
+function resolveStockFields() {
+  const codeField = document.getElementById('form-code');
+  const nameField = document.getElementById('form-name');
+  let code = String(codeField.value || '').trim().toUpperCase();
+  let name = String(nameField.value || '').trim();
+
+  if (!code && name) code = findKnownCodeByName(name);
+  if (!name && code) name = findKnownNameByCode(code);
+
+  if (code) codeField.value = code;
+  if (name) nameField.value = name;
+}
+
 function openModalWithSearch(query) {
   openModal();
   const value = String(query || '').trim();
@@ -576,12 +614,12 @@ function openModalWithSearch(query) {
   if (match) {
     document.getElementById('form-code').value = match[0];
     const rest = value.replace(match[0], '').trim();
-    document.getElementById('form-name').value = rest || poolScoresMap[match[0]]?.name || Object.keys(commonTWStockMap).find(name => commonTWStockMap[name] === match[0]) || match[0];
+    document.getElementById('form-name').value = rest || findKnownNameByCode(match[0]) || match[0];
   } else {
     document.getElementById('form-name').value = value;
-    document.getElementById('form-code').value = poolScoresMap[value]?.code || commonTWStockMap[value] || Object.values(poolScoresMap).find(item => item.name === value)?.code || '';
-    if (!document.getElementById('form-code').value) document.getElementById('form-code').value = Object.keys(commonTWStockMap).find(name => name === value) ? commonTWStockMap[value] : '';
+    document.getElementById('form-code').value = findKnownCodeByName(value);
   }
+  resolveStockFields();
 }
 function openModalWithAutoGenerate(query) { openModalWithSearch(query); autoGenerateThesisInModal(); }
 
@@ -647,9 +685,18 @@ function closeModal() { document.getElementById('modal-overlay').classList.remov
 
 function handleFormSubmit(event) {
   event.preventDefault();
-  const code = document.getElementById('form-code').value.trim().toUpperCase();
-  const name = document.getElementById('form-name').value.trim() || code;
-  if (!/^\d{4,6}[A-Z]?$/.test(code)) { alert('股票代號格式不正確，請輸入 4–6 位數字（或合法代碼）'); return; }
+  resolveStockFields();
+  let code = document.getElementById('form-code').value.trim().toUpperCase();
+  const name = document.getElementById('form-name').value.trim() || findKnownNameByCode(code) || code;
+  if (!code && name) {
+    const mappedCode = findKnownCodeByName(name);
+    if (mappedCode) document.getElementById('form-code').value = mappedCode;
+  }
+  const finalCode = document.getElementById('form-code').value.trim().toUpperCase();
+  if (!/^\d{4,6}[A-Z]?$/.test(finalCode)) {
+    alert('尚未辨識股票代號。請輸入正確代號，或使用股票主檔中的完整名稱；目前不會用猜測的代號儲存。');
+    return;
+  }
   const readNumber = id => { const value = document.getElementById(id).value.trim(); return value === '' ? null : Number(value); };
   const epsLow = readNumber('form-eps-low'), epsHigh = readNumber('form-eps-high');
   const peLow = readNumber('form-pe-low'), peHigh = readNumber('form-pe-high');
@@ -659,6 +706,7 @@ function handleFormSubmit(event) {
     const [broker='', rating='', target='', report_date='', source_url='', status='unverified'] = part.split(/[,，]/).map(s => s.trim());
     return { broker, rating, target_price: validPrice(target), report_date, source_url, verification_status: status.toLowerCase() === 'verified' ? 'verified' : 'unverified' };
   }).filter(r => r.broker || r.target_price) : [];
+  code = finalCode;
   const existing = thesisData[code] || {};
   const forecast = { ...(existing.consensus_forecast || {}) };
   forecast['2026_eps_range'] = epsLow !== null && epsHigh !== null ? [epsLow, epsHigh] : [];
@@ -681,6 +729,8 @@ function handleFormSubmit(event) {
   deletedCodes.delete(code);
   saveLocalData(code);
   closeModal();
+  document.getElementById('search').value = '';
+  filterCards();
 }
 
 function editCard(code) { openModal(code); }
