@@ -148,8 +148,18 @@ SHEET_HISTORY_CSV = os.path.join(BASE_DIR, "sheet_history.csv")
 def export_history_csv():
     headers = ["日期", "股票代號", "股票名稱", "5星分數", "最新股價", "漲跌幅%", "建議操作", "防守價位", "歷史核心結論與評語"]
     
-    # 預設僅針對核心關注/持股清單生成歷史紀錄 (如 2330, 1513, 6282, 2618, 6274, 3163 等)
+    # 優先從 my_portfolio.json 讀取持股代號，若無則回退預設
     portfolio_codes = {"2330", "1513", "6282", "2618", "6274", "3163"}
+    portfolio_file = os.path.join(BASE_DIR, "my_portfolio.json")
+    if os.path.exists(portfolio_file):
+        try:
+            with open(portfolio_file, "r", encoding="utf-8") as pf:
+                pj = json.load(pf)
+                codes = {str(h.get("code", "")) for h in pj.get("holdings", []) if h.get("code")}
+                if codes:
+                    portfolio_codes = codes
+        except Exception:
+            pass
     
     rows = [headers]
     if os.path.exists(POOL_SCORES_FILE):

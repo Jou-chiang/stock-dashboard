@@ -5,8 +5,17 @@
       "stock_name": "台積電",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [95.0, 115.0],
-        "target_pe_range": [26.0, 32.0]
+        "2026_eps_range": [
+          95.0,
+          115.0
+        ],
+        "target_pe_range": [
+          26.0,
+          32.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "2nm/3nm 先進製程全產能滿載，CoWoS 先進封裝產能吃緊至 2027，AI 全球絕對核心，現價 2,500 元邁向新里程碑",
@@ -18,17 +27,45 @@
         "下半年先進封裝新廠投產狀況"
       ],
       "broker_reports": [
-        { "broker": "摩根士丹利 (MS)", "rating": "買進", "target_price": 3200 },
-        { "broker": "高盛 (GS)", "rating": "買進", "target_price": 3000 }
+        {
+          "broker": "摩根士丹利 (MS)",
+          "rating": "買進",
+          "target_price": 3200,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "高盛 (GS)",
+          "rating": "買進",
+          "target_price": 3000,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "現價 2,500 元強勢攻頂，法說重申先進製程與 CoWoS 產能吃緊，大摩看 3,200 元、高盛看 3,000 元"
+      "last_report_note": "現價 2,500 元強勢攻頂，法說重申先進製程與 CoWoS 產能吃緊，大摩看 3,200 元、高盛看 3,000 元",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "2303": {
       "stock_name": "聯電",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [9.5, 12.5],
-        "target_pe_range": [16.0, 20.0]
+        "2026_eps_range": [
+          9.5,
+          12.5
+        ],
+        "target_pe_range": [
+          16.0,
+          20.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "22nm/28nm 成熟製程與 12nm 先進進展強勁，現價 161.5 元創歷史新高，特殊製程帶動獲利跳升",
@@ -40,18 +77,46 @@
         "單季毛利率與季度股利政策"
       ],
       "broker_reports": [
-        { "broker": "摩根士丹利 (MS)", "rating": "買進", "target_price": 210 },
-        { "broker": "凱基投顧", "rating": "買進", "target_price": 185 }
+        {
+          "broker": "摩根士丹利 (MS)",
+          "rating": "買進",
+          "target_price": 210,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "凱基投顧",
+          "rating": "買進",
+          "target_price": 185,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "現價 161.5 元強勢上攻！成熟製程與特殊晶片需求爆發，大摩目標價 210 元、凱基看 185 元"
+      "last_report_note": "現價 161.5 元強勢上攻！成熟製程與特殊晶片需求爆發，大摩目標價 210 元、凱基看 185 元",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "2374": {
       "stock_name": "佳能",
       "category": "A類-基本面驅動",
       "overall_bias": "bull",
       "consensus_forecast": {
-        "2026_eps_range": [3.2, 4.2],
-        "target_pe_range": [18.0, 24.0]
+        "2026_eps_range": [
+          3.2,
+          4.2
+        ],
+        "target_pe_range": [
+          18.0,
+          24.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "轉型邊緣 AI 與機器人視覺，打入輝達 NVIDIA 機器人與豐田車載光學，機器人視覺與無人機產品下半年放量，2026 營收挑戰百億衝高",
@@ -64,17 +129,44 @@
         "單月營收年增率保持高檔"
       ],
       "broker_reports": [
-        { "broker": "凱基投顧", "rating": "買進", "target_price": 85 },
-        { "broker": "統一投顧", "rating": "買進", "target_price": 75 }
+        {
+          "broker": "凱基投顧",
+          "rating": "買進",
+          "target_price": 85,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "統一投顧",
+          "rating": "買進",
+          "target_price": 75,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "上半年 EPS 達 1.55 元，邊緣 AI 與輝達機器人視覺產品下半年陸續放量，轉型成長動能強勁"
+      "last_report_note": "上半年 EPS 達 1.55 元，邊緣 AI 與輝達機器人視覺產品下半年陸續放量，轉型成長動能強勁",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "1513": {
       "stock_name": "中興電",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [8.5, 10.5],
-        "target_pe_range": [18.0, 22.0]
+        "2026_eps_range": [
+          8.5,
+          10.5
+        ],
+        "target_pe_range": [
+          18.0,
+          22.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "強韌電網計畫與美國重電外銷訂單超預期認列，能見度直達 2027",
@@ -86,17 +178,45 @@
         "外銷高壓 GIS 設備出貨量"
       ],
       "broker_reports": [
-        { "broker": "元大投顧", "rating": "買進", "target_price": 214 },
-        { "broker": "凱基投顧", "rating": "買進", "target_price": 191 }
+        {
+          "broker": "元大投顧",
+          "rating": "買進",
+          "target_price": 214,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "凱基投顧",
+          "rating": "買進",
+          "target_price": 191,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "重電產能滿載，台電強韌電網與外銷美系訂單能見度長，基本面強勁"
+      "last_report_note": "重電產能滿載，台電強韌電網與外銷美系訂單能見度長，基本面強勁",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "6282": {
       "stock_name": "康舒",
       "category": "混合型",
       "consensus_forecast": {
-        "2026_eps_range": [2.8, 3.8],
-        "target_pe_range": [16.0, 20.0]
+        "2026_eps_range": [
+          2.8,
+          3.8
+        ],
+        "target_pe_range": [
+          16.0,
+          20.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "併購 Omni-On 效應發揮，高階 AI 伺服器電源與電信電源出貨大增",
@@ -108,17 +228,45 @@
         "單季毛利率是否重回 20% 以上"
       ],
       "broker_reports": [
-        { "broker": "美系外資", "rating": "買進", "target_price": 72 },
-        { "broker": "國內投顧", "rating": "中立", "target_price": 55 }
+        {
+          "broker": "美系外資",
+          "rating": "買進",
+          "target_price": 72,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "國內投顧",
+          "rating": "中立",
+          "target_price": 55,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "併購 Omni-On 轉型伺服器與燃料電池電源，守穩大底觀望"
+      "last_report_note": "併購 Omni-On 轉型伺服器與燃料電池電源，守穩大底觀望",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "2317": {
       "stock_name": "鴻海",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [16.0, 20.0],
-        "target_pe_range": [18.0, 22.0]
+        "2026_eps_range": [
+          16.0,
+          20.0
+        ],
+        "target_pe_range": [
+          18.0,
+          22.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "GB200/GB300 AI 機櫃垂直整合完整，美系大客戶出貨動能強勁，打入 CPO 交換器",
@@ -130,17 +278,45 @@
         "AI 伺服器營收占比提升速度"
       ],
       "broker_reports": [
-        { "broker": "高盛 (GS)", "rating": "強烈買進", "target_price": 400 },
-        { "broker": "摩根士丹利 (MS)", "rating": "買進", "target_price": 347 }
+        {
+          "broker": "高盛 (GS)",
+          "rating": "強烈買進",
+          "target_price": 400,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "摩根士丹利 (MS)",
+          "rating": "買進",
+          "target_price": 347,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "高盛列為 Conviction Buy 首選，GB200/GB300 機櫃量產帶動獲利爆發"
+      "last_report_note": "高盛列為 Conviction Buy 首選，GB200/GB300 機櫃量產帶動獲利爆發",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "2603": {
       "stock_name": "長榮",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [28.0, 35.0],
-        "target_pe_range": [7.0, 9.0]
+        "2026_eps_range": [
+          28.0,
+          35.0
+        ],
+        "target_pe_range": [
+          7.0,
+          9.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "地緣政治紅海危機繞道支撐運價，Q3 旺季高獲利與高現金流",
@@ -152,17 +328,45 @@
         "第三季單季獲利與現金股利指引"
       ],
       "broker_reports": [
-        { "broker": "摩根士丹利 (MS)", "rating": "買進", "target_price": 280 },
-        { "broker": "國內金控投顧", "rating": "增加持股", "target_price": 243 }
+        {
+          "broker": "摩根士丹利 (MS)",
+          "rating": "買進",
+          "target_price": 280,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "國內金控投顧",
+          "rating": "增加持股",
+          "target_price": 243,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "運價支撐與低本益比優勢，強勢多頭續抱，防守線看 230 元"
+      "last_report_note": "運價支撐與低本益比優勢，強勢多頭續抱，防守線看 230 元",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "2615": {
       "stock_name": "萬海",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [12.0, 16.0],
-        "target_pe_range": [8.0, 10.0]
+        "2026_eps_range": [
+          12.0,
+          16.0
+        ],
+        "target_pe_range": [
+          8.0,
+          10.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "亞洲區間運價大漲與美西線高彈性，單季獲利爆發力極強",
@@ -174,17 +378,45 @@
         "單月營收年增率"
       ],
       "broker_reports": [
-        { "broker": "凱基投顧", "rating": "買進", "target_price": 120 },
-        { "broker": "統一投顧", "rating": "買進", "target_price": 105 }
+        {
+          "broker": "凱基投顧",
+          "rating": "買進",
+          "target_price": 120,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "統一投顧",
+          "rating": "買進",
+          "target_price": 105,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "主升段強勢攻勢，移動停利調升至 105 元，跌破收盤減碼"
+      "last_report_note": "主升段強勢攻勢，移動停利調升至 105 元，跌破收盤減碼",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "2618": {
       "stock_name": "長榮航",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [4.2, 5.2],
-        "target_pe_range": [8.5, 10.5]
+        "2026_eps_range": [
+          4.2,
+          5.2
+        ],
+        "target_pe_range": [
+          8.5,
+          10.5
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "暑期客運旺季滿載 + 高階貨運需求強勁，本益比低於 9 倍極度超低估",
@@ -196,17 +428,45 @@
         "航空燃油價格走勢"
       ],
       "broker_reports": [
-        { "broker": "富邦投顧", "rating": "買進", "target_price": 48 },
-        { "broker": "元大投顧", "rating": "買進", "target_price": 45 }
+        {
+          "broker": "富邦投顧",
+          "rating": "買進",
+          "target_price": 48,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "元大投顧",
+          "rating": "買進",
+          "target_price": 45,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "超低估值（PE < 9倍），零股/持股抱領息，守穩 40.5 元支撐"
+      "last_report_note": "超低估值（PE < 9倍），零股/持股抱領息，守穩 40.5 元支撐",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "2449": {
       "stock_name": "京元電子",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [11.5, 13.5],
-        "target_pe_range": [24.0, 28.0]
+        "2026_eps_range": [
+          11.5,
+          13.5
+        ],
+        "target_pe_range": [
+          24.0,
+          28.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "AI 晶片與 GPU 先進測試需求爆發，出售中國廠聚焦高毛利 AI 測試",
@@ -218,17 +478,45 @@
         "單季毛利率突破 38%"
       ],
       "broker_reports": [
-        { "broker": "摩根士丹利 (MS)", "rating": "買進", "target_price": 348 },
-        { "broker": "統一投顧", "rating": "買進", "target_price": 320 }
+        {
+          "broker": "摩根士丹利 (MS)",
+          "rating": "買進",
+          "target_price": 348,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "統一投顧",
+          "rating": "買進",
+          "target_price": 320,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "AI 晶片測試需求爆發，大摩與統一給予 320~348 元高目標價"
+      "last_report_note": "AI 晶片測試需求爆發，大摩與統一給予 320~348 元高目標價",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "2327": {
       "stock_name": "國巨",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [32.0, 42.0],
-        "target_pe_range": [16.0, 21.0]
+        "2026_eps_range": [
+          32.0,
+          42.0
+        ],
+        "target_pe_range": [
+          16.0,
+          21.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "車用、工控與 AI 特殊被動元件比重超過 75%，積層電容價格落底回升",
@@ -240,17 +528,45 @@
         "高階 MLCC 出貨量"
       ],
       "broker_reports": [
-        { "broker": "高盛 (GS)", "rating": "買進", "target_price": 905 },
-        { "broker": "麥格理 (Macquarie)", "rating": "買進", "target_price": 1125 }
+        {
+          "broker": "高盛 (GS)",
+          "rating": "買進",
+          "target_price": 905,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "麥格理 (Macquarie)",
+          "rating": "買進",
+          "target_price": 1125,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "帶量強彈，高盛與麥格理看好 AI 特殊 MLCC 升級，目標價看 905~1125 元"
+      "last_report_note": "帶量強彈，高盛與麥格理看好 AI 特殊 MLCC 升級，目標價看 905~1125 元",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "3037": {
       "stock_name": "欣興",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [40.0, 50.0],
-        "target_pe_range": [25.0, 32.0]
+        "2026_eps_range": [
+          40.0,
+          50.0
+        ],
+        "target_pe_range": [
+          25.0,
+          32.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "ABF 高階載板與 AI 伺服器需求回溫，26Q2 毛利回升",
@@ -262,17 +578,45 @@
         "高階 ABF 載板營收佔比"
       ],
       "broker_reports": [
-        { "broker": "美系外資", "rating": "買進", "target_price": 1575 },
-        { "broker": "國內大型投顧", "rating": "買進", "target_price": 1280 }
+        {
+          "broker": "美系外資",
+          "rating": "買進",
+          "target_price": 1575,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "國內大型投顧",
+          "rating": "買進",
+          "target_price": 1280,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "現價 1305 元！AI 載板中長線結構優勢，外資喊上 1,280 ~ 1,575 元區間"
+      "last_report_note": "現價 1305 元！AI 載板中長線結構優勢，外資喊上 1,280 ~ 1,575 元區間",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "2481": {
       "stock_name": "強茂",
       "category": "混合型",
       "consensus_forecast": {
-        "2026_eps_range": [7.5, 9.0],
-        "target_pe_range": [20.0, 24.0]
+        "2026_eps_range": [
+          7.5,
+          9.0
+        ],
+        "target_pe_range": [
+          20.0,
+          24.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "高壓車用 MOSFET 與邊緣 AI 視覺模組強勁放量，毛利率與 EPS 顯著上修",
@@ -284,17 +628,45 @@
         "月營收持續創歷史高點"
       ],
       "broker_reports": [
-        { "broker": "凱基投顧", "rating": "買進", "target_price": 200 },
-        { "broker": "富邦投顧", "rating": "買進", "target_price": 190 }
+        {
+          "broker": "凱基投顧",
+          "rating": "買進",
+          "target_price": 200,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "富邦投顧",
+          "rating": "買進",
+          "target_price": 190,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "股價帶量突破 139.5 元創高後強勢上攻至 174.5 元，基本面與動能雙優"
+      "last_report_note": "股價帶量突破 139.5 元創高後強勢上攻至 174.5 元，基本面與動能雙優",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "2881": {
       "stock_name": "富邦金",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [11.5, 13.5],
-        "target_pe_range": [12.0, 15.0]
+        "2026_eps_range": [
+          11.5,
+          13.5
+        ],
+        "target_pe_range": [
+          12.0,
+          15.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "金控獲利王，壽險與銀行雙引擎累計 EPS 創歷史新高，降息受惠",
@@ -306,17 +678,45 @@
         "每月金控自結稅後 EPS"
       ],
       "broker_reports": [
-        { "broker": "凱基證券", "rating": "買進", "target_price": 160 },
-        { "broker": "富邦投顧", "rating": "買進", "target_price": 145 }
+        {
+          "broker": "凱基證券",
+          "rating": "買進",
+          "target_price": 160,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "富邦投顧",
+          "rating": "買進",
+          "target_price": 145,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "金控獲利王攻勢凌厲，現價 150.5 元，凱基與富邦目標價看 145~160 元"
+      "last_report_note": "金控獲利王攻勢凌厲，現價 150.5 元，凱基與富邦目標價看 145~160 元",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "3163": {
       "stock_name": "波若威",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [30.0, 38.0],
-        "target_pe_range": [25.0, 30.0]
+        "2026_eps_range": [
+          30.0,
+          38.0
+        ],
+        "target_pe_range": [
+          25.0,
+          30.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "NVIDIA Spectrum-X CPO 光纖套件與配線盒 2026 下半年放量，800G/1.6T 需求爆發，帶動獲利衝上歷史新高",
@@ -329,17 +729,45 @@
         "單季營業利益率與存貨去化狀況"
       ],
       "broker_reports": [
-        { "broker": "富邦證券", "rating": "買進", "target_price": 915 },
-        { "broker": "康和證券", "rating": "買進", "target_price": 1000 }
+        {
+          "broker": "富邦證券",
+          "rating": "買進",
+          "target_price": 915,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "康和證券",
+          "rating": "買進",
+          "target_price": 1000,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "現價飆漲至 713 元！法說重申 CPO 光纖套件與配線盒下半年陸續放量，富邦看 915 元、康和喊上 1000 元"
+      "last_report_note": "現價飆漲至 713 元！法說重申 CPO 光纖套件與配線盒下半年陸續放量，富邦看 915 元、康和喊上 1000 元",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     },
     "6274": {
       "stock_name": "台燿",
       "category": "A類-基本面驅動",
       "consensus_forecast": {
-        "2026_eps_range": [32.0, 42.0],
-        "target_pe_range": [45.0, 58.0]
+        "2026_eps_range": [
+          32.0,
+          42.0
+        ],
+        "target_pe_range": [
+          45.0,
+          58.0
+        ],
+        "as_of": null,
+        "source_url": null,
+        "verification_status": "unverified"
       },
       "thesis_points": {
         "bull": "AI ASIC 專案放量，M8/M9 高階 CCL 材料市占率提升，800G/1.6T 交換器供需吃緊帶動稀缺性定價",
@@ -352,10 +780,29 @@
         "800G/1.6T 交換器 CCL 市占率"
       ],
       "broker_reports": [
-        { "broker": "美系外資", "rating": "買進", "target_price": 2860 },
-        { "broker": "國內大型投顧", "rating": "買進", "target_price": 2115 }
+        {
+          "broker": "美系外資",
+          "rating": "買進",
+          "target_price": 2860,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        },
+        {
+          "broker": "國內大型投顧",
+          "rating": "買進",
+          "target_price": 2115,
+          "report_date": null,
+          "source_url": null,
+          "verification_status": "unverified"
+        }
       ],
-      "last_report_note": "高階 CCL 供需吃緊具稀缺性定價優勢，FactSet 分析師 2026 EPS 共識上修，外資目標價上看 2115~2860 元"
+      "last_report_note": "高階 CCL 供需吃緊具稀缺性定價優勢，FactSet 分析師 2026 EPS 共識上修，外資目標價上看 2115~2860 元",
+      "overall_bias": "unknown",
+      "status": "draft",
+      "verified_at": null,
+      "history": [],
+      "event_flags": []
     }
   }
 }

@@ -9,7 +9,7 @@ shioaji.log
 
 # 本機測試腳本（不需要上傳 GitHub）
 fetch_prices_test.py
-test_*.py
+/test_*.py
 
 # Python 暫存
 __pycache__/
@@ -24,3 +24,10 @@ venv/
 # 編輯器
 .vscode/
 .idea/
+
+# 個人持股帳本與備份（隱私資料，禁止上傳 GitHub）
+my_portfolio.json
+*.bak
+snapshot.json
+history_data_adj.csv
+history_data_adj_meta.json

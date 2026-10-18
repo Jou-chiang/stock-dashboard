@@ -64,6 +64,7 @@ for i, code in enumerate(codes):
         start_fetch = (datetime.today() - timedelta(days=5)).strftime("%Y-%m-%d")
 
     try:
+        # B 板選股使用證交所未除權息原始價格 (TaiwanStockPrice)，維持既有排程與指標一致性
         r = requests.get(FINMIND_URL, params={
             "dataset":    "TaiwanStockPrice",
             "data_id":    code,
@@ -71,6 +72,7 @@ for i, code in enumerate(codes):
             "token":      TOKEN,
         }, timeout=10)
         j = r.json()
+
         if j.get("status") != 200:
             raise Exception(j.get("msg", "API error"))
 
@@ -306,6 +308,7 @@ output = {
     "updated": today,
     "total":   len(scores),
     "score_version": 2,
+    "price_basis": "unadjusted",
     "scores":  scores,
 }
 

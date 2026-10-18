@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-10-18",
+  "description": "股票理專系統參數設定檔（待回測初始假說門檻集中管理）",
+  "kline": {
+    "min_trading_days": 61,
+    "calendar_lookback_days": 90
+  },
+  "signals": {
+    "ma20_break_ratio": 0.98,
+    "ma20_break_consecutive_days": 2,
+    "bias_20_warn_pct": 15.0,
+    "short_max_holding_days": 10,
+    "core_deep_drawdown_consecutive_days": 10,
+    "core_deep_drawdown_drop_pct": 20.0,
+    "trailing_stop_drop_pct_swing_short": 8.0,
+    "trailing_stop_drop_pct_core": 15.0,
+    "extreme_stock_drop_pct": -7.0,
+    "extreme_market_drop_pct": -3.0
+  },
+  "thesis": {
+    "stale_days": 60,
+    "event_flag_overdue_days": 90
+  },
+  "risk_control": {
+    "single_stock_max_weight_pct": 25.0,
+    "single_sector_max_weight_pct": 40.0,
+    "cash_min_reserve_pct": 10.0,
+    "short_total_max_weight_pct": 15.0
+  }
+}

@@ -242,7 +242,7 @@ async function loadScores(){
     const isV2=j.score_version===2;
     document.getElementById('status-bar').innerHTML=`
       <div class="status-item"><span class="dot ok"></span><span class="status-label">資料已載入</span></div>
-      <div class="status-item"><span class="status-label">評分日期</span><span class="status-val">${j.updated||'—'}</span></div>
+      <div class="status-item"><span class="status-label">📅 評分資料基準日</span><span class="status-val gold">${j.updated||'—'}</span></div>
       ${rtUpdated ? `<div class="status-item"><span class="status-label">盤中股價</span><span class="status-val green">${rtUpdated}</span></div>` : ''}
       <div class="status-item"><span class="status-label">股票池</span><span class="status-val">${j.total} 支</span></div>
       <div class="status-item"><span class="status-label">🏆 5分</span><span class="status-val gold">${z5} 支</span></div>
@@ -395,13 +395,15 @@ function renderCard(s){
   const rk=RISK_META[s.risk]||RISK_META.low;
   const reasons=(s.risk_reasons||[]).map(r=>`<div class="risk-line">${r}</div>`).join('');
   const starColor=sc>=5?'#ffd700':sc>=4?'var(--green)':'var(--text3)';
-  const scoreTxt=Number.isInteger(sc)?sc:sc.toFixed(1);
-  return `<div class="stock-card ${cc}">
+    const isFinancialAlert = s.risk_checks?.blacklisted || s.risk === 'high' || (s.risk_reasons||[]).some(r => r.includes('警示') || r.includes('處置') || r.includes('流動性') || r.includes('黑名單'));
+    const finAlertBadge = isFinancialAlert ? `<span class="tag-strategy" style="background:rgba(242,95,95,0.15);color:var(--red);border:1px solid rgba(242,95,95,0.4);font-weight:600;">⚠️ 財務/營運警示</span>` : '';
+
+    return `<div class="stock-card ${cc}">
     <div class="card-top">
       <div><div class="card-code"><a href="https://goodinfo.tw/tw/StockDetail.asp?STOCK_ID=${s.code}" target="_blank" style="color:var(--text3);text-decoration:none;" onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--text3)'">${s.code} ↗</a></div><div class="card-name">${s.name}${fire}</div><div class="card-sector">${s.sector}</div></div>
       <div style="text-align:right"><div class="score-badge ${bc}">${scoreTxt}/5</div><div class="stars" style="color:${starColor}">${starsHtml(sc)}</div></div>
     </div>
-    <div class="tag-row"><span class="tag-strategy">${sm.icon} ${sm.label}</span><span class="tag-risk risk-${s.risk||'low'}">${rk[0]} 風險${rk[1]}</span>${extra?`<span class="tag-extra">${extra}</span>`:''}</div>
+    <div class="tag-row"><span class="tag-strategy">${sm.icon} ${sm.label}</span><span class="tag-risk risk-${s.risk||'low'}">${rk[0]} 風險${rk[1]}</span>${finAlertBadge}${extra?`<span class="tag-extra">${extra}</span>`:''}</div>
     <div class="card-price-row"><span class="card-price">${s.price}</span><span class="card-chg ${chgClass}">${chgUp?'+':''}${s.chg_pct?.toFixed(2)}%</span></div>
     <div class="criteria-row">${chips}</div>
     ${s.action?`<div class="action-line">👉 ${s.action}</div>`:''}

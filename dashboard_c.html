@@ -668,7 +668,20 @@ async function query(sym,nameHint){
       <span class="info-price">${(+last.close).toFixed(2)}</span>
       <span class="info-chg ${chgClass}">${chgPct>0?'+':''}${chgPct}%</span>`;
 
+    // 資料基準日標記（不於前端自算客觀診斷，留待 L2 引擎統一產出）
+    const instDateStr = recentDates && recentDates.length ? recentDates[recentDates.length - 1] : '無資料';
+    const tdccDateStr = tdccLatest && tdccLatest.date ? (String(tdccLatest.date).length === 8 ? `${String(tdccLatest.date).slice(0,4)}-${String(tdccLatest.date).slice(4,6)}-${String(tdccLatest.date).slice(6,8)}` : String(tdccLatest.date)) : '無資料';
+
     document.getElementById('main-area').innerHTML=`
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:10px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:11px;">
+        <div style="color:var(--text2);">
+          📅 三大法人統計日：<span style="color:var(--text);font-weight:500;">${instDateStr}</span>（日更新）
+        </div>
+        <div style="color:var(--text3);background:var(--bg3);padding:3px 8px;border-radius:4px;border:1px solid var(--border2);">
+          🏰 集保股權基準日：<span style="color:var(--text);font-weight:500;">${tdccDateStr}</span>（每週五公布·非即時）
+        </div>
+      </div>
+
       <div class="summary-row">
         <div class="summary-item"><span class="summary-label">外資近5日</span><span class="summary-val ${sumF>=0?'pos':'neg'}">${sumF>=0?'+':''}${Math.round(sumF).toLocaleString()} 張</span></div>
         <div class="summary-item"><span class="summary-label">投信近5日</span><span class="summary-val ${sumT>=0?'pos':'neg'}">${sumT>=0?'+':''}${Math.round(sumT).toLocaleString()} 張</span></div>

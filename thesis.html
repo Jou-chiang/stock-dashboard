@@ -167,6 +167,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
       <button class="btn-nav" style="border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.1);font-weight:bold;" onclick="openModal(); this.blur();">＋ 手動新增研究卡</button>
       <button class="btn-nav" onclick="openImportModal(); this.blur();">📤 匯入 GPT 報告</button>
+      <button class="btn-nav" onclick="openAuditModal(); this.blur();">📋 掃描缺漏</button>
       <button class="btn-nav" onclick="exportJSON(); this.blur();">📥 匯出 JSON</button>
       <button class="btn-nav" id="btn-refresh" style="color:var(--amber);border-color:var(--amber);background:rgba(240,160,58,.08);" onclick="refreshData(); this.blur();">🔄 重新載入伺服器資料</button>
     </div>
@@ -292,6 +293,25 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <button type="button" class="btn-cancel" onclick="copyGPTFormatPrompt()">複製 GPT 格式指令</button>
       <button type="button" class="btn-cancel" onclick="closeImportModal()">取消</button>
       <button type="button" class="btn-submit" onclick="importGPTReport()">檢查來源並匯入</button>
+    </div>
+  </div>
+</div>
+
+<!-- Audit Gaps Modal -->
+<div class="modal-overlay" id="audit-overlay">
+  <div class="modal-box" style="max-width:860px;">
+    <div class="modal-header">
+      <div class="modal-title">📋 研報資料庫缺漏與待查證掃描</div>
+      <button class="btn-close" type="button" onclick="closeAuditModal()">✕</button>
+    </div>
+    <div style="font-size:12px;color:var(--text2);line-height:1.65;margin-bottom:12px;">
+      <b>使用說明：</b>掃描所有卡片之來源網址、報告出刊日與查證狀態。若有缺漏，可點擊單檔「複製查證指令」或下方「複製全體指令」，交由 Gem 聯網查證並產出合規 JSON 匯入：
+    </div>
+    <div id="audit-summary-stat" style="font-size:12px;font-weight:bold;margin-bottom:10px;color:var(--amber);"></div>
+    <div id="audit-content" style="max-height:420px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:4px;"></div>
+    <div class="modal-footer">
+      <button type="button" class="btn-cancel" onclick="copyAllAuditPrompt()">📋 複製全體待查證指令</button>
+      <button type="button" class="btn-submit" onclick="closeAuditModal()">關閉</button>
     </div>
   </div>
 </div>
@@ -495,6 +515,23 @@ async function refreshData() {
   if (btn) btn.textContent = '🔄 重新載入伺服器資料';
 }
 
+function getCardStatus(item) {
+  const verifiedDate = parseDate(item.verified_at);
+  if (!item.verified_at || !verifiedDate) {
+    return { code: 'draft', label: '🟡 待查證', bg: 'rgba(240,160,58,0.12)', color: 'var(--amber)', border: 'var(--amber)' };
+  }
+  const days = (Date.now() - verifiedDate.getTime()) / (1000 * 3600 * 24);
+  const hasUnresolvedEvent = Array.isArray(item.event_flags) && item.event_flags.some(e => e && e.resolved === false);
+  if (days > 60 || hasUnresolvedEvent) {
+    const label = hasUnresolvedEvent ? '⚠️ 事件需重檢' : '⚠️ 過期需重檢';
+    return { code: 'stale', label: label, bg: 'rgba(242,95,95,0.12)', color: 'var(--red)', border: 'var(--red)' };
+  }
+  if (item.status === 'verified') {
+    return { code: 'verified', label: '🟢 已核實', bg: 'rgba(63,201,124,0.12)', color: 'var(--green)', border: 'var(--green)' };
+  }
+  return { code: 'draft', label: '🟡 待查證', bg: 'rgba(240,160,58,0.12)', color: 'var(--amber)', border: 'var(--amber)' };
+}
+
 function getVerifiedBrokerReports(item) {
   return (item.broker_reports || []).filter(r => {
     return r.verification_status === 'verified' && r.report_date && safeHttpUrl(r.source_url) && validPrice(r.target_price);
@@ -536,6 +573,7 @@ function renderCards(theses) {
       upside = `<span style="color:${pct >= 0 ? 'var(--green)' : 'var(--red)'};font-weight:700;">目標價均值差 ${pct >= 0 ? '+' : ''}${pct}%</span>`;
     }
     const bias = getBias(item);
+    const st = getCardStatus(item);
     const scenario = (key, label, text, cls, icon) => text ? `<div class="sc-item sc-${cls}${bias === key ? ` active-scenario-${cls}` : ''}"><span class="sc-icon">${label}</span><div style="flex:1;white-space:pre-wrap;">${esc(text)}</div>${bias === key ? `<span style="margin-left:auto;">${icon}</span>` : ''}</div>` : '';
     const brokersHtml = (item.broker_reports || []).map(r => {
       const verified = getVerifiedBrokerReports({broker_reports:[r]}).length > 0;
@@ -544,13 +582,16 @@ function renderCards(theses) {
       return `<div style="font-size:11px;background:var(--bg3);border:1px solid var(--border2);padding:7px 10px;border-radius:var(--r);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;"><span style="color:var(--amber);">${esc(r.broker || '券商')}（${esc(r.rating || '未提供評等')}）｜${esc(r.report_date || '日期未提供')}${source}</span><span>目標價：${validPrice(r.target_price) || '未提供'} 元｜${verified ? '已標記核實' : '未核實，不計入均值'}</span></div>`;
     }).join('');
     const catalysts = Array.isArray(item.catalysts) ? item.catalysts : [];
+    const historyHtml = (Array.isArray(item.history) && item.history.length > 0) ? item.history.map(h => `<div style="font-size:11px;background:var(--bg3);border:1px solid var(--border);padding:4px 8px;border-radius:4px;">⏱️ ${esc(h.date || '')}：${esc(h.note || '')}</div>`).join('') : '';
+
     const card = document.createElement('article'); card.className = 'card'; card.dataset.code = code; card.dataset.name = item.stock_name || '';
     card.innerHTML = `
-      <div class="card-header"><div style="flex:1;"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><span class="stock-code">${esc(code)}</span><span class="stock-name">${esc(item.stock_name || code)}</span></div><div style="margin-top:6px;"><span class="cat-tag">${esc(item.category || '未分類')}</span></div><div style="font-size:11px;color:var(--text2);margin-top:6px;">${esc(priceText)}</div>${quote?.note ? `<div style="font-size:10px;color:var(--text3);margin-top:3px;">${esc(quote.note)}</div>` : ''}</div><div class="card-actions"><button class="btn-action" data-action="edit" data-code="${esc(code)}">編輯</button><button class="btn-action btn-del" data-action="delete" data-code="${esc(code)}">刪除</button></div></div>
+      <div class="card-header"><div style="flex:1;"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><span class="stock-code">${esc(code)}</span><span class="stock-name">${esc(item.stock_name || code)}</span><span class="cat-tag" style="background:${st.bg};color:${st.color};border-color:${st.border};font-weight:bold;">${st.label}</span></div><div style="margin-top:6px;"><span class="cat-tag">${esc(item.category || '未分類')}</span></div><div style="font-size:11px;color:var(--text2);margin-top:6px;">${esc(priceText)}</div>${quote?.note ? `<div style="font-size:10px;color:var(--text3);margin-top:3px;">${esc(quote.note)}</div>` : ''}</div><div class="card-actions"><button class="btn-action" data-action="prompt" data-code="${esc(code)}" title="複製讓 Gem 查證此股票的指令">📋 查證指令</button><button class="btn-action" data-action="edit" data-code="${esc(code)}">編輯</button><button class="btn-action btn-del" data-action="delete" data-code="${esc(code)}">刪除</button></div></div>
       <div class="consensus-box"><div class="c-item"><div class="c-label">2026 EPS 區間${forecastVerified ? '（已標示來源）' : '（來源待核實）'}</div><div class="c-val">${esc(eps)}</div>${forecast.source_url && safeHttpUrl(forecast.source_url) ? `<div style="margin-top:3px;font-size:10px;"><a href="${esc(safeHttpUrl(forecast.source_url))}" target="_blank" rel="noopener noreferrer">來源</a>｜${esc(forecast.as_of || '')}</div>` : ''}</div><div class="c-item"><div class="c-label">估值假設 PE</div><div class="c-val">${esc(pe)}</div></div>${impliedTarget ? `<div class="c-item" style="grid-column:1/-1;border-top:1px dashed var(--border);padding-top:8px;margin-top:4px;"><div class="c-label">情境估值（EPS × PE；非券商目標價）</div><div class="c-val" style="color:var(--amber);">${esc(impliedTarget)} ${upside}</div></div>` : ''}</div>
       <div class="scenario-title">Bull / Base / Bear 情境｜${bias === 'unknown' ? '傾向未知，不亮燈' : ({bull:'偏多',base:'中立',bear:'偏空'}[bias])}</div><div class="scenario-list">${scenario('bull','樂觀',item.thesis_points?.bull,'bull','🔥')}${scenario('base','基準',item.thesis_points?.base,'base','⚖️')}${scenario('bear','悲觀',item.thesis_points?.bear,'bear','⚠️')}${bias === 'unknown' ? '<div style="font-size:11px;color:var(--text3);">未設定明確研究傾向；不會依目標價自動推定多空。</div>' : ''}</div>
       ${catalysts.length ? `<div class="scenario-title">已輸入的催化劑（未自動驗證）</div><div class="catalysts-wrap"><div class="cat-list">${catalysts.map(c => `<span class="cat-chip">${esc(c)}</span>`).join('')}</div></div>` : ''}
       ${brokersHtml ? `<div class="scenario-title">券商目標價與來源狀態</div><div class="catalysts-wrap" style="display:flex;flex-direction:column;gap:6px;">${brokersHtml}</div>` : ''}
+      ${historyHtml ? `<div class="scenario-title">歷史研究快照</div><div style="display:flex;flex-direction:column;gap:4px;margin-bottom:12px;">${historyHtml}</div>` : ''}
       ${item.last_report_note ? `<div class="report-note" style="white-space:pre-wrap;">${esc(item.last_report_note)}</div>` : ''}${Array.isArray(item.sources) && item.sources.length ? `<div class="scenario-title">公開資訊來源（匯入時提供，請點擊核對）</div><div style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px;">${item.sources.map(src => { const u = safeHttpUrl(src.url); return u ? `<div style="font-size:11px;"><a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(src.title || u)}</a>${src.date ? `｜${esc(src.date)}` : ''}</div>` : ''; }).join('')}</div>` : ''}`;
     grid.appendChild(card);
   });
@@ -799,15 +840,164 @@ function importGPTReport() {
     const sourceUrl = safeHttpUrl(cf.source_url) || '';
     const forecast = { ...cf, '2026_eps_range': validRange(epsRange) ? epsRange : [], target_pe_range: validRange(peRange) ? peRange : [], source_url:sourceUrl, as_of:String(cf.as_of || ''), verification_status:'unverified' };
     const brokerReports = (Array.isArray(entry.broker_reports) ? entry.broker_reports : []).map(r => ({broker:String(r.broker || ''),rating:String(r.rating || ''),target_price:validPrice(r.target_price),report_date:String(r.report_date || ''),source_url:safeHttpUrl(r.source_url) || '',verification_status:'unverified'}));
-    normalized.push({code,name,item:{stock_name:name,category:String(entry.category || '待分類'),overall_bias:['bull','base','bear'].includes(entry.overall_bias) ? entry.overall_bias : 'unknown',consensus_forecast:forecast,thesis_points:{bull:String(entry.thesis_points?.bull || ''),base:String(entry.thesis_points?.base || ''),bear:String(entry.thesis_points?.bear || '')},catalysts:Array.isArray(entry.catalysts) ? entry.catalysts.map(String) : [],broker_reports:brokerReports,last_report_note:String(entry.last_report_note || ''),sources,imported_at:new Date().toISOString()}});
+    normalized.push({code,name,item:{stock_name:name,category:String(entry.category || '待分類'),overall_bias:['bull','base','bear'].includes(entry.overall_bias) ? entry.overall_bias : 'unknown',consensus_forecast:forecast,thesis_points:{bull:String(entry.thesis_points?.bull || ''),base:String(entry.thesis_points?.base || ''),bear:String(entry.thesis_points?.bear || '')},catalysts:Array.isArray(entry.catalysts) ? entry.catalysts.map(String) : [],broker_reports:brokerReports,last_report_note:String(entry.last_report_note || ''),sources,status:'draft',verified_at:null,imported_at:new Date().toISOString()}});
   }
   const duplicates = normalized.filter(x => thesisData[x.code]).map(x => `${x.code} ${x.name}`);
-  const message = `將匯入 ${normalized.length} 檔研究資料。${duplicates.length ? '\n以下股票已存在，匯入會更新該卡片：' + duplicates.join('、') : ''}\nEPS 與券商報告將維持待核實；本功能只檢查來源網址格式，不代表已自動確認來源內容。\n確定繼續？`;
+  const message = `將匯入 ${normalized.length} 檔研究資料。${duplicates.length ? '\n以下股票已存在，匯入會保留未變更欄位並記錄歷史：' + duplicates.join('、') : ''}\nEPS 與券商報告將維持待核實；本功能只檢查來源網址格式，不代表已自動確認來源內容。\n確定繼續？`;
   if (!confirm(message)) return;
-  normalized.forEach(({code,item}) => { thesisData[code] = {...(thesisData[code] || {}),...item}; delete item.imported_at; localOverrides[code] = thesisData[code]; deletedCodes.delete(code); });
+
+  normalized.forEach(({code, item}) => {
+    const oldItem = thesisData[code] || {};
+    const history = Array.isArray(oldItem.history) ? [...oldItem.history] : [];
+    
+    // 自動記錄 EPS 或目標價變動快照
+    const oldEps = oldItem.consensus_forecast?.['2026_eps_range'];
+    const newEps = item.consensus_forecast?.['2026_eps_range'];
+    if (oldEps && newEps && (oldEps[0] !== newEps[0] || oldEps[1] !== newEps[1])) {
+      history.push({ date: new Date().toISOString().slice(0, 10), note: `2026 EPS 由 [${oldEps.join('~')}] 更新為 [${newEps.join('~')}] 元` });
+    }
+
+    const existingBrokers = Array.isArray(oldItem.broker_reports) ? [...oldItem.broker_reports] : [];
+    const newBrokers = Array.isArray(item.broker_reports) ? item.broker_reports : [];
+    newBrokers.forEach(nbr => {
+      const idx = existingBrokers.findIndex(e => e.broker && nbr.broker && e.broker.trim() === nbr.broker.trim());
+      if (idx !== -1) {
+        if (existingBrokers[idx].target_price !== nbr.target_price) {
+          history.push({ date: new Date().toISOString().slice(0, 10), note: `${nbr.broker} 目標價由 ${existingBrokers[idx].target_price} 更新為 ${nbr.target_price} 元` });
+        }
+        existingBrokers[idx] = { ...existingBrokers[idx], ...nbr };
+      } else {
+        existingBrokers.push(nbr);
+      }
+    });
+
+    thesisData[code] = {
+      ...oldItem,
+      ...item,
+      consensus_forecast: { ...(oldItem.consensus_forecast || {}), ...(item.consensus_forecast || {}) },
+      thesis_points: { ...(oldItem.thesis_points || {}), ...(item.thesis_points || {}) },
+      broker_reports: existingBrokers.length ? existingBrokers : newBrokers,
+      history: history,
+      event_flags: Array.isArray(item.event_flags) ? item.event_flags : (Array.isArray(oldItem.event_flags) ? oldItem.event_flags : []),
+      status: item.status || oldItem.status || 'draft',
+      verified_at: item.verified_at || oldItem.verified_at || null
+    };
+    delete thesisData[code].imported_at;
+    localOverrides[code] = thesisData[code];
+    deletedCodes.delete(code);
+  });
+
   persistLocalState(); rawFullData = {...serverData,theses:thesisData}; updateStatus(`已匯入 ${normalized.length} 檔 GPT 研究報告並儲存至本機；請匯出 JSON 後手動更新 GitHub`); renderCards(thesisData);
   document.getElementById('search').value = ''; filterCards();
   status.textContent = `匯入完成：${normalized.length} 檔。資料已儲存在此瀏覽器；請按「匯出 JSON」備份，再手動更新 GitHub 的 research_theses.json。`;
+}
+
+function openAuditModal() {
+  const overlay = document.getElementById('audit-overlay');
+  const content = document.getElementById('audit-content');
+  const stat = document.getElementById('audit-summary-stat');
+  if (!overlay || !content) return;
+
+  const codes = Object.keys(thesisData).sort();
+  let draftCount = 0;
+  let staleCount = 0;
+  let verifiedCount = 0;
+
+  content.replaceChildren();
+
+  codes.forEach(code => {
+    const item = thesisData[code] || {};
+    const st = getCardStatus(item);
+    if (st.code === 'draft') draftCount++;
+    else if (st.code === 'stale') staleCount++;
+    else if (st.code === 'verified') verifiedCount++;
+
+    const gaps = [];
+    const unresolvedEvents = (Array.isArray(item.event_flags) ? item.event_flags : []).filter(e => e && e.resolved === false);
+    if (unresolvedEvents.length) gaps.push(`有 ${unresolvedEvents.length} 項未解除事件`);
+    const fc = item.consensus_forecast || {};
+    if (!fc.source_url) gaps.push('缺少 EPS 來源網址');
+    if (!fc.as_of) gaps.push('缺少 EPS 預估基準日');
+    const brokers = item.broker_reports || [];
+    if (!brokers.length) gaps.push('無任何券商研報');
+    else {
+      brokers.forEach(b => {
+        if (!b.report_date) gaps.push(`${b.broker || '券商'} 缺少出刊日`);
+        if (!b.source_url) gaps.push(`${b.broker || '券商'} 缺少報告網址`);
+      });
+    }
+
+    const row = document.createElement('div');
+    row.style.cssText = 'background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;';
+    row.innerHTML = `
+      <div>
+        <div style="font-weight:bold;display:flex;align-items:center;gap:8px;">
+          <span>${esc(code)} ${esc(item.stock_name || '')}</span>
+          <span style="font-size:11px;color:${st.color};">${st.label}</span>
+        </div>
+        <div style="font-size:11px;color:var(--text2);margin-top:3px;">
+          ${gaps.length ? `⚠️ 待補欄位：${esc(gaps.join('、'))}` : '✅ 核心欄位皆具備來源'}
+        </div>
+      </div>
+      <div>
+        <button class="btn-action" style="padding:4px 8px;font-size:11px;" onclick="copyStockPrompt('${esc(code)}')">📋 複製查證指令</button>
+      </div>
+    `;
+    content.appendChild(row);
+  });
+
+  if (stat) {
+    stat.textContent = `共 ${codes.length} 檔研究卡｜🟡 待查證：${draftCount} 檔｜⚠️ 過期需重檢：${staleCount} 檔｜🟢 已核實：${verifiedCount} 檔`;
+  }
+  overlay.classList.add('active');
+}
+
+function closeAuditModal() {
+  const overlay = document.getElementById('audit-overlay');
+  if (overlay) overlay.classList.remove('active');
+}
+
+function copyStockPrompt(code) {
+  const item = thesisData[code] || {};
+  const name = item.stock_name || code;
+  const promptText = `請幫我深度查證台股 ${code} ${name} 的最新法人研報資訊：
+1. 查找近 3 個月內，國內外主要券商發布之正式研究報告（券商名稱、評等、目標價、報告出刊日 YYYY-MM-DD 與公開來源網址）。
+2. 查找 2026 年市場共識預估 EPS 區間與目標本益比，並附上法說會或財報公開來源網址與基準日。
+3. 整理 Bull / Base / Bear 三情境論點與最新催化劑。
+4. 請嚴格產出符合戰情室 D 匯入規格的純 JSON 格式（包含 code, stock_name, consensus_forecast, broker_reports, thesis_points, sources）。`;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(promptText).then(() => {
+      alert(`已複製 ${code} ${name} 的查證指令！可直接貼給 Gem / AI 執行聯網查證。`);
+    }).catch(() => {
+      prompt('請手動複製以下指令：', promptText);
+    });
+  } else {
+    prompt('請手動複製以下指令：', promptText);
+  }
+}
+
+function copyAllAuditPrompt() {
+  const codes = Object.keys(thesisData).sort();
+  const unverified = codes.filter(c => getCardStatus(thesisData[c]).code !== 'verified');
+  const targetList = unverified.map(c => `${c} ${thesisData[c]?.stock_name || ''}`).join('、');
+  const promptText = `請幫我聯網查證以下待核實的股票研究資料：
+【待查證名單】：${targetList}
+
+針對上述每檔標的，請查證：
+1. 最新券商研究報告（券商名稱、評等、目標價、報告出刊日、公開來源網址）。
+2. 2026 EPS 共識區間與目標本益比（附來源網址與日期）。
+3. 嚴格產出符合戰情室 D 規格的純 JSON（以 theses 物件包裹），方便一鍵匯入更新。`;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(promptText).then(() => {
+      alert(`已複製全體 ${unverified.length} 檔待查證指令！`);
+    }).catch(() => {
+      prompt('請手動複製以下指令：', promptText);
+    });
+  } else {
+    prompt('請手動複製以下指令：', promptText);
+  }
 }
 
 function editCard(code) { openModal(code); }
@@ -829,6 +1019,7 @@ document.getElementById('main-content').addEventListener('click', event => {
   const code = button.dataset.code;
   if (button.dataset.action === 'edit') editCard(code);
   if (button.dataset.action === 'delete') deleteCard(code);
+  if (button.dataset.action === 'prompt') copyStockPrompt(code);
 });
 
 init().catch(error => { console.error(error); updateStatus('載入失敗，請檢查 JSON 與網路連線'); });

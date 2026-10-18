@@ -235,6 +235,8 @@ tr:hover td{background:var(--bg3);}
   <button class="btn btn-g btn-d" onclick="clearAll()">清除全部</button>
   <div class="sep"></div>
   <button class="btn-toggle-cost" id="cost-toggle-btn" onclick="toggleCostCols()" title="顯示/隱藏戰情欄">戰情欄 👁</button>
+  <button class="btn btn-g" onclick="openPortfolioManager()" style="font-size:11px;color:var(--amber);border-color:var(--amber2)">💼 持股帳本管理</button>
+  <span id="pf-source-badge" style="font-size:10px;font-family:var(--mono);margin-left:4px;"></span>
   <div class="sep"></div>
   <button class="btn-toggle-cost" id="legend-toggle-btn" onclick="toggleLegend()" title="顯示/隱藏訊號說明">訊號說明 👁</button>
   <div class="sep"></div>
@@ -289,9 +291,10 @@ tr:hover td{background:var(--bg3);}
     <th style="min-width:62px">DIF</th>
     <th class="cg" style="min-width:82px">成交量(張)</th>
     <th style="min-width:76px">5日均量</th>
-    <th class="cg cost-col" style="min-width:72px">成本價</th>
-    <th class="cost-col" style="min-width:72px">損益%</th>
-    <th class="cost-col" style="min-width:80px">距MA5%</th>
+    <th class="cg cost-col" style="min-width:64px">屬性</th>
+    <th class="cost-col" style="min-width:105px">成本 / 股數</th>
+    <th class="cost-col" style="min-width:115px">損益% / 金額</th>
+    <th class="cost-col" style="min-width:135px">風控防守線</th>
     <th style="min-width:70px">趨勢</th>
     <th style="min-width:100px">建議買點</th>
     <th class="cg" style="min-width:90px">訊號</th>
@@ -988,74 +991,205 @@ function fmtEntryPrice(price, ma5, signal, sym, high20, ma20){
   return '<span class="na">—</span>';
 }
 
-function fmtCostInput(sym){
-  const cost = getCost(sym);
-  const val = isNaN(cost) ? '' : cost;
-  return `<input class="cost-input" type="text" inputmode="decimal"
-    value="${val}" placeholder="買入價"
-    onblur="setCost('${sym}', this.value)"
-    onkeydown="if(event.key==='Enter'){setCost('${sym}',this.value);this.blur();}"
-    onclick="event.stopPropagation()" />`;
+let portfolioData = {};
+let portfolioMeta = { updated: '', cash: null, cash_status: 'cash_unknown' };
+let portfolioSourceState = 'empty';
+
+async function loadPortfolio() {
+  let loadedFromFetch = false;
+  try {
+    const r = await fetch('my_portfolio.json?_=' + Date.now());
+    if (r.ok) {
+      const j = await r.json();
+      portfolioMeta.updated = j.updated || '';
+      portfolioMeta.cash = j.cash !== undefined ? j.cash : null;
+      portfolioMeta.cash_status = j.cash_status || (j.cash !== null ? 'ok' : 'cash_unknown');
+      (j.holdings || []).forEach(h => {
+        if (h && h.code) portfolioData[String(h.code).trim()] = h;
+      });
+      loadedFromFetch = true;
+      portfolioSourceState = 'local_direct';
+    }
+  } catch (e) {
+    // 靜態託管（如 GitHub Pages）無本地私人檔案屬正常現象，轉由 localStorage 處理
+  }
+
+  try {
+    const local = localStorage.getItem('my_portfolio_overrides');
+    if (local) {
+      const parsed = JSON.parse(local);
+      if (parsed.cash !== undefined) portfolioMeta.cash = parsed.cash;
+      if (parsed.cash_status) portfolioMeta.cash_status = parsed.cash_status;
+      if (parsed.holdings) {
+        parsed.holdings.forEach(h => {
+          if (h && h.code) portfolioData[String(h.code).trim()] = { ...(portfolioData[String(h.code).trim()] || {}), ...h };
+        });
+      }
+      portfolioSourceState = loadedFromFetch ? 'local_direct' : 'browser_cache';
+    } else if (!loadedFromFetch) {
+      portfolioSourceState = 'empty';
+    }
+  } catch (e) {
+    if (!loadedFromFetch) portfolioSourceState = 'empty';
+  }
+  updateSourceStatusUI();
 }
 
-function fmtROI(price, sym){
-  const cost = getCost(sym);
-  if(isNaN(cost)||cost<=0||isNaN(price)) return '<span class="na">—</span>';
+function updateSourceStatusUI() {
+  const badge = document.getElementById('pf-source-badge');
+  const banner = document.getElementById('pm-source-status');
+  const map = {
+    'empty': {
+      text: '⚪ 尚未載入帳本（空帳本）',
+      color: 'var(--text3)',
+      desc: '目前未載入任何持股，各欄位顯示「資料不足」。可由下方「📂 載入本機 my_portfolio.json」載入。'
+    },
+    'local_direct': {
+      text: '🟢 本機直連已載入 (my_portfolio.json)',
+      color: 'var(--green)',
+      desc: '當前資料直接讀取自本地專案目錄中的 my_portfolio.json。'
+    },
+    'browser_cache': {
+      text: `🟡 瀏覽器暫存快取 (LocalStorage${portfolioMeta.updated ? ' · 基準日:' + portfolioMeta.updated : ''})`,
+      color: 'var(--amber)',
+      desc: '當前資料來自瀏覽器快取。若您在本地修改了 my_portfolio.json，請點選「📂 載入本機 my_portfolio.json」以同步最新狀態。'
+    },
+    'imported_pending_export': {
+      text: '🔵 已匯入本機檔案（暫存中 · 尚未保存回本機）',
+      color: 'var(--blue)',
+      desc: '已成功讀入檔案至暫存。若有修改，請在結束前點選「💾 匯出 my_portfolio.json」存回本機。'
+    },
+    'edited_pending_export': {
+      text: '🟠 暫存已修改（尚未匯出儲存）',
+      color: 'var(--amber)',
+      desc: '您剛編輯了持股或現金參數，更動目前僅保存在瀏覽器中。請點選「💾 匯出 my_portfolio.json」以同步回本地檔案。'
+    },
+    'exported_done': {
+      text: '🟣 已匯出下載（請確認覆蓋回專案目錄）',
+      color: 'var(--purple)',
+      desc: 'JSON 已下載至瀏覽器預設目錄。請務必將下載的 my_portfolio.json 移動覆蓋回專案目錄 stock radar/my_portfolio.json，供收盤後 L2 腳本讀取。'
+    }
+  };
+
+  const cur = map[portfolioSourceState] || map['empty'];
+  if (badge) {
+    badge.textContent = cur.text;
+    badge.style.color = cur.color;
+  }
+  if (banner) {
+    banner.innerHTML = `
+      <div style="font-weight:600;color:${cur.color};margin-bottom:2px;">${cur.text}</div>
+      <div style="font-size:11px;color:var(--text2);font-weight:normal;">${cur.desc}</div>
+    `;
+  }
+}
+
+function savePortfolioLocally() {
+  const holdings = Object.values(portfolioData);
+  const out = {
+    updated: new Date().toISOString().slice(0, 10),
+    cash: portfolioMeta.cash,
+    cash_status: portfolioMeta.cash !== null && !isNaN(portfolioMeta.cash) ? 'ok' : 'cash_unknown',
+    holdings: holdings
+  };
+  localStorage.setItem('my_portfolio_overrides', JSON.stringify(out));
+}
+
+function fmtTypeBadge(sym) {
+  const item = portfolioData[sym];
+  if (!item || !item.type) {
+    return `<button class="btn btn-g" style="padding:2px 6px;font-size:10px;cursor:pointer;" onclick="openPortfolioModal('${sym}')" title="設定此股為持股">＋設定</button>`;
+  }
+  let bg = 'rgba(139,144,153,0.12)', col = 'var(--text2)', bdr = 'var(--border2)';
+  if (item.type === 'CORE') { bg = 'rgba(91,163,245,0.15)'; col = 'var(--blue)'; bdr = 'rgba(91,163,245,0.4)'; }
+  else if (item.type === 'SWING') { bg = 'rgba(240,160,58,0.15)'; col = 'var(--amber)'; bdr = 'rgba(240,160,58,0.4)'; }
+  else if (item.type === 'SHORT') { bg = 'rgba(176,114,242,0.15)'; col = 'var(--purple)'; bdr = 'rgba(176,114,242,0.4)'; }
+
+  return `<span class="badge" style="background:${bg};color:${col};border:1px solid ${bdr};cursor:pointer;font-weight:600;" onclick="openPortfolioModal('${sym}')" title="點擊編輯戰情參數">${item.type}</span>`;
+}
+
+function fmtCostAndQty(sym) {
+  const item = portfolioData[sym];
+  const oldCost = getCost(sym);
+  const cost = item && item.cost ? item.cost : (isNaN(oldCost) ? null : oldCost);
+  const qty = item && item.qty ? item.qty : null;
+
+  if (cost === null || cost <= 0) {
+    return `<div style="font-size:11px;cursor:pointer;color:var(--text3);" onclick="openPortfolioModal('${sym}')" title="點擊設定持股">
+      <span style="border-bottom:1px dashed var(--text3);">資料不足</span>
+    </div>`;
+  }
+
+  const qtyStr = qty !== null && qty > 0 ? `(${qty.toLocaleString()}股)` : '<span style="color:var(--amber);font-size:10px;">(缺股數)</span>';
+  return `<div style="font-size:11px;cursor:pointer;display:inline-block;" onclick="openPortfolioModal('${sym}')" title="點擊編輯持股與成本">
+    <span style="font-weight:500;color:var(--text);">$${cost}</span>
+    <span style="font-size:10px;margin-left:2px;">${qtyStr}</span>
+  </div>`;
+}
+
+function fmtROIAndPnL(price, sym) {
+  const item = portfolioData[sym];
+  const oldCost = getCost(sym);
+  const cost = item && item.cost ? item.cost : (isNaN(oldCost) ? null : oldCost);
+  const qty = item && item.qty ? item.qty : null;
+
+  if (cost === null || cost <= 0 || !price || isNaN(price)) {
+    return '<span class="na">資料不足</span>';
+  }
   const roi = (price - cost) / cost * 100;
   const cls = roi >= 0 ? 'roi-pos' : 'roi-neg';
   const sign = roi >= 0 ? '+' : '';
-  return `<span class="${cls}">${sign}${roi.toFixed(1)}%</span>`;
+  
+  let pnlHtml = '';
+  // 嚴格遵守規範：無真實股數時，嚴禁輸出任何損益金額！
+  if (qty && qty > 0) {
+    const pnl = Math.round((price - cost) * qty);
+    const pnlSign = pnl >= 0 ? '+' : '';
+    pnlHtml = `<div style="font-size:10px;color:${roi >= 0 ? 'var(--green)' : 'var(--red)'};opacity:0.85;">${pnlSign}$${pnl.toLocaleString()}</div>`;
+  } else {
+    pnlHtml = `<div style="font-size:9px;color:var(--text3);">未計金額</div>`;
+  }
+
+  return `<div style="text-align:right;">
+    <span class="${cls}">${sign}${roi.toFixed(1)}%</span>
+    ${pnlHtml}
+  </div>`;
 }
 
-function fmtStopLine(price, ma5, ma20, sym){
-  const cost = getCost(sym);
-  const hasCost = !isNaN(cost) && cost > 0;
-
-  if(hasCost){
-    // 有成本：顯示警示線和停損線
-    if(!price||isNaN(price)) return '<span class="na">—</span>';
-    const roi = (price - cost) / cost * 100;
-    // 最後防線：跌破MA20 或 虧損>=8%
-    const m20 = ma20State(sym, price, ma20);
-    const stopLoss  = roi <= -8;
-    if(m20==='red' || stopLoss){
-      const reason = stopLoss ? `虧${Math.abs(roi).toFixed(1)}%` : '有效跌破MA20';
-      return `<span class="stop-line" style="color:#ff1744;font-weight:700">🚨 停損 ${reason}</span>`;
-    }
-    if(m20==='yellow'){
-      return `<span class="stop-line" style="color:var(--amber);font-weight:500">⚠ 月線下方，觀察</span>`;
-    }
-    // 警示線：跌破MA5
-    const belowMA5 = ma5 && price < ma5;
-    if(belowMA5){
-      return `<span class="stop-line" style="color:var(--amber);font-weight:500">⚠ 注意減碼</span>`;
-    }
-    // 安全：顯示距MA5%
-    if(!ma5||isNaN(ma5)) return '<span class="na">—</span>';
-    const dist = (price - ma5) / ma5 * 100;
-    const sign = dist >= 0 ? '+' : '';
-    // 第4點：跌破MA5超過2%加橘色底警示
-    if(dist < -2){
-      return `<span class="stop-line" style="background:rgba(240,160,58,.15);padding:2px 5px;border-radius:3px;color:var(--amber);font-weight:500">↓${dist.toFixed(1)}%</span>`;
-    }
-    return `<span class="stop-line" style="color:var(--green)">↑${sign}${dist.toFixed(1)}%</span>`;
+function fmtStopLineEnhanced(price, ma5, ma20, ma60, sym) {
+  const item = portfolioData[sym];
+  if (!item || !item.type) {
+    return '<span class="na">—</span>';
   }
 
-  // 無成本：純技術面距MA5%
-  if(!ma5||isNaN(ma5)||!price||isNaN(price)) return '<span class="na">—</span>';
-  const dist = (price - ma5) / ma5 * 100;
-  const sign = dist >= 0 ? '+' : '';
-  let style, hint;
-  if(dist < 0){
-    style = 'color:var(--red);font-weight:500'; hint = '↓';
-  } else if(dist <= 3){
-    style = 'color:var(--green);font-weight:500'; hint = '↑';
-  } else if(dist <= 8){
-    style = 'color:var(--amber)'; hint = '↑';
-  } else {
-    style = 'color:var(--red);font-weight:500'; hint = '↑';
+  // 1. CORE 持股：展示季線事實與階段停利狀態，不受除權息手填價位影響，不喊結論
+  if (item.type === 'CORE') {
+    const m60Str = ma60 ? `$${ma60.toFixed(1)}` : '未產出';
+    const tag = item.partial_profit_taken ? ' <span style="color:var(--blue);font-size:10px;">[已停利]</span>' : '';
+    return `<span class="stop-line" style="color:var(--text2);font-family:var(--mono);">季線: ${m60Str}${tag}</span>`;
   }
-  return `<span class="stop-line" style="${style}">${hint}${sign}${dist.toFixed(1)}%</span>`;
+
+  // 2. 除權息防呆：SWING / SHORT 有手填停損/停利/失效價，ex_dividend_check 為 true 時價位判定暫停，不比較、不給結論
+  if (item.ex_dividend_check) {
+    return `<span class="stop-line" style="color:var(--amber);font-weight:500;">⚠️ 判定暫停 (除權息)</span>`;
+  }
+
+  // 3. SWING / SHORT 持股：只忠實展示人工設定的價位事實，不下任何判定結論
+  const stopLoss = item.stop_loss_price;
+  const invalidation = item.invalidation_price;
+  const target = item.take_profit_target;
+  const tag = item.partial_profit_taken ? ' <span style="color:var(--green);font-size:10px;">[已停利]</span>' : '';
+
+  if (stopLoss === null && invalidation === null && target === null) {
+    return `<span class="stop-line" style="color:var(--text3);">未設價位${tag}</span>`;
+  }
+
+  const parts = [];
+  if (stopLoss !== null) parts.push(`停損 $${stopLoss}`);
+  if (target !== null) parts.push(`停利 $${target}`);
+  if (invalidation !== null) parts.push(`失效 $${invalidation}`);
+
+  return `<span class="stop-line" style="color:var(--text2);font-family:var(--mono);">${parts.join(' ｜ ')}${tag}</span>`;
 }
 
 function fmtTrend(dif, ma5, ma20){
@@ -1108,9 +1242,10 @@ function render(){
       <td>${fmtDIF(d.DIF, d.DIFprev)}</td>
       <td class="cg">${fmtVol(d.VOL)}</td>
       <td>${fmtVol(d.VOL5)}</td>
-      <td class="cg cost-col">${fmtCostInput(sym)}</td>
-      <td class="cost-col">${fmtROI(d.price, sym)}</td>
-      <td class="cost-col">${fmtStopLine(d.price, d.MA5, d.MA20, sym)}</td>
+      <td class="cg cost-col">${fmtTypeBadge(sym)}</td>
+      <td class="cost-col">${fmtCostAndQty(sym)}</td>
+      <td class="cost-col">${fmtROIAndPnL(d.price, sym)}</td>
+      <td class="cost-col">${fmtStopLineEnhanced(d.price, d.MA5, d.MA20, d.MA60, sym)}</td>
       <td>${fmtTrend(d.DIF, d.MA5, d.MA20)}</td>
       <td>${fmtEntryPrice(d.price, d.MA5, d.signal, sym, d.HIGH20, d.MA20)}</td>
       <td class="cg">${renderSignal(getDisplaySignal(sym))}</td>
@@ -1118,12 +1253,395 @@ function render(){
   }).join('');
 }
 
+// ── 持股戰情彈窗與帳本管理 ────────────────────────────────────
+function openPortfolioModal(sym) {
+  const stock = stockList.find(s => s.id === sym) || {};
+  const name = stock.name || (data[sym] && data[sym].name) || sym;
+  const item = portfolioData[sym] || {
+    code: sym,
+    name: name,
+    type: 'SWING',
+    entry_date: new Date().toISOString().slice(0, 10),
+    shares_original: 1000,
+    qty: 1000,
+    cost: getCost(sym) || 0,
+    stop_loss_price: null,
+    invalidation_price: null,
+    take_profit_target: null,
+    partial_profit_taken: false,
+    price_levels_updated_at: new Date().toISOString().slice(0, 10)
+  };
+
+  document.getElementById('pf-code').value = sym;
+  document.getElementById('pf-title').textContent = `⚙️ 設定持股戰情：${sym} ${name}`;
+  document.getElementById('pf-type').value = item.type || 'SWING';
+  document.getElementById('pf-entry-date').value = item.entry_date || '';
+  document.getElementById('pf-orig-shares').value = item.shares_original || item.qty || '';
+  document.getElementById('pf-qty').value = item.qty !== undefined ? item.qty : '';
+  document.getElementById('pf-cost').value = item.cost || '';
+  document.getElementById('pf-stop-loss').value = item.stop_loss_price || '';
+  document.getElementById('pf-invalidation').value = item.invalidation_price || '';
+  document.getElementById('pf-target').value = item.take_profit_target || '';
+  document.getElementById('pf-partial').checked = !!item.partial_profit_taken;
+
+  togglePfFields();
+  document.getElementById('pf-modal-overlay').style.display = 'flex';
+}
+
+function closePortfolioModal() {
+  document.getElementById('pf-modal-overlay').style.display = 'none';
+}
+
+function togglePfFields() {
+  const type = document.getElementById('pf-type').value;
+  const swingFields = document.querySelectorAll('.swing-only-field');
+  swingFields.forEach(el => {
+    el.style.display = (type === 'CORE') ? 'none' : 'block';
+  });
+}
+
+function savePortfolioItem() {
+  const sym = document.getElementById('pf-code').value;
+  if (!sym) return;
+
+  const stock = stockList.find(s => s.id === sym) || {};
+  const name = stock.name || (data[sym] && data[sym].name) || sym;
+  const type = document.getElementById('pf-type').value;
+  const entryDate = document.getElementById('pf-entry-date').value || new Date().toISOString().slice(0, 10);
+  const origShares = parseFloat(document.getElementById('pf-orig-shares').value) || 0;
+  const qty = parseFloat(document.getElementById('pf-qty').value) || 0;
+  const cost = parseFloat(document.getElementById('pf-cost').value) || 0;
+  const stopLoss = parseFloat(document.getElementById('pf-stop-loss').value) || null;
+  const invalidation = parseFloat(document.getElementById('pf-invalidation').value) || null;
+  const target = parseFloat(document.getElementById('pf-target').value) || null;
+  const partialTaken = document.getElementById('pf-partial').checked;
+
+  portfolioData[sym] = {
+    code: sym,
+    name: name,
+    type: type,
+    entry_date: entryDate,
+    shares_original: origShares,
+    qty: qty,
+    cost: cost,
+    stop_loss_price: type === 'CORE' ? null : stopLoss,
+    invalidation_price: type === 'CORE' ? null : invalidation,
+    take_profit_target: type === 'CORE' ? null : target,
+    partial_profit_taken: partialTaken,
+    price_levels_updated_at: new Date().toISOString().slice(0, 10)
+  };
+
+  if (cost > 0) setCost(sym, cost);
+  portfolioSourceState = 'edited_pending_export';
+  savePortfolioLocally();
+  updateSourceStatusUI();
+  closePortfolioModal();
+  render();
+}
+
+function deletePortfolioItem() {
+  const sym = document.getElementById('pf-code').value;
+  if (!sym) return;
+  if (!confirm(`確定從持股帳本移除 ${sym}？`)) return;
+  delete portfolioData[sym];
+  portfolioSourceState = 'edited_pending_export';
+  savePortfolioLocally();
+  updateSourceStatusUI();
+  closePortfolioModal();
+  render();
+}
+
+// ── 帳本總覽管理 ──────────────────────────────────────────────
+function openPortfolioManager() {
+  updateSourceStatusUI();
+  const container = document.getElementById('pm-list');
+  container.innerHTML = '';
+
+  const list = Object.values(portfolioData);
+  let totalCostVal = 0, totalCurrentVal = 0;
+  let hasValidValuation = false;
+
+  list.forEach(item => {
+    const sym = item.code;
+    const p = data[sym] ? data[sym].price : item.cost;
+    if (item.cost !== null && item.cost > 0 && item.qty !== null && item.qty > 0) {
+      hasValidValuation = true;
+      totalCostVal += item.cost * item.qty;
+      if (p !== null && !isNaN(p)) {
+        totalCurrentVal += p * item.qty;
+      }
+    }
+
+    const typeStr = item.type ? `<span class="badge" style="font-size:10px;">${item.type}</span>` : '<span style="color:var(--text3);font-size:10px;">(未設屬性)</span>';
+    const costStr = (item.cost !== null && item.cost !== undefined) ? `$${item.cost}` : '<span style="color:var(--text3);">未設定</span>';
+    const qtyStr = (item.qty !== null && item.qty !== undefined && item.qty > 0) ? `${item.qty.toLocaleString()} 股` : '<span style="color:var(--amber);">(缺股數)</span>';
+    const profitTag = item.partial_profit_taken ? '<span class="badge" style="color:var(--green);border-color:var(--green)">⭐已停利</span>' : '';
+    const stopTag = item.stop_loss_price ? ` ｜ 停損: $${item.stop_loss_price}` : '';
+
+    const row = document.createElement('div');
+    row.style.cssText = 'background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;';
+    row.innerHTML = `
+      <div>
+        <div style="font-weight:600;font-size:13px;display:flex;align-items:center;gap:6px;">
+          <span>${sym} ${item.name || ''}</span>
+          ${typeStr}
+          ${profitTag}
+        </div>
+        <div style="font-size:11px;color:var(--text2);margin-top:3px;">
+          成本: ${costStr} ｜ 股數: ${qtyStr} ｜ 進場日: ${item.entry_date || '—'}${stopTag}
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-g" style="padding:3px 8px;font-size:11px;" onclick="closePortfolioManager();openPortfolioModal('${sym}')">✏️ 編輯</button>
+      </div>
+    `;
+    container.appendChild(row);
+  });
+
+  if (hasValidValuation) {
+    const totalPnL = totalCurrentVal - totalCostVal;
+    const totalPnLPct = totalCostVal > 0 ? (totalPnL / totalCostVal * 100) : 0;
+    document.getElementById('pm-summary').innerHTML = `
+      持股共 ${list.length} 檔 ｜ 總持股市值：$${Math.round(totalCurrentVal).toLocaleString()} 元 ｜ 
+      未實現損益：<span style="color:${totalPnL>=0?'var(--green)':'var(--red)'};font-weight:600;">${totalPnL>=0?'+':''}$${Math.round(totalPnL).toLocaleString()} (${totalPnLPct>=0?'+':''}${totalPnLPct.toFixed(1)}%)</span>
+    `;
+  } else {
+    document.getElementById('pm-summary').innerHTML = `
+      持股共 ${list.length} 檔 ｜ 總持股市值：<span style="color:var(--text3);">未計 (缺股數或成本)</span> ｜ 
+      未實現損益：<span style="color:var(--text3);">未計 (資料不足)</span>
+    `;
+  }
+
+  document.getElementById('pm-cash').value = portfolioMeta.cash !== null && !isNaN(portfolioMeta.cash) ? portfolioMeta.cash : '';
+  document.getElementById('pm-modal-overlay').style.display = 'flex';
+}
+
+function closePortfolioManager() {
+  document.getElementById('pm-modal-overlay').style.display = 'none';
+}
+
+function saveCashOnly() {
+  const val = parseFloat(document.getElementById('pm-cash').value);
+  portfolioMeta.cash = isNaN(val) ? null : val;
+  portfolioMeta.cash_status = isNaN(val) ? 'cash_unknown' : 'ok';
+  portfolioSourceState = 'edited_pending_export';
+  savePortfolioLocally();
+  updateSourceStatusUI();
+  alert('現金水位設定已更新！');
+}
+
+function exportPortfolioJson() {
+  savePortfolioLocally();
+  const raw = localStorage.getItem('my_portfolio_overrides');
+  const blob = new Blob([raw || JSON.stringify({updated:new Date().toISOString().slice(0,10),cash:null,cash_status:'cash_unknown',holdings:[]},null,2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'my_portfolio.json';
+  a.click();
+  portfolioSourceState = 'exported_done';
+  updateSourceStatusUI();
+  setTimeout(() => {
+    alert('已下載 my_portfolio.json！\n\n提示：瀏覽器因安全沙盒限制無法直接覆寫本機專案目錄。若需供收盤後 L2 腳本（generate_snapshot.py）讀取，請將下載的檔案覆蓋至專案目錄的 stock radar/my_portfolio.json。');
+  }, 100);
+}
+
+function importPortfolioJson(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const parsed = JSON.parse(e.target.result);
+      if (!parsed || typeof parsed !== 'object') {
+        throw new Error('檔案頂層非有效 JSON 物件');
+      }
+      if (!parsed.holdings && !Array.isArray(parsed)) {
+        throw new Error('缺少必要 holdings 欄位');
+      }
+
+      const rawHoldings = Array.isArray(parsed.holdings) ? parsed.holdings : (parsed.holdings ? Object.values(parsed.holdings) : (Array.isArray(parsed) ? parsed : []));
+      
+      // 原子暫存校驗：全部通過才替換，任一筆格式損壞則中斷並保留原資料
+      const stagingData = {};
+      let count = 0;
+      rawHoldings.forEach((h, idx) => {
+        if (!h || typeof h !== 'object') throw new Error(`第 ${idx+1} 筆持股格式錯誤`);
+        if (!h.code) throw new Error(`第 ${idx+1} 筆持股缺少股票代碼 code`);
+        const code = String(h.code).trim();
+        if (stagingData[code]) throw new Error(`發現重複的股票代碼 ${code}（第 ${idx+1} 筆），請先整理合併`);
+        if (h.type !== undefined && h.type !== null && !['CORE', 'SWING', 'SHORT'].includes(h.type)) {
+          throw new Error(`股票 ${code} 之屬性 type 無效: "${h.type}" (僅允許 CORE, SWING, SHORT 或 null)`);
+        }
+        if (h.qty !== undefined && h.qty !== null && (isNaN(Number(h.qty)) || Number(h.qty) < 0)) {
+          throw new Error(`股票 ${code} 之持有股數 qty 數值無效`);
+        }
+        if (h.cost !== undefined && h.cost !== null && (isNaN(Number(h.cost)) || Number(h.cost) < 0)) {
+          throw new Error(`股票 ${code} 之平均成本 cost 數值無效`);
+        }
+
+        stagingData[code] = {
+          code: code,
+          name: h.name || '',
+          type: (['CORE', 'SWING', 'SHORT'].includes(h.type)) ? h.type : null,
+          entry_date: h.entry_date || null,
+          shares_original: (h.shares_original !== undefined && h.shares_original !== null && !isNaN(Number(h.shares_original))) ? Number(h.shares_original) : null,
+          qty: (h.qty !== undefined && h.qty !== null && !isNaN(Number(h.qty))) ? Number(h.qty) : null,
+          cost: (h.cost !== undefined && h.cost !== null && !isNaN(Number(h.cost))) ? Number(h.cost) : null,
+          stop_loss_price: (h.stop_loss_price !== undefined && h.stop_loss_price !== null && !isNaN(Number(h.stop_loss_price))) ? Number(h.stop_loss_price) : null,
+          invalidation_price: (h.invalidation_price !== undefined && h.invalidation_price !== null && !isNaN(Number(h.invalidation_price))) ? Number(h.invalidation_price) : null,
+          take_profit_target: (h.take_profit_target !== undefined && h.take_profit_target !== null && !isNaN(Number(h.take_profit_target))) ? Number(h.take_profit_target) : null,
+          trailing_stop_active: Boolean(h.trailing_stop_active),
+          trailing_stop_price: (h.trailing_stop_price !== undefined && h.trailing_stop_price !== null && !isNaN(Number(h.trailing_stop_price))) ? Number(h.trailing_stop_price) : null,
+          partial_profit_taken: Boolean(h.partial_profit_taken),
+          ex_dividend_check: Boolean(h.ex_dividend_check),
+          price_levels_updated_at: h.price_levels_updated_at || null
+        };
+        count++;
+      });
+
+      // 原子套用（Atomic Commit）
+      portfolioData = stagingData;
+      if (parsed.cash !== undefined) {
+        portfolioMeta.cash = (parsed.cash !== null && !isNaN(Number(parsed.cash))) ? Number(parsed.cash) : null;
+      }
+      portfolioMeta.cash_status = parsed.cash_status || (portfolioMeta.cash !== null ? 'ok' : 'cash_unknown');
+      portfolioMeta.updated = parsed.updated || new Date().toISOString().slice(0, 10);
+      portfolioSourceState = 'imported_pending_export';
+
+      savePortfolioLocally();
+      openPortfolioManager();
+      render();
+      alert(`✓ 成功載入本機帳本（共 ${count} 檔持股）！\n\n目前狀態：已匯入暫存（尚未匯出）。\n提示：資料僅儲存於當前瀏覽器暫存，絕無任何向外上傳，敬請安心。`);
+    } catch (err) {
+      alert(`❌ 匯入已中斷：${err.message}\n\n安全保證：原有暫存資料已完整保留，未受任何變更。`);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+async function copyPortfolioJson() {
+  savePortfolioLocally();
+  const raw = localStorage.getItem('my_portfolio_overrides') || '{}';
+  try {
+    await navigator.clipboard.writeText(raw);
+    alert('已複製 my_portfolio.json 內容至剪貼簿！');
+  } catch(e) {
+    alert('複製失敗，請手動匯出檔案。');
+  }
+}
+
 updateTokenUI();
 applyCostVisibility();
 applyLegendVisibility();
-render();
+loadPortfolio().then(() => {
+  render();
+});
 loadStockList();
 loadThesisBias();
 </script>
+<!-- 個股持股戰情設定 Modal -->
+<div id="pf-modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(3px);">
+  <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);max-width:540px;width:92%;max-height:90vh;overflow-y:auto;padding:24px;box-shadow:0 8px 32px rgba(0,0,0,0.5);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid var(--border);padding-bottom:10px;">
+      <h3 id="pf-title" style="font-size:16px;color:var(--amber);">⚙️ 設定持股戰情</h3>
+      <button onclick="closePortfolioModal()" style="background:transparent;border:none;color:var(--text3);font-size:20px;cursor:pointer;">✕</button>
+    </div>
+    <input type="hidden" id="pf-code" />
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div>
+        <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:4px;">持股屬性 (Type)</label>
+        <select id="pf-type" onchange="togglePfFields()" style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--text);padding:6px;font-family:var(--mono);font-size:12px;">
+          <option value="CORE">CORE (核心存股·看季線)</option>
+          <option value="SWING">SWING (波段策略·看月線)</option>
+          <option value="SHORT">SHORT (短線衝刺·看5日線)</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:4px;">進場日期 (entry_date)</label>
+        <input type="date" id="pf-entry-date" style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--text);padding:6px;font-family:var(--mono);font-size:12px;" />
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:4px;">原始買入股數 (shares_original)</label>
+        <input type="number" id="pf-orig-shares" placeholder="例：1000" style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--text);padding:6px;font-family:var(--mono);font-size:12px;" />
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:4px;">目前持有股數 (qty)</label>
+        <input type="number" id="pf-qty" placeholder="例：1000" style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--text);padding:6px;font-family:var(--mono);font-size:12px;" />
+      </div>
+      <div style="grid-column:1 / -1;">
+        <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:4px;">平均成本價 (cost NTD)</label>
+        <input type="number" step="0.01" id="pf-cost" placeholder="買進成本" style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--text);padding:6px;font-family:var(--mono);font-size:12px;" />
+      </div>
+      <div class="swing-only-field">
+        <label style="font-size:11px;color:var(--red);display:block;margin-bottom:4px;">停損防守價 (stop_loss_price)</label>
+        <input type="number" step="0.01" id="pf-stop-loss" placeholder="SWING/SHORT必填" style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--text);padding:6px;font-family:var(--mono);font-size:12px;" />
+      </div>
+      <div class="swing-only-field">
+        <label style="font-size:11px;color:var(--amber);display:block;margin-bottom:4px;">單日失效價 (invalidation_price)</label>
+        <input type="number" step="0.01" id="pf-invalidation" placeholder="收盤跌破即失效" style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--text);padding:6px;font-family:var(--mono);font-size:12px;" />
+      </div>
+      <div class="swing-only-field" style="grid-column:1 / -1;">
+        <label style="font-size:11px;color:var(--green);display:block;margin-bottom:4px;">第一階段階梯停利價 (take_profit_target)</label>
+        <input type="number" step="0.01" id="pf-target" placeholder="目標停利價位" style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--text);padding:6px;font-family:var(--mono);font-size:12px;" />
+      </div>
+      <div style="grid-column:1 / -1;background:var(--bg3);padding:10px;border-radius:4px;border:1px solid var(--border);">
+        <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;">
+          <input type="checkbox" id="pf-partial" />
+          <span>⭐ <strong>已執行階段停利（已賣出部分部位）</strong>：剩餘部位啟動 trailing stop 移動防守</span>
+        </label>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:12px;border-top:1px solid var(--border);">
+      <button class="btn btn-g btn-d" onclick="deletePortfolioItem()" style="font-size:11px;">刪除持股</button>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-g" onclick="closePortfolioModal()">取消</button>
+        <button class="btn btn-p" onclick="savePortfolioItem()">💾 儲存設定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 持股帳本總覽與在手現金管理 Modal -->
+<div id="pm-modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(3px);">
+  <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);max-width:680px;width:94%;max-height:90vh;overflow-y:auto;padding:24px;box-shadow:0 8px 32px rgba(0,0,0,0.5);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;border-bottom:1px solid var(--border);padding-bottom:10px;">
+      <h3 style="font-size:16px;color:var(--amber);">💼 持股戰情帳本總覽</h3>
+      <button onclick="closePortfolioManager()" style="background:transparent;border:none;color:var(--text3);font-size:20px;cursor:pointer;">✕</button>
+    </div>
+    
+    <div id="pm-source-status" style="margin-bottom:12px;"></div>
+    
+    <div id="pm-summary" style="font-size:12px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px 14px;margin-bottom:14px;line-height:1.6;">
+    </div>
+
+    <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:12px 14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+      <div>
+        <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px;">💰 在手現金餘額 (NTD，若不填寫則不阻擋買進)</label>
+        <input type="number" id="pm-cash" placeholder="未設定 (cash_unknown)" style="background:var(--bg2);border:1px solid var(--border2);border-radius:4px;color:var(--text);padding:6px 10px;font-family:var(--mono);font-size:12px;width:180px;" />
+      </div>
+      <div>
+        <button class="btn btn-p" onclick="saveCashOnly()" style="font-size:11px;padding:6px 12px;">儲存現金設定</button>
+      </div>
+    </div>
+
+    <div style="font-size:12px;font-weight:600;margin-bottom:8px;color:var(--text2);">當前持股清單：</div>
+    <div id="pm-list" style="max-height:280px;overflow-y:auto;margin-bottom:16px;"></div>
+
+    <div style="font-size:11px;color:var(--text3);margin-bottom:12px;background:var(--bg2);padding:8px 12px;border-radius:4px;border:1px dashed var(--border2);line-height:1.5;">
+      🔒 <strong>隱私與雙軌機制</strong>：本頁面為純前端靜態運作，不會將任何資產資料傳送至雲端。若在 GitHub Pages 上使用，可點選下方「📂 載入本機 my_portfolio.json」自電腦選檔載入暫存。
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--border);flex-wrap:wrap;gap:8px;">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <input type="file" id="pm-file-input" accept=".json" style="display:none;" onchange="importPortfolioJson(event)" />
+        <button class="btn btn-g" onclick="document.getElementById('pm-file-input').click()" style="font-size:11px;color:var(--blue);border-color:var(--blue);">📂 載入本機 my_portfolio.json</button>
+        <button class="btn btn-g" onclick="exportPortfolioJson()" style="font-size:11px;">💾 匯出 my_portfolio.json</button>
+        <button class="btn btn-g" onclick="copyPortfolioJson()" style="font-size:11px;">📋 複製 JSON 代碼</button>
+      </div>
+      <button class="btn btn-p" onclick="closePortfolioManager()">關閉</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
