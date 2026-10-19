@@ -1,117 +1,117 @@
 {
-  "updated": "2026-10-19 05:28",
+  "updated": "2026-10-19 11:03",
   "prices": [
     {
       "id": "2330",
-      "price": 2405.0,
+      "price": 2420.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2317",
-      "price": 240.0,
+      "price": 239.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2454",
-      "price": 4225.0,
+      "price": 4205.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2308",
-      "price": 1645.0,
+      "price": 1640.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2382",
-      "price": 316.0,
+      "price": 314.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3711",
-      "price": 669.0,
+      "price": 670.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2891",
-      "price": 73.6,
+      "price": 73.4,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2881",
-      "price": 159.5,
+      "price": 158.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2882",
-      "price": 113.5,
+      "price": 114.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2303",
-      "price": 131.0,
+      "price": 131.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2357",
-      "price": 968.0,
+      "price": 970.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3037",
-      "price": 1125.0,
+      "price": 1120.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2368",
-      "price": 1245.0,
+      "price": 1250.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2449",
-      "price": 264.0,
+      "price": 263.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2344",
-      "price": 156.0,
+      "price": 155.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "7769",
-      "price": 5415.0,
+      "price": 5400.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2360",
-      "price": 2020.0,
+      "price": 2005.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3653",
-      "price": 6565.0,
+      "price": 6560.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2603",
-      "price": 261.0,
+      "price": 262.0,
       "reference": null,
       "is_realtime": true
     },
@@ -123,37 +123,37 @@
     },
     {
       "id": "2002",
-      "price": 19.4,
+      "price": 19.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2412",
-      "price": 155.0,
+      "price": 154.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2886",
-      "price": 53.6,
+      "price": 53.9,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2884",
-      "price": 49.3,
+      "price": 49.35,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3231",
-      "price": 179.5,
+      "price": 180.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6669",
-      "price": 1890.0,
+      "price": 1885.0,
       "reference": null,
       "is_realtime": true
     },
@@ -165,13 +165,13 @@
     },
     {
       "id": "2353",
-      "price": 32.1,
+      "price": 32.05,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2324",
-      "price": 36.2,
+      "price": 36.25,
       "reference": null,
       "is_realtime": true
     },
@@ -183,43 +183,43 @@
     },
     {
       "id": "3034",
-      "price": 583.0,
+      "price": 585.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2379",
-      "price": 780.0,
+      "price": 779.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3665",
-      "price": 1985.0,
+      "price": 1975.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2615",
-      "price": 117.5,
+      "price": 118.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2912",
-      "price": 228.0,
+      "price": 228.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "1513",
-      "price": 162.5,
+      "price": 162.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "1519",
-      "price": 645.0,
+      "price": 644.0,
       "reference": null,
       "is_realtime": true
     },
@@ -237,85 +237,85 @@
     },
     {
       "id": "2618",
-      "price": 42.6,
+      "price": 42.7,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2610",
-      "price": 20.6,
+      "price": 20.55,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2409",
-      "price": 36.65,
+      "price": 36.7,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3481",
-      "price": 47.0,
+      "price": 46.95,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2313",
-      "price": 248.5,
+      "price": 248.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2383",
-      "price": 5135.0,
+      "price": 5125.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3017",
-      "price": 3340.0,
+      "price": 3320.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3324",
-      "price": 1370.0,
+      "price": 1380.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3443",
-      "price": 7835.0,
+      "price": 7830.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3661",
-      "price": 3710.0,
+      "price": 3715.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "5269",
-      "price": 1485.0,
+      "price": 1475.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6415",
-      "price": 479.0,
+      "price": 475.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "8046",
-      "price": 1385.0,
+      "price": 1380.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3533",
-      "price": 1825.0,
+      "price": 1815.0,
       "reference": null,
       "is_realtime": true
     },
@@ -327,7 +327,7 @@
     },
     {
       "id": "3008",
-      "price": 6240.0,
+      "price": 6245.0,
       "reference": null,
       "is_realtime": true
     },
@@ -339,13 +339,13 @@
     },
     {
       "id": "1795",
-      "price": 176.5,
+      "price": 176.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "1476",
-      "price": 320.5,
+      "price": 321.0,
       "reference": null,
       "is_realtime": true
     },
@@ -357,55 +357,55 @@
     },
     {
       "id": "9921",
-      "price": 95.7,
+      "price": 95.9,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2892",
-      "price": 41.2,
+      "price": 41.1,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2880",
-      "price": 48.55,
+      "price": 48.7,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "5880",
-      "price": 28.0,
+      "price": 28.05,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2885",
-      "price": 71.6,
+      "price": 71.7,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2887",
-      "price": 42.25,
+      "price": 42.35,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2883",
-      "price": 38.3,
+      "price": 38.2,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2890",
-      "price": 45.0,
+      "price": 45.25,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "5871",
-      "price": 106.0,
+      "price": 106.5,
       "reference": null,
       "is_realtime": true
     },
@@ -423,19 +423,19 @@
     },
     {
       "id": "2337",
-      "price": 102.5,
+      "price": 102.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2301",
-      "price": 265.0,
+      "price": 264.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2356",
-      "price": 59.0,
+      "price": 59.1,
       "reference": null,
       "is_realtime": true
     },
@@ -447,7 +447,7 @@
     },
     {
       "id": "3702",
-      "price": 113.5,
+      "price": 114.5,
       "reference": null,
       "is_realtime": true
     },
@@ -465,13 +465,13 @@
     },
     {
       "id": "2645",
-      "price": 170.5,
+      "price": 170.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2609",
-      "price": 63.3,
+      "price": 63.5,
       "reference": null,
       "is_realtime": true
     },
@@ -483,7 +483,7 @@
     },
     {
       "id": "2633",
-      "price": 26.25,
+      "price": 26.3,
       "reference": null,
       "is_realtime": true
     },
@@ -495,31 +495,31 @@
     },
     {
       "id": "2201",
-      "price": 29.45,
+      "price": 29.4,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "1301",
-      "price": 77.9,
+      "price": 78.2,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "1303",
-      "price": 302.0,
+      "price": 303.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "1326",
-      "price": 75.4,
+      "price": 75.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6505",
-      "price": 116.5,
+      "price": 116.0,
       "reference": null,
       "is_realtime": true
     },
@@ -531,25 +531,25 @@
     },
     {
       "id": "1102",
-      "price": 37.85,
+      "price": 37.75,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2105",
-      "price": 32.15,
+      "price": 32.2,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2474",
-      "price": 193.5,
+      "price": 194.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3044",
-      "price": 576.0,
+      "price": 577.0,
       "reference": null,
       "is_realtime": true
     },
@@ -561,61 +561,61 @@
     },
     {
       "id": "6213",
-      "price": 770.0,
+      "price": 767.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6239",
-      "price": 263.5,
+      "price": 263.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6271",
-      "price": 226.5,
+      "price": 225.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "8299",
-      "price": 1840.0,
+      "price": 1845.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2481",
-      "price": 157.0,
+      "price": 157.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "1717",
-      "price": 72.5,
+      "price": 72.6,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2352",
-      "price": 28.85,
+      "price": 28.75,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2354",
-      "price": 61.4,
+      "price": 61.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2355",
-      "price": 53.0,
+      "price": 52.9,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2362",
-      "price": 48.05,
+      "price": 47.8,
       "reference": null,
       "is_realtime": true
     },
@@ -627,25 +627,25 @@
     },
     {
       "id": "2375",
-      "price": 117.0,
+      "price": 116.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2492",
-      "price": 363.0,
+      "price": 364.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2498",
-      "price": 39.9,
+      "price": 39.95,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2614",
-      "price": 15.0,
+      "price": 15.1,
       "reference": null,
       "is_realtime": true
     },
@@ -657,25 +657,25 @@
     },
     {
       "id": "3035",
-      "price": 194.5,
+      "price": 195.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3130",
-      "price": 207.5,
+      "price": 208.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3706",
-      "price": 80.4,
+      "price": 80.3,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "4958",
-      "price": 546.0,
+      "price": 547.0,
       "reference": null,
       "is_realtime": true
     },
@@ -687,31 +687,31 @@
     },
     {
       "id": "5483",
-      "price": 194.5,
+      "price": 193.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6176",
-      "price": 92.1,
+      "price": 91.8,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6223",
-      "price": 5255.0,
+      "price": 5235.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6269",
-      "price": 79.6,
+      "price": 80.3,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "8069",
-      "price": 156.5,
+      "price": 157.0,
       "reference": null,
       "is_realtime": true
     },
@@ -723,19 +723,19 @@
     },
     {
       "id": "8996",
-      "price": 1540.0,
+      "price": 1525.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "9941",
-      "price": 77.8,
+      "price": 77.7,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "1304",
-      "price": 13.1,
+      "price": 13.15,
       "reference": null,
       "is_realtime": true
     },
@@ -753,7 +753,7 @@
     },
     {
       "id": "1309",
-      "price": 14.3,
+      "price": 14.25,
       "reference": null,
       "is_realtime": true
     },
@@ -765,19 +765,19 @@
     },
     {
       "id": "1711",
-      "price": 44.85,
+      "price": 44.65,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "1722",
-      "price": 41.8,
+      "price": 41.9,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "1723",
-      "price": 83.5,
+      "price": 83.4,
       "reference": null,
       "is_realtime": true
     },
@@ -789,19 +789,19 @@
     },
     {
       "id": "2103",
-      "price": 28.7,
+      "price": 28.65,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2106",
-      "price": 17.35,
+      "price": 17.3,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2605",
-      "price": 35.8,
+      "price": 35.65,
       "reference": null,
       "is_realtime": true
     },
@@ -813,37 +813,37 @@
     },
     {
       "id": "2607",
-      "price": 56.8,
+      "price": 57.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2611",
-      "price": 16.4,
+      "price": 16.45,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2617",
-      "price": 31.6,
+      "price": 31.55,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2634",
-      "price": 61.1,
+      "price": 61.2,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2637",
-      "price": 101.0,
+      "price": 100.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2642",
-      "price": 20.05,
+      "price": 20.2,
       "reference": null,
       "is_realtime": true
     },
@@ -855,13 +855,13 @@
     },
     {
       "id": "2727",
-      "price": 246.0,
+      "price": 247.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2731",
-      "price": 144.0,
+      "price": 143.0,
       "reference": null,
       "is_realtime": true
     },
@@ -873,13 +873,13 @@
     },
     {
       "id": "3532",
-      "price": 395.0,
+      "price": 394.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3583",
-      "price": 637.0,
+      "price": 634.0,
       "reference": null,
       "is_realtime": true
     },
@@ -897,37 +897,37 @@
     },
     {
       "id": "4915",
-      "price": 61.9,
+      "price": 61.6,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "4961",
-      "price": 186.5,
+      "price": 185.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "5288",
-      "price": 181.0,
+      "price": 180.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6147",
-      "price": 209.0,
+      "price": 208.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6182",
-      "price": 108.0,
+      "price": 107.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6196",
-      "price": 596.0,
+      "price": 598.0,
       "reference": null,
       "is_realtime": true
     },
@@ -939,7 +939,7 @@
     },
     {
       "id": "6205",
-      "price": 65.9,
+      "price": 65.8,
       "reference": null,
       "is_realtime": true
     },
@@ -951,31 +951,31 @@
     },
     {
       "id": "6243",
-      "price": 36.5,
+      "price": 36.65,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6278",
-      "price": 288.5,
+      "price": 289.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6409",
-      "price": 899.0,
+      "price": 894.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6531",
-      "price": 823.0,
+      "price": 821.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6533",
-      "price": 296.0,
+      "price": 295.5,
       "reference": null,
       "is_realtime": true
     },
@@ -987,43 +987,43 @@
     },
     {
       "id": "6770",
-      "price": 65.5,
+      "price": 65.3,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "8016",
-      "price": 299.5,
+      "price": 296.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "8028",
-      "price": 261.0,
+      "price": 260.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "8081",
-      "price": 261.5,
+      "price": 261.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "8215",
-      "price": 28.1,
+      "price": 27.9,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "8454",
-      "price": 250.5,
+      "price": 249.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "9904",
-      "price": 26.35,
+      "price": 26.4,
       "reference": null,
       "is_realtime": true
     },
@@ -1035,37 +1035,37 @@
     },
     {
       "id": "9933",
-      "price": 42.7,
+      "price": 42.75,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "9945",
-      "price": 29.85,
+      "price": 29.8,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2314",
-      "price": 9.9,
+      "price": 9.81,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2323",
-      "price": 11.45,
+      "price": 11.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2327",
-      "price": 536.0,
+      "price": 534.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3023",
-      "price": 309.5,
+      "price": 309.0,
       "reference": null,
       "is_realtime": true
     },
@@ -1077,25 +1077,25 @@
     },
     {
       "id": "5388",
-      "price": 74.1,
+      "price": 74.3,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "5434",
-      "price": 569.0,
+      "price": 570.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6285",
-      "price": 247.0,
+      "price": 246.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6412",
-      "price": 74.4,
+      "price": 74.8,
       "reference": null,
       "is_realtime": true
     },
@@ -1107,7 +1107,7 @@
     },
     {
       "id": "6443",
-      "price": 25.65,
+      "price": 25.55,
       "reference": null,
       "is_realtime": true
     },
@@ -1119,19 +1119,19 @@
     },
     {
       "id": "8112",
-      "price": 83.0,
+      "price": 82.9,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "8464",
-      "price": 362.0,
+      "price": 361.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "8932",
-      "price": 88.0,
+      "price": 88.4,
       "reference": null,
       "is_realtime": true
     },
@@ -1155,7 +1155,7 @@
     },
     {
       "id": "2207",
-      "price": 539.0,
+      "price": 540.0,
       "reference": null,
       "is_realtime": true
     },
@@ -1167,13 +1167,13 @@
     },
     {
       "id": "2367",
-      "price": 46.5,
+      "price": 46.4,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "2458",
-      "price": 135.5,
+      "price": 134.5,
       "reference": null,
       "is_realtime": true
     },
@@ -1185,7 +1185,7 @@
     },
     {
       "id": "3576",
-      "price": 17.6,
+      "price": 17.45,
       "reference": null,
       "is_realtime": true
     },
@@ -1197,7 +1197,7 @@
     },
     {
       "id": "4406",
-      "price": 10.2,
+      "price": 10.25,
       "reference": null,
       "is_realtime": true
     },
@@ -1209,13 +1209,13 @@
     },
     {
       "id": "6206",
-      "price": 131.0,
+      "price": 131.5,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "9907",
-      "price": 15.05,
+      "price": 15.1,
       "reference": null,
       "is_realtime": true
     },
@@ -1227,25 +1227,25 @@
     },
     {
       "id": "2406",
-      "price": 28.35,
+      "price": 28.3,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6282",
-      "price": 42.3,
+      "price": 42.35,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "6274",
-      "price": 1625.0,
+      "price": 1630.0,
       "reference": null,
       "is_realtime": true
     },
     {
       "id": "3163",
-      "price": 574.0,
+      "price": 573.0,
       "reference": null,
       "is_realtime": true
     }
