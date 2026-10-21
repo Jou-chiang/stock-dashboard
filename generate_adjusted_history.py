@@ -21,10 +21,11 @@ import urllib.request
 import urllib.parse
 from datetime import datetime
 
-PORTFOLIO_FILE = "my_portfolio.json"
-HISTORY_FILE   = "history_data.csv"
-OUTPUT_CSV     = "history_data_adj.csv"
-OUTPUT_META    = "history_data_adj_meta.json"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PORTFOLIO_FILE = os.path.join(BASE_DIR, "my_portfolio.json")
+HISTORY_FILE   = os.path.join(BASE_DIR, "history_data.csv")
+OUTPUT_CSV     = os.path.join(BASE_DIR, "history_data_adj.csv")
+OUTPUT_META    = os.path.join(BASE_DIR, "history_data_adj_meta.json")
 
 TOKEN = os.environ.get("FINMIND_TOKEN", "")
 
