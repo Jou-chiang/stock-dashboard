@@ -165,8 +165,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <div class="stat-pill" id="stat-info">載入資料中...</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <button class="btn-nav" style="border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.1);font-weight:bold;" onclick="openModal(); this.blur();">＋ 手動新增研究卡</button>
-      <button class="btn-nav" onclick="openImportModal(); this.blur();">📤 匯入 GPT 報告</button>
+      <button class="btn-nav" style="border-color:var(--amber);color:var(--amber);background:rgba(240,160,58,.1);font-weight:bold;" onclick="openImportModal(); this.blur();">📤 匯入研報 (JSON)</button>
       <button class="btn-nav" onclick="openAuditModal(); this.blur();">📋 掃描缺漏</button>
       <button class="btn-nav" onclick="exportJSON(); this.blur();">📥 匯出 JSON</button>
       <button class="btn-nav" id="btn-refresh" style="color:var(--amber);border-color:var(--amber);background:rgba(240,160,58,.08);" onclick="refreshData(); this.blur();">🔄 重新載入伺服器資料</button>
