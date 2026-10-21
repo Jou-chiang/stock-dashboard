@@ -211,12 +211,19 @@ let allScores=[];
 let activeSectors=new Set();
 
 async function loadScores(){
+  let j;
   try{
     const r=await fetch('pool_scores.json?_='+Date.now());
     if(!r.ok) throw new Error('not found');
-    const j=await r.json();
+    j=await r.json();
     allScores=j.scores||[];
+  }catch(e){
+    document.getElementById('result-area').innerHTML=`<div class="empty"><div class="empty-icon">📭</div><div>尚無資料</div><div style="margin-top:6px;color:var(--text3)">pool_scores.json 尚未產生<br>請等待明日開盤後 GitHub Actions 自動更新</div></div>`;
+    document.getElementById('status-bar').innerHTML=`<div class="status-item"><span class="dot warn"></span><span class="status-label" style="color:var(--amber)">資料尚未產生</span></div>`;
+    return;
+  }
 
+  try{
     let rtUpdated = '';
     try {
       const pr = await fetch('prices.json?_='+Date.now());
@@ -265,8 +272,8 @@ async function loadScores(){
       sectors.map(s=>`<span class="sector-chip" data-sector="${s}" onclick="toggleSector('${s}',this)">${s}</span>`).join('');
     applyFilter();
   }catch(e){
-    document.getElementById('result-area').innerHTML=`<div class="empty"><div class="empty-icon">📭</div><div>尚無資料</div><div style="margin-top:6px;color:var(--text3)">pool_scores.json 尚未產生<br>請等待明日開盤後 GitHub Actions 自動更新</div></div>`;
-    document.getElementById('status-bar').innerHTML=`<div class="status-item"><span class="dot warn"></span><span class="status-label" style="color:var(--amber)">資料尚未產生</span></div>`;
+    console.error('Render error:', e);
+    document.getElementById('result-area').innerHTML=`<div class="empty"><div class="empty-icon">⚠️</div><div>渲染錯誤：${e.message}</div></div>`;
   }
 }
 
@@ -397,10 +404,11 @@ function renderCard(s){
   const rk=RISK_META[s.risk]||RISK_META.low;
   const reasons=(s.risk_reasons||[]).map(r=>`<div class="risk-line">${r}</div>`).join('');
   const starColor=sc>=5?'#ffd700':sc>=4?'var(--green)':'var(--text3)';
-    const isFinancialAlert = s.risk_checks?.blacklisted || s.risk === 'high' || (s.risk_reasons||[]).some(r => r.includes('警示') || r.includes('處置') || r.includes('流動性') || r.includes('黑名單'));
-    const finAlertBadge = isFinancialAlert ? `<span class="tag-strategy" style="background:rgba(242,95,95,0.15);color:var(--red);border:1px solid rgba(242,95,95,0.4);font-weight:600;">⚠️ 財務/營運警示</span>` : '';
+  const isFinancialAlert = s.risk_checks?.blacklisted || s.risk === 'high' || (s.risk_reasons||[]).some(r => r.includes('警示') || r.includes('處置') || r.includes('流動性') || r.includes('黑名單'));
+  const finAlertBadge = isFinancialAlert ? `<span class="tag-strategy" style="background:rgba(242,95,95,0.15);color:var(--red);border:1px solid rgba(242,95,95,0.4);font-weight:600;">⚠️ 財務/營運警示</span>` : '';
+  const scoreTxt = Number.isInteger(sc) ? sc : (sc !== undefined && sc !== null ? sc.toFixed(1) : '0.0');
 
-    return `<div class="stock-card ${cc}">
+  return `<div class="stock-card ${cc}">
     <div class="card-top">
       <div><div class="card-code"><a href="https://goodinfo.tw/tw/StockDetail.asp?STOCK_ID=${s.code}" target="_blank" style="color:var(--text3);text-decoration:none;" onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--text3)'">${s.code} ↗</a></div><div class="card-name">${s.name}${fire}</div><div class="card-sector">${s.sector}</div></div>
       <div style="text-align:right"><div class="score-badge ${bc}">${scoreTxt}/5</div><div class="stars" style="color:${starColor}">${starsHtml(sc)}</div></div>
