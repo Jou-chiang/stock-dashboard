@@ -128,11 +128,16 @@ def evaluate(rows, inst_rows):
     trust3, foreign3 = sum(trust[-3:]), sum(foreign[-3:])
 
     # ── 第一層：硬性淘汰 ──────────────────────────────────
-    bear = (ma20 is not None and price < ma20 and dif is not None and dif < 0)
+    # 真空頭條件：
+    # 1. 均線空頭排列（MA20 < MA60 且 跌破 MA20 且 DIF < 0，且無投信連續買盤支撐）
+    # 2. 或 重度跌破季線 5% 以上（price < MA60 * 0.95 且 DIF < 0，且無投信連續買盤支撐）
+    is_downtrend = bool(ma20 and ma60 and ma20 < ma60 and price < ma20 and dif is not None and dif < 0 and trust_buy_days < 3)
+    is_deep_breakdown = bool(ma60 and price < ma60 * 0.95 and dif is not None and dif < 0 and trust_buy_days < 3)
+    bear = is_downtrend or is_deep_breakdown or (ma60 is None and ma20 and price < ma20 and dif is not None and dif < 0)
     low_liq = turnover20 < MIN_TURNOVER_EXCLUDE
     exclude_reasons = []
     if bear:
-        exclude_reasons.append("空頭：股價<MA20 且 DIF<0")
+        exclude_reasons.append("空頭趨勢：跌破月線/季線且DIF<0")
     if low_liq:
         exclude_reasons.append(f"流動性不足：20日均成交金額 {turnover20:.0f} 萬 < {MIN_TURNOVER_EXCLUDE} 萬")
 
@@ -153,12 +158,17 @@ def evaluate(rows, inst_rows):
     else:
         s2 = 0.0
     # S3 趨勢
-    s3 = 1.0 if (ma20 and ma60 and price > ma20 and ma20 > ma60 and ma20_up) else 0.0
+    if ma20 and ma60 and price > ma20 and ma20 > ma60 and ma20_up:
+        s3 = 1.0
+    elif ma20 and ma60 and price >= ma60 and ma20 > ma60:
+        s3 = 0.5
+    else:
+        s3 = 0.0
     # S4 觸發：突破 / 回檔轉強
     breakout = bool(high20_prev and price > high20_prev and vol_ratio >= BREAKOUT_VOL_RATIO
                     and ma5 and price > ma5 and chg_pct <= BREAKOUT_MAX_CHG)
-    pullback = bool(ma20 and ma60 and ma20 > ma60 and k < PULLBACK_K_MAX and k > d
-                    and dif is not None and dea is not None and dif > dea)
+    pullback = bool(ma20 and ma60 and ma20 > ma60 and price >= ma60 and k < PULLBACK_K_MAX
+                    and (k > d or (dif is not None and dea is not None and dif > dea)))
     s4 = 1.0 if (breakout or pullback) else 0.0
     # S5 價位 / 風險報酬
     s5 = 1.0 if (ma20 and dist_ma20 <= EXT_MID and ret20 < RET20_MAX_FOR_S5 and not bad_candle) else 0.0
@@ -210,11 +220,11 @@ def evaluate(rows, inst_rows):
     if not excluded:
         if breakout:
             tags.append("breakout")
-        if pullback and s3:
+        if pullback:
             tags.append("pullback")
         if compression:
             tags.append("compression")
-        if s1 >= 1.0 or (s1 >= 0.5 and s2 >= 1.0):
+        if s1 >= 1.0 or (s1 >= 0.5 and s2 >= 1.0) or trust_buy_days >= 3:
             tags.append("accumulation")
     if reversal_watch:
         strategy = "reversal"

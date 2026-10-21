@@ -235,8 +235,8 @@ async function loadScores(){
       }
     } catch(e){}
 
-    const z5=allScores.filter(s=>s.score>=5&&!s.excluded).length;
-    const z4=allScores.filter(s=>s.score>=4&&s.score<5&&!s.excluded).length;
+    const z5=allScores.filter(s=>s.score>=4.5&&!s.excluded).length;
+    const z4=allScores.filter(s=>s.score>=3.5&&s.score<4.5&&!s.excluded).length;
     const zx=allScores.filter(s=>s.excluded).length;
     const zr=allScores.filter(s=>s.strategy==='reversal').length;
     const isV2=j.score_version===2;
@@ -245,8 +245,8 @@ async function loadScores(){
       <div class="status-item"><span class="status-label">📅 評分資料基準日</span><span class="status-val gold">${j.updated||'—'}</span></div>
       ${rtUpdated ? `<div class="status-item"><span class="status-label">盤中股價</span><span class="status-val green">${rtUpdated}</span></div>` : ''}
       <div class="status-item"><span class="status-label">股票池</span><span class="status-val">${j.total} 支</span></div>
-      <div class="status-item"><span class="status-label">🏆 5分</span><span class="status-val gold">${z5} 支</span></div>
-      <div class="status-item"><span class="status-label">⚔️ 4分</span><span class="status-val green">${z4} 支</span></div>
+      <div class="status-item"><span class="status-label">🏆 4.5~5分</span><span class="status-val gold">${z5} 支</span></div>
+      <div class="status-item"><span class="status-label">⚔️ 3.5~4分</span><span class="status-val green">${z4} 支</span></div>
       ${isV2?`<div class="status-item"><span class="status-label">🚫 已排除</span><span class="status-val">${zx} 支</span></div><div class="status-item"><span class="status-label">🐟 反轉觀察</span><span class="status-val">${zr} 支</span></div>`:''}`;
     if(!isV2){
       document.getElementById('note-bar').style.display='block';
@@ -353,16 +353,16 @@ function resetFilter(){
 }
 
 function renderResults(data){
-  const z5=data.filter(s=>s.score>=5);
-  const z4=data.filter(s=>s.score>=4&&s.score<5);
-  const z3=data.filter(s=>s.score<4);
+  const z5=data.filter(s=>s.score>=4.5);
+  const z4=data.filter(s=>s.score>=3.5&&s.score<4.5);
+  const z3=data.filter(s=>s.score<3.5);
   let html='';
   if(!data.length){
     html=`<div class="empty"><div class="empty-icon">🔍</div>沒有符合條件的股票<br><span style="color:var(--text3)">試著放寬篩選條件</span></div>`;
   }else{
-    if(z5.length) html+=`<div class="zone-header zone-5"><div class="zone-title">🏆 5分區 — Must Watch</div><div class="zone-count">共 ${z5.length} 支</div></div><div class="card-grid">${z5.map(renderCard).join('')}</div>`;
-    if(z4.length) html+=`<div class="zone-header zone-4"><div class="zone-title">⚔️ 4分區 — Strong Potential</div><div class="zone-count">共 ${z4.length} 支</div></div><div class="card-grid">${z4.map(renderCard).join('')}</div>`;
-    if(z3.length) html+=`<div class="zone-header zone-3"><div class="zone-title">📋 4分以下</div><div class="zone-count">共 ${z3.length} 支</div></div><div class="card-grid">${z3.map(renderCard).join('')}</div>`;
+    if(z5.length) html+=`<div class="zone-header zone-5"><div class="zone-title">🏆 4.5 ~ 5分 旗艦精選區 — Must Watch</div><div class="zone-count">共 ${z5.length} 支</div></div><div class="card-grid">${z5.map(renderCard).join('')}</div>`;
+    if(z4.length) html+=`<div class="zone-header zone-4"><div class="zone-title">⚔️ 3.5 ~ 4分 潛力轉強區 — Strong Potential</div><div class="zone-count">共 ${z4.length} 支</div></div><div class="card-grid">${z4.map(renderCard).join('')}</div>`;
+    if(z3.length) html+=`<div class="zone-header zone-3"><div class="zone-title">📋 3.5分以下 觀察區</div><div class="zone-count">共 ${z3.length} 支</div></div><div class="card-grid">${z3.map(renderCard).join('')}</div>`;
   }
   document.getElementById('result-area').innerHTML=html;
 }
@@ -374,8 +374,8 @@ function starsHtml(sc){
 
 function renderCard(s){
   const sc=s.score;
-  const bc=sc>=5?'s5':sc>=4?'s4':'s3';
-  const cc=sc>=5?'score-5':sc>=4?'score-4':'score-3';
+  const bc=sc>=4.5?'s5':sc>=3.5?'s4':'s3';
+  const cc=sc>=4.5?'score-5':sc>=3.5?'score-4':'score-3';
   const chgUp=s.chg_pct>0,chgFlat=s.chg_pct===0;
   const chgClass=chgFlat?'flat':chgUp?'up':'dn';
   const m=s.metrics||{};

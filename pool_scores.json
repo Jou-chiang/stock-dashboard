@@ -231,7 +231,8 @@
       "strategy": "pullback",
       "strategies": [
         "pullback",
-        "compression"
+        "compression",
+        "accumulation"
       ],
       "risk": "low",
       "risk_score": 0,
@@ -422,7 +423,7 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察名單",
+      "action": "可列入研究進場",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -546,7 +547,7 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察名單",
+      "action": "可列入研究進場",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -603,13 +604,12 @@
       },
       "strategy": "compression",
       "strategies": [
-        "compression",
-        "accumulation"
+        "compression"
       ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察名單",
+      "action": "觀察",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -1029,23 +1029,24 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 3.5,
+      "score": 4.5,
       "criteria": {
         "s1": 0.5,
         "s2": 1.0,
         "s3": 1.0,
-        "s4": 0.0,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "compression",
+      "strategy": "pullback",
       "strategies": [
+        "pullback",
         "compression",
         "accumulation"
       ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察名單",
+      "action": "可列入研究進場",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -1092,18 +1093,18 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 3.5,
+      "score": 4.5,
       "criteria": {
         "s1": 0.5,
         "s2": 1.0,
         "s3": 1.0,
-        "s4": 0.0,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "compression",
+      "strategy": "pullback",
       "strategies": [
-        "compression",
-        "accumulation"
+        "pullback",
+        "compression"
       ],
       "risk": "low",
       "risk_score": 0,
@@ -1163,17 +1164,12 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "accumulation",
-      "strategies": [
-        "accumulation",
-        "weakening"
-      ],
-      "risk": "mid",
-      "risk_score": 2,
-      "risk_reasons": [
-        "🟠 投信連買7日後連賣2日"
-      ],
-      "action": "法人轉弱，持有者檢查停利／停損，空手勿進",
+      "strategy": "watch",
+      "strategies": [],
+      "risk": "low",
+      "risk_score": 0,
+      "risk_reasons": [],
+      "action": "觀察",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -1344,11 +1340,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 3.0,
+      "score": 3.5,
       "criteria": {
         "s1": 1.0,
         "s2": 1.0,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -1479,7 +1475,7 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察名單",
+      "action": "觀察",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -1526,22 +1522,23 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 3.0,
+      "score": 4.5,
       "criteria": {
         "s1": 1.0,
         "s2": 1.0,
-        "s3": 0.0,
-        "s4": 0.0,
+        "s3": 0.5,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "accumulation",
+      "strategy": "pullback",
       "strategies": [
+        "pullback",
         "accumulation"
       ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察名單",
+      "action": "可列入研究進場",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -1588,22 +1585,24 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 3.0,
+      "score": 4.0,
       "criteria": {
         "s1": 0.5,
         "s2": 0.5,
         "s3": 1.0,
-        "s4": 0.0,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "compression",
+      "strategy": "pullback",
       "strategies": [
-        "compression"
+        "pullback",
+        "compression",
+        "accumulation"
       ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察名單",
+      "action": "可列入研究進場",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -1781,15 +1780,11 @@
         "s5": 1.0
       },
       "strategy": "watch",
-      "strategies": [
-        "weakening"
-      ],
-      "risk": "mid",
-      "risk_score": 2,
-      "risk_reasons": [
-        "🟠 投信連買11日後連賣3日"
-      ],
-      "action": "法人轉弱，持有者檢查停利／停損，空手勿進",
+      "strategies": [],
+      "risk": "low",
+      "risk_score": 0,
+      "risk_reasons": [],
+      "action": "觀察",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -1845,15 +1840,11 @@
         "s5": 1.0
       },
       "strategy": "watch",
-      "strategies": [
-        "weakening"
-      ],
-      "risk": "mid",
-      "risk_score": 2,
-      "risk_reasons": [
-        "🟠 投信連買5日後連賣2日"
-      ],
-      "action": "法人轉弱，持有者檢查停利／停損，空手勿進",
+      "strategies": [],
+      "risk": "low",
+      "risk_score": 0,
+      "risk_reasons": [],
+      "action": "觀察",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -1910,12 +1901,13 @@
       },
       "strategy": "compression",
       "strategies": [
-        "compression"
+        "compression",
+        "accumulation"
       ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -1972,12 +1964,13 @@
       },
       "strategy": "compression",
       "strategies": [
-        "compression"
+        "compression",
+        "accumulation"
       ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -2084,11 +2077,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.5,
+      "score": 3.0,
       "criteria": {
         "s1": 1.0,
         "s2": 0.5,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -2099,7 +2092,7 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -2206,11 +2199,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.5,
+      "score": 3.0,
       "criteria": {
         "s1": 0.5,
         "s2": 1.0,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -2221,7 +2214,7 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -2268,11 +2261,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.5,
+      "score": 3.0,
       "criteria": {
         "s1": 1.0,
         "s2": 0.5,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -2283,7 +2276,7 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -2345,7 +2338,7 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -2452,20 +2445,22 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.5,
+      "score": 3.5,
       "criteria": {
         "s1": 0.5,
         "s2": 0.0,
         "s3": 1.0,
-        "s4": 0.0,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "watch",
-      "strategies": [],
+      "strategy": "pullback",
+      "strategies": [
+        "pullback"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -2580,10 +2575,8 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "accumulation",
-      "strategies": [
-        "accumulation"
-      ],
+      "strategy": "watch",
+      "strategies": [],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
@@ -2634,22 +2627,23 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.5,
+      "score": 3.5,
       "criteria": {
         "s1": 0.5,
         "s2": 1.0,
         "s3": 1.0,
-        "s4": 0.0,
+        "s4": 1.0,
         "s5": 0.0
       },
-      "strategy": "accumulation",
+      "strategy": "pullback",
       "strategies": [
+        "pullback",
         "accumulation"
       ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -2756,20 +2750,22 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.5,
+      "score": 3.5,
       "criteria": {
         "s1": 0.0,
         "s2": 0.5,
         "s3": 1.0,
-        "s4": 0.0,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "watch",
-      "strategies": [],
+      "strategy": "pullback",
+      "strategies": [
+        "pullback"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -2876,22 +2872,23 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.5,
+      "score": 4.0,
       "criteria": {
         "s1": 1.0,
         "s2": 0.5,
-        "s3": 0.0,
-        "s4": 0.0,
+        "s3": 0.5,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "accumulation",
+      "strategy": "pullback",
       "strategies": [
+        "pullback",
         "accumulation"
       ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "可列入研究進場",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -2938,11 +2935,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.5,
+      "score": 3.0,
       "criteria": {
         "s1": 0.5,
         "s2": 1.0,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -2953,7 +2950,7 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -3000,11 +2997,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.5,
+      "score": 3.0,
       "criteria": {
         "s1": 1.0,
         "s2": 0.5,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -3015,7 +3012,7 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -3077,7 +3074,7 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -3194,12 +3191,14 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "watch",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -3323,7 +3322,7 @@
       "risk_reasons": [
         "乖離偏高：距MA20 +10.1%"
       ],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -3370,23 +3369,19 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.5,
+      "score": 3.0,
       "criteria": {
         "s1": 0.5,
         "s2": 1.0,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "accumulation",
-      "strategies": [
-        "accumulation"
-      ],
+      "strategy": "watch",
+      "strategies": [],
       "risk": "low",
-      "risk_score": 1,
-      "risk_reasons": [
-        "🟡 投信連買6日後今日轉賣"
-      ],
+      "risk_score": 0,
+      "risk_reasons": [],
       "action": "觀察",
       "excluded": false,
       "exclude_reasons": [],
@@ -3443,15 +3438,11 @@
         "s5": 1.0
       },
       "strategy": "watch",
-      "strategies": [
-        "weakening"
-      ],
-      "risk": "mid",
-      "risk_score": 2,
-      "risk_reasons": [
-        "🟠 投信連買12日後連賣6日"
-      ],
-      "action": "法人轉弱，持有者檢查停利／停損，空手勿進",
+      "strategies": [],
+      "risk": "low",
+      "risk_score": 0,
+      "risk_reasons": [],
+      "action": "觀察",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -3506,10 +3497,8 @@
         "s4": 0.0,
         "s5": 0.0
       },
-      "strategy": "accumulation",
-      "strategies": [
-        "accumulation"
-      ],
+      "strategy": "watch",
+      "strategies": [],
       "risk": "mid",
       "risk_score": 2,
       "risk_reasons": [
@@ -3572,15 +3561,11 @@
         "s5": 1.0
       },
       "strategy": "watch",
-      "strategies": [
-        "weakening"
-      ],
-      "risk": "mid",
-      "risk_score": 2,
-      "risk_reasons": [
-        "🟠 投信連買8日後連賣3日"
-      ],
-      "action": "法人轉弱，持有者檢查停利／停損，空手勿進",
+      "strategies": [],
+      "risk": "low",
+      "risk_score": 0,
+      "risk_reasons": [],
+      "action": "觀察",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -3627,24 +3612,22 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.5,
+      "score": 3.5,
       "criteria": {
         "s1": 0.0,
         "s2": 0.5,
         "s3": 1.0,
-        "s4": 0.0,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "watch",
+      "strategy": "pullback",
       "strategies": [
-        "weakening"
+        "pullback"
       ],
-      "risk": "mid",
-      "risk_score": 2,
-      "risk_reasons": [
-        "🟠 投信連買7日後連賣4日"
-      ],
-      "action": "法人轉弱，持有者檢查停利／停損，空手勿進",
+      "risk": "low",
+      "risk_score": 0,
+      "risk_reasons": [],
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -3699,10 +3682,8 @@
         "s4": 0.0,
         "s5": 0.0
       },
-      "strategy": "accumulation",
-      "strategies": [
-        "accumulation"
-      ],
+      "strategy": "watch",
+      "strategies": [],
       "risk": "high",
       "risk_score": 3,
       "risk_reasons": [
@@ -3756,22 +3737,23 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.0,
+      "score": 3.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.0,
         "s3": 1.0,
-        "s4": 0.0,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "compression",
+      "strategy": "pullback",
       "strategies": [
+        "pullback",
         "compression"
       ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -3826,12 +3808,14 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "watch",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -3878,20 +3862,22 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.0,
+      "score": 3.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.0,
         "s3": 1.0,
-        "s4": 0.0,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "watch",
-      "strategies": [],
+      "strategy": "pullback",
+      "strategies": [
+        "pullback"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -3938,11 +3924,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.0,
+      "score": 2.5,
       "criteria": {
         "s1": 0.5,
         "s2": 0.5,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -3998,20 +3984,22 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.0,
+      "score": 2.5,
       "criteria": {
         "s1": 0.0,
         "s2": 1.0,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "watch",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -4058,22 +4046,23 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.0,
+      "score": 3.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.0,
         "s3": 1.0,
-        "s4": 0.0,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "compression",
+      "strategy": "pullback",
       "strategies": [
+        "pullback",
         "compression"
       ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -4130,7 +4119,8 @@
       },
       "strategy": "compression",
       "strategies": [
-        "compression"
+        "compression",
+        "accumulation"
       ],
       "risk": "low",
       "risk_score": 0,
@@ -4198,7 +4188,7 @@
       "action": "低檔反轉觀察：K 上穿 D、DIF 回升，等站回月線再評估",
       "excluded": false,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 1,
@@ -4306,20 +4296,22 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.0,
+      "score": 2.5,
       "criteria": {
         "s1": 0.5,
         "s2": 0.5,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "watch",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
+      "action": "觀察名單",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -4366,21 +4358,19 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 2.0,
+      "score": 2.5,
       "criteria": {
         "s1": 0.5,
         "s2": 0.5,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
       "strategy": "watch",
       "strategies": [],
       "risk": "low",
-      "risk_score": 1,
-      "risk_reasons": [
-        "🟡 投信連買12日後今日轉賣"
-      ],
+      "risk_score": 0,
+      "risk_reasons": [],
       "action": "觀察",
       "excluded": false,
       "exclude_reasons": [],
@@ -4436,8 +4426,10 @@
         "s4": 0.0,
         "s5": 0.0
       },
-      "strategy": "watch",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "mid",
       "risk_score": 2,
       "risk_reasons": [
@@ -4491,11 +4483,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 1.5,
+      "score": 2.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.5,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -4551,11 +4543,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 1.5,
+      "score": 2.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.5,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -4611,11 +4603,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 1.5,
+      "score": 2.0,
       "criteria": {
         "s1": 1.0,
         "s2": 0.5,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 0.0
       },
@@ -4733,11 +4725,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 1.5,
+      "score": 2.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.5,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -4853,7 +4845,7 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 1.5,
+      "score": 0.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.5,
@@ -4861,14 +4853,16 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "watch",
+      "strategy": "excluded",
       "strategies": [],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "觀察",
-      "excluded": false,
-      "exclude_reasons": [],
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
+      "excluded": true,
+      "exclude_reasons": [
+        "空頭趨勢：跌破月線/季線且DIF<0"
+      ],
       "metrics": {
         "trust_buy_days": 0,
         "foreign_buy_days": 2,
@@ -4913,11 +4907,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 1.5,
+      "score": 2.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.5,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -4973,11 +4967,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 1.5,
+      "score": 2.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.5,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -5093,11 +5087,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 1.5,
+      "score": 2.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.5,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -5343,8 +5337,10 @@
         "s4": 0.0,
         "s5": 0.0
       },
-      "strategy": "watch",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 1,
       "risk_reasons": [
@@ -5405,15 +5401,12 @@
         "s4": 0.0,
         "s5": 0.0
       },
-      "strategy": "accumulation",
-      "strategies": [
-        "accumulation"
-      ],
-      "risk": "mid",
-      "risk_score": 2,
+      "strategy": "watch",
+      "strategies": [],
+      "risk": "low",
+      "risk_score": 1,
       "risk_reasons": [
-        "乖離偏高：距MA20 +9.3%",
-        "🟡 投信連買5日後今日轉賣"
+        "乖離偏高：距MA20 +9.3%"
       ],
       "action": "觀察",
       "excluded": false,
@@ -5471,16 +5464,13 @@
         "s5": 0.0
       },
       "strategy": "watch",
-      "strategies": [
-        "weakening"
-      ],
-      "risk": "high",
-      "risk_score": 3,
+      "strategies": [],
+      "risk": "low",
+      "risk_score": 1,
       "risk_reasons": [
-        "20日漲幅 +27%，追價風險",
-        "🟠 投信連買17日後連賣3日"
+        "20日漲幅 +27%，追價風險"
       ],
-      "action": "法人轉弱，持有者檢查停利／停損，空手勿進",
+      "action": "觀察",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -5587,16 +5577,18 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 1.0,
+      "score": 2.5,
       "criteria": {
         "s1": 0.0,
         "s2": 0.0,
-        "s3": 0.0,
-        "s4": 0.0,
+        "s3": 0.5,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "watch",
-      "strategies": [],
+      "strategy": "pullback",
+      "strategies": [
+        "pullback"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
@@ -5707,11 +5699,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 1.0,
+      "score": 1.5,
       "criteria": {
         "s1": 0.0,
         "s2": 0.0,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -5835,16 +5827,14 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "reversal",
+      "strategy": "watch",
       "strategies": [],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "低檔反轉觀察：K 上穿 D、DIF 回升，等站回月線再評估",
+      "action": "觀察",
       "excluded": false,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 1,
         "foreign_buy_days": 0,
@@ -6009,11 +5999,11 @@
         "ma_divergence": false,
         "blacklisted": false
       },
-      "score": 1.0,
+      "score": 1.5,
       "criteria": {
         "s1": 0.0,
         "s2": 0.0,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -6142,15 +6132,11 @@
         "s5": 1.0
       },
       "strategy": "watch",
-      "strategies": [
-        "weakening"
-      ],
-      "risk": "high",
-      "risk_score": 3,
-      "risk_reasons": [
-        "🔴 法人轉弱警報：投信連賣3日＋外資同步賣＋跌破MA20"
-      ],
-      "action": "法人轉弱，持有者檢查停利／停損，空手勿進",
+      "strategies": [],
+      "risk": "low",
+      "risk_score": 0,
+      "risk_reasons": [],
+      "action": "觀察",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -6270,16 +6256,13 @@
         "s5": 0.0
       },
       "strategy": "watch",
-      "strategies": [
-        "weakening"
-      ],
-      "risk": "high",
-      "risk_score": 3,
+      "strategies": [],
+      "risk": "low",
+      "risk_score": 1,
       "risk_reasons": [
-        "爆量長上影",
-        "🟠 投信連買6日後連賣3日"
+        "爆量長上影"
       ],
-      "action": "法人轉弱，持有者檢查停利／停損，空手勿進",
+      "action": "觀察",
       "excluded": false,
       "exclude_reasons": [],
       "metrics": {
@@ -6326,7 +6309,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 2.5,
       "criteria": {
         "s1": 1.0,
         "s2": 0.5,
@@ -6334,16 +6317,16 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 16,
         "foreign_buy_days": 0,
@@ -6388,7 +6371,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 2.5,
       "criteria": {
         "s1": 1.0,
         "s2": 0.5,
@@ -6396,16 +6379,16 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 8,
         "foreign_buy_days": 0,
@@ -6450,7 +6433,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 2.5,
       "criteria": {
         "s1": 1.0,
         "s2": 0.5,
@@ -6458,16 +6441,16 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 5,
         "foreign_buy_days": 0,
@@ -6512,7 +6495,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 1.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.0,
@@ -6520,16 +6503,14 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
+      "strategy": "watch",
       "strategies": [],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 0,
         "foreign_buy_days": 0,
@@ -6574,24 +6555,25 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 4.5,
       "criteria": {
         "s1": 1.0,
         "s2": 1.0,
-        "s3": 0.0,
-        "s4": 0.0,
+        "s3": 0.5,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "pullback",
+      "strategies": [
+        "pullback",
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "可列入研究進場",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 6,
         "foreign_buy_days": 2,
@@ -6636,7 +6618,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 2.5,
       "criteria": {
         "s1": 1.0,
         "s2": 0.5,
@@ -6644,16 +6626,16 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察名單",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 3,
         "foreign_buy_days": 1,
@@ -6711,10 +6693,10 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -6760,24 +6742,25 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 4.0,
       "criteria": {
         "s1": 0.5,
         "s2": 1.0,
-        "s3": 0.0,
-        "s4": 0.0,
+        "s3": 0.5,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "pullback",
+      "strategies": [
+        "pullback",
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "可列入研究進場",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 1,
         "foreign_buy_days": 2,
@@ -6822,7 +6805,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 2.0,
       "criteria": {
         "s1": 0.5,
         "s2": 0.5,
@@ -6830,16 +6813,14 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
+      "strategy": "watch",
       "strategies": [],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 0,
         "foreign_buy_days": 0,
@@ -6884,24 +6865,24 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 2.5,
       "criteria": {
         "s1": 0.0,
         "s2": 0.0,
-        "s3": 0.0,
-        "s4": 0.0,
+        "s3": 0.5,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "pullback",
+      "strategies": [
+        "pullback"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察名單",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 0,
         "foreign_buy_days": 1,
@@ -6959,10 +6940,10 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -7021,10 +7002,10 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -7083,10 +7064,10 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -7132,7 +7113,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 2.5,
       "criteria": {
         "s1": 0.5,
         "s2": 1.0,
@@ -7140,16 +7121,16 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 7,
         "foreign_buy_days": 1,
@@ -7194,24 +7175,25 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 4.0,
       "criteria": {
         "s1": 1.0,
         "s2": 0.5,
-        "s3": 0.0,
-        "s4": 0.0,
+        "s3": 0.5,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "pullback",
+      "strategies": [
+        "pullback",
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "可列入研究進場",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 7,
         "foreign_buy_days": 0,
@@ -7269,10 +7251,10 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -7318,7 +7300,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 1.5,
       "criteria": {
         "s1": 0.0,
         "s2": 0.5,
@@ -7326,16 +7308,14 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
+      "strategy": "watch",
       "strategies": [],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 0,
         "foreign_buy_days": 0,
@@ -7384,7 +7364,7 @@
       "criteria": {
         "s1": 0.0,
         "s2": 0.0,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
@@ -7455,10 +7435,10 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -7517,10 +7497,10 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -7566,7 +7546,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 1.5,
       "criteria": {
         "s1": 0.0,
         "s2": 0.5,
@@ -7574,16 +7554,14 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
+      "strategy": "watch",
       "strategies": [],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 0,
         "foreign_buy_days": 0,
@@ -7628,7 +7606,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 1.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.0,
@@ -7636,16 +7614,14 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
+      "strategy": "watch",
       "strategies": [],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 1,
         "foreign_buy_days": 1,
@@ -7690,7 +7666,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 1.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.0,
@@ -7698,16 +7674,14 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
+      "strategy": "watch",
       "strategies": [],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 1,
         "foreign_buy_days": 0,
@@ -7752,7 +7726,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 2.5,
       "criteria": {
         "s1": 1.0,
         "s2": 0.5,
@@ -7760,16 +7734,16 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 13,
         "foreign_buy_days": 0,
@@ -7814,24 +7788,24 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 3.0,
       "criteria": {
         "s1": 0.5,
         "s2": 1.0,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察名單",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 7,
         "foreign_buy_days": 1,
@@ -7876,7 +7850,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 1.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.0,
@@ -7884,16 +7858,16 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 1,
         "foreign_buy_days": 1,
@@ -7951,10 +7925,10 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -8013,10 +7987,10 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -8062,7 +8036,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 2.5,
       "criteria": {
         "s1": 1.0,
         "s2": 0.5,
@@ -8070,16 +8044,16 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 3,
         "foreign_buy_days": 0,
@@ -8124,24 +8098,22 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 1.5,
       "criteria": {
         "s1": 0.0,
         "s2": 0.0,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
+      "strategy": "watch",
       "strategies": [],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 0,
         "foreign_buy_days": 1,
@@ -8199,10 +8171,10 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -8323,10 +8295,10 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -8372,24 +8344,24 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 3.0,
       "criteria": {
         "s1": 1.0,
         "s2": 0.5,
-        "s3": 0.0,
+        "s3": 0.5,
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察名單",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 3,
         "foreign_buy_days": 1,
@@ -8434,24 +8406,24 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 2.5,
       "criteria": {
         "s1": 0.0,
         "s2": 0.0,
-        "s3": 0.0,
-        "s4": 0.0,
+        "s3": 0.5,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "pullback",
+      "strategies": [
+        "pullback"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 0,
         "foreign_buy_days": 0,
@@ -8496,24 +8468,24 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 3.0,
       "criteria": {
         "s1": 0.0,
         "s2": 0.5,
-        "s3": 0.0,
-        "s4": 0.0,
+        "s3": 0.5,
+        "s4": 1.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "pullback",
+      "strategies": [
+        "pullback"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 0,
         "foreign_buy_days": 0,
@@ -8558,7 +8530,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 2.5,
       "criteria": {
         "s1": 1.0,
         "s2": 0.5,
@@ -8566,16 +8538,16 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [],
+      "strategy": "accumulation",
+      "strategies": [
+        "accumulation"
+      ],
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 5,
         "foreign_buy_days": 0,
@@ -8695,10 +8667,10 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -8757,10 +8729,10 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -8819,10 +8791,10 @@
       "risk": "low",
       "risk_score": 0,
       "risk_reasons": [],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -8883,10 +8855,10 @@
       "risk_reasons": [
         "流動性偏低：均成交金額 4156 萬"
       ],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
@@ -8932,7 +8904,7 @@
         "ma_divergence": false,
         "blacklisted": true
       },
-      "score": 0.0,
+      "score": 1.5,
       "criteria": {
         "s1": 0.0,
         "s2": 0.5,
@@ -8940,20 +8912,14 @@
         "s4": 0.0,
         "s5": 1.0
       },
-      "strategy": "excluded",
-      "strategies": [
-        "weakening"
-      ],
-      "risk": "mid",
-      "risk_score": 2,
-      "risk_reasons": [
-        "🟠 投信連買9日後連賣4日"
-      ],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
-      "excluded": true,
-      "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
-      ],
+      "strategy": "watch",
+      "strategies": [],
+      "risk": "low",
+      "risk_score": 0,
+      "risk_reasons": [],
+      "action": "觀察",
+      "excluded": false,
+      "exclude_reasons": [],
       "metrics": {
         "trust_buy_days": 0,
         "foreign_buy_days": 2,
@@ -9007,18 +8973,14 @@
         "s5": 1.0
       },
       "strategy": "excluded",
-      "strategies": [
-        "weakening"
-      ],
-      "risk": "high",
-      "risk_score": 3,
-      "risk_reasons": [
-        "🔴 法人轉弱警報：投信連賣3日＋外資同步賣＋跌破MA20"
-      ],
-      "action": "不進主選股池：空頭：股價<MA20 且 DIF<0",
+      "strategies": [],
+      "risk": "low",
+      "risk_score": 0,
+      "risk_reasons": [],
+      "action": "不進主選股池：空頭趨勢：跌破月線/季線且DIF<0",
       "excluded": true,
       "exclude_reasons": [
-        "空頭：股價<MA20 且 DIF<0"
+        "空頭趨勢：跌破月線/季線且DIF<0"
       ],
       "metrics": {
         "trust_buy_days": 0,
