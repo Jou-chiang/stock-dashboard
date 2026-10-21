@@ -187,7 +187,15 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       </div>
       <button class="btn-close" onclick="closeModal()">✕</button>
     </div>
-    <div style="font-size:12px;color:var(--text2);line-height:1.6;margin:0 0 12px;">此表單用於手動新增或修正單一股票研究卡。若要匯入 GPT 已整理的完整報告，請關閉此視窗並使用上方「匯入 GPT 報告」。</div>
+    <div style="background:var(--bg3);border:1px dashed var(--amber);border-radius:8px;padding:12px;margin:0 0 16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
+        <span style="font-weight:bold;color:var(--amber);font-size:13px;">⚡ 快速貼上 Gem / AI JSON Code（支援直接貼入）</span>
+        <button type="button" class="btn-action" style="font-size:12px;background:var(--amber);color:#111;font-weight:bold;padding:5px 12px;cursor:pointer;" onclick="applyQuickJsonToForm()">一鍵填入下方表單</button>
+      </div>
+      <textarea id="quick-json-input" class="form-textarea" style="width:100%;min-height:85px;font-family:var(--mono);font-size:12px;" placeholder="在此直接貼上從 Gem / GPT 複製過來的 JSON Code（包含 ``` 標籤也沒關係），點擊「一鍵填入下方表單」，下方所有欄位將自動填好！"></textarea>
+      <div id="quick-json-msg" style="font-size:11px;margin-top:6px;"></div>
+    </div>
+    <div style="font-size:12px;color:var(--text2);line-height:1.6;margin:0 0 12px;">下方為個別欄位明細，可使用上方快速貼入，或在下方逐項微調：</div>
     <form id="thesis-form" onsubmit="handleFormSubmit(event)">
       <div class="form-grid">
         <div class="form-group">
@@ -622,7 +630,7 @@ function renderCards(theses) {
 
     const card = document.createElement('article'); card.className = 'card'; card.dataset.code = code; card.dataset.name = item.stock_name || '';
     card.innerHTML = `
-      <div class="card-header"><div style="flex:1;"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><span class="stock-code">${esc(code)}</span><span class="stock-name">${esc(item.stock_name || code)}</span><span class="cat-tag" style="background:${st.bg};color:${st.color};border-color:${st.border};font-weight:bold;">${st.label}</span></div><div style="margin-top:6px;"><span class="cat-tag">${esc(item.category || '未分類')}</span></div><div style="font-size:11px;color:var(--text2);margin-top:6px;">${esc(priceText)}</div>${quote?.note ? `<div style="font-size:10px;color:var(--text3);margin-top:3px;">${esc(quote.note)}</div>` : ''}</div><div class="card-actions"><button class="btn-action" data-action="prompt" data-code="${esc(code)}" title="複製讓 Gem 查證此股票的指令">📋 查證指令</button><button class="btn-action" data-action="edit" data-code="${esc(code)}">編輯</button><button class="btn-action btn-del" data-action="delete" data-code="${esc(code)}">刪除</button></div></div>
+      <div class="card-header"><div style="flex:1;"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><span class="stock-code">${esc(code)}</span><span class="stock-name">${esc(item.stock_name || code)}</span><span class="cat-tag" style="background:${st.bg};color:${st.color};border-color:${st.border};font-weight:bold;">${st.label}</span></div><div style="margin-top:6px;"><span class="cat-tag">${esc(item.category || '未分類')}</span></div><div style="font-size:11px;color:var(--text2);margin-top:6px;">${esc(priceText)}</div>${quote?.note ? `<div style="font-size:10px;color:var(--text3);margin-top:3px;">${esc(quote.note)}</div>` : ''}</div><div class="card-actions"><button class="btn-action" data-action="prompt" data-code="${esc(code)}" title="複製讓 Gem 查證此股票的指令">📋 查證指令</button><button class="btn-action" data-action="paste" data-code="${esc(code)}" title="直接貼上 Gem 產出的 JSON 更新此股票" style="color:var(--amber);border-color:var(--amber);">⚡ 貼入代碼</button><button class="btn-action" data-action="edit" data-code="${esc(code)}">手動編輯</button><button class="btn-action btn-del" data-action="delete" data-code="${esc(code)}">刪除</button></div></div>
       <div class="consensus-box"><div class="c-item"><div class="c-label">2026 EPS 區間${forecastVerified ? '（已標示來源）' : '（來源待核實）'}</div><div class="c-val">${esc(eps)}</div>${forecast.source_url && safeHttpUrl(forecast.source_url) ? `<div style="margin-top:3px;font-size:10px;"><a href="${esc(safeHttpUrl(forecast.source_url))}" target="_blank" rel="noopener noreferrer">來源</a>｜${esc(forecast.as_of || '')}</div>` : ''}</div><div class="c-item"><div class="c-label">估值假設 PE</div><div class="c-val">${esc(pe)}</div></div>${impliedTarget ? `<div class="c-item" style="grid-column:1/-1;border-top:1px dashed var(--border);padding-top:8px;margin-top:4px;"><div class="c-label">情境估值（EPS × PE；非券商目標價）</div><div class="c-val" style="color:var(--amber);">${esc(impliedTarget)} ${upside}</div></div>` : ''}</div>
       <div class="scenario-title">Bull / Base / Bear 情境｜${bias === 'unknown' ? '傾向未知，不亮燈' : ({bull:'偏多',base:'中立',bear:'偏空'}[bias])}</div><div class="scenario-list">${scenario('bull','樂觀',item.thesis_points?.bull,'bull','🔥')}${scenario('base','基準',item.thesis_points?.base,'base','⚖️')}${scenario('bear','悲觀',item.thesis_points?.bear,'bear','⚠️')}${bias === 'unknown' ? '<div style="font-size:11px;color:var(--text3);">未設定明確研究傾向；不會依目標價自動推定多空。</div>' : ''}</div>
       ${catalysts.length ? `<div class="scenario-title">已輸入的催化劑（未自動驗證）</div><div class="catalysts-wrap"><div class="cat-list">${catalysts.map(c => `<span class="cat-chip">${esc(c)}</span>`).join('')}</div></div>` : ''}
@@ -749,9 +757,229 @@ function autoGenerateThesisInModal() {
   document.getElementById('form-note').value = '此為程式產生的估值情境草稿，非 AI 生成或已查證研報。EPS、催化劑、券商目標價及來源均需自行核實後填入。';
 }
 
+function normalizeAnyReport(entry) {
+  if (!entry || typeof entry !== 'object') return null;
+
+  // 1. 代號與名稱
+  const code = String(entry.code || entry.stock_code || entry.id || '').trim().toUpperCase();
+  const name = String(entry.stock_name || entry.name || '').trim();
+  if (!/^\d{4,6}[A-Z]?$/.test(code)) return null;
+
+  // 2. 產業類別與現價
+  const category = String(entry.category || '待分類');
+  const currentPrice = validPrice(entry.current_price) || validPrice(entry.price) || null;
+
+  // 3. 傾向 (overall_bias)
+  let bias = 'unknown';
+  if (['bull', 'base', 'bear'].includes(entry.overall_bias)) {
+    bias = entry.overall_bias;
+  } else if (entry.overall_bias === '偏多' || entry.bias === 'bull') {
+    bias = 'bull';
+  } else if (entry.overall_bias === '偏空' || entry.bias === 'bear') {
+    bias = 'bear';
+  } else if (entry.overall_bias === '中立' || entry.bias === 'base') {
+    bias = 'base';
+  }
+
+  // 4. 共識預估 (支援 Structure A: financial_estimates 或 Structure B: consensus_forecast)
+  let cf = entry.consensus_forecast || {};
+  let epsRange = [];
+  let peRange = [];
+  let sourceUrl = safeHttpUrl(cf.source_url) || '';
+  let asOf = String(cf.as_of || entry.verified_date || new Date().toISOString().slice(0, 10));
+
+  if (Array.isArray(cf['2026_eps_range']) && cf['2026_eps_range'].length === 2) {
+    epsRange = cf['2026_eps_range'].map(Number);
+  } else if (entry.financial_estimates?.eps_2026e) {
+    const e = Number(entry.financial_estimates.eps_2026e);
+    if (Number.isFinite(e)) epsRange = [e, e];
+  }
+
+  if (Array.isArray(cf.target_pe_range) && cf.target_pe_range.length === 2) {
+    peRange = cf.target_pe_range.map(Number);
+  } else if (epsRange.length === 2 && epsRange[0] > 0 && entry.financial_estimates?.target_price_consensus) {
+    const target = Number(entry.financial_estimates.target_price_consensus);
+    const impliedPe = Math.round(target / epsRange[0]);
+    if (impliedPe > 0) peRange = [Math.round(impliedPe * 0.9), Math.round(impliedPe * 1.1)];
+  }
+
+  const validRange = arr => arr.length === 2 && arr.every(Number.isFinite) && arr[0] <= arr[1];
+  const forecast = {
+    ...cf,
+    '2026_eps_range': validRange(epsRange) ? epsRange : [],
+    target_pe_range: validRange(peRange) ? peRange : [],
+    source_url: sourceUrl,
+    as_of: asOf,
+    verification_status: cf.verification_status === 'verified' || entry.status === 'verified' ? 'verified' : 'unverified'
+  };
+
+  // 5. 情境論點 (支援 Structure A: investment_thesis / key_risks 或 Structure B: thesis_points)
+  let tp = entry.thesis_points || {};
+  let bull = String(tp.bull || '');
+  let base = String(tp.base || entry.investment_thesis || '');
+  let bear = String(tp.bear || '');
+
+  if (!bull && entry.catalysts && Array.isArray(entry.catalysts)) {
+    bull = (entry.investment_thesis ? entry.investment_thesis + '；' : '') + '催化劑：' + entry.catalysts.join('、');
+  }
+  if (!bear && entry.key_risks && Array.isArray(entry.key_risks)) {
+    bear = '風險：' + entry.key_risks.join('；') + (entry.defense_levels?.trend_invalidation ? `（防守點：${entry.defense_levels.trend_invalidation}）` : '');
+  }
+
+  // 6. 催化劑
+  const catalysts = Array.isArray(entry.catalysts) ? entry.catalysts.map(String) : [];
+
+  // 7. 券商報告
+  let brokerReports = [];
+  if (Array.isArray(entry.broker_reports) && entry.broker_reports.length > 0) {
+    brokerReports = entry.broker_reports.map(r => ({
+      broker: String(r.broker || ''),
+      rating: String(r.rating || ''),
+      target_price: validPrice(r.target_price),
+      report_date: String(r.report_date || asOf),
+      source_url: safeHttpUrl(r.source_url) || '',
+      verification_status: r.verification_status === 'verified' ? 'verified' : 'unverified'
+    }));
+  } else if (entry.financial_estimates?.target_price_consensus) {
+    brokerReports.push({
+      broker: String(entry.financial_estimates.source_agency || '機構目標價共識'),
+      rating: '買進',
+      target_price: validPrice(entry.financial_estimates.target_price_consensus),
+      report_date: asOf,
+      source_url: '',
+      verification_status: 'unverified'
+    });
+  }
+
+  // 8. 來源
+  let sources = [];
+  if (Array.isArray(entry.sources)) {
+    sources = entry.sources.map(src => ({
+      title: String(src.title || src.publisher || src.url || '研報來源'),
+      url: safeHttpUrl(src.url),
+      date: String(src.date || src.published_at || asOf),
+      publisher: String(src.publisher || '')
+    }));
+  }
+  if (!sources.length) {
+    sources.push({
+      title: entry.financial_estimates?.source_agency || '法說會／公開資訊',
+      url: sourceUrl || '',
+      date: asOf,
+      publisher: '公開資訊觀測站'
+    });
+  }
+
+  // 9. 備註
+  let note = String(entry.last_report_note || '');
+  if (!note && entry.investment_thesis) {
+    note = `【投資論點】${entry.investment_thesis}`;
+    if (entry.defense_levels?.short_term_support) {
+      note += `\n【短期支撐】${entry.defense_levels.short_term_support} 元`;
+    }
+    if (entry.defense_levels?.trend_invalidation) {
+      note += `\n【趨勢失效】${entry.defense_levels.trend_invalidation}`;
+    }
+  }
+
+  return {
+    code,
+    name: name || code,
+    item: {
+      stock_name: name || code,
+      category,
+      current_price: currentPrice,
+      overall_bias: bias,
+      consensus_forecast: forecast,
+      thesis_points: { bull, base, bear },
+      catalysts,
+      broker_reports: brokerReports,
+      last_report_note: note,
+      sources,
+      status: 'draft',
+      verified_at: null,
+      imported_at: new Date().toISOString()
+    }
+  };
+}
+
+function applyQuickJsonToForm() {
+  const input = document.getElementById('quick-json-input');
+  const msg = document.getElementById('quick-json-msg');
+  const raw = (input?.value || '').trim();
+  if (!raw) {
+    msg.textContent = '⚠️ 請先在此框中貼上 JSON 內容';
+    msg.style.color = 'var(--red)';
+    return;
+  }
+  let parsed;
+  try {
+    let cleaned = raw.replace(/^```[a-z]*\s*/i, '').replace(/\s*```$/i, '').trim();
+    cleaned = cleaned.replace(/,\s*([\]}])/g, '$1');
+    parsed = JSON.parse(cleaned);
+  } catch (e) {
+    msg.textContent = `❌ JSON 解析錯誤：${e.message}。請確認是否為完整合法的 JSON 格式。`;
+    msg.style.color = 'var(--red)';
+    return;
+  }
+
+  let entry = parsed;
+  if (parsed.theses && typeof parsed.theses === 'object') {
+    const targetCode = editingCode || Object.keys(parsed.theses)[0];
+    entry = parsed.theses[targetCode] ? { code: targetCode, ...parsed.theses[targetCode] } : Object.values(parsed.theses)[0];
+  } else if (Array.isArray(parsed.reports) && parsed.reports.length > 0) {
+    entry = parsed.reports[0];
+  } else if (Array.isArray(parsed) && parsed.length > 0) {
+    entry = parsed[0];
+  }
+
+  const normalized = normalizeAnyReport(entry);
+  if (!normalized) {
+    msg.textContent = '❌ 無法辨識股票代號或格式，請確認 JSON 是否包含 code 與 stock_name/name';
+    msg.style.color = 'var(--red)';
+    return;
+  }
+
+  const { code, name, item } = normalized;
+  if (!editingCode) document.getElementById('form-code').value = code;
+  document.getElementById('form-name').value = item.stock_name || name;
+  document.getElementById('form-category').value = item.category || '';
+  document.getElementById('form-bias').value = item.overall_bias || 'unknown';
+
+  const fc = item.consensus_forecast || {};
+  if (Array.isArray(fc['2026_eps_range'])) {
+    document.getElementById('form-eps-low').value = fc['2026_eps_range'][0] ?? '';
+    document.getElementById('form-eps-high').value = fc['2026_eps_range'][1] ?? '';
+  }
+  if (Array.isArray(fc.target_pe_range)) {
+    document.getElementById('form-pe-low').value = fc.target_pe_range[0] ?? '';
+    document.getElementById('form-pe-high').value = fc.target_pe_range[1] ?? '';
+  }
+  document.getElementById('form-eps-source').value = fc.source_url || '';
+  document.getElementById('form-eps-date').value = fc.as_of || '';
+  document.getElementById('form-eps-status').value = fc.verification_status === 'verified' ? 'verified' : 'unverified';
+
+  document.getElementById('form-bull').value = item.thesis_points?.bull || '';
+  document.getElementById('form-base').value = item.thesis_points?.base || '';
+  document.getElementById('form-bear').value = item.thesis_points?.bear || '';
+
+  document.getElementById('form-catalysts').value = (item.catalysts || []).join(', ');
+  document.getElementById('form-brokers').value = (item.broker_reports || []).map(r =>
+    [r.broker || '', r.rating || '', r.target_price ?? '', r.report_date || '', r.source_url || '', r.verification_status || 'unverified'].join(',')
+  ).join(' ; ');
+  document.getElementById('form-note').value = item.last_report_note || '';
+
+  msg.textContent = `✅ 成功填入 ${code} ${name} 的資料！請檢查下方欄位，確認後點擊最底部的「儲存」即可完成更新。`;
+  msg.style.color = 'var(--green)';
+}
+
 function openModal(code = null) {
   editingCode = code;
   document.getElementById('thesis-form').reset();
+  const qInput = document.getElementById('quick-json-input');
+  if (qInput) qInput.value = '';
+  const qMsg = document.getElementById('quick-json-msg');
+  if (qMsg) qMsg.textContent = '';
   document.getElementById('form-code').readOnly = false;
   document.getElementById('form-bias').value = 'unknown';
   const title = document.getElementById('modal-title');
@@ -885,31 +1113,33 @@ async function copyGPTFormatPrompt() {
 }
 function importGPTReport() {
   const status = document.getElementById('import-status');
+  let rawText = (document.getElementById('gpt-import-json')?.value || '').trim();
+  if (!rawText) {
+    status.textContent = '請先貼上 JSON 內容。';
+    return;
+  }
+  rawText = rawText.replace(/^```[a-z]*\s*/i, '').replace(/\s*```$/i, '').trim();
+  rawText = rawText.replace(/,\s*([\]}])/g, '$1');
+
   let parsed;
-  try { parsed = JSON.parse(document.getElementById('gpt-import-json').value.trim()); }
-  catch (e) { status.textContent = 'JSON 格式錯誤：' + e.message + '\n請要求 GPT 僅輸出純 JSON，不要加 Markdown 標記。'; return; }
+  try { parsed = JSON.parse(rawText); }
+  catch (e) { status.textContent = 'JSON 格式錯誤：' + e.message + '\n請確認是否為完整 JSON（已自動去除 ``` 標記）。'; return; }
+
   let entries = [];
   if (parsed && parsed.theses && typeof parsed.theses === 'object') entries = Object.entries(parsed.theses).map(([code, item]) => ({code, ...item}));
   else if (Array.isArray(parsed.reports)) entries = parsed.reports;
+  else if (Array.isArray(parsed)) entries = parsed;
   else if (parsed && typeof parsed === 'object') entries = [parsed];
+
   if (!entries.length) { status.textContent = '沒有找到可匯入的股票研究資料。'; return; }
   const normalized = [];
   for (const entry of entries) {
-    const code = String(entry.code || entry.stock_code || '').trim().toUpperCase();
-    const name = String(entry.stock_name || entry.name || '').trim();
-    const sources = Array.isArray(entry.sources) ? entry.sources.filter(src => src && safeHttpUrl(src.url)).map(src => ({title:String(src.title || src.publisher || src.url),url:safeHttpUrl(src.url),date:String(src.date || src.published_at || ''),publisher:String(src.publisher || '')})) : [];
-    if (!/^\d{4,6}[A-Z]?$/.test(code)) { status.textContent = `股票代號格式不正確：${code || '未提供'}。請確認 JSON 的 code 欄位。`; return; }
-    if (!name) { status.textContent = `股票 ${code} 缺少 stock_name，未匯入。`; return; }
-    if (!sources.length) { status.textContent = `股票 ${code} ${name} 沒有提供有效的公開來源網址，因此未匯入。請先讓 GPT 查找並附上來源。`; return; }
-    const cf = entry.consensus_forecast || {};
-    const epsRange = Array.isArray(cf['2026_eps_range']) && cf['2026_eps_range'].length === 2 ? cf['2026_eps_range'].map(Number) : [];
-    const peRange = Array.isArray(cf.target_pe_range) && cf.target_pe_range.length === 2 ? cf.target_pe_range.map(Number) : [];
-    const validRange = arr => arr.length === 2 && arr.every(Number.isFinite) && arr[0] <= arr[1];
-    const sourceUrl = safeHttpUrl(cf.source_url) || '';
-    const forecast = { ...cf, '2026_eps_range': validRange(epsRange) ? epsRange : [], target_pe_range: validRange(peRange) ? peRange : [], source_url:sourceUrl, as_of:String(cf.as_of || ''), verification_status:'unverified' };
-    const brokerReports = (Array.isArray(entry.broker_reports) ? entry.broker_reports : []).map(r => ({broker:String(r.broker || ''),rating:String(r.rating || ''),target_price:validPrice(r.target_price),report_date:String(r.report_date || ''),source_url:safeHttpUrl(r.source_url) || '',verification_status:'unverified'}));
-    const currentPrice = validPrice(entry.current_price) || validPrice(entry.price) || null;
-    normalized.push({code,name,item:{stock_name:name,category:String(entry.category || '待分類'),current_price:currentPrice,overall_bias:['bull','base','bear'].includes(entry.overall_bias) ? entry.overall_bias : 'unknown',consensus_forecast:forecast,thesis_points:{bull:String(entry.thesis_points?.bull || ''),base:String(entry.thesis_points?.base || ''),bear:String(entry.thesis_points?.bear || '')},catalysts:Array.isArray(entry.catalysts) ? entry.catalysts.map(String) : [],broker_reports:brokerReports,last_report_note:String(entry.last_report_note || ''),sources,status:'draft',verified_at:null,imported_at:new Date().toISOString()}});
+    const res = normalizeAnyReport(entry);
+    if (res) normalized.push(res);
+  }
+  if (!normalized.length) {
+    status.textContent = '沒有找到符合格式的股票資料。請確認 JSON 是否包含 code 與 stock_name/name。';
+    return;
   }
   const duplicates = normalized.filter(x => thesisData[x.code]).map(x => `${x.code} ${x.name}`);
   const message = `將匯入 ${normalized.length} 檔研究資料。${duplicates.length ? '\n以下股票已存在，匯入會保留未變更欄位並記錄歷史：' + duplicates.join('、') : ''}\nEPS 與券商報告將維持待核實；本功能只檢查來源網址格式，不代表已自動確認來源內容。\n確定繼續？`;
@@ -1073,6 +1303,18 @@ function copyAllAuditPrompt() {
   }
 }
 
+function openModalWithPaste(code) {
+  openModal(code);
+  setTimeout(() => {
+    const box = document.getElementById('quick-json-input');
+    if (box) {
+      box.focus();
+      box.select();
+      box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, 100);
+}
+
 function editCard(code) { openModal(code); }
 function deleteCard(code) {
   if (!confirm(`確定刪除 ${code} ${thesisData[code]?.stock_name || ''}？此刪除會保存在本機，避免重新載入後復活。`)) return;
@@ -1091,6 +1333,7 @@ document.getElementById('main-content').addEventListener('click', event => {
   if (!button) return;
   const code = button.dataset.code;
   if (button.dataset.action === 'edit') editCard(code);
+  if (button.dataset.action === 'paste') openModalWithPaste(code);
   if (button.dataset.action === 'delete') deleteCard(code);
   if (button.dataset.action === 'prompt') copyStockPrompt(code);
 });
