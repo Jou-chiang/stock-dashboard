@@ -37,7 +37,29 @@ with open(POOL_FILE, "r", encoding="utf-8") as f:
 pool_map = {s["code"]: s for s in pool}
 codes = [s["code"] for s in pool]
 
-print(f"股票池 {len(codes)} 支，開始更新...")
+# 持股中不在股票池的標的，以及研報 D 板 (research_theses.json) 的自選追蹤標的：自動補入更新
+extra_codes = []
+if os.path.exists("my_portfolio.json"):
+    with open("my_portfolio.json", "r", encoding="utf-8") as f:
+        for h in json.load(f).get("holdings", []):
+            c = str(h.get("code", "")).strip()
+            if c and c not in pool_map and c not in extra_codes:
+                extra_codes.append(c)
+                pool_map[c] = {"code": c, "name": h.get("name", c), "sector": ""}
+
+if os.path.exists("research_theses.json"):
+    try:
+        with open("research_theses.json", "r", encoding="utf-8") as f:
+            theses = json.load(f).get("theses", {})
+            for c, t in theses.items():
+                c = str(c).strip()
+                if c and c not in pool_map and c not in extra_codes:
+                    extra_codes.append(c)
+                    pool_map[c] = {"code": c, "name": t.get("stock_name", c), "sector": t.get("category", "")}
+    except Exception as e:
+        print(f"⚠️ 讀取 research_theses.json 失敗: {e}")
+
+print(f"股票池 {len(codes)} 支 + 補充追蹤 {len(extra_codes)} 支，開始更新...")
 
 # ── 讀取歷史資料 ─────────────────────────────────────────
 df_hist = pd.read_csv(HISTORY_FILE, dtype=str, encoding="utf-8-sig")
@@ -52,9 +74,9 @@ yesterday = (datetime.today() - timedelta(days=1)).strftime("%Y-%m-%d")
 new_records = []
 inst_data_map = {}
 
-for i, code in enumerate(codes):
+for i, code in enumerate(codes + extra_codes):
     info = pool_map.get(code, {})
-    print(f"[{i+1}/{len(codes)}] {code} {info.get('name','')}...", end=" ")
+    print(f"[{i+1}/{len(codes) + len(extra_codes)}] {code} {info.get('name','')}...", end=" ")
 
     # 若為新加入股票（歷史資料少於 20 筆），則自動抓取 120 日歷史資料進行初始化
     hist_count = len(df_hist[df_hist["code"] == code]) if not df_hist.empty else 0

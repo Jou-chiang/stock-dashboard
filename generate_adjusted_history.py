@@ -42,7 +42,7 @@ def fetch_finmind(dataset, data_id=None, start_date="2026-01-01"):
             return data.get("data", [])
     except Exception as e:
         print(f"  [API WARN] Failed to fetch {dataset} (data_id={data_id}): {e}")
-        return []
+        return None  # None = 抓取失敗；[] = 抓取成功但無事件（兩者必須分開）
 
 def main():
     print("=" * 70)
@@ -109,7 +109,7 @@ def main():
         events = []
         div_data = fetch_finmind("TaiwanStockDividendResult", data_id=code, start_date=min_date)
         api_calls += 1
-        for d in div_data:
+        for d in (div_data or []):
             bp = d.get("before_price")
             ap = d.get("reference_price") or d.get("after_price")
             if bp and ap and bp > 0:
@@ -125,7 +125,7 @@ def main():
 
         cap_data = fetch_finmind("TaiwanStockCapitalReductionReferencePrice", data_id=code, start_date=min_date)
         api_calls += 1
-        for c in cap_data:
+        for c in (cap_data or []):
             bp = c.get("ClosingPriceonTheLastTradingDay")
             ap = c.get("PostReductionReferencePrice")
             if bp and ap and bp > 0:
@@ -139,7 +139,7 @@ def main():
                     "detail": c.get("ReasonforCapitalReduction", "")
                 })
 
-        for sp in split_records:
+        for sp in (split_records or []):
             if str(sp.get("stock_id", "")).strip() == code and sp.get("date") >= min_date:
                 bp = sp.get("before_price")
                 ap = sp.get("after_price")
@@ -154,7 +154,7 @@ def main():
                         "detail": "股票分割"
                     })
 
-        for pv in par_records:
+        for pv in (par_records or []):
             if str(pv.get("stock_id", "")).strip() == code and pv.get("date") >= min_date:
                 bp = pv.get("before_close")
                 ap = pv.get("after_ref_close")
@@ -170,6 +170,16 @@ def main():
                     })
 
         events.sort(key=lambda x: x["date"])
+
+        # 事件資料抓取失敗（None）≠ 無事件（[]）：失敗一律降級為 unadjusted
+        if div_data is None or cap_data is None or split_records is None or par_records is None:
+            print(f"[{code}] 警告：事件資料抓取失敗，標記為 unadjusted（不得當成無事件）")
+            meta_output["stocks"][code] = {
+                "price_basis": "unadjusted",
+                "reason": "event_fetch_failed",
+                "events_applied": []
+            }
+            continue
 
         # 進行向後復權（Backward Adjustment）：
         # 對於任一日 t，其乘數為所有發生在 t 之後（T_i > t）的事件還原因子之連乘積

@@ -386,39 +386,63 @@ async function loadMarketData() {
   try { pricesFile = await fetchJSON('prices.json'); } catch (e) { console.warn('prices.json 載入失敗', e); }
   try { poolFile = await fetchJSON('pool_scores.json'); } catch (e) { console.warn('pool_scores.json 載入失敗', e); }
 
+  // 1. 先讀 pool_scores.json（這是每日最新的雷達評分與收盤價）
   (poolFile?.scores || []).forEach(s => {
     if (!s.code) return;
     const code = String(s.code).trim();
     poolScoresMap[code] = s;
     if (s.name) poolScoresMap[String(s.name)] = s;
+
+    const p = validPrice(s.price);
+    if (p) {
+      const stamp = s.updated || poolFile?.updated || '今日';
+      priceInfo[code] = {
+        price: p,
+        fresh: true,
+        updated: stamp,
+        type: '收盤價',
+        source: 'pool_scores.json',
+        note: `收盤價：${p} 元 (${stamp})`
+      };
+    }
   });
 
+  // 2. 再讀 prices.json（若是 24 小時內的盤中即時快照，則覆蓋為即時價）
   const priceRows = Array.isArray(pricesFile?.prices) ? pricesFile.prices : [];
+  const pStamp = pricesFile?.updated || null;
+  const isPricesFresh = ageHours(pStamp) >= 0 && ageHours(pStamp) <= 24;
+
   priceRows.forEach(row => {
     const code = String(row.id || row.code || '').trim();
-    const price = validPrice(row.price);
-    if (!code || !price) return;
-    const stamp = pricesFile.updated || row.updated_at || null;
-    const fresh = ageHours(stamp) >= 0 && ageHours(stamp) <= 24;
-    priceInfo[code] = {
-      price, fresh, updated: stamp, type: '快照報價',
-      source: 'Shioaji / prices.json',
-      note: fresh ? '檔案更新時間在 24 小時內；來源未提供逐檔成交時間，不能視為已驗證即時成交價。' : '行情檔案超過 24 小時，僅供參考。'
-    };
+    const p = validPrice(row.price);
+    if (!code || !p) return;
+    if (isPricesFresh) {
+      priceInfo[code] = {
+        price: p,
+        fresh: true,
+        updated: pStamp,
+        type: '即時快照',
+        source: 'prices.json',
+        note: `盤中即時價：${p} 元 (${pStamp})`
+      };
+    } else if (!priceInfo[code]) {
+      // 若 pool_scores.json 無此股，以 prices.json 作為歷史快照參考
+      priceInfo[code] = {
+        price: p,
+        fresh: false,
+        updated: pStamp || '歷史快照',
+        type: '歷史快照',
+        source: 'prices.json',
+        note: `歷史快照價：${p} 元 (${pStamp || '前次更新'})`
+      };
+    }
   });
 
-  Object.entries(poolScoresMap).forEach(([key, s]) => {
-    if (!/^\d{4,6}$/.test(key)) return;
-    const current = priceInfo[key];
-    if (current?.fresh) return;
-    const price = validPrice(s.price);
-    if (!price) return;
-    const stamp = s.updated || poolFile?.updated || null;
-    const fresh = ageDays(stamp) >= 0 && ageDays(stamp) <= 5;
-    const fallback = { price, fresh, updated: stamp, type: '選股資料價格', source: 'pool_scores.json', note: fresh ? '依選股資料日期作參考，非即時報價。' : '選股資料已超過 5 個日曆日，價格視為過期參考值。' };
-    if (!current || (!current.fresh && fresh) || (!current.fresh && !fresh && ageHours(current.updated) < ageHours(stamp))) priceInfo[key] = fallback;
-  });
+  console.log('[loadMarketData] 價格載入完成，有效股票數:', Object.keys(priceInfo).length);
   populateStockDatalist();
+  if (typeof thesisData === 'object' && Object.keys(thesisData).length > 0) {
+    renderCards(thesisData);
+  }
 }
 
 function populateStockDatalist() {
@@ -506,12 +530,15 @@ function saveLocalData(code) {
 
 async function init() {
   initTheme();
-  await Promise.all([loadMarketData(), loadTheses()]);
+  // 必須先等市場價格 (loadMarketData) 完全載入建立 priceInfo，再執行 loadTheses 渲染卡片！
+  await loadMarketData();
+  await loadTheses();
 }
 async function refreshData() {
   const btn = document.getElementById('btn-refresh');
   if (btn) btn.textContent = '重新載入中…';
-  await Promise.all([loadMarketData(), loadTheses()]);
+  await loadMarketData();
+  await loadTheses();
   if (btn) btn.textContent = '🔄 重新載入伺服器資料';
 }
 
@@ -553,7 +580,16 @@ function renderCards(theses) {
   codes.sort().forEach(code => {
     const item = theses[code] || {};
     const quote = priceInfo[code];
-    const priceText = quote?.price ? `參考價 ${quote.price} 元｜${quote.type}｜資料時間 ${quote.updated || '未提供'}${quote.fresh ? '' : '（過期）'}` : '價格未取得';
+    let priceVal = quote?.price;
+    let priceText = '';
+    if (priceVal) {
+      priceText = `參考價 ${priceVal} 元｜${quote.type}｜資料時間 ${quote.updated || '未提供'}${quote.fresh ? '' : '（過期）'}`;
+    } else if (validPrice(item.current_price)) {
+      priceVal = validPrice(item.current_price);
+      priceText = `參考價 ${priceVal} 元｜研報記載價｜資料時間 ${item.consensus_forecast?.as_of || '查證日'}`;
+    } else {
+      priceText = '價格未取得（待雲端排程或盤後更新同步）';
+    }
     const forecast = item.consensus_forecast || {};
     const epsRange = forecast['2026_eps_range'];
     const peRange = forecast['target_pe_range'];
@@ -568,8 +604,8 @@ function renderCards(theses) {
     const verifiedReports = getVerifiedBrokerReports(item);
     const brokerAvg = verifiedReports.length ? Math.round(verifiedReports.reduce((sum, r) => sum + Number(r.target_price), 0) / verifiedReports.length) : null;
     let upside = '';
-    if (quote?.fresh && brokerAvg && quote.price) {
-      const pct = Math.round((brokerAvg - quote.price) / quote.price * 100);
+    if (priceVal && brokerAvg) {
+      const pct = Math.round((brokerAvg - priceVal) / priceVal * 100);
       upside = `<span style="color:${pct >= 0 ? 'var(--green)' : 'var(--red)'};font-weight:700;">目標價均值差 ${pct >= 0 ? '+' : ''}${pct}%</span>`;
     }
     const bias = getBias(item);
@@ -792,20 +828,52 @@ function handleFormSubmit(event) {
   filterCards();
 }
 
-const GPT_REPORT_FORMAT = `請研究台灣上市櫃股票，先查找並閱讀可公開存取的資料，再只輸出純 JSON（不要 Markdown code fence）。不得捏造數字、券商名稱、目標價或來源。每項關鍵事實都要能追溯到公開來源；查不到就留空或標示「未查得」，不要猜測。EPS 與券商報告一律先設為 unverified。格式：
+const GPT_REPORT_FORMAT = `請幫我深度研究台灣上市櫃股票【請在此輸入股票名稱或代號，例如：2330 台積電】：
+先查找並閱讀最新可公開存取的即時行情、法說會與券商研報，再嚴格輸出「符合儀表板 D 匯入規格的純 JSON」（不要 Markdown code fence、不要前言與結論解釋）。不得捏造數字，查不到填空陣列 []。
+⚠️ 重要：所有網址（url 與 source_url）必須為乾淨的純文字 "https://..."，絕對禁止使用 Markdown 語法包裝成 [url](url)！
+
+格式範本結構（請依據實際查得標的替換內容）：
 {
-  "code": "2338",
-  "stock_name": "光罩",
-  "category": "半導體／光罩（需來源支持）",
-  "overall_bias": "unknown",
-  "consensus_forecast": {"2026_eps_range": [], "target_pe_range": [], "source_url": "", "as_of": "YYYY-MM-DD", "verification_status": "unverified"},
-  "thesis_points": {"bull": "有來源支持的樂觀情境；附日期/數字/來源線索", "base": "有來源支持的基準情境", "bear": "有來源支持的風險與失效條件"},
-  "catalysts": [],
-  "broker_reports": [],
-  "last_report_note": "摘要、公開資訊事實、推論與風險，明確區分事實和推論。",
-  "sources": [{"title": "來源標題", "url": "https://...", "date": "YYYY-MM-DD", "publisher": "發布機構"}]
-}
-來源優先順序：公開資訊觀測站、證交所/櫃買中心、公司官網公告/年報/法說資料；媒體可作補充。只把實際查到且能提供網址的來源放入 sources。若無法取得有效公開來源，回覆無法產出可匯入報告。`;
+  "code": "4958",
+  "stock_name": "臻鼎-KY",
+  "category": "PCB/載板",
+  "overall_bias": "bull",
+  "consensus_forecast": {
+    "2026_eps_range": [12.65, 16.18],
+    "target_pe_range": [38.0, 48.0],
+    "source_url": "https://news.cnyes.com/news/id/6631542",
+    "as_of": "2026-10-15",
+    "verification_status": "unverified"
+  },
+  "thesis_points": {
+    "bull": "受惠高階 AI 伺服器與 1.6T 光模塊高毛利產品出貨放量，長約能見度達 2028 年",
+    "base": "全年營收雙位數成長，車用與載板稼動率維持穩健",
+    "bear": "新廠資本支出折舊成本侵蝕短期毛利，消費性電子復甦未如預期"
+  },
+  "catalysts": [
+    "1.6T 光模塊高毛利產品放量",
+    "單季毛利率與獲利逐季創高"
+  ],
+  "broker_reports": [
+    {
+      "broker": "FactSet 調查 (8位分析師共識)",
+      "rating": "買進",
+      "target_price": 671.5,
+      "report_date": "2026-10-15",
+      "source_url": "https://news.cnyes.com/news/id/6631542",
+      "verification_status": "unverified"
+    }
+  ],
+  "last_report_note": "【法說摘要】上半年營收 892 億創同期高，光模塊毛利逾 40% 出貨加速。\\n【外資目標價】FactSet 調查 2026 EPS 中位數 14.23 元，目標價 671.5 元。",
+  "sources": [
+    {
+      "title": "鉅亨網 - FactSet 最新調查：臻鼎-KY EPS預估與目標價",
+      "url": "https://news.cnyes.com/news/id/6631542",
+      "date": "2026-10-15",
+      "publisher": "鉅亨網 / FactSet"
+    }
+  ]
+}`;
 function openImportModal() {
   document.getElementById('import-status').textContent = '';
   document.getElementById('import-overlay').classList.add('active');
@@ -840,7 +908,8 @@ function importGPTReport() {
     const sourceUrl = safeHttpUrl(cf.source_url) || '';
     const forecast = { ...cf, '2026_eps_range': validRange(epsRange) ? epsRange : [], target_pe_range: validRange(peRange) ? peRange : [], source_url:sourceUrl, as_of:String(cf.as_of || ''), verification_status:'unverified' };
     const brokerReports = (Array.isArray(entry.broker_reports) ? entry.broker_reports : []).map(r => ({broker:String(r.broker || ''),rating:String(r.rating || ''),target_price:validPrice(r.target_price),report_date:String(r.report_date || ''),source_url:safeHttpUrl(r.source_url) || '',verification_status:'unverified'}));
-    normalized.push({code,name,item:{stock_name:name,category:String(entry.category || '待分類'),overall_bias:['bull','base','bear'].includes(entry.overall_bias) ? entry.overall_bias : 'unknown',consensus_forecast:forecast,thesis_points:{bull:String(entry.thesis_points?.bull || ''),base:String(entry.thesis_points?.base || ''),bear:String(entry.thesis_points?.bear || '')},catalysts:Array.isArray(entry.catalysts) ? entry.catalysts.map(String) : [],broker_reports:brokerReports,last_report_note:String(entry.last_report_note || ''),sources,status:'draft',verified_at:null,imported_at:new Date().toISOString()}});
+    const currentPrice = validPrice(entry.current_price) || validPrice(entry.price) || null;
+    normalized.push({code,name,item:{stock_name:name,category:String(entry.category || '待分類'),current_price:currentPrice,overall_bias:['bull','base','bear'].includes(entry.overall_bias) ? entry.overall_bias : 'unknown',consensus_forecast:forecast,thesis_points:{bull:String(entry.thesis_points?.bull || ''),base:String(entry.thesis_points?.base || ''),bear:String(entry.thesis_points?.bear || '')},catalysts:Array.isArray(entry.catalysts) ? entry.catalysts.map(String) : [],broker_reports:brokerReports,last_report_note:String(entry.last_report_note || ''),sources,status:'draft',verified_at:null,imported_at:new Date().toISOString()}});
   }
   const duplicates = normalized.filter(x => thesisData[x.code]).map(x => `${x.code} ${x.name}`);
   const message = `將匯入 ${normalized.length} 檔研究資料。${duplicates.length ? '\n以下股票已存在，匯入會保留未變更欄位並記錄歷史：' + duplicates.join('、') : ''}\nEPS 與券商報告將維持待核實；本功能只檢查來源網址格式，不代表已自動確認來源內容。\n確定繼續？`;
@@ -889,7 +958,11 @@ function importGPTReport() {
 
   persistLocalState(); rawFullData = {...serverData,theses:thesisData}; updateStatus(`已匯入 ${normalized.length} 檔 GPT 研究報告並儲存至本機；請匯出 JSON 後手動更新 GitHub`); renderCards(thesisData);
   document.getElementById('search').value = ''; filterCards();
-  status.textContent = `匯入完成：${normalized.length} 檔。資料已儲存在此瀏覽器；請按「匯出 JSON」備份，再手動更新 GitHub 的 research_theses.json。`;
+  
+  // 匯入成功體驗優化：清空輸入框、跳出明顯提示並自動關閉彈窗
+  document.getElementById('gpt-import-json').value = '';
+  closeImportModal();
+  alert(`🎉 成功匯入 ${normalized.length} 檔研究卡片（${normalized.map(x=>x.code+' '+x.name).join('、')}）！\n卡片已更新至畫面，請點擊「匯出 JSON」備份檔案。`);
 }
 
 function openAuditModal() {

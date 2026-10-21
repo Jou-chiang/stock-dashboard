@@ -234,7 +234,8 @@ def compute_stock_signals(
     market_extreme: bool,
     latest_market_date: Optional[str],
     theses_data: Dict,
-    tdcc_data: Dict
+    tdcc_data: Dict,
+    taiex_regime: str = "盤整"
 ) -> Tuple[Dict[str, Any], List[str]]:
     data_flags = []
     signals: Dict[str, Any] = {}
@@ -242,6 +243,7 @@ def compute_stock_signals(
     code = item["code"]
     st_type = item.get("type")
     entry_date = item.get("entry_date")
+    cost = item.get("cost")
     stop_loss_price = item.get("stop_loss_price")
     invalidation_price = item.get("invalidation_price")
     take_profit_target = item.get("take_profit_target")
@@ -278,9 +280,10 @@ def compute_stock_signals(
     signals["extreme_move"] = (day_chg_pct <= -7.0 or market_extreme)
 
     # 2. 除權息防呆判定 (ex_dividend_check)
-    # 嚴格守則：僅套用於 SWING 與 SHORT；CORE 絕對不受影響
+    # 嚴格守則：僅在有手動設定防守價位（停損/失效/停利）時才需檢查是否失準；未設價位者不受除權息標記干擾
     ex_div_check = False
-    if st_type in ("SWING", "SHORT"):
+    has_manual_price_levels = any([stop_loss_price, invalidation_price, take_profit_target])
+    if st_type in ("SWING", "SHORT") and has_manual_price_levels:
         for ev in p_series.events:
             ev_date = ev.get("date")
             is_subsequent = False
@@ -343,6 +346,18 @@ def compute_stock_signals(
             break_confirmed = (day1_break and day2_break and vol_surge)
         signals["ma20_break_confirmed"] = break_confirmed
 
+        # CORE ETF 加碼觀察指標 (0% ~ +3% 貼近季線且未破，限大盤多頭)
+        s_name = item.get("name", "")
+        is_etf = code.startswith("00")
+        is_bond_or_lev = ("美債" in s_name or "正2" in s_name or "反1" in s_name or "債" in s_name)
+        if st_type == "CORE" and is_etf and not is_bond_or_lev and ma60 and curr_p:
+            dist_ma60_pct = round((curr_p - ma60) / ma60 * 100, 2)
+            signals["etf_dist_ma60_pct"] = dist_ma60_pct
+            signals["core_etf_accumulate_watch"] = bool(0.0 <= dist_ma60_pct <= 3.0 and taiex_regime == "多頭")
+        else:
+            signals["etf_dist_ma60_pct"] = None
+            signals["core_etf_accumulate_watch"] = False
+
         # core_deep_drawdown：連續 10 個交易日收盤 < MA60，或回落 20% 以上
         if st_type == "CORE":
             below_10 = False
@@ -396,13 +411,18 @@ def compute_stock_signals(
         signals["invalidation_hit"] = (curr_p < invalidation_price) if invalidation_price else None
         signals["take_profit_hit"] = (curr_p >= take_profit_target) if take_profit_target else None
 
-    # 5. 短線持有天數與動能 (SHORT)
+    # 5. 短線成本停損與動能 (SHORT)
     if st_type == "SHORT":
+        # 成本 8% 硬停損
+        if cost and curr_p:
+            signals["short_cost_stop_hit"] = (curr_p < cost * 0.92)
+        else:
+            signals["short_cost_stop_hit"] = None
+
         if entry_date:
             days_held = len([r for r in p_series.rows if r["date"] >= entry_date])
             signals["holding_days_over"] = (days_held > 10)
         else:
-            # 零虛構原則：進場日為空時，holding_days_over 輸出 None！
             signals["holding_days_over"] = None
 
         if len(closes) >= 2 and len(vols) >= 2 and ma5:
@@ -416,6 +436,7 @@ def compute_stock_signals(
             mom = "neutral"
         signals["short_momentum"] = mom
     else:
+        signals["short_cost_stop_hit"] = None
         signals["holding_days_over"] = None
         signals["short_momentum"] = "neutral"
 
@@ -462,8 +483,11 @@ def generate_snapshot():
 
     # 1. 現場重算價格還原
     print("[1/5] 執行價格還原程式 (generate_adjusted_history.py)...")
-    import generate_adjusted_history
-    generate_adjusted_history.main()
+    if os.environ.get("SKIP_GEN_ADJ") != "1":
+        import generate_adjusted_history
+        generate_adjusted_history.main()
+    else:
+        print("  * 偵測到 SKIP_GEN_ADJ=1，沿用現有 history_data_adj.csv 避免浪費 API 額度")
 
     # 2. 讀取帳本配置與研究資料
     print("\n[2/5] 讀取帳本配置與研究資料...")
@@ -503,7 +527,7 @@ def generate_snapshot():
         p_series = load_price_adapter(code, base_dir=BASE_DIR, prefer_adjusted=True)
 
         signals, data_flags = compute_stock_signals(
-            h, p_series, market_extreme, taiex_date, theses_data, tdcc_data
+            h, p_series, market_extreme, taiex_date, theses_data, tdcc_data, market_meta.get("regime", "盤整")
         )
         curr_p = signals.get("current_price")
 

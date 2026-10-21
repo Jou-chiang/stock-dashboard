@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-04",
+  "last_updated": "2026-10-21",
   "theses": {
     "2330": {
       "stock_name": "台積電",
@@ -803,6 +803,53 @@
       "verified_at": null,
       "history": [],
       "event_flags": []
+    },
+    "4958": {
+      "stock_name": "臻鼎-KY",
+      "category": "PCB/載板",
+      "overall_bias": "bull",
+      "current_price": 581.0,
+      "consensus_forecast": {
+        "2026_eps_range": [
+          12.65,
+          16.18
+        ],
+        "target_pe_range": [
+          38.0,
+          48.0
+        ],
+        "source_url": "https://news.cnyes.com/news/id/6631542",
+        "as_of": "2026-10-15",
+        "verification_status": "verified"
+      },
+      "thesis_points": {
+        "bull": "受惠高階 AI 伺服器與 1.6T 光模塊高毛利產品出貨放量，長約能見度達 2028 年",
+        "base": "全年營收雙位數成長，車用與載板稼動率維持穩健",
+        "bear": "新廠資本支出折舊成本侵蝕短期毛利，消費性電子復甦未如預期"
+      },
+      "catalysts": [
+        "1.6T 光模塊高毛利產品放量",
+        "單季毛利率與獲利逐季創高"
+      ],
+      "broker_reports": [
+        {
+          "broker": "FactSet 調查 (8位分析師共識)",
+          "rating": "買進",
+          "target_price": 671.5,
+          "report_date": "2026-10-15",
+          "source_url": "https://news.cnyes.com/news/id/6631542",
+          "verification_status": "verified"
+        }
+      ],
+      "last_report_note": "【法說摘要】上半年營收 892 億創同期高，光模塊毛利逾 40% 出貨加速。\n【外資目標價】FactSet 調查 2026 EPS 中位數 14.23 元，目標價 671.5 元。",
+      "sources": [
+        {
+          "title": "鉅亨網 - FactSet 最新調查：臻鼎-KY EPS預估與目標價",
+          "url": "https://news.cnyes.com/news/id/6631542",
+          "date": "2026-10-15",
+          "publisher": "鉅亨網 / FactSet"
+        }
+      ]
     }
   }
 }
