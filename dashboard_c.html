@@ -933,8 +933,17 @@ async function query(sym,nameHint){
   }
 }
 
-initTokenUI();
-loadStockList();
+async function initPage(){
+  initTokenUI();
+  await Promise.all([loadTdccData(), loadStockList()]);
+  const p = new URLSearchParams(window.location.search);
+  const qSym = p.get('code') || p.get('sym');
+  if(qSym){
+    document.getElementById('sym').value = qSym;
+    query(qSym);
+  }
+}
+initPage();
 </script>
 </body>
 </html>
