@@ -952,6 +952,57 @@ function normalizeAnyReport(entry) {
   };
 }
 
+function cleanAndParseJson(rawText) {
+  if (!rawText) return null;
+  let text = String(rawText).trim();
+  text = text.replace(/^```[a-z]*\s*/i, '').replace(/\s*```$/i, '').trim();
+
+  try { return JSON.parse(text); } catch(e) {}
+
+  // 1. Sanitize literal unescaped newlines/tabs inside string literals
+  let inString = false;
+  let escaped = false;
+  let out = '';
+  for (let i = 0; i < text.length; i++) {
+    let c = text[i];
+    if (c === '"' && !escaped) {
+      inString = !inString;
+      out += c;
+    } else if (c === '\\' && inString) {
+      escaped = !escaped;
+      out += c;
+    } else {
+      if (inString && (c === '\n' || c === '\r')) {
+        out += (c === '\n' ? '\\n' : '');
+      } else if (inString && c === '\t') {
+        out += '\\t';
+      } else {
+        out += c;
+      }
+      escaped = false;
+    }
+  }
+  text = out;
+  try { return JSON.parse(text); } catch(e) {}
+
+  // 2. Remove trailing commas before closing braces/brackets
+  text = text.replace(/,\s*([\]}])/g, '$1');
+  try { return JSON.parse(text); } catch(e) {}
+
+  // 3. Auto-close truncated JSON brackets/braces
+  let fixed = text.replace(/,\s*$/, '');
+  let openBraces = (fixed.match(/\{/g) || []).length;
+  let closeBraces = (fixed.match(/\}/g) || []).length;
+  let openBrackets = (fixed.match(/\[/g) || []).length;
+  let closeBrackets = (fixed.match(/\]/g) || []).length;
+  while (openBrackets > closeBrackets) { fixed += ']'; closeBrackets++; }
+  while (openBraces > closeBraces) { fixed += '}'; closeBraces++; }
+  fixed = fixed.replace(/,\s*([\]}])/g, '$1');
+  try { return JSON.parse(fixed); } catch(e) {}
+
+  return JSON.parse(text);
+}
+
 function applyQuickJsonToForm() {
   const input = document.getElementById('quick-json-input');
   const msg = document.getElementById('quick-json-msg');
@@ -963,9 +1014,7 @@ function applyQuickJsonToForm() {
   }
   let parsed;
   try {
-    let cleaned = raw.replace(/^```[a-z]*\s*/i, '').replace(/\s*```$/i, '').trim();
-    cleaned = cleaned.replace(/,\s*([\]}])/g, '$1');
-    parsed = JSON.parse(cleaned);
+    parsed = cleanAndParseJson(raw);
   } catch (e) {
     msg.textContent = `❌ JSON 解析錯誤：${e.message}。請確認是否為完整合法的 JSON 格式。`;
     msg.style.color = 'var(--red)';
@@ -1171,12 +1220,14 @@ function importGPTReport() {
     status.textContent = '請先貼上 JSON 內容。';
     return;
   }
-  rawText = rawText.replace(/^```[a-z]*\s*/i, '').replace(/\s*```$/i, '').trim();
-  rawText = rawText.replace(/,\s*([\]}])/g, '$1');
 
   let parsed;
-  try { parsed = JSON.parse(rawText); }
-  catch (e) { status.textContent = 'JSON 格式錯誤：' + e.message + '\n請確認是否為完整 JSON（已自動去除 ``` 標記）。'; return; }
+  try {
+    parsed = cleanAndParseJson(rawText);
+  } catch (e) {
+    status.textContent = 'JSON 格式錯誤：' + e.message + '\n請確認是否為完整 JSON（已自動去除 ``` 標記與補齊尾端）。';
+    return;
+  }
 
   let entries = [];
   if (parsed && parsed.theses && typeof parsed.theses === 'object') entries = Object.entries(parsed.theses).map(([code, item]) => ({code, ...item}));
