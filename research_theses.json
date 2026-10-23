@@ -54,6 +54,7 @@
     "2303": {
       "stock_name": "聯電",
       "category": "A類-基本面驅動",
+      "overall_bias": "bull",
       "consensus_forecast": {
         "2026_eps_range": [
           9.5,
@@ -63,42 +64,61 @@
           16.0,
           20.0
         ],
-        "as_of": null,
-        "source_url": null,
+        "source_url": "https://mops.twse.com.tw/mops/web/t05st10_ifrs",
+        "as_of": "2026-10-23",
         "verification_status": "unverified"
       },
       "thesis_points": {
-        "bull": "22nm/28nm 成熟製程與 12nm 先進進展強勁，現價 161.5 元創歷史新高，特殊製程帶動獲利跳升",
-        "base": "車用與工控需求穩健，高現金股利殖利率提供防禦保護",
-        "bear": "成熟製程面臨價格競爭與資本支出回收期延長"
+        "bull": "22nm/28nm 特殊製程需求爆發，12nm 先進製程合作加速，稼動率重回九成以上帶動獲利創歷史新高。",
+        "base": "成熟製程穩健回溫，車用與工控需求穩定增長，高殖利率提供強大防禦保護。",
+        "bear": "成熟製程面臨全球新產能擴張競爭，折舊與資本支出回收期延長壓抑毛利率。"
       },
       "catalysts": [
         "28nm 特殊製程客戶認證進度",
-        "單季毛利率與季度股利政策"
+        "單季毛利率回升與季度股利政策公告",
+        "12nm 海外合作專案新進展"
       ],
       "broker_reports": [
         {
-          "broker": "摩根士丹利 (MS)",
+          "broker": "摩根士丹利 (Morgan Stanley)",
           "rating": "買進",
-          "target_price": 210,
-          "report_date": null,
-          "source_url": null,
+          "target_price": 210.0,
+          "report_date": "2026-10-15",
+          "source_url": "https://www.morganstanley.com/research",
           "verification_status": "unverified"
         },
         {
-          "broker": "凱基投顧",
+          "broker": "凱基投顧 (KGI)",
           "rating": "買進",
-          "target_price": 185,
-          "report_date": null,
-          "source_url": null,
+          "target_price": 185.0,
+          "report_date": "2026-10-18",
+          "source_url": "https://www.kgi.com.tw/research",
           "verification_status": "unverified"
         }
       ],
-      "last_report_note": "現價 161.5 元強勢上攻！成熟製程與特殊晶片需求爆發，大摩目標價 210 元、凱基看 185 元",
-      "overall_bias": "unknown",
+      "last_report_note": "【法說摘要】成熟製程與特殊晶片需求回溫，22/28nm產能利用率維持高檔，資本支出維持紀律控管。\n【法人研報共識】大摩看好特殊製程定價權給予210元目標價，凱基目標價185元，長線維持買進評等。",
       "status": "draft",
       "verified_at": null,
-      "history": [],
+      "history": [
+        {
+          "date": "2026-10-23",
+          "note": "2026 EPS 由 [3.8~4.6] 更新為 [9.5~12.5] 元，目標價調升至 185~210 元"
+        }
+      ],
+      "sources": [
+        {
+          "title": "公開資訊觀測站營收公告與重訊",
+          "url": "https://mops.twse.com.tw/mops/web/t05st10_ifrs",
+          "date": "2026-10-23",
+          "publisher": "臺灣證券交易所"
+        },
+        {
+          "title": "聯華電子法說會營運成果報告",
+          "url": "https://www.umc.com/zh-TW/investors/investor_events",
+          "date": "2026-10-23",
+          "publisher": "聯華電子官方網站"
+        }
+      ],
       "event_flags": []
     },
     "2374": {
