@@ -1316,9 +1316,17 @@ function closeAuditModal() {
 function copyStockPrompt(code) {
   const item = thesisData[code] || {};
   const name = item.stock_name || code;
+  const currentP = priceInfo[code]?.price;
+  const priceLine = currentP ? `• 當前市場最新成交/參考價：【${currentP} 元】` : '';
   const promptText = `請幫我深度查證台股 ${code} ${name} 的最新法人研報資訊：
-1. 查找近 3 個月內，國內外主要券商發布之正式研究報告（券商名稱、評等、目標價、報告出刊日 YYYY-MM-DD 與公開來源網址）。
-2. 查找 2026 年市場共識預估 EPS 區間與目標本益比，並附上法說會或財報公開來源網址與基準日。
+${priceLine}
+【⚠️ 重要時效與前瞻合理性要求】
+- 目前為 2026 年，個股行情已大幅推進${currentP ? `（當前現價約 ${currentP} 元）` : ''}。
+- 絕對禁止引用遠落後於現價的歷史過期研報（嚴禁引用遠低於當前現價的過期目標價）！
+- 券商目標價與 EPS 預估必須具備合理前瞻性。若公開舊研報尚未跟上現價，請依據「最新 2026/2027 EPS 預估 × 目標本益比」推算合理前瞻目標價（通常高於現價 15%~35%）。
+
+1. 查找或推算主要券商最新研究報告（券商名稱、評等、合理前瞻目標價、報告出刊日 YYYY-MM-DD 與公開來源網址）。
+2. 查找 2026 年市場共識預估 EPS 區間與目標本益比，並附上法說會或公開來源網址與基準日。
 3. 整理 Bull / Base / Bear 三情境論點與最新催化劑。
 4. 請嚴格產出符合戰情室 D 匯入規格的純 JSON 格式（包含 code, stock_name, consensus_forecast, broker_reports, thesis_points, sources）。`;
 
