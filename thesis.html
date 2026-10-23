@@ -653,7 +653,6 @@ function renderCards(theses) {
             <button class="btn-action" data-action="prompt" data-code="${esc(code)}" title="複製讓 Gem 查證此股票的指令">📋 查證指令</button>
             <button class="btn-action" data-action="paste" data-code="${esc(code)}" title="直接貼上 Gem 產出的 JSON 更新此股票" style="color:var(--amber);border-color:var(--amber);font-weight:bold;">⚡ 貼入代碼</button>
             <button class="btn-action" data-action="edit" data-code="${esc(code)}">手動編輯</button>
-            ${localOverrides[code] ? `<button class="btn-action" data-action="revert" data-code="${esc(code)}" title="清除此卡片之本機暫存，還原為伺服器原始資料" style="color:var(--blue);border-color:rgba(91,163,245,0.4);">🔄 還原</button>` : ''}
             <button class="btn-action btn-del" data-action="delete" data-code="${esc(code)}">刪除</button>
           </div>
         </div>
@@ -1429,14 +1428,6 @@ function openModalWithPaste(code) {
 }
 
 function editCard(code) { openModal(code); }
-function revertCard(code) {
-  if (!confirm(`確定還原 ${code} 至伺服器原始設定？這將清除您在本機貼入的暫存覆蓋。`)) return;
-  delete localOverrides[code];
-  persistLocalState();
-  applyLocalState();
-  updateStatus(`已將 ${code} 還原至伺服器最新資料`);
-  renderCards(thesisData);
-}
 function deleteCard(code) {
   if (!confirm(`確定刪除 ${code} ${thesisData[code]?.stock_name || ''}？此刪除會保存在本機，避免重新載入後復活。`)) return;
   delete thesisData[code]; delete localOverrides[code]; deletedCodes.add(code); persistLocalState();
@@ -1455,7 +1446,6 @@ document.getElementById('main-content').addEventListener('click', event => {
   const code = button.dataset.code;
   if (button.dataset.action === 'edit') editCard(code);
   if (button.dataset.action === 'paste') openModalWithPaste(code);
-  if (button.dataset.action === 'revert') revertCard(code);
   if (button.dataset.action === 'delete') deleteCard(code);
   if (button.dataset.action === 'prompt') copyStockPrompt(code);
 });
