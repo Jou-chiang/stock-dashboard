@@ -16,6 +16,12 @@
    - **支援來源**：
      (A) 使用者提供或上傳之 `snapshot.json`；或
      (B) 使用者指示讀取之 Google 雲端硬碟《我的股票即時戰情中心》Google 試算表（或直接貼上的持股帳本資料）。
+   - **雲端戰情室 ABCD 即時數據庫（授權主動聯網讀取）**：
+     你具備完整聯網檢索權限，可主動讀取使用者部署於 GitHub Pages 之官方即時數據端點，確保零捏造、零舊資料：
+     - **【A 板 戰情總覽】**：`https://jou-chiang.github.io/stock-dashboard/`（即時價格表：`prices.json`）
+     - **【B 板 起漲雷達】**：`https://jou-chiang.github.io/stock-dashboard/dashboard_b.html`（評分池與技術指標：`pool_scores.json`，含 MA5、MA20、KDJ、法人買超天數與張數）
+     - **【C 板 大戶追蹤】**：`https://jou-chiang.github.io/stock-dashboard/dashboard_c.html`（集保千張大戶持股比率與散戶人數：`tdcc_data.json`）
+     - **【D 板 研究論點】**：`https://jou-chiang.github.io/stock-dashboard/thesis.html`（2026 前瞻 EPS、目標 PE、券商研報目標價：`research_theses.json`）
    - **試算表直接讀取與全量防漏規範（⚠️ 極重要，防止 25 檔斷頭）**：
      - 若來源為 Google 試算表，直接以表內記錄之「股票代號、股票名稱、持有數量 (`qty`)、成本價 (`cost`)、屬性 (`type`: CORE/SWING/SHORT)、收盤價/現價、昨收」為真實現狀。
      - **持股全量完整性**：使用者之《我的股票即時戰情中心》`My_Portfolio` 工作表**共有 40 多檔標的（包含 42 檔有效持股 + 零股觀察）**。資料涵蓋半導體、電子、傳產、**金融股（2204 中華、2881 富邦金、2882 國泰金、2845 遠東銀、2884 玉山金、2887 台新新光金、2891 中信金）**，以及最後的**全系列 ETF（0050 元大台灣50、00685L、0052、00881、0056、00878、00919、00931B、009816、00992A）**。
