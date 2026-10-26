@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "total": 146,
   "score_version": 2,
   "price_basis": "unadjusted",
@@ -65,7 +65,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3443",
@@ -128,7 +128,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "4961",
@@ -192,7 +192,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2002",
@@ -254,7 +254,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "5880",
@@ -316,7 +316,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2352",
@@ -379,7 +379,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "9945",
@@ -442,7 +442,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3231",
@@ -505,7 +505,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2006",
@@ -567,7 +567,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "8016",
@@ -629,7 +629,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2882",
@@ -691,7 +691,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2412",
@@ -753,7 +753,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2615",
@@ -816,7 +816,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2353",
@@ -879,7 +879,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2890",
@@ -942,7 +942,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "5876",
@@ -1004,7 +1004,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1402",
@@ -1067,7 +1067,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "4904",
@@ -1129,7 +1129,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2409",
@@ -1192,7 +1192,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2207",
@@ -1254,7 +1254,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3702",
@@ -1316,7 +1316,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3036",
@@ -1379,7 +1379,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "9933",
@@ -1442,7 +1442,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2885",
@@ -1508,7 +1508,7 @@
         "inst_reversal": "warn"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2382",
@@ -1570,7 +1570,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3711",
@@ -1632,7 +1632,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2603",
@@ -1692,7 +1692,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2379",
@@ -1752,7 +1752,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3037",
@@ -1814,7 +1814,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "8046",
@@ -1876,7 +1876,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3189",
@@ -1938,7 +1938,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1504",
@@ -2000,7 +2000,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2027",
@@ -2060,7 +2060,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2313",
@@ -2122,7 +2122,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2368",
@@ -2184,7 +2184,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2492",
@@ -2246,7 +2246,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "5269",
@@ -2308,7 +2308,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3035",
@@ -2370,7 +2370,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2377",
@@ -2430,7 +2430,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2637",
@@ -2492,7 +2492,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2884",
@@ -2554,7 +2554,7 @@
         "inst_reversal": "notice"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6415",
@@ -2618,7 +2618,7 @@
         "inst_reversal": "notice"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2892",
@@ -2682,7 +2682,7 @@
         "inst_reversal": "warn"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3034",
@@ -2746,7 +2746,7 @@
         "inst_reversal": "warn"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2330",
@@ -2808,7 +2808,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2454",
@@ -2870,7 +2870,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2308",
@@ -2932,7 +2932,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2881",
@@ -2994,7 +2994,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1301",
@@ -3054,7 +3054,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2880",
@@ -3114,7 +3114,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3008",
@@ -3174,7 +3174,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2609",
@@ -3234,7 +3234,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2337",
@@ -3296,7 +3296,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2376",
@@ -3358,7 +3358,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1102",
@@ -3418,7 +3418,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2105",
@@ -3478,7 +3478,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "9904",
@@ -3538,7 +3538,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3017",
@@ -3600,7 +3600,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1326",
@@ -3660,7 +3660,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3661",
@@ -3722,7 +3722,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3532",
@@ -3784,7 +3784,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2404",
@@ -3846,7 +3846,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3533",
@@ -3906,7 +3906,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3005",
@@ -3966,7 +3966,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2633",
@@ -4029,7 +4029,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2449",
@@ -4091,7 +4091,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2360",
@@ -4153,7 +4153,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1477",
@@ -4215,7 +4215,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "4938",
@@ -4279,7 +4279,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2891",
@@ -4323,7 +4323,7 @@
       "risk": "mid",
       "risk_score": 2,
       "risk_reasons": [
-        "🟠 投信連買12日後連賣7日"
+        "🟠 投信連買10日後連賣7日"
       ],
       "action": "法人轉弱，持有者檢查停利／停損，空手勿進",
       "excluded": false,
@@ -4343,7 +4343,7 @@
         "inst_reversal": "warn"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1216",
@@ -4407,7 +4407,7 @@
         "inst_reversal": "warn"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3045",
@@ -4471,7 +4471,7 @@
         "inst_reversal": "warn"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2395",
@@ -4531,7 +4531,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2883",
@@ -4591,7 +4591,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2887",
@@ -4651,7 +4651,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2912",
@@ -4711,7 +4711,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3044",
@@ -4771,7 +4771,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6271",
@@ -4831,7 +4831,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2606",
@@ -4891,7 +4891,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "8150",
@@ -4953,7 +4953,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2312",
@@ -5013,7 +5013,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6213",
@@ -5075,7 +5075,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2406",
@@ -5139,7 +5139,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2605",
@@ -5199,7 +5199,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2481",
@@ -5259,7 +5259,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2618",
@@ -5319,7 +5319,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2610",
@@ -5379,7 +5379,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6176",
@@ -5439,7 +5439,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1304",
@@ -5499,7 +5499,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2371",
@@ -5559,7 +5559,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2201",
@@ -5619,7 +5619,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2367",
@@ -5679,7 +5679,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "8028",
@@ -5739,7 +5739,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2356",
@@ -5799,7 +5799,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "5434",
@@ -5859,7 +5859,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6285",
@@ -5919,7 +5919,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "5388",
@@ -5979,7 +5979,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3596",
@@ -6039,7 +6039,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "8112",
@@ -6099,7 +6099,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2886",
@@ -6161,7 +6161,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3481",
@@ -6223,7 +6223,7 @@
         "inst_reversal": "notice"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2014",
@@ -6285,7 +6285,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2204",
@@ -6347,7 +6347,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2324",
@@ -6411,7 +6411,7 @@
         "inst_reversal": "warn"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6505",
@@ -6455,7 +6455,7 @@
       "risk": "mid",
       "risk_score": 2,
       "risk_reasons": [
-        "🟠 投信連買15日後連賣4日"
+        "🟠 投信連買13日後連賣4日"
       ],
       "action": "法人轉弱，持有者檢查停利／停損，空手勿進",
       "excluded": false,
@@ -6475,7 +6475,7 @@
         "inst_reversal": "warn"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1513",
@@ -6539,7 +6539,7 @@
         "inst_reversal": "warn"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6274",
@@ -6603,7 +6603,7 @@
         "inst_reversal": "warn"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2357",
@@ -6667,7 +6667,7 @@
         "inst_reversal": "strong"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1717",
@@ -6727,7 +6727,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1722",
@@ -6787,7 +6787,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "9939",
@@ -6849,7 +6849,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6443",
@@ -6909,7 +6909,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3576",
@@ -6969,7 +6969,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1303",
@@ -7031,7 +7031,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1308",
@@ -7093,7 +7093,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1476",
@@ -7158,7 +7158,7 @@
         "inst_reversal": "warn"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2317",
@@ -7220,7 +7220,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2344",
@@ -7282,7 +7282,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2301",
@@ -7344,7 +7344,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "5871",
@@ -7406,7 +7406,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "9910",
@@ -7468,7 +7468,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "9921",
@@ -7530,7 +7530,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "5904",
@@ -7592,7 +7592,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2345",
@@ -7654,7 +7654,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6669",
@@ -7716,7 +7716,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1519",
@@ -7778,7 +7778,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2327",
@@ -7840,7 +7840,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3023",
@@ -7902,7 +7902,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6239",
@@ -7964,7 +7964,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6206",
@@ -8026,7 +8026,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6414",
@@ -8088,7 +8088,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2458",
@@ -8150,7 +8150,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2474",
@@ -8212,7 +8212,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2634",
@@ -8274,7 +8274,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "8464",
@@ -8336,7 +8336,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "8932",
@@ -8398,7 +8398,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "9907",
@@ -8460,7 +8460,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "4749",
@@ -8522,7 +8522,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6282",
@@ -8584,7 +8584,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "3163",
@@ -8646,7 +8646,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6508",
@@ -8710,7 +8710,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2707",
@@ -8774,7 +8774,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "6412",
@@ -8838,7 +8838,7 @@
         "inst_reversal": null
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2303",
@@ -8904,7 +8904,7 @@
         "inst_reversal": "strong"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "2408",
@@ -8970,7 +8970,7 @@
         "inst_reversal": "strong"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     },
     {
       "code": "1503",
@@ -9036,7 +9036,7 @@
         "inst_reversal": "strong"
       },
       "score_version": 2,
-      "updated": "2026-10-23"
+      "updated": "2026-10-26"
     }
   ]
 }
